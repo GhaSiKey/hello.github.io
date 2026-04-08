@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>我的网站</title>
+  <title>给婷的邀请 💌</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -13,31 +13,254 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: #fff;
+      background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+      color: #333;
+      overflow: hidden;
+      position: relative;
     }
     .container {
       text-align: center;
       padding: 2rem;
+      z-index: 10;
     }
-    h1 { font-size: 3rem; margin-bottom: 1rem; }
-    p { font-size: 1.2rem; opacity: 0.9; margin-bottom: 2rem; }
-    a {
+    .emoji {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      animation: bounce 2s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+      color: #e84393;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+    .sub { font-size: 1.2rem; color: #6c5ce7; margin-bottom: 2.5rem; }
+    .buttons { display: flex; gap: 2rem; justify-content: center; align-items: center; min-height: 80px; }
+    .btn-yes {
+      padding: 1rem 3rem;
+      font-size: 1.3rem;
+      border: none;
+      border-radius: 3rem;
+      cursor: pointer;
+      background: linear-gradient(135deg, #fd79a8, #e84393);
       color: #fff;
-      background: rgba(255,255,255,0.2);
-      padding: 0.75rem 2rem;
-      border-radius: 2rem;
-      text-decoration: none;
-      transition: background 0.3s;
+      box-shadow: 0 4px 15px rgba(232,67,147,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    a:hover { background: rgba(255,255,255,0.35); }
+    .btn-yes:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(232,67,147,0.6); }
+    .btn-no {
+      padding: 1rem 3rem;
+      font-size: 1.3rem;
+      border: 2px solid #b2bec3;
+      border-radius: 3rem;
+      cursor: pointer;
+      background: #dfe6e9;
+      color: #636e72;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      z-index: 100;
+    }
+    .btn-no.escaping {
+      position: fixed;
+      transition: left 0.4s cubic-bezier(.2,.8,.3,1.2), top 0.4s cubic-bezier(.2,.8,.3,1.2), transform 0.3s ease;
+    }
+    .btn-no.escaping:hover {
+      transform: scale(0.8) rotate(15deg);
+    }
+    .result {
+      display: none;
+      margin-top: 2rem;
+      font-size: 2rem;
+      color: #e84393;
+      animation: fadeIn 1s ease-in;
+    }
+    .result.show { display: block; }
+    .meme {
+      margin-top: 1.5rem;
+      opacity: 0;
+      transform: translateY(-30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .meme.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .meme img {
+      max-width: 280px;
+      border-radius: 1rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 50;
+    }
+    .hearts {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .heart {
+      position: absolute;
+      font-size: 1.5rem;
+      animation: fall linear infinite;
+      opacity: 0.6;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-10vh) rotate(0deg); opacity: 0.6; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
   </style>
 </head>
 <body>
-  <main class="container">
-    <h1>欢迎来到我的网站</h1>
-    <p>这是一个托管在 GitHub Pages 上的静态网站。</p>
-    <a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">了解 GitHub Pages</a>
-  </main>
+  <div class="hearts" id="hearts"></div>
+  <canvas id="fireworks"></canvas>
+
+  <div class="container">
+    <div class="emoji">( ˘ ³˘)♥</div>
+    <h1>婷，周六出来玩嘛～</h1>
+    <p class="sub">ᕙ(⇀‸↼‶)ᕗ 就出来嘛就出来嘛</p>
+    <div class="buttons">
+      <button class="btn-yes" onclick="accept()">好呀好呀 💕</button>
+      <button class="btn-no" id="btnNo">不要 😤</button>
+    </div>
+    <div class="result" id="result">
+      🎉 周六老地方见 🎉<br><span style="font-size:1.2rem">ヾ(≧▽≦*)o</span>
+      <div class="meme" id="meme"><img src="1.jpg" alt="表情包"></div>
+    </div>
+  </div>
+
+  <script>
+    // 飘落的爱心背景
+    const heartsContainer = document.getElementById('hearts');
+    for (let i = 0; i < 15; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.textContent = ['💕','💗','💖','🩷','✨'][Math.floor(Math.random()*5)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (4 + Math.random() * 6) + 's';
+      heart.style.animationDelay = Math.random() * 5 + 's';
+      heart.style.fontSize = (1 + Math.random() * 1.5) + 'rem';
+      heartsContainer.appendChild(heart);
+    }
+
+    // 不接受按钮 - 鼠标靠近就跑 + 随机文案
+    const btnNo = document.getElementById('btnNo');
+    let noInitialized = false;
+    let escapeCount = 0;
+    const noTexts = ['不要 😤','别想点到我 🏃','抓不到我～ 😜','你点不到哦 🤪','再试试？😏','就不让你点 🙈','哈哈哈 🤣','溜了溜了 💨','我跑得快吧 ⚡','投降吧～ 😘'];
+    btnNo.addEventListener('mouseenter', function() {
+      if (!noInitialized) {
+        btnNo.classList.add('escaping');
+        noInitialized = true;
+      }
+      escapeCount++;
+      const maxX = window.innerWidth - 160;
+      const maxY = window.innerHeight - 60;
+      const newX = Math.max(10, Math.random() * maxX);
+      const newY = Math.max(10, Math.random() * maxY);
+      btnNo.style.left = newX + 'px';
+      btnNo.style.top = newY + 'px';
+      btnNo.textContent = noTexts[escapeCount % noTexts.length];
+      // 按钮变小变快，越追越难抓
+      const scale = Math.max(0.6, 1 - escapeCount * 0.03);
+      btnNo.style.fontSize = (1.3 * scale) + 'rem';
+    });
+
+    // 接受按钮
+    let accepted = false;
+    function accept() {
+      if (accepted) return;
+      accepted = true;
+      document.getElementById('result').classList.add('show');
+      setTimeout(() => {
+        document.getElementById('meme').classList.add('show');
+      }, 800);
+      document.querySelector('.btn-yes').textContent = '(ノ´ヮ`)ノ*: ・゚✧';
+      btnNo.style.display = 'none';
+      startFireworks();
+    }
+
+    // 烟花效果
+    const canvas = document.getElementById('fireworks');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let animating = false;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    class Particle {
+      constructor(x, y, color) {
+        this.x = x; this.y = y;
+        this.color = color;
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 5 + 2;
+        this.vx = Math.cos(angle) * speed;
+        this.vy = Math.sin(angle) * speed;
+        this.alpha = 1;
+        this.decay = Math.random() * 0.02 + 0.01;
+        this.size = Math.random() * 3 + 1;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.vy += 0.05;
+        this.alpha -= this.decay;
+      }
+      draw() {
+        ctx.save();
+        ctx.globalAlpha = this.alpha;
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    function createFirework() {
+      const x = Math.random() * canvas.width;
+      const y = Math.random() * canvas.height * 0.5;
+      const colors = ['#fd79a8','#e84393','#6c5ce7','#00cec9','#fdcb6e','#ff6b6b','#ffeaa7','#55efc4'];
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      for (let i = 0; i < 60; i++) {
+        particles.push(new Particle(x, y, color));
+      }
+    }
+
+    function animateFireworks() {
+      if (!animating) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles = particles.filter(p => p.alpha > 0);
+      particles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(animateFireworks);
+    }
+
+    function startFireworks() {
+      animating = true;
+      let count = 0;
+      const interval = setInterval(() => {
+        createFirework();
+        createFirework();
+        count++;
+        if (count > 25) clearInterval(interval);
+      }, 400);
+      animateFireworks();
+    }
+  </script>
 </body>
 </html>
