@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANR 问题全面分析报告</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 40px;
+        }
+        .header h1 { font-size: 28px; margin-bottom: 8px; }
+        .header .subtitle { opacity: 0.9; font-size: 14px; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 24px; }
+        
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .stat-item {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .stat-item .number { font-size: 28px; font-weight: 700; color: #667eea; }
+        .stat-item .number.danger { color: #e74c3c; }
+        .stat-item .number.warning { color: #f39c12; }
+        .stat-item .number.success { color: #27ae60; }
+        .stat-item .label { font-size: 12px; color: #666; margin-top: 4px; }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            margin-bottom: 24px;
+        }
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .issue-category {
+            margin-bottom: 24px;
+        }
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px 12px 0 0;
+            cursor: pointer;
+            user-select: none;
+        }
+        .category-header:hover { opacity: 0.95; }
+        .category-title { font-size: 18px; font-weight: 600; }
+        .category-stats { display: flex; gap: 24px; font-size: 14px; }
+        .category-stat { text-align: center; }
+        .category-stat .value { font-size: 20px; font-weight: 700; }
+        .category-stat .label { font-size: 11px; opacity: 0.8; }
+
+        .category-body {
+            background: white;
+            border-radius: 0 0 12px 12px;
+            padding: 20px;
+            display: none;
+        }
+        .category-body.open { display: block; }
+
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        .section { margin-bottom: 16px; }
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .stack-trace {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            border-radius: 8px;
+            padding: 16px;
+            font-family: 'SF Mono', 'Consolas', monospace;
+            font-size: 11px;
+            overflow-x: auto;
+            max-height: 280px;
+            overflow-y: auto;
+        }
+        .stack-trace .thread-name { color: #569cd6; font-weight: 600; }
+        .stack-trace .thread-state { color: #808080; }
+        .stack-trace .method { color: #dcdcaa; }
+        .stack-trace .comment { color: #6a9955; }
+
+        .source-code {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            border-radius: 8px;
+            padding: 16px;
+            font-family: 'SF Mono', 'Consolas', monospace;
+            font-size: 12px;
+            overflow-x: auto;
+        }
+        .source-code .keyword { color: #569cd6; }
+        .source-code .function { color: #dcdcaa; }
+        .source-code .string { color: #ce9178; }
+        .source-code .comment { color: #6a9955; }
+        .source-code .number { color: #b5cea8; }
+
+        .suggestion-item {
+            padding: 14px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid #667eea;
+        }
+        .suggestion-item.high { border-left-color: #e74c3c; }
+        .suggestion-item.medium { border-left-color: #f39c12; }
+        .suggestion-item.low { border-left-color: #27ae60; }
+        .suggestion-item .title { font-weight: 600; color: #333; margin-bottom: 4px; font-size: 13px; }
+        .suggestion-item .desc { font-size: 12px; color: #666; margin-bottom: 6px; }
+        .suggestion-item .code {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 11px;
+            overflow-x: auto;
+        }
+
+        .priority-tag {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        .priority-high { background: #ffeaea; color: #e74c3c; }
+        .priority-medium { background: #fff4e6; color: #f39c12; }
+        .priority-low { background: #e8f8f0; color: #27ae60; }
+
+        .expand-icon {
+            display: inline-block;
+            transition: transform 0.2s;
+            margin-right: 8px;
+            font-size: 12px;
+        }
+        .expand-icon.rotated { transform: rotate(90deg); }
+
+        .summary-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .summary-table th, .summary-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .summary-table th { background: #f8f9fa; font-weight: 600; }
+        .summary-table tr:hover { background: #f8f9fa; }
+        .summary-table .users { font-weight: 600; }
+
+        .timeline {
+            position: relative;
+            padding-left: 24px;
+            font-size: 13px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #e9ecef;
+        }
+        .timeline-item {
+            position: relative;
+            padding-bottom: 16px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 2px solid white;
+        }
+        .timeline-item.highlight::before { background: #e74c3c; }
+        .timeline-item .date { font-size: 11px; color: #888; margin-bottom: 2px; }
+        .timeline-item .event { font-weight: 500; color: #333; }
+
+        .issue-list {
+            margin-bottom: 20px;
+        }
+        .issue-list table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .issue-list th, .issue-list td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .issue-list th { background: #f8f9fa; font-weight: 600; }
+        .issue-list tr:hover { background: #f8f9fa; }
+        .issue-list .user-count { font-weight: 600; }
+
+        .footer {
+            text-align: center;
+            padding: 24px;
+            color: #888;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🐴 ANR 问题全面分析报告</h1>
+        <div class="subtitle">BStar Android · Google Play 共 25 个 ANR 问题 · 分析周期: 2026-04-06 ~ 2026-04-12</div>
+    </div>
+
+    <div class="container">
+        <!-- 汇总统计 -->
+        <div class="summary-stats">
+            <div class="stat-item">
+                <div class="number danger">25</div>
+                <div class="label">ANR 问题总数</div>
+            </div>
+            <div class="stat-item">
+                <div class="number danger">114,252</div>
+                <div class="label">最多用户 (Unsafe.park #1)</div>
+            </div>
+            <div class="stat-item">
+                <div class="number warning">2.62%</div>
+                <div class="label">3.76.0 版本 ANR 率</div>
+            </div>
+            <div class="stat-item">
+                <div class="number warning">194,165</div>
+                <div class="label">nativePollOnce 用户</div>
+            </div>
+            <div class="stat-item">
+                <div class="number warning">163,493</div>
+                <div class="label">Unsafe.park 用户</div>
+            </div>
+        </div>
+
+        <!-- 问题分类总览 -->
+        <div class="card">
+            <div class="card-title">📊 ANR 问题分类总览 (25个问题 → 8个根因类别)</div>
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>类别</th>
+                        <th>问题数</th>
+                        <th>总用户</th>
+                        <th>总报告</th>
+                        <th>占比</th>
+                        <th>可操作</th>
+                        <th>根因</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>🔴 nativePollOnce (主线程空闲)</strong></td>
+                        <td>9</td>
+                        <td class="users">194,165</td>
+                        <td>272,701</td>
+                        <td>32.5%</td>
+                        <td><span class="priority-tag priority-medium">低</span></td>
+                        <td>系统负载/资源竞争</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🔴 Unsafe.park (启动阻塞)</strong></td>
+                        <td>6</td>
+                        <td class="users">163,493</td>
+                        <td>226,413</td>
+                        <td>27.4%</td>
+                        <td><span class="priority-tag priority-high">高</span></td>
+                        <td>BLRouter.performCreateModules</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🟠 Gripper variantRunBlocking</strong></td>
+                        <td>4</td>
+                        <td>21,598</td>
+                        <td>32,832</td>
+                        <td>3.6%</td>
+                        <td><span class="priority-tag priority-high">高</span></td>
+                        <td>Gripper 框架阻塞</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🟡 Native stack (DumpNativeStack)</strong></td>
+                        <td>2</td>
+                        <td>10,482</td>
+                        <td>10,842</td>
+                        <td>1.8%</td>
+                        <td><span class="priority-tag priority-medium">中</span></td>
+                        <td>Native IO/线程问题</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🟡 Facebook GKs Manager</strong></td>
+                        <td>1</td>
+                        <td>9,466</td>
+                        <td>10,252</td>
+                        <td>1.6%</td>
+                        <td><span class="priority-tag priority-high">高</span></td>
+                        <td>Facebook SDK 初始化</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🟢 init (模块初始化)</strong></td>
+                        <td>1</td>
+                        <td>4,889</td>
+                        <td>5,031</td>
+                        <td>0.8%</td>
+                        <td><span class="priority-tag priority-high">高</span></td>
+                        <td>未知模块初始化</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🟢 WaitHoldingLocks (Native)</strong></td>
+                        <td>1</td>
+                        <td>4,784</td>
+                        <td>4,975</td>
+                        <td>0.8%</td>
+                        <td><span class="priority-tag priority-medium">中</span></td>
+                        <td>Native 线程等待</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🟢 Broadcast getInstance</strong></td>
+                        <td>1</td>
+                        <td>4,662</td>
+                        <td>4,701</td>
+                        <td>0.8%</td>
+                        <td><span class="priority-tag priority-high">高</span></td>
+                        <td>Firebase C2DM 回调</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="margin-top:12px;font-size:12px;color:#888;">
+                <strong>说明：</strong>占比 = 该类别用户 / 所有ANR用户。nativePollOnce 类别多为 "Main thread idle" 类型，
+                堆栈已恢复无法定位根因，但通常与 Unsafe.park 问题相关（主线程阻塞导致系统负载升高）。
+            </div>
+        </div>
+
+        <!-- ========== 类别1: Unsafe.park ========== -->
+        <div class="issue-category">
+            <div class="category-header" onclick="toggleCategory(this)">
+                <div>
+                    <span class="expand-icon rotated">▶</span>
+                    <span class="category-title">🔴 类别1: Unsafe.park (启动阻塞) - 6个问题</span>
+                </div>
+                <div class="category-stats">
+                    <div class="category-stat">
+                        <div class="value">163,493</div>
+                        <div class="label">用户</div>
+                    </div>
+                    <div class="category-stat">
+                        <div class="value">226,413</div>
+                        <div class="label">报告</div>
+                    </div>
+                </div>
+            </div>
+            <div class="category-body open">
+                <div class="issue-list">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>问题</th>
+                                <th>用户</th>
+                                <th>报告</th>
+                                <th>API范围</th>
+                                <th>版本范围</th>
+                                <th>状态</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ANR triggered by main thread waiting (Slow startup)</td>
+                                <td class="user-count">114,252</td>
+                                <td>165,254</td>
+                                <td>34-36</td>
+                                <td>3121100~3791100</td>
+                                <td><span class="priority-tag priority-high">TOP问题</span></td>
+                            </tr>
+                            <tr>
+                                <td>ANR triggered by main thread waiting #2</td>
+                                <td class="user-count">19,477</td>
+                                <td>24,030</td>
+                                <td>34-36</td>
+                                <td>3125100~3791100</td>
+                                <td><span class="priority-tag priority-high">高</span></td>
+                            </tr>
+                            <tr>
+                                <td>ANR triggered by main thread waiting #3</td>
+                                <td class="user-count">10,474</td>
+                                <td>11,732</td>
+                                <td>35-36</td>
+                                <td>3125100~3791100</td>
+                                <td><span class="priority-tag priority-high">高</span></td>
+                            </tr>
+                            <tr>
+                                <td>Executing service (JobInfoSchedulerService) #1</td>
+                                <td>7,135</td>
+                                <td>8,635</td>
+                                <td>31-36</td>
+                                <td>3121100~3791100</td>
+                                <td><span class="priority-tag priority-medium">中</span></td>
+                            </tr>
+                            <tr>
+                                <td>Executing service (JobInfoSchedulerService) #2</td>
+                                <td>6,926</td>
+                                <td>11,280</td>
+                                <td>34-36</td>
+                                <td>3153100~3791100</td>
+                                <td><span class="priority-tag priority-medium">中</span></td>
+                            </tr>
+                            <tr>
+                                <td>Executing service (NeuronRemoteService)</td>
+                                <td>5,229</td>
+                                <td>5,482</td>
+                                <td>34-36</td>
+                                <td>3125100~3791100</td>
+                                <td><span class="priority-tag priority-medium">中</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="grid-2">
+                    <div class="section">
+                        <div class="section-title">🔍 错误堆栈</div>
+                        <div class="stack-trace">
+<span class="thread-name">"main" tid=1</span> <span class="thread-state">Timed Waiting</span>
+  at <span class="method">jdk.internal.misc.Unsafe.park</span> (Native method)
+  at java.util.concurrent.locks.<span class="method">LockSupport.parkNanos</span> (LockSupport.java:269)
+  at kotlinx.coroutines.<span class="method">BlockingCoroutine.joinBlocking</span> (Builders.kt:98)
+  at com.bilibili.lib.gripper.core.internal.<span class="method">variantRunBlocking</span> <span class="comment">// ← Gripper 框架</span>
+  at com.biliintl.ibstarplayer.proc.<span class="method">BaseAppProc.onApplicationCreate</span> <span class="comment">// Application 启动</span>
+
+<span class="thread-name">"DefaultDispatcher-worker-7" tid=22</span> <span class="thread-state">Waiting</span>
+  at <span class="method">Unsafe.park</span> (Native method)
+  at java.util.concurrent.<span class="method">FutureTask.awaitDone</span> (FutureTask.java:500)
+  at com.bilibili.lib.blrouter.internal.module.<span class="method">ModuleLifecycleHelper.dispatchCreateOrPostCreate</span>
+  at com.bilibili.lib.blrouter.<span class="method">BLRouter.performCreateModules</span> <span class="comment">// ← 阻塞点!</span>
+  at com.biliintl.gripper.app.onCreate.router.<span class="method">RouterKt.initRouter</span>:108
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title">💻 相关源码</div>
+                        <div class="source-code">
+<span class="comment">// Router.kt:36-37 - awaitComplete=true (阻塞)</span>
+<span class="keyword">@Producer</span>(id = <span class="string">"infra.initRouter"</span>, singleton = <span class="keyword">true</span>)
+<span class="keyword">@PreTrigger</span>(trigger = StandardTriggers.<span class="method">ON_CREATE</span>, awaitComplete = <span class="keyword">true</span>)
+<span class="keyword">fun</span> <span class="function">initRouter</span>(app: Application, ...) {
+    Router.global().<span class="method">setUp</span>(app)
+    BLRouter.<span class="method">setUp</span>(app) { ... }
+    
+    <span class="comment">// === 阻塞点! ===</span>
+    <span class="keyword">if</span> (BiliContext.isMainProcess) 
+        BLRouter.<span class="method">performCreateModules</span>()  <span class="comment">// ← 主线程同步阻塞</span>
+}
+
+<span class="comment">// 内部调用链:</span>
+<span class="comment">// performCreateModules → syncStatus →</span>
+<span class="comment">// dispatchCreate → dispatchCreateOrPostCreate →</span>
+<span class="comment">// FutureTask.get() → 等待所有模块初始化完成</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="section-title">💡 修改建议</div>
+                    <div class="suggestion-item high">
+                        <div class="title">🔴 高优先级: BLRouter.performCreateModules 异步化</div>
+                        <div class="desc">BLRouter.performCreateModules() 在主线程同步执行，包含网络IO和文件IO操作。改为异步执行可解决 Unsafe.park ANR。</div>
+                        <div class="code"><span class="comment">// 当前（阻塞主线程）</span>
+<span class="keyword">if</span> (BiliContext.isMainProcess) 
+    BLRouter.<span class="method">performCreateModules</span>()
+
+<span class="comment">// 建议（异步执行）</span>
+<span class="keyword">if</span> (BiliContext.isMainProcess) {
+    GlobalScope.<span class="method">launch</span>(Dispatchers.<span class="method">IO</span>) {
+        BLRouter.<span class="method">performCreateModules</span>()
+    }
+}
+<span class="comment">// 注意：需要评估是否影响依赖此模块的功能</span></div>
+                    </div>
+                    <div class="suggestion-item medium">
+                        <div class="title">🟡 中优先级: NeuronRemoteService 异步初始化</div>
+                        <div class="desc">NeuronRemoteService.onCreate 使用 runBlocking 同步执行初始化，导致 ANR。改为异步初始化。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== 类别2: nativePollOnce ========== -->
+        <div class="issue-category">
+            <div class="category-header" onclick="toggleCategory(this)">
+                <div>
+                    <span class="expand-icon">▶</span>
+                    <span class="category-title">🔴 类别2: nativePollOnce (主线程空闲) - 9个问题</span>
+                </div>
+                <div class="category-stats">
+                    <div class="category-stat">
+                        <div class="value">194,165</div>
+                        <div class="label">用户</div>
+                    </div>
+                    <div class="category-stat">
+                        <div class="value">272,701</div>
+                        <div class="label">报告</div>
+                    </div>
+                </div>
+            </div>
+            <div class="category-body">
+                <div class="issue-list">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>问题</th>
+                                <th>用户</th>
+                                <th>报告</th>
+                                <th>类型</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Input dispatching timed out</td>
+                                <td class="user-count">44,971</td>
+                                <td>63,331</td>
+                                <td>输入分发超时</td>
+                            </tr>
+                            <tr>
+                                <td>Root cause unknown #1</td>
+                                <td class="user-count">39,257</td>
+                                <td>51,366</td>
+                                <td>堆栈已恢复</td>
+                            </tr>
+                            <tr>
+                                <td>Broadcast (Firebase C2DM)</td>
+                                <td class="user-count">25,325</td>
+                                <td>34,449</td>
+                                <td>Firebase 推送</td>
+                            </tr>
+                            <tr>
+                                <td>Input (No focused window)</td>
+                                <td class="user-count">21,520</td>
+                                <td>25,217</td>
+                                <td>无焦点窗口</td>
+                            </tr>
+                            <tr>
+                                <td>Root cause unknown #2</td>
+                                <td>17,973</td>
+                                <td>44,244</td>
+                                <td>堆栈已恢复</td>
+                            </tr>
+                            <tr>
+                                <td>Root cause unknown #3</td>
+                                <td>14,920</td>
+                                <td>16,562</td>
+                                <td>堆栈已恢复</td>
+                            </tr>
+                            <tr>
+                                <td>Executing service (JobInfoScheduler)</td>
+                                <td>12,665</td>
+                                <td>15,251</td>
+                                <td>后台调度</td>
+                            </tr>
+                            <tr>
+                                <td>Root cause unknown #4</td>
+                                <td>9,505</td>
+                                <td>10,715</td>
+                                <td>堆栈已恢复</td>
+                            </tr>
+                            <tr>
+                                <td>Broadcast (SCREEN_OFF)</td>
+                                <td>8,029</td>
+                                <td>11,566</td>
+                                <td>屏幕关闭事件</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="suggestion-item high">
+                    <div class="title">⚠️ 这些问题的堆栈多为 "Main thread idle"</div>
+                    <div class="desc">
+                        <strong>Google 官方说明：</strong>当 ANR 条件已经过去时才捕获堆栈，导致堆栈中主线程处于空闲状态。
+                        这类 ANR 通常由系统高负载或资源竞争导致，无法从堆栈直接定位根因。<br><br>
+                        <strong>间接原因：</strong>当 Unsafe.park 问题导致主线程阻塞时，系统负载升高，可能导致其他正常的应用操作也触发 ANR。<br><br>
+                        <strong>建议：</strong>优先解决 Unsafe.park 问题（类别1），这类 nativePollOnce 的 ANR 数量可能会自然下降。
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="section-title">💡 修改建议</div>
+                    <div class="suggestion-item high">
+                        <div class="title">🔴 高优先级: 解决 Unsafe.park 问题（间接解决本类别问题）</div>
+                        <div class="desc">当主线程不再被 BLRouter.performCreateModules 阻塞后，系统的输入分发能力会恢复正常，Input dispatching ANR 会大幅减少。</div>
+                    </div>
+                    <div class="suggestion-item medium">
+                        <div class="title">🟡 中优先级: BroadcastReceiver 中避免阻塞IO</div>
+                        <div class="desc">FirebaseInstanceIdReceiver 回调中执行了文件IO操作，应该移到后台线程。</div>
+                    </div>
+                    <div class="suggestion-item medium">
+                        <div class="title">🟡 中优先级: Facebook/Google Ads SDK 延迟初始化</div>
+                        <div class="desc">AdvertisingIdClient 和 FacebookSdk 在启动时同步等待网络响应，建议延迟到首次使用时。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== 类别3: Gripper variantRunBlocking ========== -->
+        <div class="issue-category">
+            <div class="category-header" onclick="toggleCategory(this)">
+                <div>
+                    <span class="expand-icon">▶</span>
+                    <span class="category-title">🟠 类别3: Gripper variantRunBlocking - 4个问题</span>
+                </div>
+                <div class="category-stats">
+                    <div class="category-stat">
+                        <div class="value">21,598</div>
+                        <div class="label">用户</div>
+                    </div>
+                    <div class="category-stat">
+                        <div class="value">32,832</div>
+                        <div class="label">报告</div>
+                    </div>
+                </div>
+            </div>
+            <div class="category-body">
+                <div class="issue-list">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>问题</th>
+                                <th>用户</th>
+                                <th>报告</th>
+                                <th>服务</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Executing service (NeuronRemoteService)</td>
+                                <td class="user-count">6,926</td>
+                                <td>13,581</td>
+                                <td>NeuronRemoteService</td>
+                            </tr>
+                            <tr>
+                                <td>Broadcast (Firebase C2DM)</td>
+                                <td class="user-count">5,408</td>
+                                <td>7,113</td>
+                                <td>FirebaseInstanceId</td>
+                            </tr>
+                            <tr>
+                                <td>Executing service (IjkMediaPlayerService)</td>
+                                <td class="user-count">4,784</td>
+                                <td>6,463</td>
+                                <td>IjkMediaPlayer</td>
+                            </tr>
+                            <tr>
+                                <td>Broadcast (JobInfoScheduler)</td>
+                                <td>5,280</td>
+                                <td>5,675</td>
+                                <td>JobInfoScheduler</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="grid-2">
+                    <div class="section">
+                        <div class="section-title">🔍 错误堆栈</div>
+                        <div class="stack-trace">
+<span class="thread-name">"main" tid=1</span> <span class="thread-state">Timed Waiting</span>
+  at <span class="method">Unsafe.park</span> (Native method)
+  at java.util.concurrent.locks.<span class="method">LockSupport.parkNanos</span> (LockSupport.java:269)
+  at kotlinx.coroutines.<span class="method">BlockingCoroutine.joinBlocking</span> (Builders.kt:98)
+  at com.bilibili.lib.gripper.core.internal.<span class="method">variantRunBlocking</span> <span class="comment">// ← Gripper 框架</span>
+<span class="comment">// 当 Gripper 触发 ON_CREATE/ON_ATTACH 时</span>
+<span class="comment">// 使用 runBlocking 同步等待任务完成</span>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title">💻 Gripper 框架问题</div>
+                        <div class="source-code">
+<span class="comment">// InitAdsProviderManager.kt - awaitComplete=false 但仍在 Main</span>
+<span class="keyword">@PreTrigger</span>(trigger = StandardTriggers.<span class="method">ON_ATTACH</span>, awaitComplete = <span class="keyword">false</span>)
+<span class="keyword">suspend fun</span> <span class="function">initAdsProviderManager</span>() {
+    <span class="keyword">withContext</span>(<span class="method">GripperDispatchers.Main</span>) {  <span class="comment">// ← 仍在主线程!</span>
+        <span class="method">adsProviderManager.init</span>()
+    }
+}
+<span class="comment">// awaitComplete=false 但仍在 Main 执行 = 假异步</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="section-title">💡 修改建议</div>
+                    <div class="suggestion-item high">
+                        <div class="title">🔴 高优先级: 修复 Gripper 假异步任务</div>
+                        <div class="desc">以下 Gripper 任务使用 awaitComplete=false 但仍在 GripperDispatchers.Main 执行：</div>
+                        <div class="code"><span class="comment">// 需要将 Main 改为 IO 的任务：</span>
+<span class="comment">// 1. InitAdsProviderManager - ON_ATTACH</span>
+<span class="comment">// 2. InitBiliPVHelper - ON_PRIVACY</span>
+<span class="comment">// 3. InitLaser - ON_PRIVACY</span>
+<span class="comment">// 4. InitAnimationLoader - ON_MAIN_IDLE</span>
+<span class="comment">// 5. InitApm - ON_CREATE</span>
+
+<span class="comment">// 修改前（假异步）</span>
+<span class="keyword">withContext</span>(<span class="method">GripperDispatchers.Main</span>) { ... }
+
+<span class="comment">// 修改后（真异步）</span>
+<span class="keyword">withContext</span>(<span class="method">GripperDispatchers.IO</span>) { ... }</div>
+                    </div>
+                    <div class="suggestion-item medium">
+                        <div class="title">🟡 中优先级: IjkMediaPlayerService 启动优化</div>
+                        <div class="desc">IjkMediaPlayerService 在启动时被 Gripper 调用，导致 ANR。建议延迟到首次使用播放器时再启动。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== 类别4: Native stack ========== -->
+        <div class="issue-category">
+            <div class="category-header" onclick="toggleCategory(this)">
+                <div>
+                    <span class="expand-icon">▶</span>
+                    <span class="category-title">🟡 类别4: Native stack (DumpNativeStack) - 2个问题</span>
+                </div>
+                <div class="category-stats">
+                    <div class="category-stat">
+                        <div class="value">10,482</div>
+                        <div class="label">用户</div>
+                    </div>
+                    <div class="category-stat">
+                        <div class="value">10,842</div>
+                        <div class="label">报告</div>
+                    </div>
+                </div>
+            </div>
+            <div class="category-body">
+                <div class="issue-list">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>问题</th>
+                                <th>用户</th>
+                                <th>报告</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ANR triggered by slow operations in main thread</td>
+                                <td class="user-count">5,270</td>
+                                <td>5,545</td>
+                            </tr>
+                            <tr>
+                                <td>ANR triggered by slow IO operations</td>
+                                <td class="user-count">5,212</td>
+                                <td>5,297</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="section">
+                    <div class="section-title">💡 修改建议</div>
+                    <div class="suggestion-item medium">
+                        <div class="title">🟡 中优先级: 排查慢 IO 操作</div>
+                        <div class="desc">这类 ANR 通常与文件IO相关。建议检查 Startup 过程中的文件操作并移到后台线程。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== 类别5: Facebook GKs Manager ========== -->
+        <div class="issue-category">
+            <div class="category-header" onclick="toggleCategory(this)">
+                <div>
+                    <span class="expand-icon">▶</span>
+                    <span class="category-title">🟡 类别5: Facebook GKs Manager - 1个问题</span>
+                </div>
+                <div class="category-stats">
+                    <div class="category-stat">
+                        <div class="value">9,466</div>
+                        <div class="label">用户</div>
+                    </div>
+                    <div class="category-stat">
+                        <div class="value">10,252</div>
+                        <div class="label">报告</div>
+                    </div>
+                </div>
+            </div>
+            <div class="category-body">
+                <div class="issue-list">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>问题</th>
+                                <th>用户</th>
+                                <th>报告</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ANR triggered by FetchedAppGateKeepersManager</td>
+                                <td class="user-count">9,466</td>
+                                <td>10,252</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="grid-2">
+                    <div class="section">
+                        <div class="section-title">🔍 错误堆栈</div>
+                        <div class="stack-trace">
+<span class="thread-name">"main" tid=1</span> <span class="thread-state">Timed Waiting</span>
+  at <span class="method">Unsafe.park</span> (Native method)
+  at com.facebook.internal.<span class="method">FetchedAppGateKeepersManager.<clinit></span>
+<span class="comment">// === Facebook SDK 静态初始化阻塞 ===</span>
+<span class="comment">// FetchedAppGateKeepersManager 在类加载时</span>
+<span class="comment">// 同步从服务器获取 GateKeeper 配置</span>
+<span class="comment">// 在弱网络下会长时间阻塞</span>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title">💻 相关代码</div>
+                        <div class="source-code">
+<span class="comment">// ThirdLoginManager.kt:120-123</span>
+<span class="keyword">private fun</span> <span class="function">ensureFacebookSdkInitialized</span>() {
+    <span class="keyword">if</span> (!FacebookSdk.<span class="method">isInitialized</span>()) {
+        FacebookSdk.<span class="method">sdkInitialize</span>(context.applicationContext)
+        <span class="comment">// ⚠️ 这会触发 FetchedAppGateKeepersManager.<clinit></span>
+        <span class="comment">// 同步等待服务器响应</span>
+    }
+}
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="section-title">💡 修改建议</div>
+                    <div class="suggestion-item high">
+                        <div class="title">🔴 高优先级: Facebook SDK 延迟初始化</div>
+                        <div class="code"><span class="comment">// 1. 禁用自动初始化</span>
+FacebookSdk.<span class="method">setAutoInitEnabled</span>(<span class="keyword">false</span>)
+FacebookSdk.<span class="method">setPublishInstallActivities</span>(<span class="keyword">false</span>)
+
+<span class="comment">// 2. 只在真正需要时（登录）才初始化</span>
+<span class="keyword">if</span> (needFacebookLogin) {
+    FacebookSdk.<span class="method">publishInstallAsync</span>(context, appId)
+}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== 类别6-8: 其他问题 ========== -->
+        <div class="issue-category">
+            <div class="category-header" onclick="toggleCategory(this)">
+                <div>
+                    <span class="expand-icon">▶</span>
+                    <span class="category-title">🟢 类别6-8: 其他问题 - 3个问题</span>
+                </div>
+                <div class="category-stats">
+                    <div class="category-stat">
+                        <div class="value">14,335</div>
+                        <div class="label">用户</div>
+                    </div>
+                    <div class="category-stat">
+                        <div class="value">14,707</div>
+                        <div class="label">报告</div>
+                    </div>
+                </div>
+            </div>
+            <div class="category-body">
+                <div class="issue-list">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>类别</th>
+                                <th>问题</th>
+                                <th>用户</th>
+                                <th>报告</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>init</td>
+                                <td>ANR triggered by slow operations</td>
+                                <td class="user-count">4,889</td>
+                                <td>5,031</td>
+                            </tr>
+                            <tr>
+                                <td>WaitHoldingLocks</td>
+                                <td>ANR triggered by slow IO</td>
+                                <td class="user-count">4,784</td>
+                                <td>4,975</td>
+                            </tr>
+                            <tr>
+                                <td>getInstance</td>
+                                <td>Broadcast (Firebase C2DM)</td>
+                                <td class="user-count">4,662</td>
+                                <td>4,701</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="section">
+                    <div class="section-title">💡 修改建议</div>
+                    <div class="suggestion-item medium">
+                        <div class="title">🟡 中优先级: Firebase C2DM 回调优化</div>
+                        <div class="desc">FirebaseInstanceIdReceiver.getInstance 在 BroadcastReceiver 回调中同步调用，可能阻塞。</div>
+                    </div>
+                    <div class="suggestion-item low">
+                        <div class="title">🟢 低优先级: 持续监控</div>
+                        <div class="desc">这些问题用户数较少（4-5k），优先级较低，可以持续监控。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 关键时间线 -->
+        <div class="card">
+            <div class="card-title">⏰ 关键事件时间线</div>
+            <div class="timeline">
+                <div class="timeline-item highlight">
+                    <div class="date">2026-03-17</div>
+                    <div class="event">⚠️ [3.76.0] Gripper 任务"深度治理" - awaitComplete 改为 false（但任务仍在主线程）</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">2026-03-24</div>
+                    <div class="event">Revert "fix: ANR issue when swipe player"</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">2026-03-31</div>
+                    <div class="event">Revert "fix: ANR issue when closing player"</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">2026-04-02</div>
+                    <div class="event">📦 [3.79.0] 版本发布</div>
+                </div>
+                <div class="timeline-item highlight">
+                    <div class="date">2026-04-07</div>
+                    <div class="event">⚠️ Revert "fix: gripper memory leak issue"</div>
+                </div>
+                <div class="timeline-item highlight">
+                    <div class="date">2026-04-08</div>
+                    <div class="event">✅ Revert Gripper 任务深度治理，ANR 开始下降</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">2026-04-13</div>
+                    <div class="event">✅ [3.81.0] 修复 Gripper SecurityException</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 可执行优化汇总 -->
+        <div class="card">
+            <div class="card-title">💡 可执行优化汇总 (按优先级)</div>
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>优先级</th>
+                        <th>优化项</th>
+                        <th>影响用户</th>
+                        <th>问题类别</th>
+                        <th>预估效果</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background:#ffeaea;">
+                        <td><span class="priority-tag priority-high">P0</span></td>
+                        <td><strong>BLRouter.performCreateModules 异步化</strong></td>
+                        <td>~163,000</td>
+                        <td>Unsafe.park (6个问题)</td>
+                        <td>可解决 27% ANR</td>
+                    </tr>
+                    <tr style="background:#ffeaea;">
+                        <td><span class="priority-tag priority-high">P0</span></td>
+                        <td><strong>Gripper 假异步任务修复 (Main→IO)</strong></td>
+                        <td>~21,000</td>
+                        <td>Gripper variantRunBlocking</td>
+                        <td>可解决 4% ANR</td>
+                    </tr>
+                    <tr style="background:#fff4e6;">
+                        <td><span class="priority-tag priority-medium">P1</span></td>
+                        <td><strong>Facebook GKs Manager 延迟初始化</strong></td>
+                        <td>~9,500</td>
+                        <td>Facebook SDK</td>
+                        <td>可解决 1.6% ANR</td>
+                    </tr>
+                    <tr style="background:#fff4e6;">
+                        <td><span class="priority-tag priority-medium">P2</span></td>
+                        <td>NeuronRemoteService 异步初始化</td>
+                        <td>~12,000</td>
+                        <td>Multiple</td>
+                        <td>可解决 2% ANR</td>
+                    </tr>
+                    <tr style="background:#fff4e6;">
+                        <td><span class="priority-tag priority-medium">P2</span></td>
+                        <td>Firebase C2DM 回调优化</td>
+                        <td>~30,000</td>
+                        <td>nativePollOnce</td>
+                        <td>间接改善</td>
+                    </tr>
+                    <tr style="background:#e8f8f0;">
+                        <td><span class="priority-tag priority-low">P3</span></td>
+                        <td>IjkMediaPlayerService 延迟启动</td>
+                        <td>~5,000</td>
+                        <td>Gripper</td>
+                        <td>可解决 0.8% ANR</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="margin-top:16px;padding:12px;background:#e8f8f0;border-radius:8px;font-size:13px;">
+                <strong>💡 预估总效果：</strong>如果执行 P0 和 P1 级别的优化（约影响 172,500 用户），预计可以解决约 <strong>29%</strong> 的 ANR 问题。
+                随着 Unsafe.park 问题解决，nativePollOnce 类型的 ANR（影响 194,165 用户）也可能间接减少。
+            </div>
+        </div>
+
+        <div class="footer">
+            报告生成于 2026-04-14 · 数据来源: Google Play Console · ANR 问题总数: 25个
+        </div>
+    </div>
+
+    <script>
+        function toggleCategory(header) {
+            const icon = header.querySelector('.expand-icon');
+            const body = header.nextElementSibling;
+            icon.classList.toggle('rotated');
+            body.classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
