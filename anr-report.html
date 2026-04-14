@@ -343,13 +343,13 @@
                         <td>Native 线程等待</td>
                     </tr>
                     <tr>
-                        <td><strong>🟢 Broadcast getInstance</strong></td>
+                        <td><strong>🟢 Firebase ConfigResolver</strong></td>
                         <td>1</td>
                         <td>4,662</td>
                         <td>4,701</td>
                         <td>0.8%</td>
-                        <td><span class="priority-tag priority-high">高</span></td>
-                        <td>Firebase C2DM 回调</td>
+                        <td><span class="priority-tag priority-medium">中</span></td>
+                        <td>Firebase Performance 配置获取</td>
                     </tr>
                 </tbody>
             </table>
@@ -897,7 +897,7 @@ FacebookSdk.<span class="method">setPublishInstallActivities</span>(<span class=
                         </thead>
                         <tbody>
                             <tr>
-                                <td>init</td>
+                                <td>init (模块初始化)</td>
                                 <td>ANR triggered by slow operations</td>
                                 <td class="user-count">4,889</td>
                                 <td>5,031</td>
@@ -909,8 +909,8 @@ FacebookSdk.<span class="method">setPublishInstallActivities</span>(<span class=
                                 <td>4,975</td>
                             </tr>
                             <tr>
-                                <td>getInstance</td>
-                                <td>Broadcast (Firebase C2DM)</td>
+                                <td>Firebase Config</td>
+                                <td>ANR triggered by ConfigResolver.getInstance</td>
                                 <td class="user-count">4,662</td>
                                 <td>4,701</td>
                             </tr>
@@ -920,8 +920,8 @@ FacebookSdk.<span class="method">setPublishInstallActivities</span>(<span class=
                 <div class="section">
                     <div class="section-title">💡 修改建议</div>
                     <div class="suggestion-item medium">
-                        <div class="title">🟡 中优先级: Firebase C2DM 回调优化</div>
-                        <div class="desc">FirebaseInstanceIdReceiver.getInstance 在 BroadcastReceiver 回调中同步调用，可能阻塞。</div>
+                        <div class="title">🟡 中优先级: Firebase Performance SDK 延迟初始化</div>
+                        <div class="desc">Firebase Performance SDK 在启动时同步获取配置，建议延迟到首次使用时。</div>
                     </div>
                     <div class="suggestion-item low">
                         <div class="title">🟢 低优先级: 持续监控</div>
@@ -1010,7 +1010,7 @@ FacebookSdk.<span class="method">setPublishInstallActivities</span>(<span class=
                     </tr>
                     <tr style="background:#fff4e6;">
                         <td><span class="priority-tag priority-medium">P2</span></td>
-                        <td>Firebase C2DM 回调优化</td>
+                        <td>Firebase Performance SDK 延迟初始化</td>
                         <td>~30,000</td>
                         <td>nativePollOnce</td>
                         <td>间接改善</td>
