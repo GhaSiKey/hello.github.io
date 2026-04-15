@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OtakuMap - 每日番剧放送</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- 动态背景 -->
+  <div class="bg-gradient"></div>
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+  <div class="bg-orb bg-orb-3"></div>
+
+  <!-- 主容器 -->
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <span class="logo-icon">🌸</span>
+        <span class="logo-text">OtakuMap</span>
+      </div>
+      <div class="date-display" id="dateDisplay"></div>
+    </header>
+
+    <!-- 星期标签 -->
+    <nav class="week-tabs">
+      <div class="tabs-list" id="weekTabs"></div>
+      <div class="tab-indicator" id="tabIndicator"></div>
+    </nav>
+
+    <!-- 番剧网格 -->
+    <main class="anime-grid" id="animeGrid">
+      <!-- 骨架屏 -->
+      <div class="skeleton-grid" id="skeletonGrid"></div>
+      <!-- 番剧卡片容器 -->
+      <div class="cards-container" id="cardsContainer"></div>
+      <!-- 空状态 -->
+      <div class="empty-state" id="emptyState">
+        <span class="empty-icon">😴</span>
+        <p class="empty-text">今日无番剧更新</p>
+        <p class="empty-hint">休息一天吧～</p>
+      </div>
+      <!-- 错误状态 -->
+      <div class="error-state" id="errorState">
+        <span class="error-icon">😵</span>
+        <p class="error-text">加载失败了...</p>
+        <button class="retry-btn" id="retryBtn">重新加载</button>
+      </div>
+    </main>
+  </div>
+
+  <!-- 详情弹窗 -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-cover">
+            <img id="modalCover" src="" alt="">
+          </div>
+          <div class="modal-info">
+            <h2 class="modal-title" id="modalTitle"></h2>
+            <p class="modal-subtitle" id="modalSubtitle"></p>
+            <div class="modal-meta">
+              <span class="meta-item" id="modalAirDate">
+                <span class="meta-icon">📅</span>
+                <span class="meta-text"></span>
+              </span>
+              <span class="meta-item" id="modalDuration">
+                <span class="meta-icon">⏱️</span>
+                <span class="meta-text"></span>
+              </span>
+              <span class="meta-item" id="modalEps">
+                <span class="meta-icon">📺</span>
+                <span class="meta-text"></span>
+              </span>
+            </div>
+            <a class="modal-link" id="modalLink" href="#" target="_blank">
+              在 Bangumi 查看 →
+            </a>
+          </div>
+        </div>
+        <div class="modal-body">
+          <h3 class="section-title">简介</h3>
+          <p class="modal-summary" id="modalSummary"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
