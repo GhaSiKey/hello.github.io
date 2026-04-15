@@ -51,13 +51,30 @@
   };
 
   // ============ 工具函数 ============
-  function formatDate(date) {
+  function formatDate(date, showWeekday = true) {
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
     const day = date.getDate();
     const weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
     const weekday = weekdays[date.getDay()];
-    return `${year}年${month}月${day}日 ${weekday}`;
+    if (showWeekday) {
+      return `${year}年${month}月${day}日 ${weekday}`;
+    }
+    return `${year}年${month}月${day}日`;
+  }
+
+  // 根据星期获取显示日期（保持月份和日期，只更新星期）
+  function formatDateForWeekday(weekdayId) {
+    const today = new Date();
+    const weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+    // weekdayId: 0=周一, 6=周日
+    // getDay(): 0=周日, 1=周一, ..., 6=周六
+    const todayWeekday = today.getDay();
+    let diff = weekdayId + 1 - todayWeekday;
+    if (todayWeekday === 0) diff = weekdayId - 6;
+    const targetDate = new Date(today);
+    targetDate.setDate(today.getDate() + diff);
+    return `${targetDate.getFullYear()}年${targetDate.getMonth() + 1}月${targetDate.getDate()}日 ${weekdays[targetDate.getDay()]}`;
   }
 
   function getCache() {
@@ -167,7 +184,7 @@
     return `
       <article class="anime-card" data-id="${item.id}">
         <div class="card-cover">
-          <img src="${item.images.medium || item.images.common}" 
+          <img src="${item.images.large || item.images.common}" 
                alt="${title}" 
                loading="lazy"
                onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect fill=%22%231a1a2e%22 width=%223%22 height=%224%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23606070%22 font-size=%2210%22>?</text></svg>'">
@@ -204,6 +221,8 @@
 
     // 更新状态
     state.currentWeekday = newWeekday;
+    // 更新顶部日期显示
+    elements.dateDisplay.textContent = formatDateForWeekday(newWeekday);
     renderWeekTabs();
 
     // 获取新数据并渲染
@@ -259,7 +278,7 @@
   function openModal(item) {
     const title = item.name_cn || item.name;
     
-    elements.modalCover.src = item.images.medium || item.images.common;
+    elements.modalCover.src = item.images.large || item.images.common;
     elements.modalCover.alt = title;
     elements.modalTitle.textContent = title;
     elements.modalSubtitle.textContent = item.name;
