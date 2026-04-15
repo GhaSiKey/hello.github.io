@@ -152,10 +152,9 @@
   // ============ 渲染星期标签 ============
   function renderWeekTabs() {
     const weekdays = ['一', '二', '三', '四', '五', '六', '日'];
-    const todayId = getWeekdayId(new Date().getDay());
 
     elements.weekTabs.innerHTML = weekdays.map((day, index) => `
-      <button class="tab-btn${index === todayId ? ' active' : ''}" data-weekday="${index}">
+      <button class="tab-btn${index === state.currentWeekday ? ' active' : ''}" data-weekday="${index}">
         ${day}
       </button>
     `).join('');
@@ -328,6 +327,8 @@
 
       // 默认显示今天
       const todayId = getWeekdayId(new Date().getDay());
+      state.currentWeekday = todayId;
+      elements.dateDisplay.textContent = formatDateForWeekday(todayId);
       const dayData = state.calendarData[todayId];
       const items = dayData ? dayData.items : [];
 
