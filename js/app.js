@@ -172,7 +172,7 @@
 
   // ============ 渲染番剧卡片 ============
   function renderAnimeCard(item) {
-    const statusClass = item.eps && item.currentEp ? 'airing' : 
+    const statusClass = item.eps && item.currentEp ? 'airing' :
                         item.eps ? 'finished' : 'unknown';
     const statusText = item.eps && item.currentEp ? `第${item.currentEp}话` :
                        item.eps ? '已完结' : '未知';
@@ -180,11 +180,14 @@
     const title = item.name_cn || item.name;
     const airTime = item.air_date ? item.air_date.split('-')[1] + '-' + item.air_date.split('-')[2] : '--';
 
+    // 安全获取图片（images 可能为 null）
+    const coverImg = (item.images && item.images.large) || (item.images && item.images.common) || 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect fill=%22%231a1a2e%22 width=%223%22 height=%224%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23606070%22 font-size=%2210%22>?</text></svg>';
+
     return `
       <article class="anime-card" data-id="${item.id}">
         <div class="card-cover">
-          <img src="${item.images.large || item.images.common}" 
-               alt="${title}" 
+          <img src="${coverImg}"
+               alt="${title}"
                loading="lazy"
                onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect fill=%22%231a1a2e%22 width=%223%22 height=%224%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23606070%22 font-size=%2210%22>?</text></svg>'">
           <span class="card-status ${statusClass}">${statusText}</span>
