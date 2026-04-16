@@ -241,6 +241,14 @@
     elements.cardsContainer.innerHTML = items.map(renderAnimeCard).join('');
     bindCardEvents();
 
+    // 入场动画
+    const cards = elements.cardsContainer.querySelectorAll('.anime-card');
+    cards.forEach((card, index) => {
+      setTimeout(() => {
+        card.classList.add('visible');
+      }, index * CONFIG.CARD_STAGGER_DELAY);
+    });
+
     state.isAnimating = false;
   }
 
