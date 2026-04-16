@@ -203,20 +203,29 @@
 
   // ============ 切换星期动画 ============
   async function switchWeekday(newWeekday) {
-    if (state.isAnimating) return;
+    console.log('[DEBUG] switchWeekday called with:', newWeekday);
+    if (state.isAnimating) {
+      console.log('[DEBUG] blocked by isAnimating');
+      return;
+    }
     state.isAnimating = true;
 
     // 快速更新状态
     const oldWeekday = state.currentWeekday;
     state.currentWeekday = newWeekday;
+    console.log('[DEBUG] state.currentWeekday updated to:', newWeekday);
     elements.dateDisplay.textContent = formatDateForWeekday(newWeekday);
+    console.log('[DEBUG] dateDisplay updated to:', elements.dateDisplay.textContent);
     renderWeekTabs();
 
     // 获取新数据
     const dayData = state.calendarData[newWeekday];
+    console.log('[DEBUG] dayData for index', newWeekday, ':', dayData ? dayData.weekday.cn : 'undefined');
     const items = dayData ? dayData.items : [];
+    console.log('[DEBUG] items.length:', items.length);
 
     if (items.length === 0) {
+      console.log('[DEBUG] showing empty state');
       elements.cardsContainer.innerHTML = '';
       showEmpty();
       state.isAnimating = false;
@@ -227,7 +236,8 @@
     elements.emptyState.classList.remove('show');
     elements.errorState.classList.remove('show');
 
-    // 直接渲染（不使用动画，避免复杂状态管理）
+    // 直接渲染
+    console.log('[DEBUG] setting innerHTML, cards will be:', items.length);
     elements.cardsContainer.innerHTML = items.map(renderAnimeCard).join('');
     bindCardEvents();
 
