@@ -206,55 +206,30 @@
     if (state.isAnimating) return;
     state.isAnimating = true;
 
-    const currentCards = elements.cardsContainer.querySelectorAll('.anime-card');
-    
-    // 离开动画：卡片向上滑出
-    currentCards.forEach((card, index) => {
-      card.style.transition = `opacity 250ms ease-out, transform 250ms ease-out`;
-      card.style.transitionDelay = `${index * CONFIG.CARD_STAGGER_DELAY}ms`;
-      card.classList.add('leaving');
-    });
-
-    // 等待离开动画完成
-    await new Promise(resolve => setTimeout(resolve, 280));
-
-    // 更新状态
+    // 快速更新状态
+    const oldWeekday = state.currentWeekday;
     state.currentWeekday = newWeekday;
-    // 更新顶部日期显示
     elements.dateDisplay.textContent = formatDateForWeekday(newWeekday);
     renderWeekTabs();
 
-    // 获取新数据并渲染
+    // 获取新数据
     const dayData = state.calendarData[newWeekday];
     const items = dayData ? dayData.items : [];
 
     if (items.length === 0) {
       elements.cardsContainer.innerHTML = '';
       showEmpty();
-    } else {
-      hideSkeleton();
-      elements.emptyState.classList.remove('show');
-      elements.errorState.classList.remove('show');
-      elements.cardsContainer.innerHTML = items.map(renderAnimeCard).join('');
-
-      // 进入动画：卡片从下方滑入
-      const newCards = elements.cardsContainer.querySelectorAll('.anime-card');
-      newCards.forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        
-        setTimeout(() => {
-          card.style.transition = `opacity 300ms ease-out, transform 300ms ease-out`;
-          card.style.transitionDelay = `${index * CONFIG.CARD_STAGGER_DELAY}ms`;
-          card.classList.add('visible');
-          card.style.opacity = '';
-          card.style.transform = '';
-        }, 20);
-      });
-
-      // 绑定卡片点击事件
-      bindCardEvents();
+      state.isAnimating = false;
+      return;
     }
+
+    hideSkeleton();
+    elements.emptyState.classList.remove('show');
+    elements.errorState.classList.remove('show');
+
+    // 直接渲染（不使用动画，避免复杂状态管理）
+    elements.cardsContainer.innerHTML = items.map(renderAnimeCard).join('');
+    bindCardEvents();
 
     state.isAnimating = false;
   }
@@ -329,6 +304,8 @@
       const todayId = getWeekdayId(new Date().getDay());
       state.currentWeekday = todayId;
       elements.dateDisplay.textContent = formatDateForWeekday(todayId);
+      // 重新渲染 tabs 以更新选中态
+      renderWeekTabs();
       const dayData = state.calendarData[todayId];
       const items = dayData ? dayData.items : [];
 
