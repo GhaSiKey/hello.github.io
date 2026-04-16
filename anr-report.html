@@ -747,9 +747,9 @@
 <span class="comment">// 使用 runBlocking 同步等待任务完成</span>
                         </div>
                     </div>
-                    <div class="section">
-                        <div class="section-title">💻 Gripper 框架问题</div>
-                        <div class="source-code">
+                <div class="section">
+                    <div class="section-title">💻 Gripper 框架问题</div>
+                    <div class="source-code">
 <span class="comment">// InitAdsProviderManager.kt - awaitComplete=false 但仍在 Main</span>
 <span class="keyword">@PreTrigger</span>(trigger = StandardTriggers.<span class="method">ON_ATTACH</span>, awaitComplete = <span class="keyword">false</span>)
 <span class="keyword">suspend fun</span> <span class="function">initAdsProviderManager</span>() {
@@ -758,7 +758,12 @@
     }
 }
 <span class="comment">// awaitComplete=false 但仍在 Main 执行 = 假异步</span>
-                        </div>
+
+<span class="comment">// ========== 需要修改的文件 ==========</span>
+<span class="comment">// 1. gripper/app/.../onCreate/InitApm.kt (line 37)</span>
+<span class="comment">// 2. gripper/app/.../onAttach/InitAdsProviderManager.kt (line 40)</span>
+<span class="comment">// 3. gripper/app/.../onMainIdle/InitAnimationLoader.kt (line 21)</span>
+<span class="comment">// 4. gripper/app/.../onPrivacyAllowed/InitBiliPVHelper.kt (line 30)</span>
                     </div>
                 </div>
                 <div class="section">
@@ -766,12 +771,15 @@
                     <div class="suggestion-item high">
                         <div class="title">🔴 高优先级: 修复 Gripper 假异步任务</div>
                         <div class="desc">以下 Gripper 任务使用 awaitComplete=false 但仍在 GripperDispatchers.Main 执行：</div>
-                        <div class="code"><span class="comment">// 需要将 Main 改为 IO 的任务：</span>
-<span class="comment">// 1. InitAdsProviderManager - ON_ATTACH</span>
-<span class="comment">// 2. InitBiliPVHelper - ON_PRIVACY</span>
-<span class="comment">// 3. InitLaser - ON_PRIVACY</span>
-<span class="comment">// 4. InitAnimationLoader - ON_MAIN_IDLE</span>
-<span class="comment">// 5. InitApm - ON_CREATE</span>
+                        <div class="code"><span class="comment">// ========== 需要将 Main 改为 IO 的文件 ==========</span>
+<span class="comment">// 1. InitApm.kt (line 37) - ON_CREATE</span>
+<span class="comment">//    withContext(GripperDispatchers.Main) → IO</span>
+<span class="comment">// 2. InitAdsProviderManager.kt (line 40) - ON_ATTACH</span>
+<span class="comment">//    withContext(GripperDispatchers.Main) → IO</span>
+<span class="comment">// 3. InitAnimationLoader.kt (line 21) - ON_MAIN_IDLE</span>
+<span class="comment">//    withContext(GripperDispatchers.Main) → IO</span>
+<span class="comment">// 4. InitBiliPVHelper.kt (line 30) - ON_PRIVACY_ALLOWED</span>
+<span class="comment">//    withContext(GripperDispatchers.Main) → IO</span>
 
 <span class="comment">// 修改前（假异步）</span>
 <span class="keyword">withContext</span>(<span class="method">GripperDispatchers.Main</span>) { ... }
