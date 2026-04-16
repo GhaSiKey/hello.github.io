@@ -47,7 +47,19 @@
     modalDuration: document.getElementById('modalDuration').querySelector('.meta-text'),
     modalEps: document.getElementById('modalEps').querySelector('.meta-text'),
     modalLink: document.getElementById('modalLink'),
-    modalSummary: document.getElementById('modalSummary')
+    modalSummary: document.getElementById('modalSummary'),
+    // 增强区域
+    modalEnhance: document.getElementById('modalEnhance'),
+    enhanceScore: document.getElementById('enhanceScore'),
+    enhanceRank: document.getElementById('enhanceRank'),
+    heatDoing: document.getElementById('heatDoing'),
+    heatCollect: document.getElementById('heatCollect'),
+    heatWish: document.getElementById('heatWish'),
+    ratingChart: document.getElementById('ratingChart'),
+    modalTags: document.getElementById('modalTags'),
+    modalStaff: document.getElementById('modalStaff'),
+    modalCast: document.getElementById('modalCast'),
+    enhanceSkeleton: document.getElementById('enhanceSkeleton')
   };
 
   // ============ 工具函数 ============
@@ -67,8 +79,6 @@
   function formatDateForWeekday(weekdayId) {
     const today = new Date();
     const weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
-    // weekdayId: 0=周一, 6=周日
-    // getDay(): 0=周日, 1=周一, ..., 6=周六
     const todayWeekday = today.getDay();
     let diff = weekdayId + 1 - todayWeekday;
     if (todayWeekday === 0) diff = weekdayId - 6;
@@ -99,6 +109,14 @@
         timestamp: Date.now()
       }));
     } catch {}
+  }
+
+  // 格式化数字（1000 -> 1k, 1000000 -> 1M）
+  function formatCount(n) {
+    if (!n && n !== 0) return '--';
+    if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+    if (n >= 1000) return (n / 1000).toFixed(1) + 'k';
+    return String(n);
   }
 
   function showSkeleton() {
@@ -147,6 +165,39 @@
     const data = await response.json();
     state.calendarData = data;
     setCache(data);
+  }
+
+  // 获取条目详情（/v0/subjects/{id}）
+  async function fetchSubjectDetail(id) {
+    const response = await fetch(`${CONFIG.API_BASE}/v0/subjects/${id}`, {
+      headers: {
+        'User-Agent': 'OtakuMap/1.0 (https://github.com/otakumap)'
+      }
+    });
+    if (!response.ok) throw new Error(`Subject API Error: ${response.status}`);
+    return response.json();
+  }
+
+  // 获取角色/声优（/v0/subjects/{id}/characters）
+  async function fetchSubjectCharacters(id) {
+    const response = await fetch(`${CONFIG.API_BASE}/v0/subjects/${id}/characters`, {
+      headers: {
+        'User-Agent': 'OtakuMap/1.0 (https://github.com/otakumap)'
+      }
+    });
+    if (!response.ok) throw new Error(`Characters API Error: ${response.status}`);
+    return response.json();
+  }
+
+  // 获取STAFF信息（/v0/subjects/{id}/persons）
+  async function fetchSubjectPersons(id) {
+    const response = await fetch(`${CONFIG.API_BASE}/v0/subjects/${id}/persons`, {
+      headers: {
+        'User-Agent': 'OtakuMap/1.0 (https://github.com/otakumap)'
+      }
+    });
+    if (!response.ok) throw new Error(`Persons API Error: ${response.status}`);
+    return response.json();
   }
 
   // ============ 渲染星期标签 ============
@@ -206,29 +257,18 @@
 
   // ============ 切换星期动画 ============
   function switchWeekday(newWeekday) {
-    console.log('[DEBUG] switchWeekday called with:', newWeekday);
-    if (state.isAnimating) {
-      console.log('[DEBUG] blocked by isAnimating');
-      return;
-    }
+    if (state.isAnimating) return;
     state.isAnimating = true;
 
     try {
-      // 快速更新状态
       state.currentWeekday = newWeekday;
-      console.log('[DEBUG] state.currentWeekday updated to:', newWeekday);
       elements.dateDisplay.textContent = formatDateForWeekday(newWeekday);
-      console.log('[DEBUG] dateDisplay updated to:', elements.dateDisplay.textContent);
       renderWeekTabs();
 
-      // 获取新数据
       const dayData = state.calendarData[newWeekday];
-      console.log('[DEBUG] dayData for index', newWeekday, ':', dayData ? dayData.weekday.cn : 'undefined');
       const items = dayData ? dayData.items : [];
-      console.log('[DEBUG] items.length:', items.length);
 
       if (items.length === 0) {
-        console.log('[DEBUG] showing empty state');
         elements.cardsContainer.innerHTML = '';
         showEmpty();
         return;
@@ -238,8 +278,6 @@
       elements.emptyState.classList.remove('show');
       elements.errorState.classList.remove('show');
 
-      // 渲染新卡片
-      console.log('[DEBUG] setting innerHTML, cards will be:', items.length);
       elements.cardsContainer.innerHTML = items.map(renderAnimeCard).join('');
       bindCardEvents();
 
@@ -272,11 +310,156 @@
     });
   }
 
+  // ============ 增强区域渲染 ============
+
+  // 显示加载骨架
+  function showEnhanceLoading() {
+    elements.enhanceSkeleton.style.display = 'flex';
+    elements.enhanceScore.textContent = '--';
+    elements.enhanceRank.textContent = '';
+    elements.heatDoing.textContent = '';
+    elements.heatCollect.textContent = '';
+    elements.heatWish.textContent = '';
+    elements.ratingChart.innerHTML = '';
+    elements.modalTags.innerHTML = '';
+    elements.modalStaff.innerHTML = '';
+    elements.modalCast.innerHTML = '';
+  }
+
+  // 渲染评分柱状图
+  function renderRatingChart(count) {
+    if (!count) return;
+    const total = Object.values(count).reduce((s, n) => s + n, 0);
+    if (!total) return;
+
+    // 10分位从高到低展示
+    const bars = [];
+    for (let i = 10; i >= 1; i--) {
+      const n = count[i] || 0;
+      const pct = (n / total) * 100;
+      bars.push(`
+        <div class="rating-bar-wrap">
+          <div class="rating-bar" style="height: ${Math.max(pct, 2)}%"></div>
+          <span class="rating-bar-label">${i}</span>
+        </div>
+      `);
+    }
+    elements.ratingChart.innerHTML = bars.join('');
+  }
+
+  // 渲染标签云
+  function renderTags(tags) {
+    if (!tags || !tags.length) return;
+    const topTags = tags.slice(0, 6);
+    elements.modalTags.innerHTML = `
+      <div class="section-title" style="margin-bottom:8px">标签</div>
+      ${topTags.map(t => `<span class="tag-item">${t.name}</span>`).join('')}
+    `;
+  }
+
+  // 渲染制作信息（从 infobox 提取关键字段）
+  function renderStaff(infobox) {
+    if (!infobox || !infobox.length) return;
+    // 提取关键信息
+    const keyMap = {
+      '导演': '导演',
+      '音乐': '音乐',
+      '制作公司': '制作',
+      '动画制作': '动画',
+      '脚本': '脚本',
+      '分镜': '分镜',
+      '演出': '演出',
+      '人物设定': '人设'
+    };
+    const staff = [];
+    for (const item of infobox) {
+      const key = item.key;
+      if (keyMap[key]) {
+        const val = typeof item.value === 'string' ? item.value :
+                     Array.isArray(item.value) ? item.value.map(v => v.v || v).join(' / ') : '';
+        if (val) staff.push({ role: keyMap[key], val });
+      }
+    }
+    if (!staff.length) return;
+    elements.modalStaff.innerHTML = `
+      <div class="section-title" style="margin-bottom:8px">制作</div>
+      <div class="staff-grid">
+        ${staff.map(s => `<span class="staff-item"><strong>${s.role}</strong>：${s.val}</span>`).join('')}
+      </div>
+    `;
+  }
+
+  // 渲染 Cast 阵容
+  function renderCast(characters) {
+    if (!characters || !characters.length) return;
+    // 取前 6 个角色
+    const top = characters.slice(0, 6);
+    const castItems = top.map(c => {
+      const actorName = (c.actors && c.actors[0] && c.actors[0].name) || '未知';
+      const avatar = (c.actors && c.actors[0] && c.actors[0].images && c.actors[0].images.grid) || '';
+      const actorAvatar = avatar ? `<img class="cast-avatar" src="${avatar}" alt="${actorName}" onerror="this.style.display='none'">` : '';
+      return `
+        <div class="cast-item">
+          ${actorAvatar}
+          <div class="cast-info">
+            <div class="cast-name">${c.name}</div>
+            <div class="cast-actor">${actorName}</div>
+          </div>
+        </div>
+      `;
+    }).join('');
+    elements.modalCast.innerHTML = `
+      <div class="section-title" style="margin-bottom:8px">角色 · 声优</div>
+      <div class="cast-grid">${castItems}</div>
+    `;
+  }
+
+  // 填充增强数据
+  function fillEnhanceData(detail, characters, persons) {
+    // 隐藏骨架
+    elements.enhanceSkeleton.style.display = 'none';
+
+    // 评分
+    if (detail.rating) {
+      elements.enhanceScore.textContent = detail.rating.score ? detail.rating.score.toFixed(1) : '--';
+      if (detail.rating.rank) {
+        elements.enhanceRank.textContent = `第 ${detail.rating.rank} 位`;
+      }
+      // 热度
+      if (detail.collection) {
+        elements.heatDoing.className = 'heat-item doing';
+        elements.heatDoing.textContent = `在看 ${formatCount(detail.collection.doing)}`;
+        elements.heatCollect.className = 'heat-item collect';
+        elements.heatCollect.textContent = `看过 ${formatCount(detail.collection.collect)}`;
+        elements.heatWish.className = 'heat-item wish';
+        elements.heatWish.textContent = `想看 ${formatCount(detail.collection.wish)}`;
+      }
+      // 柱状图
+      renderRatingChart(detail.rating.count);
+    }
+
+    // 标签
+    if (detail.tags && detail.tags.length) {
+      renderTags(detail.tags);
+    }
+
+    // 制作信息
+    if (detail.infobox && detail.infobox.length) {
+      renderStaff(detail.infobox);
+    }
+
+    // Cast
+    if (characters && characters.length) {
+      renderCast(characters);
+    }
+  }
+
   // ============ 弹窗 ============
   function openModal(item) {
     const title = item.name_cn || item.name;
-    
-    elements.modalCover.src = item.images.large || item.images.common;
+
+    // 基础信息秒开
+    elements.modalCover.src = (item.images && item.images.large) || (item.images && item.images.common) || '';
     elements.modalCover.alt = title;
     elements.modalTitle.textContent = title;
     elements.modalSubtitle.textContent = item.name;
@@ -286,13 +469,34 @@
     elements.modalLink.href = item.url || `https://bgm.tv/subject/${item.id}`;
     elements.modalSummary.textContent = item.summary || '暂无简介';
 
+    // 显示弹窗
     elements.modalOverlay.classList.add('show');
     document.body.style.overflow = 'hidden';
+
+    // 重置增强区域 + 显示骨架
+    showEnhanceLoading();
+
+    // 异步获取增强数据
+    const id = item.id;
+    Promise.all([
+      fetchSubjectDetail(id).catch(() => null),
+      fetchSubjectCharacters(id).catch(() => []),
+      fetchSubjectPersons(id).catch(() => [])
+    ]).then(([detail, characters, persons]) => {
+      if (detail) {
+        fillEnhanceData(detail, characters, persons);
+      } else {
+        // API 失败，隐藏骨架但不显示增强内容
+        elements.enhanceSkeleton.style.display = 'none';
+      }
+    });
   }
 
   function closeModal() {
     elements.modalOverlay.classList.remove('show');
     document.body.style.overflow = '';
+    // 重置增强区域
+    showEnhanceLoading();
   }
 
   // ============ 初始化 ============
@@ -328,7 +532,6 @@
       const todayId = getWeekdayId(new Date().getDay());
       state.currentWeekday = todayId;
       elements.dateDisplay.textContent = formatDateForWeekday(todayId);
-      // 重新渲染 tabs 以更新选中态
       renderWeekTabs();
       const dayData = state.calendarData[todayId];
       const items = dayData ? dayData.items : [];

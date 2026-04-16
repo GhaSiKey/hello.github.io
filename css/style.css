@@ -665,6 +665,237 @@ img {
   white-space: pre-wrap;
 }
 
+/* ---------- 增强弹窗区域 ---------- */
+.modal-enhance {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+/* 加载骨架 */
+.enhance-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 0;
+}
+
+.sk-line {
+  height: 14px;
+  background: linear-gradient(90deg, var(--bg-secondary) 25%, #1a1a2a 50%, var(--bg-secondary) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+.sk-w40 { width: 40%; }
+.sk-w60 { width: 60%; }
+.sk-w80 { width: 80%; }
+
+/* 评分 + 热度行 */
+.enhance-rating {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.enhance-score {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.score-value {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 700;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.score-max {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.score-rank {
+  font-size: 0.85rem;
+  color: var(--accent-orange);
+  font-weight: 500;
+  background: rgba(255, 159, 67, 0.15);
+  padding: 3px 10px;
+  border-radius: var(--radius-sm);
+}
+
+.enhance-divider {
+  flex: 1;
+}
+
+.enhance-heat {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.heat-item {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+}
+
+.heat-item::before {
+  margin-right: 4px;
+  opacity: 0.7;
+}
+
+.heat-item.doing::before { content: '🔄'; }
+.heat-item.collect::before { content: '✅'; }
+.heat-item.wish::before { content: '💠'; }
+
+/* 评分柱状图 */
+.rating-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 60px;
+  margin-bottom: 16px;
+  padding: 8px;
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+}
+
+.rating-bar-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.rating-bar {
+  width: 100%;
+  background: var(--gradient-accent);
+  border-radius: 2px 2px 0 0;
+  min-height: 2px;
+  transition: height 0.4s ease;
+  opacity: 0.8;
+}
+
+.rating-bar-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+/* 标签云 */
+.modal-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.tag-item {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  background: rgba(76, 201, 255, 0.1);
+  border: 1px solid rgba(76, 201, 255, 0.3);
+  padding: 4px 12px;
+  border-radius: var(--radius-lg);
+  transition: all 0.2s ease;
+}
+
+.tag-item:hover {
+  background: rgba(76, 201, 255, 0.2);
+  color: var(--accent-blue);
+  border-color: var(--accent-blue);
+}
+
+/* 制作信息 */
+.modal-staff {
+  margin-bottom: 16px;
+}
+
+.staff-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.staff-item {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  padding: 5px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+}
+
+.staff-item strong {
+  color: var(--accent-purple);
+  font-weight: 500;
+}
+
+/* Cast 阵容 */
+.modal-cast {
+  margin-bottom: 16px;
+}
+
+.cast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 8px;
+}
+
+.cast-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+}
+
+.cast-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid var(--border-color);
+}
+
+.cast-info {
+  min-width: 0;
+}
+
+.cast-name {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cast-actor {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* ---------- 响应式 ---------- */
 @media (max-width: 768px) {
   .container {

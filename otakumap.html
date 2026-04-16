@@ -86,6 +86,37 @@
           </div>
         </div>
         <div class="modal-body">
+          <!-- 增强区域：评分 + 热度 -->
+          <div class="modal-enhance" id="modalEnhance">
+            <div class="enhance-rating" id="enhanceRating">
+              <div class="enhance-score">
+                <span class="score-value" id="enhanceScore">--</span>
+                <span class="score-max">/10</span>
+              </div>
+              <span class="score-rank" id="enhanceRank"></span>
+              <span class="enhance-divider"></span>
+              <div class="enhance-heat">
+                <span class="heat-item" id="heatDoing"></span>
+                <span class="heat-item" id="heatCollect"></span>
+                <span class="heat-item" id="heatWish"></span>
+              </div>
+            </div>
+            <!-- 评分分布柱状图 -->
+            <div class="rating-chart" id="ratingChart"></div>
+            <!-- 标签云 -->
+            <div class="modal-tags" id="modalTags"></div>
+            <!-- 制作信息 -->
+            <div class="modal-staff" id="modalStaff"></div>
+            <!-- Cast 阵容 -->
+            <div class="modal-cast" id="modalCast"></div>
+            <!-- 加载骨架 -->
+            <div class="enhance-skeleton" id="enhanceSkeleton">
+              <div class="sk-line sk-w60"></div>
+              <div class="sk-line sk-w80"></div>
+              <div class="sk-line sk-w40"></div>
+            </div>
+          </div>
+
           <h3 class="section-title">简介</h3>
           <p class="modal-summary" id="modalSummary"></p>
         </div>
