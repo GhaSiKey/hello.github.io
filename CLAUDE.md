@@ -27,7 +27,8 @@ hello.github.io/
 │   ├── arch.md         # 架构说明
 │   ├── index-page.md   # 邀请页面说明
 │   ├── anr-report.md   # ANR 报告说明
-│   └── otakumap.md     # OtakuMap 说明
+│   ├── otakumap.md     # OtakuMap 说明
+│   └── api.md          # Bangumi API 接口文档
 └── .vscode/
     └── settings.json   # VSCode 配置
 ```
