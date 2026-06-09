@@ -1,0 +1,481 @@
+/* worldcup.css — 世界杯赔率页样式
+ * 沿用项目调性：深色 + 动态渐变背景 + 玻璃拟态卡片。
+ * 独立文件，不混入 otakumap。 */
+
+:root {
+  --bg: #0a0e1a;
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-2: rgba(255, 255, 255, 0.07);
+  --border: rgba(255, 255, 255, 0.10);
+  --border-hi: rgba(255, 255, 255, 0.22);
+  --text: #e8ecf4;
+  --text-dim: #9aa3b5;
+  --text-faint: #6b7488;
+  --accent: #4f8cff;
+  --hot: #ff6b5b;        /* 低赔/热门：暖红 */
+  --cold: #5bb8ff;       /* 高赔/冷门：冷蓝 */
+  --draw: #b890ff;       /* 平局：紫 */
+  --green: #38d39f;
+  --yellow: #f2c14e;
+  --red: #ff6b5b;
+  --gold: #e8c477;          /* 冠军金 */
+  --gold-bright: #ffd98a;
+  --gold-deep: #b8932f;
+  --radius: 16px;
+  --radius-sm: 10px;
+  font-synthesis: none;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* 数字用等宽对齐 */
+.odd-v, .hhad-v, .orow-cell b, .bet-odds, .ret-badge {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── 动态背景：深色 + 金色冠军氛围 ── */
+.bg-gradient {
+  position: fixed; inset: 0; z-index: -2;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(232,196,119,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse at 18% 0%, #1a2236 0%, transparent 52%),
+    radial-gradient(ellipse at 82% 100%, #1e1830 0%, transparent 52%),
+    var(--bg);
+}
+.bg-orb {
+  position: fixed; z-index: -1; border-radius: 50%;
+  filter: blur(90px); opacity: 0.45; pointer-events: none;
+}
+.bg-orb-1 { width: 420px; height: 420px; background: #c9a24a; top: -140px; left: 50%; transform: translateX(-50%); opacity: 0.22; }
+.bg-orb-2 { width: 420px; height: 420px; background: #3a4d8f; bottom: -120px; right: -100px; }
+/* 顶部金色光带，缓慢呼吸 */
+.bg-shine {
+  position: fixed; top: 0; left: 0; right: 0; height: 320px; z-index: -1;
+  background: linear-gradient(180deg, rgba(232,196,119,0.07) 0%, transparent 100%);
+  pointer-events: none; animation: shineBreath 6s ease-in-out infinite;
+}
+@keyframes shineBreath { 0%,100% { opacity: 0.6; } 50% { opacity: 1; } }
+
+/* ── 容器 ── */
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 24px 20px 60px;
+}
+
+/* ── Header ── */
+.header {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px;
+  padding: 12px 0 14px;
+}
+.logo { display: flex; align-items: center; gap: 14px; }
+.logo-icon {
+  font-size: 38px; line-height: 1;
+  filter: drop-shadow(0 2px 10px rgba(232,196,119,0.55));
+  animation: trophyGlow 4s ease-in-out infinite;
+}
+@keyframes trophyGlow {
+  0%,100% { filter: drop-shadow(0 2px 8px rgba(232,196,119,0.4)); }
+  50% { filter: drop-shadow(0 2px 16px rgba(255,217,138,0.75)); }
+}
+.logo-title {
+  font-size: 27px; font-weight: 800; letter-spacing: 0.01em;
+  background: linear-gradient(120deg, var(--gold-bright) 0%, var(--gold) 45%, var(--gold-deep) 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: var(--gold);
+}
+.logo-sub {
+  font-size: 11px; color: var(--gold); opacity: 0.8;
+  letter-spacing: 0.18em; font-weight: 600;
+}
+.header-meta { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; }
+.meta-stamp { font-size: 12px; color: var(--text-dim); }
+
+/* 标题下金色装饰线 */
+.title-rule {
+  height: 2px; margin: 0 0 22px;
+  background: linear-gradient(90deg, var(--gold) 0%, rgba(232,196,119,0.25) 30%, transparent 70%);
+  border-radius: 2px;
+}
+
+/* ── 工具栏 ── */
+.toolbar { margin-bottom: 20px; }
+.view-tabs {
+  display: inline-flex; gap: 2px; padding: 3px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+.view-tab {
+  padding: 8px 18px; border: none; background: transparent;
+  color: var(--text-dim); font-size: 14px; font-weight: 600;
+  border-radius: 7px; cursor: pointer; transition: all 0.18s;
+  font-family: inherit;
+}
+.view-tab:hover { color: var(--text); }
+.view-tab.active { background: var(--accent); color: #fff; }
+
+/* ── 分组 ── */
+.group { margin-bottom: 32px; }
+.group-title {
+  font-size: 14px; font-weight: 700; color: var(--text-dim);
+  margin-bottom: 14px; padding-left: 4px;
+  display: flex; align-items: center; gap: 10px;
+}
+.group-title::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, var(--border), transparent);
+}
+
+/* ── 卡片网格 ── */
+.cards {
+  display: grid; gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px;
+  cursor: pointer; transition: transform 0.18s, border-color 0.18s, background 0.18s;
+  outline: none;
+}
+.card:hover, .card:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--border-hi);
+  background: var(--surface-2);
+}
+.card:focus-visible { box-shadow: 0 0 0 2px var(--accent); }
+
+.card-head {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; color: var(--text-faint); margin-bottom: 12px;
+}
+.card-num { font-weight: 600; color: var(--text-dim); }
+.card-group {
+  padding: 1px 7px; background: var(--surface-2);
+  border-radius: 6px; color: var(--text-dim);
+}
+.card-time { margin-left: auto; font-variant-numeric: tabular-nums; }
+
+/* 对阵 */
+.card-teams {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 8px; margin-bottom: 14px;
+}
+.team {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  flex: 1; min-width: 0;
+}
+.team-logo {
+  width: 44px; height: 44px; object-fit: contain;
+  border-radius: 8px; background: rgba(255,255,255,0.06);
+}
+.team-logo--ph {
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+.team-name {
+  font-size: 14px; font-weight: 600; text-align: center;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;
+}
+.vs { font-size: 12px; font-weight: 700; color: var(--text-faint); flex: 0 0 auto; }
+
+/* 胜平负三栏 */
+.card-odds {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+  margin-bottom: 10px;
+}
+.odd {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  padding: 8px 4px; background: var(--surface-2);
+  border-radius: var(--radius-sm);
+}
+.odd-k { font-size: 11px; color: var(--text-faint); }
+.odd-v { font-size: 16px; font-weight: 700; }
+.card-odds--none {
+  display: block; text-align: center; padding: 12px;
+  color: var(--text-faint); font-size: 13px;
+}
+
+/* 让球核心盘 */
+.card-hhad {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 10px; margin-bottom: 12px;
+  background: rgba(79,140,255,0.06); border-radius: var(--radius-sm);
+  font-size: 13px;
+}
+.hhad-label { color: var(--text-dim); font-weight: 600; }
+.hhad-v {
+  font-weight: 600; color: var(--text);
+  font-variant-numeric: tabular-nums; margin-left: auto;
+}
+.hhad-v + .hhad-v { margin-left: 0; }
+
+/* 卡片底部：标签 + 方案徽章 */
+.card-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 8px; flex-wrap: wrap;
+}
+.card-plan-badge {
+  font-size: 11px; color: var(--green); font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ── 价值标签 ── */
+.tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.tag {
+  font-size: 11px; font-weight: 600; padding: 3px 9px;
+  border-radius: 20px; border: 1px solid var(--border);
+  background: var(--surface-2); white-space: nowrap;
+}
+.tag--大热盘 { color: var(--hot); border-color: rgba(255,107,91,0.3); }
+.tag--均势盘 { color: var(--cold); border-color: rgba(91,184,255,0.3); }
+.tag--关注平局 { color: var(--draw); border-color: rgba(184,144,255,0.3); }
+.tag--小球倾向 { color: var(--text-dim); }
+
+/* ── 免责声明 ── */
+.disclaimer {
+  margin-top: 24px; padding: 14px 18px; text-align: center;
+  font-size: 12px; color: var(--text-faint);
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+/* ── 骨架屏 / 错误态 ── */
+[hidden] { display: none !important; }
+.skeleton-wrap { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+.skeleton-wrap::before,
+.skeleton-wrap::after {
+  content: ''; height: 200px; border-radius: var(--radius);
+  background: linear-gradient(90deg, var(--surface) 25%, var(--surface-2) 50%, var(--surface) 75%);
+  background-size: 200% 100%; animation: shimmer 1.4s infinite;
+}
+@keyframes shimmer { to { background-position: -200% 0; } }
+.error-state { text-align: center; padding: 60px 20px; }
+.error-icon { font-size: 48px; }
+.error-text { font-size: 18px; font-weight: 600; margin: 12px 0 6px; }
+.error-hint { font-size: 13px; color: var(--text-faint); }
+
+/* ── 详情：遮罩 + 面板 ── */
+.detail-overlay {
+  position: fixed; inset: 0; z-index: 40;
+  background: rgba(0,0,0,0.6); backdrop-filter: blur(3px);
+}
+/* 居中弹窗 */
+.detail-panel {
+  position: fixed; top: 50%; left: 50%; z-index: 50;
+  width: 860px; max-width: calc(100vw - 48px); max-height: 88vh;
+  background: #0d1322; border: 1px solid var(--border);
+  border-radius: var(--radius); overflow-y: auto;
+  transform: translate(-50%, -48%) scale(0.97);
+  opacity: 0; transition: transform 0.26s cubic-bezier(.4,0,.2,1), opacity 0.26s;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+}
+.detail-panel.show { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+.detail-inner { padding: 28px 30px 32px; }
+
+/* 关闭按钮：右上角悬浮 ✕ */
+.detail-close {
+  position: absolute; top: 16px; right: 18px; z-index: 2;
+  width: 34px; height: 34px; padding: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--surface-2); border: 1px solid var(--border);
+  color: var(--text-dim); border-radius: 50%;
+  font-size: 16px; cursor: pointer; font-family: inherit;
+  transition: all 0.18s;
+}
+.detail-close:hover { color: var(--text); border-color: var(--border-hi); transform: rotate(90deg); }
+
+/* 详情对阵头（横跨顶部） */
+.detail-head { text-align: center; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+.detail-meta { font-size: 12px; color: var(--text-faint); }
+.detail-teams {
+  display: flex; align-items: center; justify-content: center; gap: 28px;
+  margin-top: 16px;
+}
+.dteam { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.dteam img.team-logo, .dteam .team-logo { width: 56px; height: 56px; }
+.dteam span { font-size: 16px; font-weight: 700; }
+.dvs { font-size: 13px; color: var(--text-faint); font-weight: 700; }
+
+/* 详情正文：左右两栏 */
+.detail-body {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+  margin-top: 4px;
+}
+.detail-col-odds { border-left: 1px solid var(--border); padding-left: 28px; }
+
+/* 详情区块标题 */
+.sec-title {
+  font-size: 15px; font-weight: 700; margin-bottom: 12px;
+  display: flex; align-items: baseline; gap: 8px;
+}
+.sec-note { font-size: 11px; font-weight: 400; color: var(--text-faint); }
+.detail-analysis, .detail-comment { padding: 18px 0; }
+.detail-analysis { padding-top: 0; }
+.detail-comment { border-top: 1px solid var(--border); }
+.detail-odds { padding-top: 0; }
+
+/* 去水概率三色条 */
+.prob-bar {
+  display: flex; height: 32px; border-radius: 8px; overflow: hidden;
+  margin: 12px 0; font-size: 12px; font-weight: 600;
+}
+.prob-seg {
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; white-space: nowrap; overflow: hidden; min-width: 0;
+}
+.prob-h { background: rgba(255,107,91,0.75); }
+.prob-d { background: rgba(184,144,255,0.75); }
+.prob-a { background: rgba(91,184,255,0.75); }
+
+/* 返还率徽章 */
+.ret-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.ret-badge {
+  font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 7px;
+  border: 1px solid var(--border);
+}
+.ret-high { color: var(--green); border-color: rgba(56,211,159,0.3); background: rgba(56,211,159,0.08); }
+.ret-mid  { color: var(--yellow); border-color: rgba(242,193,78,0.3); background: rgba(242,193,78,0.08); }
+.ret-low  { color: var(--red); border-color: rgba(255,107,91,0.3); background: rgba(255,107,91,0.08); }
+.na-hint { font-size: 13px; color: var(--text-faint); padding: 8px 0; }
+
+/* 玩法表格 */
+.orow {
+  display: flex; gap: 12px; padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.orow:last-child { border-bottom: none; }
+.orow-label {
+  flex: 0 0 72px; font-size: 13px; font-weight: 600; color: var(--text-dim);
+  padding-top: 2px;
+}
+.orow-cells { display: flex; flex-wrap: wrap; gap: 6px; flex: 1; }
+.orow-cell {
+  display: inline-flex; flex-direction: column; align-items: center;
+  gap: 1px; padding: 4px 8px; background: var(--surface-2);
+  border-radius: 7px; min-width: 46px;
+}
+.orow-cell i { font-size: 10px; color: var(--text-faint); font-style: normal; }
+.orow-cell b { font-size: 13px; font-weight: 700; }
+
+/* 赔率色温：越低越暖(热门)，越高越冷(冷门) —— 让热门项浮出 */
+.orow-cell.heat-5 b { color: #ff5b47; }   /* 很热 <2 */
+.orow-cell.heat-4 b { color: #ff9d66; }   /* 热 <3.5 */
+.orow-cell.heat-3 b { color: var(--text); }      /* 中 <7 */
+.orow-cell.heat-2 b { color: #7fb8e8; }   /* 冷 <20 */
+.orow-cell.heat-1 b { color: #5d7fa8; }   /* 很冷 ≥20 */
+/* 每行最热项(最低赔率)：高亮底色 + 边框 */
+.orow-cell--hot {
+  background: rgba(255,91,71,0.14);
+  box-shadow: inset 0 0 0 1px rgba(255,91,71,0.35);
+}
+
+/* ── 玩法区块（半全场/比分矩阵） ── */
+.odds-block { padding: 16px 0; border-top: 1px solid rgba(255,255,255,0.05); }
+.odds-block-title {
+  font-size: 13px; font-weight: 600; color: var(--text-dim); margin-bottom: 10px;
+}
+.block-hint { font-size: 10px; font-weight: 400; color: var(--text-faint); margin-left: 6px; }
+
+.matrix table {
+  border-collapse: separate; border-spacing: 3px; width: 100%;
+  font-variant-numeric: tabular-nums;
+}
+.matrix th {
+  font-size: 10px; font-weight: 600; color: var(--text-faint);
+  padding: 2px; text-align: center;
+}
+.matrix th.corner { font-size: 9px; }
+.matrix td {
+  font-size: 11px; font-weight: 700; text-align: center;
+  padding: 5px 2px; border-radius: 5px;
+  background: var(--surface-2); color: var(--text);
+}
+.matrix td.cell--empty { background: transparent; color: var(--text-faint); font-weight: 400; }
+
+/* 矩阵热力底色：低赔(热门)暖红 -> 高赔(冷门)冷蓝 */
+.matrix td.heat-5 { background: rgba(255,91,71,0.32); color: #fff; }
+.matrix td.heat-4 { background: rgba(255,140,90,0.22); }
+.matrix td.heat-3 { background: rgba(255,255,255,0.07); }
+.matrix td.heat-2 { background: rgba(91,160,230,0.14); color: #bcd; }
+.matrix td.heat-1 { background: rgba(70,110,160,0.12); color: #8aa; }
+.matrix td.cell--hot { box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.55); }
+
+/* 比分矩阵的"胜/平/负其它" */
+.crs-others { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.crs-other {
+  display: inline-flex; flex-direction: column; align-items: center; gap: 1px;
+  padding: 4px 8px; background: var(--surface-2); border-radius: 7px;
+}
+.crs-other i { font-size: 10px; color: var(--text-faint); font-style: normal; }
+.crs-other b { font-size: 12px; font-weight: 700; }
+
+
+/* 点评 */
+.comment-summary { font-size: 14px; font-weight: 600; margin-bottom: 10px; }
+.comment-value {
+  font-size: 13px; color: var(--text-dim); line-height: 1.6;
+  padding: 10px 12px; background: rgba(79,140,255,0.06);
+  border-radius: var(--radius-sm); border-left: 2px solid var(--accent);
+}
+.comment--empty { color: var(--text-faint); font-size: 13px; padding: 8px 0; }
+
+/* 购买方案 */
+.plan {
+  margin-top: 14px; padding: 14px; background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+}
+.plan-head { font-size: 13px; font-weight: 700; color: var(--green); margin-bottom: 10px; }
+.bet-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.bet {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  font-size: 12px; padding: 8px 10px;
+  background: var(--surface-2); border-radius: 8px;
+}
+.bet-market { font-weight: 700; }
+.bet-odds { color: var(--accent); font-weight: 600; }
+.bet-stake { color: var(--text-dim); margin-left: auto; }
+.bet-potential { color: var(--green); font-weight: 600; }
+.plan-note { font-size: 12px; color: var(--text-dim); margin-top: 10px; line-height: 1.6; }
+.plan-warn {
+  font-size: 11px; color: var(--red); margin-top: 10px;
+  padding-top: 10px; border-top: 1px solid var(--border);
+}
+
+/* ── H5 响应式：详情弹窗变全屏、两栏变单栏 ── */
+@media (max-width: 768px) {
+  .container { padding: 18px 14px 50px; }
+  .header-meta { align-items: flex-start; }
+  .cards { grid-template-columns: 1fr; }
+  .detail-panel {
+    top: 0; left: 0; width: 100vw; max-width: 100vw;
+    height: 100vh; max-height: 100vh; border: none; border-radius: 0;
+    transform: translate(0, 100%); /* 从底部滑入 */
+  }
+  .detail-panel.show { transform: translate(0, 0); }
+  .detail-inner { padding: 20px 16px 40px; }
+  .detail-overlay { display: none; }  /* H5 全屏，无需遮罩 */
+  body.detail-open { overflow: hidden; }
+  /* 两栏 -> 单栏堆叠 */
+  .detail-body { grid-template-columns: 1fr; gap: 0; }
+  .detail-col-odds {
+    border-left: none; padding-left: 0;
+    border-top: 1px solid var(--border); padding-top: 6px; margin-top: 6px;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo-title { font-size: 20px; }
+  .detail-teams { gap: 14px; }
+}
