@@ -8,7 +8,17 @@
       2040162,
       2040176
     ],
-    "disclaimer": "数据仅供参考，不构成投注建议；竞彩为负和游戏，长期期望为负"
+    "disclaimer": "数据仅供参考，不构成投注建议；竞彩为负和游戏，长期期望为负",
+    "betSummary": {
+      "totalStake": 300,
+      "totalPayout": 0,
+      "profit": -300,
+      "finishedMatches": 0,
+      "totalMatches": 15,
+      "hitBets": 0,
+      "totalBets": 44,
+      "roi": 0
+    }
   },
   "matches": [
     {
@@ -222,17 +232,34 @@
               "market": "让球-1 让胜",
               "odds": 2.2,
               "stake": 12,
-              "potential": 26.4
+              "potential": 26.4,
+              "type": "hhad",
+              "pick": {
+                "goalLine": -1,
+                "side": "h"
+              }
             },
             {
               "market": "半全场 胜/胜",
               "odds": 1.91,
               "stake": 8,
-              "potential": 15.28
+              "potential": 15.28,
+              "type": "hafu",
+              "pick": {
+                "half": "h",
+                "full": "h"
+              }
             }
           ],
           "note": "都押墨西哥控场拿下：让胜赌净胜2球，半全场赌上半场就领先。比直接买1.34主胜赔率体面得多。"
         }
+      },
+      "result": {
+        "status": "pending",
+        "full": null,
+        "half": null,
+        "source": null,
+        "filledAt": null
       }
     },
     {
@@ -447,23 +474,39 @@
               "market": "平局",
               "odds": 2.84,
               "stake": 10,
-              "potential": 28.4
+              "potential": 28.4,
+              "type": "had",
+              "pick": "d"
             },
             {
               "market": "比分 1:1",
               "odds": 5.0,
               "stake": 6,
-              "potential": 30.0
+              "potential": 30.0,
+              "type": "crs",
+              "pick": {
+                "h": 1,
+                "a": 1
+              }
             },
             {
               "market": "捷克胜",
               "odds": 2.74,
               "stake": 4,
-              "potential": 10.96
+              "potential": 10.96,
+              "type": "had",
+              "pick": "a"
             }
           ],
           "note": "押平为主、1:1博彩头、捷克胜兜底，覆盖'平或捷克小胜'的主剧本。"
         }
+      },
+      "result": {
+        "status": "pending",
+        "full": null,
+        "half": null,
+        "source": null,
+        "filledAt": null
       }
     },
     {
@@ -675,23 +718,42 @@
               "market": "让球-1 让负",
               "odds": 2.05,
               "stake": 12,
-              "potential": 24.6
+              "potential": 24.6,
+              "type": "hhad",
+              "pick": {
+                "goalLine": -1,
+                "side": "a"
+              }
             },
             {
               "market": "比分 1:1",
               "odds": 6.2,
               "stake": 4,
-              "potential": 24.8
+              "potential": 24.8,
+              "type": "crs",
+              "pick": {
+                "h": 1,
+                "a": 1
+              }
             },
             {
               "market": "波黑胜",
               "odds": 4.9,
               "stake": 4,
-              "potential": 19.6
+              "potential": 19.6,
+              "type": "had",
+              "pick": "a"
             }
           ],
           "note": "押加拿大赢不透或被逼平/爆冷，让负打底，1:1和客胜博弹性。"
         }
+      },
+      "result": {
+        "status": "pending",
+        "full": null,
+        "half": null,
+        "source": null,
+        "filledAt": null
       }
     },
     {
@@ -903,23 +965,42 @@
               "market": "美国胜",
               "odds": 1.87,
               "stake": 12,
-              "potential": 22.44
+              "potential": 22.44,
+              "type": "had",
+              "pick": "h"
             },
             {
               "market": "比分 1:0",
               "odds": 6.0,
               "stake": 5,
-              "potential": 30.0
+              "potential": 30.0,
+              "type": "crs",
+              "pick": {
+                "h": 1,
+                "a": 0
+              }
             },
             {
               "market": "比分 2:1",
               "odds": 7.25,
               "stake": 3,
-              "potential": 21.75
+              "potential": 21.75,
+              "type": "crs",
+              "pick": {
+                "h": 2,
+                "a": 1
+              }
             }
           ],
           "note": "主胜打底，配两个最热小胜比分博弹性，押美国小胜。"
         }
+      },
+      "result": {
+        "status": "pending",
+        "full": null,
+        "half": null,
+        "source": null,
+        "filledAt": null
       }
     },
     {
@@ -1118,23 +1199,45 @@
               "market": "比分 0:2",
               "odds": 5.2,
               "stake": 8,
-              "potential": 41.6
+              "potential": 41.6,
+              "type": "crs",
+              "pick": {
+                "h": 0,
+                "a": 2
+              }
             },
             {
               "market": "比分 0:1",
               "odds": 6.2,
               "stake": 7,
-              "potential": 43.4
+              "potential": 43.4,
+              "type": "crs",
+              "pick": {
+                "h": 0,
+                "a": 1
+              }
             },
             {
               "market": "比分 0:3",
               "odds": 6.3,
               "stake": 5,
-              "potential": 31.5
+              "potential": 31.5,
+              "type": "crs",
+              "pick": {
+                "h": 0,
+                "a": 3
+              }
             }
           ],
           "note": "无胜平负只能玩比分，覆盖瑞士小胜到中胜的三个热门比分。注意比分玩法返还率仅71%，抽水最重，纯娱乐。"
         }
+      },
+      "result": {
+        "status": "pending",
+        "full": null,
+        "half": null,
+        "source": null,
+        "filledAt": null
       }
     },
     {
@@ -1346,23 +1449,45 @@
               "market": "让球-1 让负",
               "odds": 2.15,
               "stake": 11,
-              "potential": 23.65
+              "potential": 23.65,
+              "type": "hhad",
+              "pick": {
+                "goalLine": -1,
+                "side": "a"
+              }
             },
             {
               "market": "比分 1:0",
               "odds": 5.85,
               "stake": 5,
-              "potential": 29.25
+              "potential": 29.25,
+              "type": "crs",
+              "pick": {
+                "h": 1,
+                "a": 0
+              }
             },
             {
               "market": "比分 1:1",
               "odds": 6.0,
               "stake": 4,
-              "potential": 24.0
+              "potential": 24.0,
+              "type": "crs",
+              "pick": {
+                "h": 1,
+                "a": 1
+              }
             }
           ],
           "note": "赌巴西赢不透或被摩洛哥纠缠，让负打底，配两个低比分。"
         }
+      },
+      "result": {
+        "status": "pending",
+        "full": null,
+        "half": null,
+        "source": null,
+        "filledAt": null
       }
     },
     {
@@ -1576,23 +1701,45 @@
               "market": "让球+1 让胜(海地)",
               "odds": 2.81,
               "stake": 11,
-              "potential": 30.91
+              "potential": 30.91,
+              "type": "hhad",
+              "pick": {
+                "goalLine": 1,
+                "side": "h"
+              }
             },
             {
               "market": "比分 0:1",
               "odds": 5.4,
               "stake": 5,
-              "potential": 27.0
+              "potential": 27.0,
+              "type": "crs",
+              "pick": {
+                "h": 0,
+                "a": 1
+              }
             },
             {
               "market": "比分 0:2",
               "odds": 5.5,
               "stake": 4,
-              "potential": 22.0
+              "potential": 22.0,
+              "type": "crs",
+              "pick": {
+                "h": 0,
+                "a": 2
+              }
             }
           ],
           "note": "赌苏格兰小胜赢不透，受让让胜打底，配两个客队小胜比分。"
         }
+      },
+      "result": {
+        "status": "pending",
+        "full": null,
+        "half": null,
+        "source": null,
+        "filledAt": null
       }
     },
     {
@@ -1804,23 +1951,42 @@
               "market": "让球+1 让胜(澳洲)",
               "odds": 2.11,
               "stake": 11,
-              "potential": 23.21
+              "potential": 23.21,
+              "type": "hhad",
+              "pick": {
+                "goalLine": 1,
+                "side": "h"
+              }
             },
             {
               "market": "平局",
               "odds": 3.45,
               "stake": 5,
-              "potential": 17.25
+              "potential": 17.25,
+              "type": "had",
+              "pick": "d"
             },
             {
               "market": "比分 0:1",
               "odds": 5.7,
               "stake": 4,
-              "potential": 22.8
+              "potential": 22.8,
+              "type": "crs",
+              "pick": {
+                "h": 0,
+                "a": 1
+              }
             }
           ],
           "note": "赌土耳其赢不透/被逼平，受让让胜打底，配平局和客队小胜。"
         }
+      },
+      "result": {
+        "status": "pending",
+        "full": null,
+        "half": null,
+        "source": null,
+        "filledAt": null
       }
     },
     {
@@ -2005,23 +2171,45 @@
               "market": "比分 4:0",
               "odds": 5.75,
               "stake": 7,
-              "potential": 40.25
+              "potential": 40.25,
+              "type": "crs",
+              "pick": {
+                "h": 4,
+                "a": 0
+              }
             },
             {
               "market": "比分 3:0",
               "odds": 5.5,
               "stake": 7,
-              "potential": 38.5
+              "potential": 38.5,
+              "type": "crs",
+              "pick": {
+                "h": 3,
+                "a": 0
+              }
             },
             {
               "market": "比分 5:0",
               "odds": 7.0,
               "stake": 6,
-              "potential": 42.0
+              "potential": 42.0,
+              "type": "crs",
+              "pick": {
+                "h": 5,
+                "a": 0
+              }
             }
           ],
           "note": "无胜平负只能玩比分，覆盖德国3-5球的大胜区间。抽水重，图个乐。"
         }
+      },
+      "result": {
+        "status": "pending",
+        "full": null,
+        "half": null,
+        "source": null,
+        "filledAt": null
       }
     },
     {
@@ -2233,23 +2421,42 @@
               "market": "让球-1 让负",
               "odds": 1.86,
               "stake": 12,
-              "potential": 22.32
+              "potential": 22.32,
+              "type": "hhad",
+              "pick": {
+                "goalLine": -1,
+                "side": "a"
+              }
             },
             {
               "market": "比分 1:1",
               "odds": 6.0,
               "stake": 4,
-              "potential": 24.0
+              "potential": 24.0,
+              "type": "crs",
+              "pick": {
+                "h": 1,
+                "a": 1
+              }
             },
             {
               "market": "日本胜",
               "odds": 4.1,
               "stake": 4,
-              "potential": 16.4
+              "potential": 16.4,
+              "type": "had",
+              "pick": "a"
             }
           ],
           "note": "赌荷兰赢不透或被日本纠缠，让负打底，配平局和爆冷。"
         }
+      },
+      "result": {
+        "status": "pending",
+        "full": null,
+        "half": null,
+        "source": null,
+        "filledAt": null
       }
     },
     {
@@ -2463,23 +2670,39 @@
               "market": "平局",
               "odds": 2.65,
               "stake": 10,
-              "potential": 26.5
+              "potential": 26.5,
+              "type": "had",
+              "pick": "d"
             },
             {
               "market": "厄瓜多尔胜",
               "odds": 2.2,
               "stake": 6,
-              "potential": 13.2
+              "potential": 13.2,
+              "type": "had",
+              "pick": "a"
             },
             {
               "market": "比分 1:1",
               "odds": 5.0,
               "stake": 4,
-              "potential": 20.0
+              "potential": 20.0,
+              "type": "crs",
+              "pick": {
+                "h": 1,
+                "a": 1
+              }
             }
           ],
           "note": "押平为主、客胜兜底，1:1博彩头，契合'易平或客队小胜'。"
         }
+      },
+      "result": {
+        "status": "pending",
+        "full": null,
+        "half": null,
+        "source": null,
+        "filledAt": null
       }
     },
     {
@@ -2691,23 +2914,45 @@
               "market": "让球-1 让负",
               "odds": 1.84,
               "stake": 12,
-              "potential": 22.08
+              "potential": 22.08,
+              "type": "hhad",
+              "pick": {
+                "goalLine": -1,
+                "side": "a"
+              }
             },
             {
               "market": "比分 1:0",
               "odds": 5.6,
               "stake": 5,
-              "potential": 28.0
+              "potential": 28.0,
+              "type": "crs",
+              "pick": {
+                "h": 1,
+                "a": 0
+              }
             },
             {
               "market": "比分 1:1",
               "odds": 5.7,
               "stake": 3,
-              "potential": 17.1
+              "potential": 17.1,
+              "type": "crs",
+              "pick": {
+                "h": 1,
+                "a": 1
+              }
             }
           ],
           "note": "赌瑞典小胜赢不透，让负打底，配1:0和1:1两个低比分。"
         }
+      },
+      "result": {
+        "status": "pending",
+        "full": null,
+        "half": null,
+        "source": null,
+        "filledAt": null
       }
     },
     {
@@ -2906,23 +3151,45 @@
               "market": "比分 2:0",
               "odds": 5.6,
               "stake": 8,
-              "potential": 44.8
+              "potential": 44.8,
+              "type": "crs",
+              "pick": {
+                "h": 2,
+                "a": 0
+              }
             },
             {
               "market": "比分 3:0",
               "odds": 5.7,
               "stake": 7,
-              "potential": 39.9
+              "potential": 39.9,
+              "type": "crs",
+              "pick": {
+                "h": 3,
+                "a": 0
+              }
             },
             {
               "market": "比分 1:0",
               "odds": 8.2,
               "stake": 5,
-              "potential": 41.0
+              "potential": 41.0,
+              "type": "crs",
+              "pick": {
+                "h": 1,
+                "a": 0
+              }
             }
           ],
           "note": "无胜平负只能玩比分，覆盖西班牙1-3球零封。传控不一定高产，含1:0兜底。"
         }
+      },
+      "result": {
+        "status": "pending",
+        "full": null,
+        "half": null,
+        "source": null,
+        "filledAt": null
       }
     },
     {
@@ -3136,23 +3403,45 @@
               "market": "让球-1 让胜",
               "odds": 2.65,
               "stake": 12,
-              "potential": 31.8
+              "potential": 31.8,
+              "type": "hhad",
+              "pick": {
+                "goalLine": -1,
+                "side": "h"
+              }
             },
             {
               "market": "比分 2:0",
               "odds": 6.0,
               "stake": 5,
-              "potential": 30.0
+              "potential": 30.0,
+              "type": "crs",
+              "pick": {
+                "h": 2,
+                "a": 0
+              }
             },
             {
               "market": "比分 2:1",
               "odds": 6.75,
               "stake": 3,
-              "potential": 20.25
+              "potential": 20.25,
+              "type": "crs",
+              "pick": {
+                "h": 2,
+                "a": 1
+              }
             }
           ],
           "note": "赌比利时赢得透，让胜打底，配两个净胜2球的比分。"
         }
+      },
+      "result": {
+        "status": "pending",
+        "full": null,
+        "half": null,
+        "source": null,
+        "filledAt": null
       }
     },
     {
@@ -3366,23 +3655,45 @@
               "market": "让球+1 让胜(沙特)",
               "odds": 2.95,
               "stake": 11,
-              "potential": 32.45
+              "potential": 32.45,
+              "type": "hhad",
+              "pick": {
+                "goalLine": 1,
+                "side": "h"
+              }
             },
             {
               "market": "比分 0:1",
               "odds": 5.4,
               "stake": 5,
-              "potential": 27.0
+              "potential": 27.0,
+              "type": "crs",
+              "pick": {
+                "h": 0,
+                "a": 1
+              }
             },
             {
               "market": "比分 0:2",
               "odds": 5.3,
               "stake": 4,
-              "potential": 21.2
+              "potential": 21.2,
+              "type": "crs",
+              "pick": {
+                "h": 0,
+                "a": 2
+              }
             }
           ],
           "note": "赌乌拉圭小胜赢不透，受让让胜打底，配两个客队小胜比分。"
         }
+      },
+      "result": {
+        "status": "pending",
+        "full": null,
+        "half": null,
+        "source": null,
+        "filledAt": null
       }
     }
   ]

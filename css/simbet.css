@@ -1,0 +1,90 @@
+/* simbet.css — AI 模拟买盘战绩页样式
+ * 复用 worldcup.css 的变量、背景、页面导航(.page-nav)，仅定义本页特有组件。 */
+
+/* ── 汇总卡 ── */
+.summary {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+  margin-bottom: 28px;
+}
+.sum-card {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 18px 20px; background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--radius);
+}
+.sum-label { font-size: 12px; color: var(--text-faint); }
+.sum-value { font-size: 28px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.sum-sub { font-size: 11px; color: var(--text-faint); }
+.sum-card--profit.pos .sum-value { color: var(--green); }
+.sum-card--profit.neg .sum-value { color: var(--red); }
+
+/* ── 时间线 ── */
+.timeline { position: relative; padding-left: 24px; }
+.timeline::before {
+  content: ''; position: absolute; left: 6px; top: 6px; bottom: 6px;
+  width: 2px; background: linear-gradient(180deg, var(--gold) 0%, var(--border) 60%, transparent 100%);
+}
+.sb-node { position: relative; margin-bottom: 16px; }
+.sb-dot {
+  position: absolute; left: -23px; top: 18px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--text-faint); border: 2px solid var(--bg);
+}
+.sb-node.win .sb-dot { background: var(--green); box-shadow: 0 0 8px rgba(56,211,159,0.6); }
+.sb-node.lose .sb-dot { background: var(--red); }
+.sb-node.even .sb-dot { background: var(--yellow); }
+.sb-node.pending .sb-dot { background: var(--text-faint); }
+
+/* 战绩卡片 */
+.sb-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 16px;
+}
+.sb-node.win .sb-card { border-color: rgba(56,211,159,0.25); }
+.sb-node.lose .sb-card { border-color: rgba(255,107,91,0.22); }
+
+.sb-head {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.sb-time { font-size: 12px; color: var(--text-faint); font-variant-numeric: tabular-nums; }
+.sb-teams { font-size: 15px; font-weight: 700; }
+.sb-status { font-size: 11px; font-weight: 600; padding: 2px 9px; border-radius: 12px; margin-left: auto; }
+.sb-status.wait { color: var(--text-faint); background: var(--surface-2); }
+.sb-status.done { color: var(--green); background: rgba(56,211,159,0.1); }
+
+/* 注明细 */
+.sb-bets { list-style: none; display: flex; flex-direction: column; gap: 6px; margin: 0; }
+.sb-bet {
+  display: flex; align-items: center; gap: 8px; font-size: 13px;
+  padding: 6px 10px; background: var(--surface-2); border-radius: 8px;
+}
+.bet-mark { font-weight: 700; width: 16px; text-align: center; }
+.bet-mark.hit { color: var(--green); }
+.bet-mark.miss { color: var(--red); }
+.bet-mark.na { color: var(--text-faint); }
+.sb-bet-market { font-weight: 600; }
+.sb-bet-odds { color: var(--accent); font-size: 12px; }
+.sb-bet-stake { color: var(--text-dim); font-size: 12px; margin-left: auto; }
+.bet-pay { font-weight: 700; font-size: 12px; }
+.bet-pay.pos { color: var(--green); }
+
+/* 底部 */
+.sb-foot {
+  display: flex; align-items: center; gap: 14px;
+  margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.06);
+  font-size: 13px;
+}
+.sb-stake { color: var(--text-dim); }
+.sb-score { font-weight: 700; font-variant-numeric: tabular-nums; }
+.sb-score.muted, .sb-profit.muted { color: var(--text-faint); font-weight: 400; }
+.sb-profit { margin-left: auto; font-weight: 700; }
+.sb-profit.pos { color: var(--green); }
+.sb-profit.neg { color: var(--red); }
+
+/* H5 */
+@media (max-width: 768px) {
+  .summary { grid-template-columns: repeat(2, 1fr); }
+  .sum-value { font-size: 22px; }
+  .logo-title { font-size: 19px; }
+  .sb-teams { font-size: 14px; }
+}
