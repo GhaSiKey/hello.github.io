@@ -18,29 +18,34 @@ function money(n) {
   return (v < 0 ? '-¥' : '¥') + Math.abs(v);
 }
 
-/** 汇总卡：总支出/总收入/总盈亏/命中率。 */
+/** 汇总卡：总支出/已结算收入/已结算盈亏/命中率。
+ *  盈亏用「已结算」口径（只算已开赛场次），不把未结算场的预算当亏损。 */
 function renderSummary(meta) {
   const s = meta.betSummary || {};
-  const profit = s.profit;
+  const none = (s.finishedMatches || 0) === 0;   // 还没有任何场结算
+  const profit = s.profitSettled;
   const profitCls = profit > 0 ? 'pos' : (profit < 0 ? 'neg' : '');
   const arrow = profit > 0 ? '▲' : (profit < 0 ? '▼' : '');
-  const settled = s.finishedMatches === 0;
+  const roi = s.roiSettled != null ? (s.roiSettled * 100).toFixed(1) + '%' : '—';
   return `
     <div class="sum-card">
       <span class="sum-label">总支出</span>
-      <span class="sum-value">${money(s.totalStake)}</span>
+      <span class="sum-value">${money(s.totalBudget)}</span>
+      <span class="sum-sub">预算 ${s.totalMatches || 0} 场</span>
     </div>
     <div class="sum-card">
-      <span class="sum-label">总收入</span>
-      <span class="sum-value">${settled ? '待开赛' : money(s.totalPayout)}</span>
+      <span class="sum-label">已结算收入</span>
+      <span class="sum-value">${none ? '待开赛' : money(s.settledPayout)}</span>
+      <span class="sum-sub">${none ? '' : '投入 ' + money(s.settledStake)}</span>
     </div>
     <div class="sum-card sum-card--profit ${profitCls}">
-      <span class="sum-label">总盈亏</span>
-      <span class="sum-value">${settled ? '—' : money(profit) + ' ' + arrow}</span>
+      <span class="sum-label">已结算盈亏</span>
+      <span class="sum-value">${none ? '—' : money(profit) + ' ' + arrow}</span>
+      <span class="sum-sub">${none ? '' : 'ROI ' + roi}</span>
     </div>
     <div class="sum-card">
       <span class="sum-label">命中率</span>
-      <span class="sum-value">${s.hitBets || 0}/${s.totalBets || 0}</span>
+      <span class="sum-value">${s.hitBets || 0}/${s.settleableBets || 0}</span>
       <span class="sum-sub">已结算 ${s.finishedMatches || 0}/${s.totalMatches || 0} 场</span>
     </div>`;
 }

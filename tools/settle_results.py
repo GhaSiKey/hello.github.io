@@ -48,36 +48,52 @@ def judge(bet_type, pick, full, half):
 
 
 def recalc_summary(data):
-    """重算全局 betSummary。无法结算的注不计入命中统计与派彩。"""
-    total_stake = total_payout = 0
+    """重算全局 betSummary。
+
+    口径分离（关键）：盈亏/ROI 用"已结算"口径，只统计已结算场次的投入与
+    回款——反映 AI 押的这几场到底准不准。全预算(totalBudget)单列，作"总支出"
+    展示，不混入盈亏计算。否则未结算场次的支出会被算成亏损，开局必然趋近 -100%。
+
+    无法结算的注(hit=None,缺半场)不计入命中统计与派彩，但其 stake 仍属
+    已结算场次投入(钱花了)，故计入 settledStake。
+    """
+    total_budget = settled_stake = settled_payout = 0
     hit_bets = settleable_bets = total_bets = 0
     finished = 0
     for m in data["matches"]:
         bets = m["commentary"]["plan"]["bets"]
         total_bets += len(bets)
-        total_stake += sum(b["stake"] for b in bets)
+        total_budget += sum(b["stake"] for b in bets)
         if m.get("result", {}).get("status") == "finished":
             finished += 1
+            settled_stake += sum(b["stake"] for b in bets)
             for b in bets:
                 if b.get("hit") is True:
                     hit_bets += 1
-                    total_payout += b.get("payout", 0)
+                    settled_payout += b.get("payout", 0)
                     settleable_bets += 1
                 elif b.get("hit") is False:
                     settleable_bets += 1
-                # hit is None → 无法结算，不计
-    profit = total_payout - total_stake
+                # hit is None → 无法结算，不计命中/派彩（但 stake 已入 settledStake）
+    profit_settled = settled_payout - settled_stake
+    profit_budget = settled_payout - total_budget
     data["meta"]["betSummary"] = {
-        "totalStake": total_stake,
-        "totalPayout": round(total_payout, 2),
-        "profit": round(profit, 2),
-        "finishedMatches": finished,
+        # 全预算口径（展示"总支出"）
+        "totalBudget": total_budget,
         "totalMatches": len(data["matches"]),
+        "totalBets": total_bets,
+        # 已结算口径（盈亏/ROI 主显示）
+        "settledStake": settled_stake,
+        "settledPayout": round(settled_payout, 2),
+        "profitSettled": round(profit_settled, 2),
+        "roiSettled": round(profit_settled / settled_stake, 4) if settled_stake else 0,
+        "finishedMatches": finished,
         "hitBets": hit_bets,
         "settleableBets": settleable_bets,
-        "totalBets": total_bets,
-        "roi": round(profit / total_stake, 4) if total_stake else 0,
+        # 账面浮亏（含未结算场次的预算，次要信息）
+        "profitBudget": round(profit_budget, 2),
     }
+
 
 
 def main():
@@ -127,7 +143,9 @@ def main():
     s = data["meta"]["betSummary"]
     print(f"\n全局：已结算 {s['finishedMatches']}/{s['totalMatches']} 场 | "
           f"命中 {s['hitBets']}/{s['settleableBets']}(可结算) | "
-          f"总盈亏 {s['profit']:+} | ROI {s['roi']*100:.1f}%")
+          f"已结算盈亏 {s['profitSettled']:+}（投{s['settledStake']} 回{s['settledPayout']}）"
+          f" | ROI {s['roiSettled']*100:.1f}%")
+    print(f"      账面浮亏 {s['profitBudget']:+}（含未结算场预算，总预算 {s['totalBudget']}）")
 
     with open(PATH, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)

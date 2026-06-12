@@ -88,13 +88,26 @@
 
 **4.4 全局战绩汇总（meta 下新增，赛后算）**
 
+口径分离：盈亏/ROI 用「已结算」口径（只算已开赛场次的投入与回款），
+全预算单列作「总支出」。否则未结算场的预算会被当亏损，开局必然趋近 -100%。
+
 ```jsonc
 "betSummary": {
-  "totalStake": 300, "totalPayout": 0, "profit": -300,
-  "finishedMatches": 0, "totalMatches": 15,
-  "hitBets": 0, "totalBets": 42, "roi": 0
+  // 全预算口径（展示"总支出"）
+  "totalBudget": 300, "totalMatches": 15, "totalBets": 44,
+  // 已结算口径（盈亏/ROI 主显示）
+  "settledStake": 40, "settledPayout": 41.68,
+  "profitSettled": 1.68, "roiSettled": 0.042,
+  "finishedMatches": 2, "hitBets": 2, "settleableBets": 5,
+  // 账面浮亏（含未结算场预算，次要信息）
+  "profitBudget": -258.32
 }
 ```
+
+- **命中率**用 `hitBets/settleableBets`（可结算注），不用 totalBets——
+  无法结算的注(缺半场)不进分母，口径诚实。
+- 战绩页「总盈亏」主显示 `profitSettled`（反映 AI 押的这几场准不准），
+  `profitBudget` 作次要参考。
 
 ## 5. 各玩法 type 与 pick 约定
 

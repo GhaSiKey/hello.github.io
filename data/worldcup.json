@@ -10,15 +10,17 @@
     ],
     "disclaimer": "数据仅供参考，不构成投注建议；竞彩为负和游戏，长期期望为负",
     "betSummary": {
-      "totalStake": 300,
-      "totalPayout": 41.68,
-      "profit": -258.32,
-      "finishedMatches": 1,
+      "totalBudget": 300,
       "totalMatches": 15,
-      "hitBets": 2,
-      "settleableBets": 2,
       "totalBets": 44,
-      "roi": -0.8611
+      "settledStake": 40,
+      "settledPayout": 41.68,
+      "profitSettled": 1.68,
+      "roiSettled": 0.042,
+      "finishedMatches": 2,
+      "hitBets": 2,
+      "settleableBets": 5,
+      "profitBudget": -258.32
     }
   },
   "matches": [
@@ -487,7 +489,9 @@
               "stake": 10,
               "potential": 28.4,
               "type": "had",
-              "pick": "d"
+              "pick": "d",
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分 1:1",
@@ -498,7 +502,9 @@
               "pick": {
                 "h": 1,
                 "a": 1
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "捷克胜",
@@ -506,18 +512,26 @@
               "stake": 4,
               "potential": 10.96,
               "type": "had",
-              "pick": "a"
+              "pick": "a",
+              "hit": false,
+              "payout": 0
             }
           ],
           "note": "押平为主、1:1博彩头、捷克胜兜底，覆盖'平或捷克小胜'的主剧本。"
         }
       },
       "result": {
-        "status": "pending",
-        "full": null,
-        "half": null,
-        "source": null,
-        "filledAt": null
+        "status": "finished",
+        "full": {
+          "h": 2,
+          "a": 1
+        },
+        "half": {
+          "h": 0,
+          "a": 0
+        },
+        "source": "manual",
+        "filledAt": "2026-06-12T13:45:04+08:00"
       }
     },
     {
