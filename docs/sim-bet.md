@@ -178,8 +178,22 @@ tools/
 2. 建页面，赛前展示支出 300 + 各场押注，结果区"待开赛"。
 
 **赛后（每有比赛结束）**：
-3. `settle_results.py`：拉 fullCourtGoal（或人工填）→ judge 每注 → 算盈亏。
-4. 刷新页面看最新战绩。可做成 skill `/settle` 一键结算。
+3. `settle_results.py <mid> <主> <客> [半主 半客]`：填真实比分 → judge 每注
+   → 重算 betSummary，写回。**不联网、只动指定场**（与 build 全量覆盖隔离）。
+4. 刷新页面看最新战绩。
+
+**已实现的 skill**：
+- `/worldcup`（赛前）：爬赔率 + AI 写点评。
+- `/settle`（赛后）：WebSearch 搜比分 → 列清单给用户确认 → 调 settle_results.py
+  批量结算。比分走搜索而非体彩接口（接口已 403 反爬），半场搜不到则该场
+  半全场注标"无法结算"。
+
+**赛果来源经验**：体彩 `fullCourtGoal` 字段因接口 403 未能验证可用；实践改用
+WebSearch + 用户确认，更稳。`settle_results.py` 的比分由参数传入，不绑定来源。
+
+**踩坑记录**：曾误用 `build_wc_data.py` 结算，其"抓不到=空场"逻辑在 403 时
+把 worldcup.json 清空。已修复：build 脚本抓取场次少于已有时拒绝写入(需
+--force)。结算一律用 settle_results.py。
 
 ## 10. 已定决策（评审确认）
 
