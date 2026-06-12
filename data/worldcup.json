@@ -11,13 +11,14 @@
     "disclaimer": "数据仅供参考，不构成投注建议；竞彩为负和游戏，长期期望为负",
     "betSummary": {
       "totalStake": 300,
-      "totalPayout": 0,
-      "profit": -300,
-      "finishedMatches": 0,
+      "totalPayout": 41.68,
+      "profit": -258.32,
+      "finishedMatches": 1,
       "totalMatches": 15,
-      "hitBets": 0,
+      "hitBets": 2,
+      "settleableBets": 2,
       "totalBets": 44,
-      "roi": 0
+      "roi": -0.8611
     }
   },
   "matches": [
@@ -237,7 +238,9 @@
               "pick": {
                 "goalLine": -1,
                 "side": "h"
-              }
+              },
+              "hit": true,
+              "payout": 26.4
             },
             {
               "market": "半全场 胜/胜",
@@ -248,18 +251,26 @@
               "pick": {
                 "half": "h",
                 "full": "h"
-              }
+              },
+              "hit": true,
+              "payout": 15.28
             }
           ],
           "note": "都押墨西哥控场拿下：让胜赌净胜2球，半全场赌上半场就领先。比直接买1.34主胜赔率体面得多。"
         }
       },
       "result": {
-        "status": "pending",
-        "full": null,
-        "half": null,
-        "source": null,
-        "filledAt": null
+        "status": "finished",
+        "full": {
+          "h": 2,
+          "a": 0
+        },
+        "half": {
+          "h": 1,
+          "a": 0
+        },
+        "source": "manual",
+        "filledAt": "2026-06-12T10:18:12+08:00"
       }
     },
     {

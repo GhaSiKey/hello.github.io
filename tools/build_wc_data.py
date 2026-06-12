@@ -194,6 +194,26 @@ def main():
         "matches": matches,
     }
 
+    # 数据保护：抓取结果异常少时拒绝写入，避免接口故障(如 403)清空/削减已有数据。
+    if not matches:
+        print("\n✗ 本次未抓到任何比赛（接口可能 403/限流）。"
+              "为保护已有数据，拒绝写入。", file=sys.stderr)
+        sys.exit(2)
+    # 若已存在数据，且本次抓到的场次数 < 已有，几乎必是接口部分失败。
+    # 任何缩减都需 --force 显式确认（有意缩小区间时才用），否则拒绝。
+    if os.path.exists(OUT_PATH):
+        try:
+            with open(OUT_PATH, encoding="utf-8") as f:
+                old_n = len(json.load(f).get("matches", []))
+        except Exception:
+            old_n = 0
+        if old_n > len(matches) and "--force" not in sys.argv:
+            print(f"\n✗ 本次仅抓到 {len(matches)} 场，少于已有 {old_n} 场，"
+                  f"疑似接口部分失败。为防数据被削减，拒绝写入。\n"
+                  f"  若确认要覆盖（如有意缩小区间），加 --force 重跑。",
+                  file=sys.stderr)
+            sys.exit(2)
+
     os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
     with open(OUT_PATH, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
