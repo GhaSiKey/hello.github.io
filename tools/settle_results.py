@@ -61,7 +61,11 @@ def recalc_summary(data):
     hit_bets = settleable_bets = total_bets = 0
     finished = 0
     for m in data["matches"]:
-        bets = m["commentary"]["plan"]["bets"]
+        # 未写点评的场（无 plan）跳过——新加入但赔率/点评未就绪时不该让结算崩。
+        plan = m.get("commentary", {}).get("plan")
+        if not plan:
+            continue
+        bets = plan["bets"]
         total_bets += len(bets)
         total_budget += sum(b["stake"] for b in bets)
         if m.get("result", {}).get("status") == "finished":

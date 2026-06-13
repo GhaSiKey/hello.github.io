@@ -48,16 +48,19 @@ REQ_INTERVAL = 0.3   # 请求间隔（礼貌限流，避免被封 IP）
 
 
 def fetch_json(url):
-    """GET 并解析 JSON；失败返回 {}。"""
+    """GET 并解析 JSON。返回 (data, ok)：
+    ok=False 表示请求失败(403/超时/解析错)，需与"正常空响应"区分——
+    前者应保留旧数据，后者才是真正的空 mid。"""
     req = urllib.request.Request(
         url, headers={"User-Agent": UA, "Referer": REFERER}
     )
     try:
         with urllib.request.urlopen(req, timeout=12) as resp:
-            return json.loads(resp.read().decode("utf-8"))
+            return json.loads(resp.read().decode("utf-8")), True
     except (urllib.error.URLError, ValueError, TimeoutError) as e:
         print(f"  ! 请求失败 {url}: {e}", file=sys.stderr)
-        return {}
+        return {}, False
+
 
 
 def normalize_logo(path):
@@ -87,16 +90,23 @@ def compute_tags(metrics, odds):
 
 
 def build_match(mid):
-    """拉单场并组装为契约对象；无对阵数据返回 None。"""
-    head = fetch_json(
+    """拉单场并组装为契约对象。
+    返回值三态：
+      - dict          ：正常抓到
+      - None          ：真正的空 mid（接口正常响应但无对阵）
+      - "FETCH_FAILED"：请求失败(403/超时)，调用方应保留旧数据，勿当空场
+    """
+    head, ok = fetch_json(
         f"{API_BASE}/getMatchHeadV1.qry?source=web&sportteryMatchId={mid}"
     )
+    if not ok:
+        return "FETCH_FAILED"  # 请求失败，不可判定该 mid 死活
     hv = head.get("value", {}) or {}
     home = hv.get("homeTeamShortName")
     if not home:
-        return None  # 空 mid，跳过
+        return None  # 接口正常但无对阵 → 真空 mid，跳过
 
-    bonus = fetch_json(
+    bonus, _ = fetch_json(
         f"{API_BASE}/getFixedBonusV1.qry?clientCode={CLIENT_CODE}&matchId={mid}"
     )
     oh = (bonus.get("value", {}) or {}).get("oddsHistory") or {}
@@ -131,18 +141,15 @@ def build_match(mid):
     }
 
 
-def load_existing_commentary(path):
-    """读旧 JSON，返回 {mid: commentary}，用于合并保留。"""
+def load_existing_matches(path):
+    """读旧 JSON，返回 {mid: 完整场记录}。
+    用途有二：① 合并保留 commentary；② 请求失败时沿用整条旧记录，防丢场。"""
     if not os.path.exists(path):
         return {}
     try:
         with open(path, encoding="utf-8") as f:
             old = json.load(f)
-        return {
-            m["mid"]: m.get("commentary", {})
-            for m in old.get("matches", [])
-            if m.get("commentary")
-        }
+        return {m["mid"]: m for m in old.get("matches", [])}
     except (ValueError, KeyError) as e:
         print(f"  ! 旧数据解析失败，跳过合并: {e}", file=sys.stderr)
         return {}
@@ -161,21 +168,50 @@ def main():
         print("起始 mid 需 <= 结束 mid", file=sys.stderr)
         sys.exit(1)
 
-    kept = load_existing_commentary(OUT_PATH)
-    if kept:
-        print(f"合并模式：保留 {len(kept)} 场已有点评")
+    old_matches = load_existing_matches(OUT_PATH)
+    if old_matches:
+        print(f"合并模式：已有 {len(old_matches)} 场（保留点评，失败场沿用旧数据）")
 
     matches = []
+    failed_kept = 0
     for mid in range(lo, hi + 1):
         m = build_match(mid)
+        if m == "FETCH_FAILED":
+            # 请求失败：若旧数据有该场，沿用整条旧记录，绝不丢场
+            if mid in old_matches:
+                matches.append(old_matches[mid])
+                failed_kept += 1
+                print(f"  {mid}  [请求失败，沿用旧数据] ✎{old_matches[mid]['home']['name']}"
+                      f" vs {old_matches[mid]['away']['name']}")
+            else:
+                print(f"  {mid}  [请求失败，无旧数据可保留，跳过]")
+            time.sleep(REQ_INTERVAL)
+            continue
         if m is None:
             print(f"  {mid}  [空，跳过]")
             time.sleep(REQ_INTERVAL)
             continue
         # 合并保留旧点评（按 mid）
-        if mid in kept:
-            m["commentary"] = kept[mid]
-        flag = "✎保留点评" if mid in kept else ""
+        old = old_matches.get(mid)
+        # ── 赔率防降级（核心）──
+        # 反爬有时返回"200 但赔率为空"，绕过 FETCH_FAILED 判断，会把已有赔率
+        # 覆盖成空、status 降级为 not_open。策略：有赔率绝不降级——本次赔率为空、
+        # 而旧数据已有赔率时，沿用旧 odds/metrics/tags/status，只接受"空→有"。
+        degraded = False
+        if old and old.get("odds") and not m.get("odds"):
+            m["odds"] = old["odds"]
+            m["metrics"] = old.get("metrics", {})
+            m["tags"] = old.get("tags", [])
+            m["status"] = old.get("status", m["status"])
+            degraded = True
+        if old and old.get("commentary"):
+            m["commentary"] = old["commentary"]
+        # 若旧场已结算，保留其 result（build 只管赔率，不碰结算）
+        if old and old.get("result"):
+            m["result"] = old["result"]
+        flag = "✎保留点评" if (old and old.get("commentary")) else ""
+        if degraded:
+            flag += " ⚠赔率空响应，沿用旧赔率"
         print(f"  {mid}  {m['home']['name']} vs {m['away']['name']}"
               f"  [{m['status']}] {flag}")
         matches.append(m)
@@ -194,25 +230,25 @@ def main():
         "matches": matches,
     }
 
-    # 数据保护：抓取结果异常少时拒绝写入，避免接口故障(如 403)清空/削减已有数据。
+    # ── 数据保护 · 三道防线 ──
+    # 防线1：完全抓空（接口全挂）→ 拒绝，避免清空。
     if not matches:
         print("\n✗ 本次未抓到任何比赛（接口可能 403/限流）。"
               "为保护已有数据，拒绝写入。", file=sys.stderr)
         sys.exit(2)
-    # 若已存在数据，且本次抓到的场次数 < 已有，几乎必是接口部分失败。
-    # 任何缩减都需 --force 显式确认（有意缩小区间时才用），否则拒绝。
-    if os.path.exists(OUT_PATH):
-        try:
-            with open(OUT_PATH, encoding="utf-8") as f:
-                old_n = len(json.load(f).get("matches", []))
-        except Exception:
-            old_n = 0
-        if old_n > len(matches) and "--force" not in sys.argv:
-            print(f"\n✗ 本次仅抓到 {len(matches)} 场，少于已有 {old_n} 场，"
-                  f"疑似接口部分失败。为防数据被削减，拒绝写入。\n"
-                  f"  若确认要覆盖（如有意缩小区间），加 --force 重跑。",
-                  file=sys.stderr)
-            sys.exit(2)
+    # 防线2（核心）：已有的每个 mid 必须都在本次结果里——这是真正防丢场的闸门。
+    # 旧 bug：只比总数，403 跳过旧场+新增场凑够总数时会悄悄丢已结算数据。
+    # 经上面"失败沿用旧数据"后，正常不会触发；此处作为最后兜底。
+    new_mids = {m["mid"] for m in matches}
+    lost = sorted(set(old_matches) - new_mids)
+    if lost and "--force" not in sys.argv:
+        print(f"\n✗ 检测到 {len(lost)} 个已有场次将丢失：{lost}\n"
+              f"  （这些 mid 旧数据里有、本次结果里没有，疑似接口失败未能保留）\n"
+              f"  为防数据丢失，拒绝写入。确认要删除这些场才加 --force。",
+              file=sys.stderr)
+        sys.exit(2)
+    if failed_kept:
+        print(f"\n⚠ {failed_kept} 场请求失败，已沿用旧数据（赔率未更新）。")
 
     os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
     with open(OUT_PATH, "w", encoding="utf-8") as f:
