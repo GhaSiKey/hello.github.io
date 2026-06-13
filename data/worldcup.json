@@ -1,27 +1,14 @@
 {
   "meta": {
     "title": "2026 FIFA World Cup",
-    "crawledAt": "2026-06-12T18:21:52+08:00",
-    "analyzedAt": "2026-06-12T18:22:59+08:00",
+    "crawledAt": "2026-06-13T09:30:39+08:00",
+    "analyzedAt": null,
     "source": "中国体育彩票 webapi.sporttery.cn",
     "midRange": [
       2040162,
       2040185
     ],
-    "disclaimer": "数据仅供参考，不构成投注建议；竞彩为负和游戏，长期期望为负",
-    "betSummary": {
-      "totalBudget": 420,
-      "totalMatches": 24,
-      "totalBets": 62,
-      "settledStake": 60,
-      "settledPayout": 91.08,
-      "profitSettled": 31.08,
-      "roiSettled": 0.518,
-      "finishedMatches": 3,
-      "hitBets": 4,
-      "settleableBets": 8,
-      "profitBudget": -328.92
-    }
+    "disclaimer": "数据仅供参考，不构成投注建议；竞彩为负和游戏，长期期望为负"
   },
   "matches": [
     {
@@ -1040,7 +1027,7 @@
       "group": "B组",
       "phase": "小组赛",
       "tournament": "世界杯",
-      "status": "not_open",
+      "status": "hhad_only",
       "home": {
         "name": "卡塔尔",
         "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/428.png"
@@ -1049,8 +1036,175 @@
         "name": "瑞士",
         "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/403.png"
       },
-      "odds": {},
-      "metrics": {},
+      "odds": {
+        "hhad": [
+          {
+            "goalLine": "+2",
+            "h": "1.98",
+            "d": "3.85",
+            "a": "2.74"
+          }
+        ],
+        "ttg": {
+          "0": "16.00",
+          "1": "5.70",
+          "2": "3.85",
+          "3": "3.50",
+          "4": "4.80",
+          "5": "8.10",
+          "6": "12.00",
+          "7": "18.00"
+        },
+        "hafu": {
+          "hh": "24.00",
+          "hd": "27.00",
+          "ha": "29.00",
+          "dh": "27.00",
+          "dd": "8.25",
+          "da": "3.60",
+          "ah": "100.0",
+          "ad": "27.00",
+          "aa": "1.52"
+        },
+        "crs": [
+          {
+            "name": "0:2",
+            "odds": 5.2
+          },
+          {
+            "name": "0:1",
+            "odds": 6.2
+          },
+          {
+            "name": "0:3",
+            "odds": 6.3
+          },
+          {
+            "name": "1:2",
+            "odds": 8.0
+          },
+          {
+            "name": "0:4",
+            "odds": 10.0
+          },
+          {
+            "name": "1:1",
+            "odds": 10.0
+          },
+          {
+            "name": "1:3",
+            "odds": 10.0
+          },
+          {
+            "name": "0:0",
+            "odds": 16.0
+          },
+          {
+            "name": "负其它",
+            "odds": 17.0
+          },
+          {
+            "name": "1:4",
+            "odds": 17.0
+          },
+          {
+            "name": "0:5",
+            "odds": 20.0
+          },
+          {
+            "name": "1:0",
+            "odds": 27.0
+          },
+          {
+            "name": "2:2",
+            "odds": 28.0
+          },
+          {
+            "name": "2:3",
+            "odds": 30.0
+          },
+          {
+            "name": "2:1",
+            "odds": 30.0
+          },
+          {
+            "name": "1:5",
+            "odds": 35.0
+          },
+          {
+            "name": "2:4",
+            "odds": 60.0
+          },
+          {
+            "name": "2:0",
+            "odds": 90.0
+          },
+          {
+            "name": "2:5",
+            "odds": 100.0
+          },
+          {
+            "name": "3:3",
+            "odds": 125.0
+          },
+          {
+            "name": "3:2",
+            "odds": 150.0
+          },
+          {
+            "name": "3:1",
+            "odds": 175.0
+          },
+          {
+            "name": "3:0",
+            "odds": 350.0
+          },
+          {
+            "name": "平其它",
+            "odds": 500.0
+          },
+          {
+            "name": "胜其它",
+            "odds": 500.0
+          },
+          {
+            "name": "4:2",
+            "odds": 500.0
+          },
+          {
+            "name": "4:1",
+            "odds": 600.0
+          },
+          {
+            "name": "5:0",
+            "odds": 800.0
+          },
+          {
+            "name": "5:2",
+            "odds": 800.0
+          },
+          {
+            "name": "5:1",
+            "odds": 800.0
+          },
+          {
+            "name": "4:0",
+            "odds": 800.0
+          }
+        ]
+      },
+      "metrics": {
+        "ttg": {
+          "return": 0.7974,
+          "mode": 3
+        },
+        "hafu": {
+          "return": 0.7974
+        },
+        "crs": {
+          "return": 0.7096
+        }
+      },
       "tags": [],
       "commentary": {
         "summary": "无胜平负盘，仅开让球/比分。卡塔尔受让2球，瑞士是压倒性大热门。",
