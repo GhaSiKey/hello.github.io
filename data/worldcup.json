@@ -8,7 +8,20 @@
       2040162,
       2040185
     ],
-    "disclaimer": "数据仅供参考，不构成投注建议；竞彩为负和游戏，长期期望为负"
+    "disclaimer": "数据仅供参考，不构成投注建议；竞彩为负和游戏，长期期望为负",
+    "betSummary": {
+      "totalBudget": 420,
+      "totalMatches": 24,
+      "totalBets": 62,
+      "settledStake": 160,
+      "settledPayout": 211.38,
+      "profitSettled": 51.38,
+      "roiSettled": 0.3211,
+      "finishedMatches": 8,
+      "hitBets": 9,
+      "settleableBets": 23,
+      "profitBudget": -208.62
+    }
   },
   "matches": [
     {
@@ -991,7 +1004,9 @@
               "stake": 12,
               "potential": 22.44,
               "type": "had",
-              "pick": "h"
+              "pick": "h",
+              "hit": true,
+              "payout": 22.44
             },
             {
               "market": "比分 1:0",
@@ -1002,7 +1017,9 @@
               "pick": {
                 "h": 1,
                 "a": 0
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分 2:1",
@@ -1013,11 +1030,26 @@
               "pick": {
                 "h": 2,
                 "a": 1
-              }
+              },
+              "hit": false,
+              "payout": 0
             }
           ],
           "note": "主胜打底，配两个最热小胜比分博弹性，押美国小胜。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 4,
+          "a": 1
+        },
+        "half": {
+          "h": 3,
+          "a": 0
+        },
+        "source": "manual",
+        "filledAt": "2026-06-14T14:01:02+08:00"
       }
     },
     {
@@ -1221,7 +1253,9 @@
               "pick": {
                 "h": 0,
                 "a": 2
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分 0:1",
@@ -1232,7 +1266,9 @@
               "pick": {
                 "h": 0,
                 "a": 1
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分 0:3",
@@ -1243,11 +1279,26 @@
               "pick": {
                 "h": 0,
                 "a": 3
-              }
+              },
+              "hit": false,
+              "payout": 0
             }
           ],
           "note": "无胜平负只能玩比分，覆盖瑞士小胜到中胜的三个热门比分。注意比分玩法返还率仅71%，抽水最重，纯娱乐。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 1,
+          "a": 1
+        },
+        "half": {
+          "h": 0,
+          "a": 1
+        },
+        "source": "manual",
+        "filledAt": "2026-06-14T14:01:27+08:00"
       }
     },
     {
@@ -1464,7 +1515,9 @@
               "pick": {
                 "goalLine": -1,
                 "side": "a"
-              }
+              },
+              "hit": true,
+              "payout": 23.65
             },
             {
               "market": "比分 1:0",
@@ -1475,7 +1528,9 @@
               "pick": {
                 "h": 1,
                 "a": 0
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分 1:1",
@@ -1486,11 +1541,26 @@
               "pick": {
                 "h": 1,
                 "a": 1
-              }
+              },
+              "hit": true,
+              "payout": 24.0
             }
           ],
           "note": "赌巴西赢不透或被摩洛哥纠缠，让负打底，配两个低比分。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 1,
+          "a": 1
+        },
+        "half": {
+          "h": 1,
+          "a": 1
+        },
+        "source": "manual",
+        "filledAt": "2026-06-14T14:01:27+08:00"
       }
     },
     {
@@ -1709,7 +1779,9 @@
               "pick": {
                 "goalLine": 1,
                 "side": "h"
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分 0:1",
@@ -1720,7 +1792,9 @@
               "pick": {
                 "h": 0,
                 "a": 1
-              }
+              },
+              "hit": true,
+              "payout": 27.0
             },
             {
               "market": "比分 0:2",
@@ -1731,11 +1805,26 @@
               "pick": {
                 "h": 0,
                 "a": 2
-              }
+              },
+              "hit": false,
+              "payout": 0
             }
           ],
           "note": "赌苏格兰小胜赢不透，受让让胜打底，配两个客队小胜比分。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 0,
+          "a": 1
+        },
+        "half": {
+          "h": 0,
+          "a": 1
+        },
+        "source": "manual",
+        "filledAt": "2026-06-14T14:01:27+08:00"
       }
     },
     {
@@ -1952,7 +2041,9 @@
               "pick": {
                 "goalLine": 1,
                 "side": "h"
-              }
+              },
+              "hit": true,
+              "payout": 23.21
             },
             {
               "market": "平局",
@@ -1960,7 +2051,9 @@
               "stake": 5,
               "potential": 17.25,
               "type": "had",
-              "pick": "d"
+              "pick": "d",
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分 0:1",
@@ -1971,11 +2064,26 @@
               "pick": {
                 "h": 0,
                 "a": 1
-              }
+              },
+              "hit": false,
+              "payout": 0
             }
           ],
           "note": "赌土耳其赢不透/被逼平，受让让胜打底，配平局和客队小胜。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 2,
+          "a": 0
+        },
+        "half": {
+          "h": 1,
+          "a": 0
+        },
+        "source": "manual",
+        "filledAt": "2026-06-14T14:00:24+08:00"
       }
     },
     {
