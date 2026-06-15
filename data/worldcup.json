@@ -13,13 +13,13 @@
       "totalBudget": 480,
       "totalMatches": 24,
       "totalBets": 71,
-      "settledStake": 220,
+      "settledStake": 240,
       "settledPayout": 233.7,
-      "profitSettled": 13.7,
-      "roiSettled": 0.0623,
-      "finishedMatches": 11,
+      "profitSettled": -6.3,
+      "roiSettled": -0.0263,
+      "finishedMatches": 12,
       "hitBets": 10,
-      "settleableBets": 32,
+      "settleableBets": 35,
       "profitBudget": -246.3
     }
   },
@@ -3052,7 +3052,9 @@
               "pick": {
                 "goalLine": -1,
                 "side": "a"
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分 1:0",
@@ -3063,7 +3065,9 @@
               "pick": {
                 "h": 1,
                 "a": 0
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分 1:1",
@@ -3074,11 +3078,26 @@
               "pick": {
                 "h": 1,
                 "a": 1
-              }
+              },
+              "hit": false,
+              "payout": 0
             }
           ],
           "note": "赌瑞典小胜赢不透，让负打底，配1:0和1:1两个低比分。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 5,
+          "a": 1
+        },
+        "half": {
+          "h": 2,
+          "a": 1
+        },
+        "source": "manual",
+        "filledAt": "2026-06-15T12:44:38+08:00"
       }
     },
     {
