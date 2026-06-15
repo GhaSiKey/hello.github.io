@@ -27,8 +27,19 @@ import _wc_parse as P
 # ── 接口常量（从体彩前端 JS 逆向，非业务硬编码）──
 API_BASE = "https://webapi.sporttery.cn/gateway/uniform/football"
 CLIENT_CODE = "3001"
-UA = "Mozilla/5.0"
-REFERER = "https://www.sporttery.cn/"
+
+# 请求头：体彩 WAF 按请求特征拦截爬虫，裸 UA 会被 403 拦截页挡掉。
+# 需补完整浏览器头（Origin + 真实 Chrome UA + Accept 系列）才能通过。
+# 集中于此，便于统一调整。
+REQ_HEADERS = {
+    "User-Agent": ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                   "AppleWebKit/537.36 (KHTML, like Gecko) "
+                   "Chrome/126.0.0.0 Safari/537.36"),
+    "Referer": "https://www.sporttery.cn/",
+    "Origin": "https://www.sporttery.cn",
+    "Accept": "application/json, text/plain, */*",
+    "Accept-Language": "zh-CN,zh;q=0.9",
+}
 
 # 默认区间（仅默认值，可由命令行覆盖；不写死在逻辑里）
 DEFAULT_RANGE = (2040162, 2040176)
@@ -49,11 +60,11 @@ REQ_INTERVAL = 0.3   # 请求间隔（礼貌限流，避免被封 IP）
 
 def fetch_json(url):
     """GET 并解析 JSON。返回 (data, ok)：
-    ok=False 表示请求失败(403/超时/解析错)，需与"正常空响应"区分——
-    前者应保留旧数据，后者才是真正的空 mid。"""
-    req = urllib.request.Request(
-        url, headers={"User-Agent": UA, "Referer": REFERER}
-    )
+    ok=False 表示请求失败(403/超时/解析错/WAF拦截页)，需与"正常空响应"区分——
+    前者应保留旧数据，后者才是真正的空 mid。
+    注意：WAF 拦截返回 HTTP 200 但内容是 HTML，json 解析失败 → ok=False，
+    会触发"沿用旧数据"，不会污染。"""
+    req = urllib.request.Request(url, headers=REQ_HEADERS)
     try:
         with urllib.request.urlopen(req, timeout=12) as resp:
             return json.loads(resp.read().decode("utf-8")), True
