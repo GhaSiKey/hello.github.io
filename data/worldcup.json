@@ -8,7 +8,20 @@
       2040162,
       2040185
     ],
-    "disclaimer": "数据仅供参考，不构成投注建议；竞彩为负和游戏，长期期望为负"
+    "disclaimer": "数据仅供参考，不构成投注建议；竞彩为负和游戏，长期期望为负",
+    "betSummary": {
+      "totalBudget": 480,
+      "totalMatches": 24,
+      "totalBets": 71,
+      "settledStake": 220,
+      "settledPayout": 233.7,
+      "profitSettled": 13.7,
+      "roiSettled": 0.0623,
+      "finishedMatches": 11,
+      "hitBets": 10,
+      "settleableBets": 32,
+      "profitBudget": -246.3
+    }
   },
   "matches": [
     {
@@ -2260,7 +2273,9 @@
               "pick": {
                 "h": 4,
                 "a": 0
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分 3:0",
@@ -2271,7 +2286,9 @@
               "pick": {
                 "h": 3,
                 "a": 0
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分 5:0",
@@ -2282,11 +2299,26 @@
               "pick": {
                 "h": 5,
                 "a": 0
-              }
+              },
+              "hit": false,
+              "payout": 0
             }
           ],
           "note": "无胜平负只能玩比分，覆盖德国3-5球的大胜区间。抽水重，图个乐。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 7,
+          "a": 1
+        },
+        "half": {
+          "h": 3,
+          "a": 1
+        },
+        "source": "manual",
+        "filledAt": "2026-06-15T10:20:59+08:00"
       }
     },
     {
@@ -2503,7 +2535,9 @@
               "pick": {
                 "goalLine": -1,
                 "side": "a"
-              }
+              },
+              "hit": true,
+              "payout": 22.32
             },
             {
               "market": "比分 1:1",
@@ -2514,7 +2548,9 @@
               "pick": {
                 "h": 1,
                 "a": 1
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "日本胜",
@@ -2522,11 +2558,26 @@
               "stake": 4,
               "potential": 16.4,
               "type": "had",
-              "pick": "a"
+              "pick": "a",
+              "hit": false,
+              "payout": 0
             }
           ],
           "note": "赌荷兰赢不透或被日本纠缠，让负打底，配平局和爆冷。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 2,
+          "a": 2
+        },
+        "half": {
+          "h": 0,
+          "a": 0
+        },
+        "source": "manual",
+        "filledAt": "2026-06-15T10:20:59+08:00"
       }
     },
     {
@@ -2742,7 +2793,9 @@
               "stake": 10,
               "potential": 26.5,
               "type": "had",
-              "pick": "d"
+              "pick": "d",
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "厄瓜多尔胜",
@@ -2750,7 +2803,9 @@
               "stake": 6,
               "potential": 13.2,
               "type": "had",
-              "pick": "a"
+              "pick": "a",
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分 1:1",
@@ -2761,11 +2816,26 @@
               "pick": {
                 "h": 1,
                 "a": 1
-              }
+              },
+              "hit": false,
+              "payout": 0
             }
           ],
           "note": "押平为主、客胜兜底，1:1博彩头，契合'易平或客队小胜'。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 1,
+          "a": 0
+        },
+        "half": {
+          "h": 0,
+          "a": 0
+        },
+        "source": "manual",
+        "filledAt": "2026-06-15T10:20:59+08:00"
       }
     },
     {
