@@ -100,32 +100,40 @@ function renderCard(m) {
   </article>`;
 }
 
-/** 按视图维度分组：date 按"日期"，group 按"小组"。 */
-function groupMatches(matches, view) {
+/** 按日期分组（列表固定按日期，每个分组带锚点供日历滚动定位）。 */
+function groupMatches(matches) {
   const buckets = new Map();
   for (const m of matches) {
-    let key, order;
-    if (view === 'group') {
-      key = m.group || '其它';
-      order = key;
-    } else {
-      const t = parseMatchTime(m.datetime);
-      key = `${t.date} ${t.weekday}`;
-      order = m.datetime || '';
-    }
-    if (!buckets.has(key)) buckets.set(key, { key, order, items: [] });
+    const t = parseMatchTime(m.datetime);
+    const key = `${t.date} ${t.weekday}`;
+    const order = m.datetime || '';
+    const anchor = (m.datetime || '').slice(0, 10);  // YYYY-MM-DD 锚点
+    if (!buckets.has(key)) buckets.set(key, { key, order, anchor, items: [] });
     buckets.get(key).items.push(m);
   }
   return [...buckets.values()].sort((a, b) => a.order < b.order ? -1 : 1);
 }
 
-/** 渲染整个列表（分组 + 卡片网格）。 */
-function renderGroups(matches, view) {
-  return groupMatches(matches, view).map(g => `
-    <section class="group">
-      <h2 class="group-title">${esc(g.key)}</h2>
+/** 渲染整个列表（按日期分组 + 卡片网格）。日期分组带锚点 id 供日历滚动定位。
+ *  dayMeta: { 'YYYY-MM-DD': {label, colorClass} }，给分组头加阶段/轮次标签徽章。 */
+function renderGroups(matches, dayMeta) {
+  dayMeta = dayMeta || {};
+  const now = new Date();
+  const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+  return groupMatches(matches).map(g => {
+    const meta = dayMeta[g.anchor];
+    const isToday = g.anchor === today;
+    const todayTag = isToday ? `<span class="group-today">今天</span>` : '';
+    const badge = meta
+      ? `<span class="group-phase ${meta.colorClass}">${esc(meta.label)}</span>`
+      : '';
+    const cnt = `<span class="group-count">${g.items.length}场</span>`;
+    return `
+    <section class="group${isToday ? ' group--today' : ''}" id="day-${g.anchor}">
+      <h2 class="group-title">${esc(g.key)} ${todayTag} ${badge} ${cnt}</h2>
       <div class="cards">${g.items.map(renderCard).join('')}</div>
-    </section>`).join('');
+    </section>`;
+  }).join('');
 }
 
 // ── 详情面板 ───────────────────────────────────────────

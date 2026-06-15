@@ -38,15 +38,10 @@
     <!-- 标题装饰金线 -->
     <div class="title-rule"></div>
 
-    <!-- 工具栏：视图切换 -->
-    <nav class="toolbar">
-      <div class="view-tabs" id="viewTabs">
-        <button class="view-tab active" data-view="date">按日期</button>
-        <button class="view-tab" data-view="group">按小组</button>
-      </div>
-    </nav>
+    <!-- 赛程总览日历（读 schedule，点击某天滚动到列表）-->
+    <section class="calendar" id="calendar"></section>
 
-    <!-- 主内容：分组 + 卡片 -->
+    <!-- 主内容：按日期分组 + 卡片 -->
     <main class="match-list" id="matchList">
       <!-- 骨架屏 -->
       <div class="skeleton-wrap" id="skeleton"></div>
@@ -72,6 +67,7 @@
 
   <script src="js/worldcup/data.js"></script>
   <script src="js/worldcup/render.js"></script>
+  <script src="js/worldcup/calendar.js"></script>
   <script src="js/worldcup/app.js"></script>
 </body>
 </html>

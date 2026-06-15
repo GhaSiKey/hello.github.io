@@ -338,3 +338,46 @@ js/worldcup/
 - 价值标签/概率条用 `metrics`+`tags`（客观）；点评/方案用 `commentary`
   （主观）。视觉上须区分，避免用户误以为主观判断也是算出来的。
 - 购买方案 `plan` 处必须紧跟免责声明。
+
+## 13. 赛程总览日历（schedule）
+
+随着赛事推进、赔率列表变长，找某天比赛成本变高。顶部新增**赛程总览日历**，
+覆盖整届 104 场，点击某天平滑滚动到列表对应日期分组。
+
+### 13.1 数据来源与隔离
+
+- 由 `tools/build_schedule.py` 从 ESPN 区间接口拉整届赛程，转北京时间，
+  按天聚合，写入 `data/worldcup.json` 的顶层 `schedule` 字段。
+- **与赔率严格隔离**：本脚本只写 `schedule`，绝不碰 `matches`（赔率/点评/战绩）。
+  刷新赔率用 build_wc_data.py，刷新赛程用 build_schedule.py，互不污染。
+- 阶段字段用 ESPN 的 `season.slug`（可靠），非 name 关键词（实测与 slug 矛盾）。
+- ESPN 单次区间约 100 场上限，脚本分两段查询按 event id 去重，确保 104 场全。
+
+### 13.2 schedule 数据契约
+
+```jsonc
+"schedule": {
+  "source": "ESPN site.api（赛程总览，非赔率）",
+  "fetchedAt": "2026-...",
+  "totalMatches": 104,
+  "days": [{
+    "date": "2026-06-12", "md": "6/12", "weekday": "周五",
+    "total": 2,                          // 当天场次
+    "phases": {"小组赛": 2},             // 各阶段计数
+    "mainPhase": "小组赛", "phaseOrder": 1  // 主阶段(场次最多)，序号供配色
+  }]
+}
+```
+
+阶段映射（slug→中文，序号=推进顺序=配色由浅入深）：
+小组赛(1)/32强(2)/16强(3)/8强(4)/4强(5)/季军赛(6)/决赛(7)。
+
+### 13.3 前端日历（js/worldcup/calendar.js）
+
+- 两版视觉，`state.calView` 切换：`strip`(横向日期条) / `grid`(月历网格)。
+- 阶段配色 `.ph-1`~`.ph-7`；点击某天 `scrollToDay()` 滚到 `#day-YYYY-MM-DD`。
+- 列表日期分组带锚点 id（render.js），与日历 data-date 对应。
+- 无赔率列表的天（赔率未开）灰显，点击抖动反馈"未开放"。
+
+> 评审决策：日历覆盖整届104场（非仅现有数据）；赛程构建期写入json（页面不联网）；
+> 视觉两版并存待选定后删未选版。

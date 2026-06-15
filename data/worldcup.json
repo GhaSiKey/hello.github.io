@@ -5964,5 +5964,420 @@
         }
       }
     }
-  ]
+  ],
+  "schedule": {
+    "source": "ESPN site.api（赛程总览，非赔率）",
+    "fetchedAt": "2026-06-15T11:09:52+08:00",
+    "totalMatches": 104,
+    "days": [
+      {
+        "date": "2026-06-12",
+        "md": "6/12",
+        "weekday": "周五",
+        "total": 2,
+        "phases": {
+          "小组赛": 2
+        },
+        "groupRound": 1,
+        "mainPhase": "小组赛",
+        "phaseOrder": 1
+      },
+      {
+        "date": "2026-06-13",
+        "md": "6/13",
+        "weekday": "周六",
+        "total": 2,
+        "phases": {
+          "小组赛": 2
+        },
+        "groupRound": 1,
+        "mainPhase": "小组赛",
+        "phaseOrder": 1
+      },
+      {
+        "date": "2026-06-14",
+        "md": "6/14",
+        "weekday": "周日",
+        "total": 4,
+        "phases": {
+          "小组赛": 4
+        },
+        "groupRound": 1,
+        "mainPhase": "小组赛",
+        "phaseOrder": 1
+      },
+      {
+        "date": "2026-06-15",
+        "md": "6/15",
+        "weekday": "周一",
+        "total": 4,
+        "phases": {
+          "小组赛": 4
+        },
+        "groupRound": 1,
+        "mainPhase": "小组赛",
+        "phaseOrder": 1
+      },
+      {
+        "date": "2026-06-16",
+        "md": "6/16",
+        "weekday": "周二",
+        "total": 4,
+        "phases": {
+          "小组赛": 4
+        },
+        "groupRound": 1,
+        "mainPhase": "小组赛",
+        "phaseOrder": 1
+      },
+      {
+        "date": "2026-06-17",
+        "md": "6/17",
+        "weekday": "周三",
+        "total": 4,
+        "phases": {
+          "小组赛": 4
+        },
+        "groupRound": 1,
+        "mainPhase": "小组赛",
+        "phaseOrder": 1
+      },
+      {
+        "date": "2026-06-18",
+        "md": "6/18",
+        "weekday": "周四",
+        "total": 4,
+        "phases": {
+          "小组赛": 4
+        },
+        "groupRound": 1,
+        "mainPhase": "小组赛",
+        "phaseOrder": 1
+      },
+      {
+        "date": "2026-06-19",
+        "md": "6/19",
+        "weekday": "周五",
+        "total": 4,
+        "phases": {
+          "小组赛": 4
+        },
+        "groupRound": 2,
+        "mainPhase": "小组赛",
+        "phaseOrder": 1
+      },
+      {
+        "date": "2026-06-20",
+        "md": "6/20",
+        "weekday": "周六",
+        "total": 4,
+        "phases": {
+          "小组赛": 4
+        },
+        "groupRound": 2,
+        "mainPhase": "小组赛",
+        "phaseOrder": 1
+      },
+      {
+        "date": "2026-06-21",
+        "md": "6/21",
+        "weekday": "周日",
+        "total": 4,
+        "phases": {
+          "小组赛": 4
+        },
+        "groupRound": 2,
+        "mainPhase": "小组赛",
+        "phaseOrder": 1
+      },
+      {
+        "date": "2026-06-22",
+        "md": "6/22",
+        "weekday": "周一",
+        "total": 4,
+        "phases": {
+          "小组赛": 4
+        },
+        "groupRound": 2,
+        "mainPhase": "小组赛",
+        "phaseOrder": 1
+      },
+      {
+        "date": "2026-06-23",
+        "md": "6/23",
+        "weekday": "周二",
+        "total": 4,
+        "phases": {
+          "小组赛": 4
+        },
+        "groupRound": 2,
+        "mainPhase": "小组赛",
+        "phaseOrder": 1
+      },
+      {
+        "date": "2026-06-24",
+        "md": "6/24",
+        "weekday": "周三",
+        "total": 4,
+        "phases": {
+          "小组赛": 4
+        },
+        "groupRound": 2,
+        "mainPhase": "小组赛",
+        "phaseOrder": 1
+      },
+      {
+        "date": "2026-06-25",
+        "md": "6/25",
+        "weekday": "周四",
+        "total": 6,
+        "phases": {
+          "小组赛": 6
+        },
+        "groupRound": 3,
+        "mainPhase": "小组赛",
+        "phaseOrder": 1
+      },
+      {
+        "date": "2026-06-26",
+        "md": "6/26",
+        "weekday": "周五",
+        "total": 6,
+        "phases": {
+          "小组赛": 6
+        },
+        "groupRound": 3,
+        "mainPhase": "小组赛",
+        "phaseOrder": 1
+      },
+      {
+        "date": "2026-06-27",
+        "md": "6/27",
+        "weekday": "周六",
+        "total": 6,
+        "phases": {
+          "小组赛": 6
+        },
+        "groupRound": 3,
+        "mainPhase": "小组赛",
+        "phaseOrder": 1
+      },
+      {
+        "date": "2026-06-28",
+        "md": "6/28",
+        "weekday": "周日",
+        "total": 6,
+        "phases": {
+          "小组赛": 6
+        },
+        "groupRound": 3,
+        "mainPhase": "小组赛",
+        "phaseOrder": 1
+      },
+      {
+        "date": "2026-06-29",
+        "md": "6/29",
+        "weekday": "周一",
+        "total": 1,
+        "phases": {
+          "32强": 1
+        },
+        "groupRound": null,
+        "mainPhase": "32强",
+        "phaseOrder": 2
+      },
+      {
+        "date": "2026-06-30",
+        "md": "6/30",
+        "weekday": "周二",
+        "total": 3,
+        "phases": {
+          "32强": 3
+        },
+        "groupRound": null,
+        "mainPhase": "32强",
+        "phaseOrder": 2
+      },
+      {
+        "date": "2026-07-01",
+        "md": "7/1",
+        "weekday": "周三",
+        "total": 3,
+        "phases": {
+          "32强": 3
+        },
+        "groupRound": null,
+        "mainPhase": "32强",
+        "phaseOrder": 2
+      },
+      {
+        "date": "2026-07-02",
+        "md": "7/2",
+        "weekday": "周四",
+        "total": 3,
+        "phases": {
+          "32强": 3
+        },
+        "groupRound": null,
+        "mainPhase": "32强",
+        "phaseOrder": 2
+      },
+      {
+        "date": "2026-07-03",
+        "md": "7/3",
+        "weekday": "周五",
+        "total": 3,
+        "phases": {
+          "32强": 3
+        },
+        "groupRound": null,
+        "mainPhase": "32强",
+        "phaseOrder": 2
+      },
+      {
+        "date": "2026-07-04",
+        "md": "7/4",
+        "weekday": "周六",
+        "total": 3,
+        "phases": {
+          "32强": 3
+        },
+        "groupRound": null,
+        "mainPhase": "32强",
+        "phaseOrder": 2
+      },
+      {
+        "date": "2026-07-05",
+        "md": "7/5",
+        "weekday": "周日",
+        "total": 2,
+        "phases": {
+          "16强": 2
+        },
+        "groupRound": null,
+        "mainPhase": "16强",
+        "phaseOrder": 3
+      },
+      {
+        "date": "2026-07-06",
+        "md": "7/6",
+        "weekday": "周一",
+        "total": 2,
+        "phases": {
+          "16强": 2
+        },
+        "groupRound": null,
+        "mainPhase": "16强",
+        "phaseOrder": 3
+      },
+      {
+        "date": "2026-07-07",
+        "md": "7/7",
+        "weekday": "周二",
+        "total": 2,
+        "phases": {
+          "16强": 2
+        },
+        "groupRound": null,
+        "mainPhase": "16强",
+        "phaseOrder": 3
+      },
+      {
+        "date": "2026-07-08",
+        "md": "7/8",
+        "weekday": "周三",
+        "total": 2,
+        "phases": {
+          "16强": 2
+        },
+        "groupRound": null,
+        "mainPhase": "16强",
+        "phaseOrder": 3
+      },
+      {
+        "date": "2026-07-10",
+        "md": "7/10",
+        "weekday": "周五",
+        "total": 1,
+        "phases": {
+          "8强": 1
+        },
+        "groupRound": null,
+        "mainPhase": "8强",
+        "phaseOrder": 4
+      },
+      {
+        "date": "2026-07-11",
+        "md": "7/11",
+        "weekday": "周六",
+        "total": 1,
+        "phases": {
+          "8强": 1
+        },
+        "groupRound": null,
+        "mainPhase": "8强",
+        "phaseOrder": 4
+      },
+      {
+        "date": "2026-07-12",
+        "md": "7/12",
+        "weekday": "周日",
+        "total": 2,
+        "phases": {
+          "8强": 2
+        },
+        "groupRound": null,
+        "mainPhase": "8强",
+        "phaseOrder": 4
+      },
+      {
+        "date": "2026-07-15",
+        "md": "7/15",
+        "weekday": "周三",
+        "total": 1,
+        "phases": {
+          "4强": 1
+        },
+        "groupRound": null,
+        "mainPhase": "4强",
+        "phaseOrder": 5
+      },
+      {
+        "date": "2026-07-16",
+        "md": "7/16",
+        "weekday": "周四",
+        "total": 1,
+        "phases": {
+          "4强": 1
+        },
+        "groupRound": null,
+        "mainPhase": "4强",
+        "phaseOrder": 5
+      },
+      {
+        "date": "2026-07-19",
+        "md": "7/19",
+        "weekday": "周日",
+        "total": 1,
+        "phases": {
+          "季军赛": 1
+        },
+        "groupRound": null,
+        "mainPhase": "季军赛",
+        "phaseOrder": 6
+      },
+      {
+        "date": "2026-07-20",
+        "md": "7/20",
+        "weekday": "周一",
+        "total": 1,
+        "phases": {
+          "决赛": 1
+        },
+        "groupRound": null,
+        "mainPhase": "决赛",
+        "phaseOrder": 7
+      }
+    ]
+  }
 }

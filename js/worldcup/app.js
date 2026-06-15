@@ -9,8 +9,16 @@
 
   const state = {
     data: null,
-    view: 'date',      // date | group
+    calView: null,     // strip | grid；init 时按屏宽决定默认（窄屏=strip，宽屏=grid）
+    calViewByUser: false,  // 用户是否手动切过——切过则不再被 resize 覆盖
   };
+
+  // 移动端断点（与 CSS @media 一致）：≤768 视为 H5
+  const MOBILE_MAX = 768;
+  /** 按屏宽返回默认日历视图：宽屏(Web)月历，窄屏(H5)日期条。 */
+  function defaultCalView() {
+    return window.innerWidth > MOBILE_MAX ? 'grid' : 'strip';
+  }
 
   const $ = sel => document.querySelector(sel);
   const els = {
@@ -20,7 +28,7 @@
     errorHint: $('#errorHint'),
     headerMeta: $('#headerMeta'),
     disclaimer: $('#disclaimer'),
-    viewTabs: $('#viewTabs'),
+    calendar: $('#calendar'),
     detailOverlay: $('#detailOverlay'),
     detailPanel: $('#detailPanel'),
     detailInner: $('#detailInner'),
@@ -34,9 +42,31 @@
     els.disclaimer.textContent = '⚠ ' + (meta.disclaimer || '');
   }
 
-  /** 渲染列表。 */
+  /** 渲染列表（固定按日期分组，分组头带阶段/轮次标签）。 */
   function renderList() {
-    els.groups.innerHTML = renderGroups(state.data.matches, state.view);
+    const dayMeta = buildDayMeta(state.data.schedule);
+    els.groups.innerHTML = renderGroups(state.data.matches, dayMeta);
+  }
+
+  /** 渲染赛程总览日历。 */
+  function renderCal() {
+    if (!els.calendar) return;
+    els.calendar.innerHTML = renderCalendar(
+      state.data.schedule, state.data.matches, state.calView);
+  }
+
+  /** 切换日历视图（两版）。用户手动切换后，标记为用户选择。 */
+  function switchCalView(cv) {
+    if (cv === state.calView) return;
+    state.calView = cv;
+    state.calViewByUser = true;  // 之后 resize 不再覆盖
+    renderCal();
+  }
+
+  /** 点击的日期无赔率列表时，给该格一个"未开放"抖动反馈。 */
+  function flashCalCell(cell) {
+    cell.classList.add('cal-nolist-flash');
+    setTimeout(() => cell.classList.remove('cal-nolist-flash'), 600);
   }
 
   /** 打开详情。 */
@@ -64,21 +94,20 @@
     setTimeout(() => { els.detailPanel.hidden = true; }, 280);
   }
 
-  /** 切换视图。 */
-  function switchView(view) {
-    if (view === state.view) return;
-    state.view = view;
-    els.viewTabs.querySelectorAll('.view-tab').forEach(b =>
-      b.classList.toggle('active', b.dataset.view === view));
-    renderList();
-  }
-
   /** 绑定事件（事件委托）。 */
   function bindEvents() {
-    els.viewTabs.addEventListener('click', e => {
-      const tab = e.target.closest('.view-tab');
-      if (tab) switchView(tab.dataset.view);
-    });
+    // 日历：切换两版 + 点击某天滚动到列表
+    if (els.calendar) {
+      els.calendar.addEventListener('click', e => {
+        const vt = e.target.closest('.cal-vt');
+        if (vt) { switchCalView(vt.dataset.calview); return; }
+        const cell = e.target.closest('[data-date]');
+        if (cell) {
+          const ok = scrollToDay(cell.dataset.date);
+          if (!ok) flashCalCell(cell);  // 该日无赔率列表，反馈
+        }
+      });
+    }
     // 卡片点击/键盘
     els.groups.addEventListener('click', e => {
       const card = e.target.closest('.card');
@@ -95,6 +124,16 @@
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && !els.detailPanel.hidden) closeDetail();
     });
+    // 跨断点自动切默认视图（仅当用户没手动切过）。防抖。
+    let rzTimer;
+    window.addEventListener('resize', () => {
+      if (state.calViewByUser) return;
+      clearTimeout(rzTimer);
+      rzTimer = setTimeout(() => {
+        const def = defaultCalView();
+        if (def !== state.calView) { state.calView = def; renderCal(); }
+      }, 200);
+    });
   }
 
   /** 错误态。 */
@@ -107,10 +146,12 @@
 
   /** 启动。 */
   async function init() {
+    state.calView = defaultCalView();  // 按屏宽定默认：Web月历 / H5日期条
     bindEvents();
     try {
       state.data = await loadWorldCupData();
       renderHeader(state.data.meta);
+      renderCal();
       renderList();
       els.skeleton.hidden = true;
     } catch (err) {
