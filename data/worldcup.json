@@ -13,14 +13,14 @@
       "totalBudget": 480,
       "totalMatches": 24,
       "totalBets": 71,
-      "settledStake": 300,
-      "settledPayout": 283.1,
-      "profitSettled": -16.9,
-      "roiSettled": -0.0563,
-      "finishedMatches": 15,
-      "hitBets": 12,
-      "settleableBets": 44,
-      "profitBudget": -196.9
+      "settledStake": 320,
+      "settledPayout": 310.01,
+      "profitSettled": -9.99,
+      "roiSettled": -0.0312,
+      "finishedMatches": 16,
+      "hitBets": 13,
+      "settleableBets": 47,
+      "profitBudget": -169.99
     }
   },
   "matches": [
@@ -4085,7 +4085,9 @@
               "pick": {
                 "goalLine": -1,
                 "side": "a"
-              }
+              },
+              "hit": true,
+              "payout": 26.91
             },
             {
               "market": "比分1:0",
@@ -4096,7 +4098,9 @@
               "pick": {
                 "h": 1,
                 "a": 0
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分1:1",
@@ -4107,11 +4111,26 @@
               "pick": {
                 "h": 1,
                 "a": 1
-              }
+              },
+              "hit": false,
+              "payout": 0
             }
           ],
           "note": "让负赌伊朗赢不透为主，1:0/1:1博小比分。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 2,
+          "a": 2
+        },
+        "half": {
+          "h": 1,
+          "a": 1
+        },
+        "source": "manual",
+        "filledAt": "2026-06-16T11:05:57+08:00"
       }
     },
     {
