@@ -242,17 +242,27 @@ def main():
         time.sleep(REQ_INTERVAL)
 
     now = time.strftime("%Y-%m-%dT%H:%M:%S+08:00", time.localtime())
-    data = {
-        "meta": {
-            "title": "2026 FIFA World Cup",
-            "crawledAt": now,
-            "analyzedAt": None,  # 阶段②由 AI 填
-            "source": "中国体育彩票 webapi.sporttery.cn",
-            "midRange": [lo, hi],
-            "disclaimer": "数据仅供参考，不构成投注建议；竞彩为负和游戏，长期期望为负",
-        },
-        "matches": matches,
-    }
+    # 读现有 json 作基底，只更新本脚本负责的字段（matches + 部分 meta），
+    # 保留其它脚本写的字段：schedule（build_schedule.py）、meta.betSummary
+    # （settle_results.py）。否则全量重建会把它们冲掉——日历/战绩汇总会丢。
+    if os.path.exists(OUT_PATH):
+        try:
+            with open(OUT_PATH, encoding="utf-8") as f:
+                data = json.load(f)
+        except (ValueError, OSError):
+            data = {}
+    else:
+        data = {}
+    data.setdefault("meta", {})
+    data["meta"].update({
+        "title": "2026 FIFA World Cup",
+        "crawledAt": now,
+        "analyzedAt": None,  # 阶段②由 AI 填
+        "source": "中国体育彩票 webapi.sporttery.cn",
+        "midRange": [lo, hi],
+        "disclaimer": "数据仅供参考，不构成投注建议；竞彩为负和游戏，长期期望为负",
+    })
+    data["matches"] = matches
 
     # ── 数据保护 · 三道防线 ──
     # 防线1：完全抓空（接口全挂）→ 拒绝，避免清空。
