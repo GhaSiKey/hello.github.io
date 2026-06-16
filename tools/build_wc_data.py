@@ -44,6 +44,10 @@ REQ_HEADERS = {
 # 默认区间（仅默认值，可由命令行覆盖；不写死在逻辑里）
 DEFAULT_RANGE = (2040162, 2040176)
 
+# 世界杯赛事 ID（体彩 tournamentId）。mid 区间里混有国际友谊赛(1012)等其它
+# 赛事，仅 1076 是本届世界杯。用它过滤，避免"中国vs泰国"这类杂项污染数据。
+WC_TOURNAMENT_ID = 1076
+
 # 输出路径（相对脚本：../data/worldcup.json）
 OUT_PATH = os.path.join(
     os.path.dirname(os.path.abspath(__file__)), "..", "data", "worldcup.json"
@@ -116,6 +120,9 @@ def build_match(mid):
     home = hv.get("homeTeamShortName")
     if not home:
         return None  # 接口正常但无对阵 → 真空 mid，跳过
+    # 过滤非世界杯赛事（区间内混有国际友谊赛等），当空场跳过，不收进数据
+    if hv.get("tournamentId") != WC_TOURNAMENT_ID:
+        return "NOT_WC"
 
     bonus, _ = fetch_json(
         f"{API_BASE}/getFixedBonusV1.qry?clientCode={CLIENT_CODE}&matchId={mid}"
@@ -196,6 +203,12 @@ def main():
                       f" vs {old_matches[mid]['away']['name']}")
             else:
                 print(f"  {mid}  [请求失败，无旧数据可保留，跳过]")
+            time.sleep(REQ_INTERVAL)
+            continue
+        if m == "NOT_WC":
+            print(f"  {mid}  [非世界杯赛事，跳过]")
+            time.sleep(REQ_INTERVAL)
+            continue
             time.sleep(REQ_INTERVAL)
             continue
         if m is None:
