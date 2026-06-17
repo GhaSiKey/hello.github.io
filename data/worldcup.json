@@ -13,14 +13,14 @@
       "totalBudget": 480,
       "totalMatches": 48,
       "totalBets": 71,
-      "settledStake": 320,
-      "settledPayout": 310.01,
-      "profitSettled": -9.99,
-      "roiSettled": -0.0312,
-      "finishedMatches": 16,
-      "hitBets": 13,
-      "settleableBets": 47,
-      "profitBudget": -169.99
+      "settledStake": 400,
+      "settledPayout": 408.71,
+      "profitSettled": 8.71,
+      "roiSettled": 0.0218,
+      "finishedMatches": 20,
+      "hitBets": 17,
+      "settleableBets": 59,
+      "profitBudget": -71.29
     }
   },
   "matches": [
@@ -4349,7 +4349,9 @@
               "pick": {
                 "goalLine": -1,
                 "side": "a"
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分1:0",
@@ -4360,7 +4362,9 @@
               "pick": {
                 "h": 1,
                 "a": 0
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分1:1",
@@ -4371,11 +4375,26 @@
               "pick": {
                 "h": 1,
                 "a": 1
-              }
+              },
+              "hit": false,
+              "payout": 0
             }
           ],
           "note": "让负赌法国赢不透为主，1:0/1:1博小比分。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 3,
+          "a": 1
+        },
+        "half": {
+          "h": 0,
+          "a": 0
+        },
+        "source": "manual",
+        "filledAt": "2026-06-17T15:32:02+08:00"
       }
     },
     {
@@ -4579,7 +4598,9 @@
               "pick": {
                 "goalLine": 2,
                 "side": "a"
-              }
+              },
+              "hit": true,
+              "payout": 31.68
             },
             {
               "market": "总进球3球",
@@ -4587,7 +4608,9 @@
               "stake": 5,
               "potential": 17.25,
               "type": "ttg",
-              "pick": 3
+              "pick": 3,
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分0:2",
@@ -4598,11 +4621,26 @@
               "pick": {
                 "h": 0,
                 "a": 2
-              }
+              },
+              "hit": false,
+              "payout": 0
             }
           ],
           "note": "挪威让负(净胜2球)为主，3球大球对冲，0:2博挪威碾压。比分返还低纯娱乐。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 1,
+          "a": 4
+        },
+        "half": {
+          "h": 1,
+          "a": 2
+        },
+        "source": "manual",
+        "filledAt": "2026-06-17T15:32:02+08:00"
       }
     },
     {
@@ -4821,7 +4859,9 @@
               "pick": {
                 "goalLine": -1,
                 "side": "h"
-              }
+              },
+              "hit": true,
+              "payout": 24.84
             },
             {
               "market": "总进球3球",
@@ -4829,7 +4869,9 @@
               "stake": 5,
               "potential": 18.0,
               "type": "ttg",
-              "pick": 3
+              "pick": 3,
+              "hit": true,
+              "payout": 18.0
             },
             {
               "market": "比分2:0",
@@ -4840,11 +4882,26 @@
               "pick": {
                 "h": 2,
                 "a": 0
-              }
+              },
+              "hit": false,
+              "payout": 0
             }
           ],
           "note": "阿根廷让胜为主，3球大球对冲只赢1球，2:0博碾压。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 3,
+          "a": 0
+        },
+        "half": {
+          "h": 1,
+          "a": 0
+        },
+        "source": "manual",
+        "filledAt": "2026-06-17T15:32:02+08:00"
       }
     },
     {
@@ -5063,7 +5120,9 @@
               "pick": {
                 "goalLine": -1,
                 "side": "h"
-              }
+              },
+              "hit": true,
+              "payout": 24.18
             },
             {
               "market": "总进球3球",
@@ -5071,7 +5130,9 @@
               "stake": 4,
               "potential": 14.0,
               "type": "ttg",
-              "pick": 3
+              "pick": 3,
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分2:0",
@@ -5082,11 +5143,26 @@
               "pick": {
                 "h": 2,
                 "a": 0
-              }
+              },
+              "hit": false,
+              "payout": 0
             }
           ],
           "note": "奥地利让胜为主菜，3球大球对冲，2:0博碾压比分。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 3,
+          "a": 1
+        },
+        "half": {
+          "h": 1,
+          "a": 0
+        },
+        "source": "manual",
+        "filledAt": "2026-06-17T15:32:02+08:00"
       }
     },
     {
