@@ -60,11 +60,14 @@ def recalc_summary(data):
     total_budget = settled_stake = settled_payout = 0
     hit_bets = settleable_bets = total_bets = 0
     finished = 0
+    planned = 0  # 有下注方案(plan)的场数——totalMatches 用它，不用 len(matches)
     for m in data["matches"]:
         # 未写点评的场（无 plan）跳过——新加入但赔率/点评未就绪时不该让结算崩。
+        # 这些占位卡片(如第二轮赛程)不算进下注统计，否则 totalMatches 会虚高。
         plan = m.get("commentary", {}).get("plan")
         if not plan:
             continue
+        planned += 1
         bets = plan["bets"]
         total_bets += len(bets)
         total_budget += sum(b["stake"] for b in bets)
@@ -84,7 +87,7 @@ def recalc_summary(data):
     data["meta"]["betSummary"] = {
         # 全预算口径（展示"总支出"）
         "totalBudget": total_budget,
-        "totalMatches": len(data["matches"]),
+        "totalMatches": planned,
         "totalBets": total_bets,
         # 已结算口径（盈亏/ROI 主显示）
         "settledStake": settled_stake,

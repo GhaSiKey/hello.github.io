@@ -11,7 +11,7 @@
     "disclaimer": "数据仅供参考，不构成投注建议；竞彩为负和游戏，长期期望为负",
     "betSummary": {
       "totalBudget": 480,
-      "totalMatches": 48,
+      "totalMatches": 24,
       "totalBets": 71,
       "settledStake": 480,
       "settledPayout": 454.18,
@@ -6202,7 +6202,7 @@
           "a": 1
         },
         "source": "manual",
-        "filledAt": "2026-06-18T12:40:37+08:00"
+        "filledAt": "2026-06-18T13:00:32+08:00"
       }
     },
     {
