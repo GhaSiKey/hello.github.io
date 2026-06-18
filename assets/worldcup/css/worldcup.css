@@ -214,6 +214,35 @@ body {
 }
 .vs { font-size: 12px; font-weight: 700; color: var(--text-faint); flex: 0 0 auto; }
 
+/* 比分（已结束比赛，替代 VS 居中显示） */
+.card-score {
+  flex: 0 0 auto; display: flex; flex-wrap: wrap;
+  align-items: center; justify-content: center;
+  max-width: 96px;
+}
+.card-score-v {
+  font-size: 26px; font-weight: 800; line-height: 1;
+  color: var(--gold-bright); font-variant-numeric: tabular-nums;
+}
+.card-score-sep { font-style: normal; color: var(--text-faint); font-size: 18px; margin: 0 4px; }
+.card-score-half {
+  flex-basis: 100%; text-align: center; margin-top: 4px;
+  font-size: 10px; color: var(--text-faint); font-weight: 600; white-space: nowrap;
+}
+
+/* 完场状态徽章 */
+.card-status { margin-left: auto; font-size: 11px; font-weight: 600; }
+.card-status--done {
+  color: var(--green); padding: 1px 8px;
+  background: rgba(56, 211, 159, 0.12); border-radius: 6px;
+}
+
+/* 已结束卡片整体降调（赔率已成历史，弱化但仍可点看详情） */
+.card--finished { opacity: 0.86; }
+.card--finished .card-odds, .card--finished .card-hhad { opacity: 0.6; }
+.card--finished:hover, .card--finished:focus-visible { opacity: 1; }
+.card--finished:hover .card-odds, .card--finished:hover .card-hhad { opacity: 0.85; }
+
 /* 胜平负三栏 */
 .card-odds {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;

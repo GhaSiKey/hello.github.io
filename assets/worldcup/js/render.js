@@ -42,11 +42,17 @@ function tagsHtml(tags) {
   ).join('') + `</div>`;
 }
 
-/** 列表卡片。展示对阵 + 胜平负 + 让球核心盘 + 标签。 */
+/** 列表卡片。展示对阵 + 胜平负 + 让球核心盘 + 标签。已结束的展示比分。 */
 function renderCard(m) {
   const t = parseMatchTime(m.datetime);
   const had = m.odds.had;
   const hhad = (m.odds.hhad && m.odds.hhad[0]) || null;
+
+  // 比赛结果（已结束才有）
+  const result = m.result || {};
+  const finished = result.status === 'finished' && result.full;
+  const full = result.full;
+  const half = result.half;
 
   // 胜平负区：open 显示三栏；hhad_only 显示提示
   let oddsBlock;
@@ -73,19 +79,34 @@ function renderCard(m) {
   const hasPlan = m.commentary && m.commentary.plan;
   const planBadge = hasPlan ? `<span class="card-plan-badge">📝 有方案</span>` : '';
 
+  // 卡片中间：已结束显示比分，否则显示 VS
+  const mid = finished
+    ? `<span class="card-score">
+         <b class="card-score-v">${esc(full.h)}</b>
+         <i class="card-score-sep">-</i>
+         <b class="card-score-v">${esc(full.a)}</b>
+         ${half ? `<span class="card-score-half">半 ${esc(half.h)}-${esc(half.a)}</span>` : ''}
+       </span>`
+    : `<span class="vs">VS</span>`;
+
+  // 头部右侧：已结束显示"完场"标识，否则显示开赛时间
+  const headRight = finished
+    ? `<span class="card-status card-status--done">✓ 完场</span>`
+    : `<span class="card-time">${esc(t.time)}</span>`;
+
   return `
-  <article class="card" data-mid="${m.mid}" tabindex="0" role="button">
+  <article class="card${finished ? ' card--finished' : ''}" data-mid="${m.mid}" tabindex="0" role="button">
     <div class="card-head">
       <span class="card-num">${esc(m.matchNum)}</span>
       <span class="card-group">${esc(m.group)}</span>
-      <span class="card-time">${esc(t.time)}</span>
+      ${headRight}
     </div>
     <div class="card-teams">
       <div class="team">
         ${logoImg(m.home)}
         <span class="team-name">${esc(m.home.name)}</span>
       </div>
-      <span class="vs">VS</span>
+      ${mid}
       <div class="team">
         ${logoImg(m.away)}
         <span class="team-name">${esc(m.away.name)}</span>
