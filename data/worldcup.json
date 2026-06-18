@@ -13,14 +13,14 @@
       "totalBudget": 480,
       "totalMatches": 48,
       "totalBets": 71,
-      "settledStake": 400,
-      "settledPayout": 408.71,
-      "profitSettled": 8.71,
-      "roiSettled": 0.0218,
-      "finishedMatches": 20,
-      "hitBets": 17,
-      "settleableBets": 59,
-      "profitBudget": -71.29
+      "settledStake": 480,
+      "settledPayout": 454.18,
+      "profitSettled": -25.82,
+      "roiSettled": -0.0538,
+      "finishedMatches": 24,
+      "hitBets": 19,
+      "settleableBets": 71,
+      "profitBudget": -25.82
     }
   },
   "matches": [
@@ -5378,7 +5378,9 @@
               "stake": 11,
               "potential": 38.5,
               "type": "ttg",
-              "pick": 3
+              "pick": 3,
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "让球-2 让胜",
@@ -5389,7 +5391,9 @@
               "pick": {
                 "goalLine": -2,
                 "side": "h"
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分2:0",
@@ -5400,11 +5404,26 @@
               "pick": {
                 "h": 2,
                 "a": 0
-              }
+              },
+              "hit": false,
+              "payout": 0
             }
           ],
           "note": "本场让球盘口高(让2球)，改大球为主菜，让胜小注博，2:0博碾压。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 1,
+          "a": 1
+        },
+        "half": {
+          "h": 1,
+          "a": 1
+        },
+        "source": "manual",
+        "filledAt": "2026-06-18T12:40:37+08:00"
       }
     },
     {
@@ -5621,7 +5640,9 @@
               "pick": {
                 "goalLine": -1,
                 "side": "a"
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分1:0",
@@ -5632,7 +5653,9 @@
               "pick": {
                 "h": 1,
                 "a": 0
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分1:1",
@@ -5643,11 +5666,26 @@
               "pick": {
                 "h": 1,
                 "a": 1
-              }
+              },
+              "hit": false,
+              "payout": 0
             }
           ],
           "note": "让负赌英格兰赢不透为主，1:0/1:1博小比分。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 4,
+          "a": 2
+        },
+        "half": {
+          "h": 2,
+          "a": 2
+        },
+        "source": "manual",
+        "filledAt": "2026-06-18T12:40:37+08:00"
       }
     },
     {
@@ -5861,7 +5899,9 @@
               "stake": 11,
               "potential": 21.23,
               "type": "had",
-              "pick": "h"
+              "pick": "h",
+              "hit": true,
+              "payout": 21.23
             },
             {
               "market": "平局",
@@ -5869,7 +5909,9 @@
               "stake": 6,
               "potential": 18.0,
               "type": "had",
-              "pick": "d"
+              "pick": "d",
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分1:1",
@@ -5880,11 +5922,26 @@
               "pick": {
                 "h": 1,
                 "a": 1
-              }
+              },
+              "hit": false,
+              "payout": 0
             }
           ],
           "note": "加纳胜为主菜，平局是真均势盘唯一合理的平局注，1:1博比分头。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 1,
+          "a": 0
+        },
+        "half": {
+          "h": 0,
+          "a": 0
+        },
+        "source": "manual",
+        "filledAt": "2026-06-18T12:40:37+08:00"
       }
     },
     {
@@ -6103,7 +6160,9 @@
               "pick": {
                 "goalLine": 1,
                 "side": "a"
-              }
+              },
+              "hit": true,
+              "payout": 24.24
             },
             {
               "market": "总进球3球",
@@ -6111,7 +6170,9 @@
               "stake": 5,
               "potential": 18.0,
               "type": "ttg",
-              "pick": 3
+              "pick": 3,
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分0:2",
@@ -6122,11 +6183,26 @@
               "pick": {
                 "h": 0,
                 "a": 2
-              }
+              },
+              "hit": false,
+              "payout": 0
             }
           ],
           "note": "哥伦比亚让胜为主，3球大球对冲，0:2博碾压比分。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 1,
+          "a": 3
+        },
+        "half": {
+          "h": 0,
+          "a": 1
+        },
+        "source": "manual",
+        "filledAt": "2026-06-18T12:40:37+08:00"
       }
     },
     {
