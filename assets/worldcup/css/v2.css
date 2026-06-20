@@ -1,0 +1,97 @@
+/* v2.css — 世界杯赔率 V2（H5 Tab + ViewPager）专属布局
+   复用 worldcup.css 的配色变量、卡片样式、详情面板。本文件只管 V2 的
+   整体框架：固定顶栏 + Tab 日期条 + 横向 scroll-snap 的 ViewPager。 */
+
+/* V2 整体：竖向 flex，撑满视口，pager 区域内部滚动 */
+.v2 { overflow: hidden; }
+.v2-app {
+  display: flex; flex-direction: column;
+  height: 100vh; height: 100dvh;
+  max-width: 720px; margin: 0 auto; position: relative; z-index: 1;
+}
+
+/* 顶栏（紧凑） */
+.v2-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px 8px; flex: 0 0 auto;
+}
+.v2-badge {
+  font-size: 11px; font-weight: 700; color: var(--gold-deep);
+  background: var(--gold-bright); padding: 1px 6px; border-radius: 6px;
+  vertical-align: middle; margin-left: 4px;
+}
+.v2-meta {
+  display: flex; gap: 12px; padding: 0 16px 8px; flex: 0 0 auto;
+  font-size: 11px; color: var(--text-faint); flex-wrap: wrap;
+}
+
+/* Tab 日期条：横向滚动，不换行 */
+.v2-tabs {
+  display: flex; gap: 8px; overflow-x: auto; flex: 0 0 auto;
+  padding: 8px 16px 12px; scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch; scrollbar-width: none;
+  border-bottom: 1px solid var(--border);
+}
+.v2-tabs::-webkit-scrollbar { display: none; }
+
+.v2-tab {
+  flex: 0 0 auto; display: flex; flex-direction: column; align-items: center;
+  gap: 2px; padding: 8px 12px; border-radius: var(--radius-sm);
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--text-dim); cursor: pointer; transition: all 0.18s;
+  min-width: 54px;
+}
+.v2-tab-md { font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.v2-tab-wd { font-size: 10px; color: var(--text-faint); }
+.v2-tab-ph {
+  font-size: 9px; font-weight: 700; padding: 0 5px; border-radius: 4px;
+  background: var(--surface-2); color: var(--text-dim); margin-top: 1px;
+}
+/* 当前选中 tab：金色高亮 */
+.v2-tab.active {
+  background: var(--gold-bright); border-color: var(--gold);
+  color: var(--gold-deep);
+}
+.v2-tab.active .v2-tab-wd,
+.v2-tab.active .v2-tab-ph { color: var(--gold-deep); background: rgba(0,0,0,0.12); }
+.v2-tab.active .v2-tab-wd { background: none; }
+/* 今天标记 */
+.v2-tab-today {
+  position: absolute; margin-top: -16px; font-size: 8px; font-weight: 700;
+  color: var(--gold-bright); background: var(--bg); padding: 0 3px; border-radius: 3px;
+}
+.v2-tab.active .v2-tab-today { color: var(--gold-deep); background: var(--gold-bright); }
+
+/* ViewPager：横向 scroll-snap 容器，每页一屏宽 */
+.v2-pager {
+  flex: 1 1 auto; display: flex; overflow-x: auto; overflow-y: hidden;
+  scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.v2-pager::-webkit-scrollbar { display: none; }
+
+/* 单页：一天，宽=容器宽，内部纵向滚动卡片 */
+.v2-page {
+  flex: 0 0 100%; width: 100%; scroll-snap-align: start; scroll-snap-stop: always;
+  overflow-y: auto; -webkit-overflow-scrolling: touch;
+  padding: 14px 16px 24px; scrollbar-width: none;
+}
+.v2-page::-webkit-scrollbar { display: none; }
+
+/* 单页头部：当天日期 + 场次数 */
+.v2-page-head {
+  display: flex; align-items: baseline; gap: 8px; margin-bottom: 12px;
+  color: var(--text-dim); font-size: 13px;
+}
+.v2-page-date { font-size: 16px; font-weight: 700; color: var(--text); }
+.v2-page-cnt { margin-left: auto; color: var(--text-faint); font-size: 12px; }
+
+/* 当天卡片纵向堆叠 */
+.v2-page .card { margin-bottom: 12px; }
+.v2-page .card:last-child { margin-bottom: 0; }
+
+/* 免责声明紧凑 */
+.v2-disclaimer { flex: 0 0 auto; padding: 8px 16px; font-size: 10px; text-align: center; }
+
+/* 空态（理论上不出现，因只为有数据的天建页） */
+.v2-page-empty { text-align: center; color: var(--text-faint); padding: 40px 0; }

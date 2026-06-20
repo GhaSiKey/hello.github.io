@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>世界杯赔率 V2 · 2026 FIFA World Cup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/worldcup/css/worldcup.css">
+  <link rel="stylesheet" href="assets/worldcup/css/v2.css">
+</head>
+<body class="v2">
+  <!-- 动态背景（复用现有） -->
+  <div class="bg-gradient"></div>
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+  <div class="bg-shine"></div>
+
+  <div class="v2-app">
+    <!-- 顶栏 -->
+    <header class="v2-header">
+      <div class="logo">
+        <span class="logo-icon">🏆</span>
+        <div class="logo-text">
+          <h1 class="logo-title">世界杯赔率 <span class="v2-badge">V2</span></h1>
+          <span class="logo-sub">2026 · FIFA WORLD CUP</span>
+        </div>
+      </div>
+      <nav class="page-nav">
+        <a href="worldcup.html" class="nav-link">经典版</a>
+        <a href="simbet.html" class="nav-link">战绩</a>
+      </nav>
+    </header>
+    <div class="v2-meta" id="headerMeta"></div>
+
+    <!-- Tab 日期条 -->
+    <nav class="v2-tabs" id="v2Tabs"></nav>
+
+    <!-- ViewPager：每页一天 -->
+    <main class="v2-pager" id="v2Pager"></main>
+
+    <!-- 错误态 -->
+    <div class="error-state" id="errorState" hidden>
+      <span class="error-icon">😵</span>
+      <p class="error-text">数据加载失败</p>
+      <p class="error-hint" id="errorHint"></p>
+    </div>
+
+    <footer class="disclaimer v2-disclaimer" id="disclaimer"></footer>
+  </div>
+
+  <!-- 详情：复用经典版滑出面板（H5 全屏形态） -->
+  <div class="detail-overlay" id="detailOverlay" hidden></div>
+  <aside class="detail-panel" id="detailPanel" hidden aria-hidden="true">
+    <div class="detail-inner" id="detailInner"></div>
+  </aside>
+
+  <!-- 复用经典版数据/渲染/配色逻辑 -->
+  <script src="assets/worldcup/js/data.js"></script>
+  <script src="assets/worldcup/js/render.js"></script>
+  <script src="assets/worldcup/js/calendar.js"></script>
+  <!-- V2 专属交互 -->
+  <script src="assets/worldcup/js/v2.js"></script>
+</body>
+</html>
