@@ -2,7 +2,7 @@
   "meta": {
     "title": "2026 FIFA World Cup",
     "crawledAt": "2026-06-23T19:31:30+08:00",
-    "analyzedAt": null,
+    "analyzedAt": "2026-06-23T20:33:27+08:00",
     "source": "中国体育彩票 webapi.sporttery.cn",
     "midRange": [
       2040162,
@@ -11549,7 +11549,46 @@
         }
       },
       "tags": [],
-      "commentary": {}
+      "commentary": {
+        "summary": "葡萄牙碾压乌兹别克(仅让球/比分,让-2),让2球较深,改大球为主+让胜小注,纯娱乐。",
+        "value": "无胜平负。让-2让胜2.39需净胜3球,盘口偏深风险大。改主菜押大球(强队碾压进球多,众数3球),让胜小注博。比分返还率约71%最低,纯娱乐。",
+        "plan": {
+          "budget": 20,
+          "bets": [
+            {
+              "market": "总进球3球",
+              "odds": 3.5,
+              "stake": 11,
+              "potential": 38.5,
+              "type": "ttg",
+              "pick": 3
+            },
+            {
+              "market": "让球-2 让胜",
+              "odds": 2.39,
+              "stake": 5,
+              "potential": 11.95,
+              "type": "hhad",
+              "pick": {
+                "goalLine": -2,
+                "side": "h"
+              }
+            },
+            {
+              "market": "比分2:0",
+              "odds": 5.7,
+              "stake": 4,
+              "potential": 22.8,
+              "type": "crs",
+              "pick": {
+                "h": 2,
+                "a": 0
+              }
+            }
+          ],
+          "note": "让2球较深,大球为主菜,让胜小注博,2:0博碾压。比分返还低纯娱乐。"
+        }
+      }
     },
     {
       "mid": 2040256,
@@ -11737,7 +11776,46 @@
         }
       },
       "tags": [],
-      "commentary": {}
+      "commentary": {
+        "summary": "英格兰碾压加纳(仅让球/比分,让-2),同样让2球深,大球为主+让胜小注,纯娱乐。",
+        "value": "无胜平负。让-2让胜2.49需净胜3球偏深。改大球为主菜(众数3球),让胜小注博。比分返还率约71%最低,纯娱乐。",
+        "plan": {
+          "budget": 20,
+          "bets": [
+            {
+              "market": "总进球3球",
+              "odds": 3.5,
+              "stake": 11,
+              "potential": 38.5,
+              "type": "ttg",
+              "pick": 3
+            },
+            {
+              "market": "让球-2 让胜",
+              "odds": 2.49,
+              "stake": 5,
+              "potential": 12.45,
+              "type": "hhad",
+              "pick": {
+                "goalLine": -2,
+                "side": "h"
+              }
+            },
+            {
+              "market": "比分2:0",
+              "odds": 5.7,
+              "stake": 4,
+              "potential": 22.8,
+              "type": "crs",
+              "pick": {
+                "h": 2,
+                "a": 0
+              }
+            }
+          ],
+          "note": "让2球较深,大球为主菜,让胜小注博,2:0博碾压。比分返还低纯娱乐。"
+        }
+      }
     },
     {
       "mid": 2040257,
@@ -11940,7 +12018,49 @@
       "tags": [
         "大热盘"
       ],
-      "commentary": {}
+      "commentary": {
+        "summary": "克罗地亚大热客队(客63%),玩受让方巴拿马让球替代追客胜。",
+        "value": "客胜1.41平衡71%>去水63%偏贵。巴拿马受让+1,让胜2.42赌克罗地亚赢不透或巴不败。注押小。",
+        "plan": {
+          "budget": 20,
+          "bets": [
+            {
+              "market": "让球+1 巴拿马让胜",
+              "odds": 2.42,
+              "stake": 11,
+              "potential": 26.62,
+              "type": "hhad",
+              "pick": {
+                "goalLine": 1,
+                "side": "h"
+              }
+            },
+            {
+              "market": "比分0:1",
+              "odds": 6.5,
+              "stake": 5,
+              "potential": 32.5,
+              "type": "crs",
+              "pick": {
+                "h": 0,
+                "a": 1
+              }
+            },
+            {
+              "market": "比分1:1",
+              "odds": 7.0,
+              "stake": 4,
+              "potential": 28.0,
+              "type": "crs",
+              "pick": {
+                "h": 1,
+                "a": 1
+              }
+            }
+          ],
+          "note": "巴拿马受让不败为主,0:1/1:1博克罗地亚小胜或平。"
+        }
+      }
     },
     {
       "mid": 2040258,
@@ -12143,7 +12263,46 @@
       "tags": [
         "大热盘"
       ],
-      "commentary": {}
+      "commentary": {
+        "summary": "哥伦比亚大热(主65%)对刚果金,偏碾压。让胜+大球对冲,不预判碾压必现。",
+        "value": "主胜1.36平衡74%>去水65%太贵。让-1让胜2.27赌净胜2球为主菜,配大球对冲'只赢1球'。注:第3轮临近,留意是否有出线形势导致的战意波动。",
+        "plan": {
+          "budget": 20,
+          "bets": [
+            {
+              "market": "让球-1 让胜",
+              "odds": 2.27,
+              "stake": 12,
+              "potential": 27.24,
+              "type": "hhad",
+              "pick": {
+                "goalLine": -1,
+                "side": "h"
+              }
+            },
+            {
+              "market": "总进球3球",
+              "odds": 3.6,
+              "stake": 5,
+              "potential": 18.0,
+              "type": "ttg",
+              "pick": 3
+            },
+            {
+              "market": "比分2:0",
+              "odds": 6.0,
+              "stake": 3,
+              "potential": 18.0,
+              "type": "crs",
+              "pick": {
+                "h": 2,
+                "a": 0
+              }
+            }
+          ],
+          "note": "哥伦比亚让胜为主,3球大球对冲,2:0博碾压。"
+        }
+      }
     },
     {
       "mid": 2040285,
