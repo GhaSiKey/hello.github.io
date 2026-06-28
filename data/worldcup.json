@@ -1,12 +1,12 @@
 {
   "meta": {
     "title": "2026 FIFA World Cup",
-    "crawledAt": "2026-06-25T20:57:11+08:00",
-    "analyzedAt": "2026-06-25T21:00:17+08:00",
+    "crawledAt": "2026-06-28T18:26:48+08:00",
+    "analyzedAt": null,
     "source": "中国体育彩票 webapi.sporttery.cn",
     "midRange": [
       2040162,
-      2040308
+      2040357
     ],
     "disclaimer": "数据仅供参考，不构成投注建议；竞彩为负和游戏，长期期望为负",
     "betSummary": {
@@ -18541,8 +18541,1428 @@
           "a": 2
         },
         "source": "manual",
-        "filledAt": "2026-06-28T18:11:54+08:00"
+        "filledAt": "2026-06-28T18:29:09+08:00"
       }
+    },
+    {
+      "mid": 2040327,
+      "matchNum": "周日073",
+      "datetime": "2026-06-29 03:00",
+      "group": "",
+      "phase": "1/16决赛",
+      "tournament": "世界杯",
+      "status": "open",
+      "home": {
+        "name": "南非",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/673.png"
+      },
+      "away": {
+        "name": "加拿大",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/542.png"
+      },
+      "odds": {
+        "had": {
+          "h": "4.70",
+          "d": "3.18",
+          "a": "1.66"
+        },
+        "hhad": [
+          {
+            "goalLine": "+1",
+            "h": "1.95",
+            "d": "3.30",
+            "a": "3.20"
+          }
+        ],
+        "ttg": {
+          "0": "8.50",
+          "1": "3.90",
+          "2": "3.15",
+          "3": "3.75",
+          "4": "6.50",
+          "5": "13.00",
+          "6": "25.00",
+          "7": "40.00"
+        },
+        "hafu": {
+          "hh": "8.50",
+          "hd": "16.00",
+          "ha": "27.00",
+          "dh": "9.50",
+          "dd": "4.80",
+          "da": "4.10",
+          "ah": "40.00",
+          "ad": "16.00",
+          "aa": "2.55"
+        },
+        "crs": [
+          {
+            "name": "0:1",
+            "odds": 5.4
+          },
+          {
+            "name": "1:1",
+            "odds": 6.0
+          },
+          {
+            "name": "0:2",
+            "odds": 6.7
+          },
+          {
+            "name": "1:2",
+            "odds": 7.0
+          },
+          {
+            "name": "0:0",
+            "odds": 8.5
+          },
+          {
+            "name": "1:0",
+            "odds": 10.5
+          },
+          {
+            "name": "0:3",
+            "odds": 13.0
+          },
+          {
+            "name": "2:1",
+            "odds": 14.0
+          },
+          {
+            "name": "1:3",
+            "odds": 14.5
+          },
+          {
+            "name": "2:2",
+            "odds": 15.0
+          },
+          {
+            "name": "2:0",
+            "odds": 25.0
+          },
+          {
+            "name": "2:3",
+            "odds": 32.0
+          },
+          {
+            "name": "0:4",
+            "odds": 34.0
+          },
+          {
+            "name": "1:4",
+            "odds": 36.0
+          },
+          {
+            "name": "3:1",
+            "odds": 50.0
+          },
+          {
+            "name": "3:2",
+            "odds": 55.0
+          },
+          {
+            "name": "负其它",
+            "odds": 75.0
+          },
+          {
+            "name": "2:4",
+            "odds": 75.0
+          },
+          {
+            "name": "3:3",
+            "odds": 75.0
+          },
+          {
+            "name": "3:0",
+            "odds": 80.0
+          },
+          {
+            "name": "0:5",
+            "odds": 90.0
+          },
+          {
+            "name": "1:5",
+            "odds": 90.0
+          },
+          {
+            "name": "2:5",
+            "odds": 200.0
+          },
+          {
+            "name": "4:1",
+            "odds": 200.0
+          },
+          {
+            "name": "4:2",
+            "odds": 250.0
+          },
+          {
+            "name": "4:0",
+            "odds": 250.0
+          },
+          {
+            "name": "胜其它",
+            "odds": 300.0
+          },
+          {
+            "name": "平其它",
+            "odds": 600.0
+          },
+          {
+            "name": "5:1",
+            "odds": 600.0
+          },
+          {
+            "name": "5:0",
+            "odds": 700.0
+          },
+          {
+            "name": "5:2",
+            "odds": 700.0
+          }
+        ]
+      },
+      "metrics": {
+        "had": {
+          "return": 0.8852,
+          "prob": {
+            "h": 0.1883,
+            "d": 0.2784,
+            "a": 0.5333
+          }
+        },
+        "ttg": {
+          "return": 0.7975,
+          "mode": 2
+        },
+        "hafu": {
+          "return": 0.7972
+        },
+        "crs": {
+          "return": 0.7094
+        }
+      },
+      "tags": [],
+      "commentary": {}
+    },
+    {
+      "mid": 2040337,
+      "matchNum": "周一074",
+      "datetime": "2026-06-30 01:00",
+      "group": "",
+      "phase": "1/16决赛",
+      "tournament": "世界杯",
+      "status": "open",
+      "home": {
+        "name": "巴西",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/417.png"
+      },
+      "away": {
+        "name": "日本",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/438.png"
+      },
+      "odds": {
+        "had": {
+          "h": "1.66",
+          "d": "3.28",
+          "a": "4.50"
+        },
+        "hhad": [
+          {
+            "goalLine": "-1",
+            "h": "3.07",
+            "d": "3.38",
+            "a": "1.97"
+          }
+        ],
+        "ttg": {
+          "0": "10.00",
+          "1": "4.60",
+          "2": "3.20",
+          "3": "3.60",
+          "4": "5.75",
+          "5": "11.50",
+          "6": "20.00",
+          "7": "28.00"
+        },
+        "hafu": {
+          "hh": "2.55",
+          "hd": "16.00",
+          "ha": "35.00",
+          "dh": "4.30",
+          "dd": "5.10",
+          "da": "9.50",
+          "ah": "22.00",
+          "ad": "16.00",
+          "aa": "7.75"
+        },
+        "crs": [
+          {
+            "name": "1:1",
+            "odds": 6.1
+          },
+          {
+            "name": "1:0",
+            "odds": 6.25
+          },
+          {
+            "name": "2:1",
+            "odds": 6.5
+          },
+          {
+            "name": "2:0",
+            "odds": 7.25
+          },
+          {
+            "name": "0:0",
+            "odds": 10.0
+          },
+          {
+            "name": "3:1",
+            "odds": 12.0
+          },
+          {
+            "name": "0:1",
+            "odds": 12.0
+          },
+          {
+            "name": "1:2",
+            "odds": 12.0
+          },
+          {
+            "name": "3:0",
+            "odds": 12.5
+          },
+          {
+            "name": "2:2",
+            "odds": 14.0
+          },
+          {
+            "name": "0:2",
+            "odds": 22.0
+          },
+          {
+            "name": "3:2",
+            "odds": 27.0
+          },
+          {
+            "name": "4:1",
+            "odds": 30.0
+          },
+          {
+            "name": "4:0",
+            "odds": 30.0
+          },
+          {
+            "name": "2:3",
+            "odds": 50.0
+          },
+          {
+            "name": "1:3",
+            "odds": 50.0
+          },
+          {
+            "name": "胜其它",
+            "odds": 75.0
+          },
+          {
+            "name": "0:3",
+            "odds": 75.0
+          },
+          {
+            "name": "4:2",
+            "odds": 75.0
+          },
+          {
+            "name": "3:3",
+            "odds": 80.0
+          },
+          {
+            "name": "5:0",
+            "odds": 90.0
+          },
+          {
+            "name": "5:1",
+            "odds": 100.0
+          },
+          {
+            "name": "5:2",
+            "odds": 200.0
+          },
+          {
+            "name": "2:4",
+            "odds": 200.0
+          },
+          {
+            "name": "1:4",
+            "odds": 200.0
+          },
+          {
+            "name": "负其它",
+            "odds": 300.0
+          },
+          {
+            "name": "0:4",
+            "odds": 300.0
+          },
+          {
+            "name": "平其它",
+            "odds": 400.0
+          },
+          {
+            "name": "0:5",
+            "odds": 500.0
+          },
+          {
+            "name": "1:5",
+            "odds": 500.0
+          },
+          {
+            "name": "2:5",
+            "odds": 600.0
+          }
+        ]
+      },
+      "metrics": {
+        "had": {
+          "return": 0.8853,
+          "prob": {
+            "h": 0.5333,
+            "d": 0.2699,
+            "a": 0.1967
+          }
+        },
+        "ttg": {
+          "return": 0.7973,
+          "mode": 2
+        },
+        "hafu": {
+          "return": 0.7974
+        },
+        "crs": {
+          "return": 0.7093
+        }
+      },
+      "tags": [],
+      "commentary": {}
+    },
+    {
+      "mid": 2040338,
+      "matchNum": "周一076",
+      "datetime": "2026-06-30 09:00",
+      "group": "",
+      "phase": "1/16决赛",
+      "tournament": "世界杯",
+      "status": "open",
+      "home": {
+        "name": "荷兰",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/389.png"
+      },
+      "away": {
+        "name": "摩洛哥",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/424.png"
+      },
+      "odds": {
+        "had": {
+          "h": "1.89",
+          "d": "3.07",
+          "a": "3.64"
+        },
+        "hhad": [
+          {
+            "goalLine": "-1",
+            "h": "3.82",
+            "d": "3.58",
+            "a": "1.70"
+          }
+        ],
+        "ttg": {
+          "0": "8.75",
+          "1": "4.40",
+          "2": "3.10",
+          "3": "3.70",
+          "4": "6.10",
+          "5": "12.50",
+          "6": "22.00",
+          "7": "33.00"
+        },
+        "hafu": {
+          "hh": "3.00",
+          "hd": "15.00",
+          "ha": "30.00",
+          "dh": "4.70",
+          "dd": "5.00",
+          "da": "7.50",
+          "ah": "23.00",
+          "ad": "15.00",
+          "aa": "6.10"
+        },
+        "crs": [
+          {
+            "name": "1:1",
+            "odds": 5.75
+          },
+          {
+            "name": "1:0",
+            "odds": 6.25
+          },
+          {
+            "name": "2:1",
+            "odds": 6.75
+          },
+          {
+            "name": "2:0",
+            "odds": 8.0
+          },
+          {
+            "name": "0:0",
+            "odds": 8.75
+          },
+          {
+            "name": "0:1",
+            "odds": 10.0
+          },
+          {
+            "name": "1:2",
+            "odds": 10.5
+          },
+          {
+            "name": "2:2",
+            "odds": 13.0
+          },
+          {
+            "name": "3:1",
+            "odds": 14.0
+          },
+          {
+            "name": "3:0",
+            "odds": 16.0
+          },
+          {
+            "name": "0:2",
+            "odds": 18.0
+          },
+          {
+            "name": "3:2",
+            "odds": 28.0
+          },
+          {
+            "name": "1:3",
+            "odds": 34.0
+          },
+          {
+            "name": "2:3",
+            "odds": 50.0
+          },
+          {
+            "name": "0:3",
+            "odds": 50.0
+          },
+          {
+            "name": "4:1",
+            "odds": 50.0
+          },
+          {
+            "name": "4:0",
+            "odds": 50.0
+          },
+          {
+            "name": "胜其它",
+            "odds": 80.0
+          },
+          {
+            "name": "3:3",
+            "odds": 80.0
+          },
+          {
+            "name": "4:2",
+            "odds": 90.0
+          },
+          {
+            "name": "5:0",
+            "odds": 150.0
+          },
+          {
+            "name": "5:1",
+            "odds": 150.0
+          },
+          {
+            "name": "1:4",
+            "odds": 150.0
+          },
+          {
+            "name": "2:4",
+            "odds": 200.0
+          },
+          {
+            "name": "0:4",
+            "odds": 200.0
+          },
+          {
+            "name": "5:2",
+            "odds": 300.0
+          },
+          {
+            "name": "负其它",
+            "odds": 300.0
+          },
+          {
+            "name": "平其它",
+            "odds": 400.0
+          },
+          {
+            "name": "2:5",
+            "odds": 500.0
+          },
+          {
+            "name": "0:5",
+            "odds": 500.0
+          },
+          {
+            "name": "1:5",
+            "odds": 500.0
+          }
+        ]
+      },
+      "metrics": {
+        "had": {
+          "return": 0.8853,
+          "prob": {
+            "h": 0.4684,
+            "d": 0.2884,
+            "a": 0.2432
+          }
+        },
+        "ttg": {
+          "return": 0.7974,
+          "mode": 2
+        },
+        "hafu": {
+          "return": 0.7978
+        },
+        "crs": {
+          "return": 0.7095
+        }
+      },
+      "tags": [],
+      "commentary": {}
+    },
+    {
+      "mid": 2040339,
+      "matchNum": "周三082",
+      "datetime": "2026-07-02 08:00",
+      "group": "",
+      "phase": "1/16决赛",
+      "tournament": "世界杯",
+      "status": "not_open",
+      "home": {
+        "name": "美国",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/523.png"
+      },
+      "away": {
+        "name": "波黑",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/364.png"
+      },
+      "odds": {},
+      "metrics": {},
+      "tags": [],
+      "commentary": {}
+    },
+    {
+      "mid": 2040344,
+      "matchNum": "周一075",
+      "datetime": "2026-06-30 04:30",
+      "group": "",
+      "phase": "1/16决赛",
+      "tournament": "世界杯",
+      "status": "open",
+      "home": {
+        "name": "德国",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/377.png"
+      },
+      "away": {
+        "name": "巴拉圭",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/418.png"
+      },
+      "odds": {
+        "had": {
+          "h": "1.27",
+          "d": "4.60",
+          "a": "8.00"
+        },
+        "hhad": [
+          {
+            "goalLine": "-1",
+            "h": "1.90",
+            "d": "3.60",
+            "a": "3.08"
+          }
+        ],
+        "ttg": {
+          "0": "15.00",
+          "1": "5.80",
+          "2": "3.80",
+          "3": "3.40",
+          "4": "4.80",
+          "5": "8.30",
+          "6": "13.00",
+          "7": "19.00"
+        },
+        "hafu": {
+          "hh": "1.72",
+          "hd": "21.00",
+          "ha": "50.00",
+          "dh": "3.80",
+          "dd": "7.75",
+          "da": "17.00",
+          "ah": "25.00",
+          "ad": "21.00",
+          "aa": "15.00"
+        },
+        "crs": [
+          {
+            "name": "2:0",
+            "odds": 6.0
+          },
+          {
+            "name": "1:0",
+            "odds": 6.75
+          },
+          {
+            "name": "2:1",
+            "odds": 7.0
+          },
+          {
+            "name": "3:0",
+            "odds": 8.0
+          },
+          {
+            "name": "1:1",
+            "odds": 8.0
+          },
+          {
+            "name": "3:1",
+            "odds": 9.5
+          },
+          {
+            "name": "4:0",
+            "odds": 14.0
+          },
+          {
+            "name": "0:0",
+            "odds": 15.0
+          },
+          {
+            "name": "2:2",
+            "odds": 18.0
+          },
+          {
+            "name": "4:1",
+            "odds": 18.0
+          },
+          {
+            "name": "0:1",
+            "odds": 20.0
+          },
+          {
+            "name": "1:2",
+            "odds": 21.0
+          },
+          {
+            "name": "胜其它",
+            "odds": 23.0
+          },
+          {
+            "name": "3:2",
+            "odds": 24.0
+          },
+          {
+            "name": "5:0",
+            "odds": 30.0
+          },
+          {
+            "name": "5:1",
+            "odds": 45.0
+          },
+          {
+            "name": "0:2",
+            "odds": 50.0
+          },
+          {
+            "name": "4:2",
+            "odds": 50.0
+          },
+          {
+            "name": "2:3",
+            "odds": 75.0
+          },
+          {
+            "name": "3:3",
+            "odds": 80.0
+          },
+          {
+            "name": "1:3",
+            "odds": 90.0
+          },
+          {
+            "name": "5:2",
+            "odds": 100.0
+          },
+          {
+            "name": "0:3",
+            "odds": 175.0
+          },
+          {
+            "name": "负其它",
+            "odds": 350.0
+          },
+          {
+            "name": "2:4",
+            "odds": 350.0
+          },
+          {
+            "name": "1:4",
+            "odds": 350.0
+          },
+          {
+            "name": "平其它",
+            "odds": 400.0
+          },
+          {
+            "name": "0:4",
+            "odds": 500.0
+          },
+          {
+            "name": "2:5",
+            "odds": 800.0
+          },
+          {
+            "name": "0:5",
+            "odds": 800.0
+          },
+          {
+            "name": "1:5",
+            "odds": 800.0
+          }
+        ]
+      },
+      "metrics": {
+        "had": {
+          "return": 0.8851,
+          "prob": {
+            "h": 0.6969,
+            "d": 0.1924,
+            "a": 0.1106
+          }
+        },
+        "ttg": {
+          "return": 0.797,
+          "mode": 3
+        },
+        "hafu": {
+          "return": 0.7972
+        },
+        "crs": {
+          "return": 0.7092
+        }
+      },
+      "tags": [
+        "大热盘"
+      ],
+      "commentary": {}
+    },
+    {
+      "mid": 2040345,
+      "matchNum": "周二077",
+      "datetime": "2026-07-01 01:00",
+      "group": "",
+      "phase": "1/16决赛",
+      "tournament": "世界杯",
+      "status": "open",
+      "home": {
+        "name": "科特迪瓦",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/691.png"
+      },
+      "away": {
+        "name": "挪威",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/391.png"
+      },
+      "odds": {
+        "had": {
+          "h": "3.65",
+          "d": "3.27",
+          "a": "1.82"
+        },
+        "hhad": [
+          {
+            "goalLine": "+1",
+            "h": "1.76",
+            "d": "3.70",
+            "a": "3.44"
+          }
+        ],
+        "ttg": {
+          "0": "12.00",
+          "1": "5.10",
+          "2": "3.35",
+          "3": "3.50",
+          "4": "5.25",
+          "5": "10.00",
+          "6": "17.00",
+          "7": "24.00"
+        },
+        "hafu": {
+          "hh": "6.00",
+          "hd": "14.00",
+          "ha": "23.00",
+          "dh": "7.50",
+          "dd": "5.70",
+          "da": "4.80",
+          "ah": "30.00",
+          "ad": "14.00",
+          "aa": "2.85"
+        },
+        "crs": [
+          {
+            "name": "1:1",
+            "odds": 6.2
+          },
+          {
+            "name": "1:2",
+            "odds": 6.75
+          },
+          {
+            "name": "0:1",
+            "odds": 7.25
+          },
+          {
+            "name": "0:2",
+            "odds": 8.5
+          },
+          {
+            "name": "2:1",
+            "odds": 10.5
+          },
+          {
+            "name": "1:0",
+            "odds": 12.0
+          },
+          {
+            "name": "2:2",
+            "odds": 12.0
+          },
+          {
+            "name": "0:0",
+            "odds": 12.0
+          },
+          {
+            "name": "1:3",
+            "odds": 13.0
+          },
+          {
+            "name": "0:3",
+            "odds": 15.0
+          },
+          {
+            "name": "2:0",
+            "odds": 19.0
+          },
+          {
+            "name": "2:3",
+            "odds": 23.0
+          },
+          {
+            "name": "3:1",
+            "odds": 30.0
+          },
+          {
+            "name": "3:2",
+            "odds": 35.0
+          },
+          {
+            "name": "0:4",
+            "odds": 35.0
+          },
+          {
+            "name": "1:4",
+            "odds": 35.0
+          },
+          {
+            "name": "3:3",
+            "odds": 50.0
+          },
+          {
+            "name": "3:0",
+            "odds": 50.0
+          },
+          {
+            "name": "负其它",
+            "odds": 60.0
+          },
+          {
+            "name": "2:4",
+            "odds": 60.0
+          },
+          {
+            "name": "0:5",
+            "odds": 100.0
+          },
+          {
+            "name": "4:1",
+            "odds": 100.0
+          },
+          {
+            "name": "1:5",
+            "odds": 100.0
+          },
+          {
+            "name": "4:2",
+            "odds": 125.0
+          },
+          {
+            "name": "胜其它",
+            "odds": 150.0
+          },
+          {
+            "name": "2:5",
+            "odds": 150.0
+          },
+          {
+            "name": "4:0",
+            "odds": 175.0
+          },
+          {
+            "name": "平其它",
+            "odds": 300.0
+          },
+          {
+            "name": "5:0",
+            "odds": 500.0
+          },
+          {
+            "name": "5:2",
+            "odds": 500.0
+          },
+          {
+            "name": "5:1",
+            "odds": 500.0
+          }
+        ]
+      },
+      "metrics": {
+        "had": {
+          "return": 0.8856,
+          "prob": {
+            "h": 0.2426,
+            "d": 0.2708,
+            "a": 0.4866
+          }
+        },
+        "ttg": {
+          "return": 0.7971,
+          "mode": 2
+        },
+        "hafu": {
+          "return": 0.7972
+        },
+        "crs": {
+          "return": 0.7099
+        }
+      },
+      "tags": [],
+      "commentary": {}
+    },
+    {
+      "mid": 2040346,
+      "matchNum": "周二078",
+      "datetime": "2026-07-01 05:00",
+      "group": "",
+      "phase": "1/16决赛",
+      "tournament": "世界杯",
+      "status": "open",
+      "home": {
+        "name": "法国",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/375.png"
+      },
+      "away": {
+        "name": "瑞典",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/402.png"
+      },
+      "odds": {
+        "had": {
+          "h": "1.26",
+          "d": "4.90",
+          "a": "7.60"
+        },
+        "hhad": [
+          {
+            "goalLine": "-1",
+            "h": "1.86",
+            "d": "3.75",
+            "a": "3.08"
+          }
+        ],
+        "ttg": {
+          "0": "20.00",
+          "1": "6.85",
+          "2": "4.20",
+          "3": "3.45",
+          "4": "4.35",
+          "5": "7.00",
+          "6": "11.00",
+          "7": "15.00"
+        },
+        "hafu": {
+          "hh": "1.70",
+          "hd": "20.00",
+          "ha": "45.00",
+          "dh": "4.00",
+          "dd": "8.50",
+          "da": "17.00",
+          "ah": "23.00",
+          "ad": "20.00",
+          "aa": "13.50"
+        },
+        "crs": [
+          {
+            "name": "2:0",
+            "odds": 7.0
+          },
+          {
+            "name": "2:1",
+            "odds": 7.0
+          },
+          {
+            "name": "1:0",
+            "odds": 8.0
+          },
+          {
+            "name": "3:0",
+            "odds": 8.5
+          },
+          {
+            "name": "1:1",
+            "odds": 8.6
+          },
+          {
+            "name": "3:1",
+            "odds": 9.0
+          },
+          {
+            "name": "4:0",
+            "odds": 14.0
+          },
+          {
+            "name": "2:2",
+            "odds": 15.0
+          },
+          {
+            "name": "4:1",
+            "odds": 16.0
+          },
+          {
+            "name": "胜其它",
+            "odds": 18.0
+          },
+          {
+            "name": "1:2",
+            "odds": 19.0
+          },
+          {
+            "name": "3:2",
+            "odds": 20.0
+          },
+          {
+            "name": "0:0",
+            "odds": 20.0
+          },
+          {
+            "name": "0:1",
+            "odds": 23.0
+          },
+          {
+            "name": "5:0",
+            "odds": 30.0
+          },
+          {
+            "name": "5:1",
+            "odds": 35.0
+          },
+          {
+            "name": "4:2",
+            "odds": 35.0
+          },
+          {
+            "name": "0:2",
+            "odds": 50.0
+          },
+          {
+            "name": "2:3",
+            "odds": 55.0
+          },
+          {
+            "name": "3:3",
+            "odds": 60.0
+          },
+          {
+            "name": "1:3",
+            "odds": 70.0
+          },
+          {
+            "name": "5:2",
+            "odds": 75.0
+          },
+          {
+            "name": "0:3",
+            "odds": 150.0
+          },
+          {
+            "name": "负其它",
+            "odds": 200.0
+          },
+          {
+            "name": "2:4",
+            "odds": 300.0
+          },
+          {
+            "name": "1:4",
+            "odds": 300.0
+          },
+          {
+            "name": "平其它",
+            "odds": 400.0
+          },
+          {
+            "name": "2:5",
+            "odds": 500.0
+          },
+          {
+            "name": "0:4",
+            "odds": 500.0
+          },
+          {
+            "name": "1:5",
+            "odds": 500.0
+          },
+          {
+            "name": "0:5",
+            "odds": 800.0
+          }
+        ]
+      },
+      "metrics": {
+        "had": {
+          "return": 0.8855,
+          "prob": {
+            "h": 0.7028,
+            "d": 0.1807,
+            "a": 0.1165
+          }
+        },
+        "ttg": {
+          "return": 0.7973,
+          "mode": 3
+        },
+        "hafu": {
+          "return": 0.7971
+        },
+        "crs": {
+          "return": 0.7097
+        }
+      },
+      "tags": [
+        "大热盘"
+      ],
+      "commentary": {}
+    },
+    {
+      "mid": 2040347,
+      "matchNum": "周五086",
+      "datetime": "2026-07-04 02:00",
+      "group": "",
+      "phase": "1/16决赛",
+      "tournament": "世界杯",
+      "status": "not_open",
+      "home": {
+        "name": "澳大利亚",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/421.png"
+      },
+      "away": {
+        "name": "埃及",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/543.png"
+      },
+      "odds": {},
+      "metrics": {},
+      "tags": [],
+      "commentary": {}
+    },
+    {
+      "mid": 2040348,
+      "matchNum": "周五087",
+      "datetime": "2026-07-04 06:00",
+      "group": "",
+      "phase": "1/16决赛",
+      "tournament": "世界杯",
+      "status": "not_open",
+      "home": {
+        "name": "阿根廷",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/413.png"
+      },
+      "away": {
+        "name": "佛得角",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/798.png"
+      },
+      "odds": {},
+      "metrics": {},
+      "tags": [],
+      "commentary": {}
+    },
+    {
+      "mid": 2040351,
+      "matchNum": "周二079",
+      "datetime": "2026-07-01 09:00",
+      "group": "",
+      "phase": "1/16决赛",
+      "tournament": "世界杯",
+      "status": "not_open",
+      "home": {
+        "name": "墨西哥",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/416.png"
+      },
+      "away": {
+        "name": "厄瓜多尔",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/415.png"
+      },
+      "odds": {},
+      "metrics": {},
+      "tags": [],
+      "commentary": {}
+    },
+    {
+      "mid": 2040352,
+      "matchNum": "周三080",
+      "datetime": "2026-07-02 00:00",
+      "group": "",
+      "phase": "1/16决赛",
+      "tournament": "世界杯",
+      "status": "not_open",
+      "home": {
+        "name": "英格兰",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/370.png"
+      },
+      "away": {
+        "name": "刚果金",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/775.png"
+      },
+      "odds": {},
+      "metrics": {},
+      "tags": [],
+      "commentary": {}
+    },
+    {
+      "mid": 2040353,
+      "matchNum": "周三081",
+      "datetime": "2026-07-02 04:00",
+      "group": "",
+      "phase": "1/16决赛",
+      "tournament": "世界杯",
+      "status": "not_open",
+      "home": {
+        "name": "比利时",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/363.png"
+      },
+      "away": {
+        "name": "塞内加尔",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/774.png"
+      },
+      "odds": {},
+      "metrics": {},
+      "tags": [],
+      "commentary": {}
+    },
+    {
+      "mid": 2040354,
+      "matchNum": "周四083",
+      "datetime": "2026-07-03 03:00",
+      "group": "",
+      "phase": "1/16决赛",
+      "tournament": "世界杯",
+      "status": "not_open",
+      "home": {
+        "name": "西班牙",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/23.png"
+      },
+      "away": {
+        "name": "奥地利",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/360.png"
+      },
+      "odds": {},
+      "metrics": {},
+      "tags": [],
+      "commentary": {}
+    },
+    {
+      "mid": 2040355,
+      "matchNum": "周四084",
+      "datetime": "2026-07-03 07:00",
+      "group": "",
+      "phase": "1/16决赛",
+      "tournament": "世界杯",
+      "status": "not_open",
+      "home": {
+        "name": "葡萄牙",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/1044.png"
+      },
+      "away": {
+        "name": "克罗地亚",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/366.png"
+      },
+      "odds": {},
+      "metrics": {},
+      "tags": [],
+      "commentary": {}
+    },
+    {
+      "mid": 2040356,
+      "matchNum": "周四085",
+      "datetime": "2026-07-03 11:00",
+      "group": "",
+      "phase": "1/16决赛",
+      "tournament": "世界杯",
+      "status": "not_open",
+      "home": {
+        "name": "瑞士",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/403.png"
+      },
+      "away": {
+        "name": "阿尔及利",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/985.png"
+      },
+      "odds": {},
+      "metrics": {},
+      "tags": [],
+      "commentary": {}
+    },
+    {
+      "mid": 2040357,
+      "matchNum": "周五088",
+      "datetime": "2026-07-04 09:30",
+      "group": "",
+      "phase": "1/16决赛",
+      "tournament": "世界杯",
+      "status": "not_open",
+      "home": {
+        "name": "哥伦比亚",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/410.png"
+      },
+      "away": {
+        "name": "加纳",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/422.png"
+      },
+      "odds": {},
+      "metrics": {},
+      "tags": [],
+      "commentary": {}
     }
   ],
   "schedule": {
