@@ -35,11 +35,13 @@
 .v2-tabs::-webkit-scrollbar { display: none; }
 
 .v2-tab {
-  flex: 0 0 auto; display: flex; flex-direction: column; align-items: center;
+  flex: 0 0 auto; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
   gap: 2px; padding: 8px 12px; border-radius: var(--radius-sm);
   background: var(--surface); border: 1px solid var(--border);
   color: var(--text-dim); cursor: pointer; transition: all 0.18s;
-  min-width: 54px;
+  min-width: 54px; min-height: 48px;     /* ≥44px 触控目标(WCAG/HIG) */
+  touch-action: manipulation;            /* 消除移动端 300ms 点击延迟 */
 }
 .v2-tab-md { font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; }
 .v2-tab-wd { font-size: 10px; color: var(--text-faint); }
@@ -95,3 +97,71 @@
 
 /* 空态（理论上不出现，因只为有数据的天建页） */
 .v2-page-empty { text-align: center; color: var(--text-faint); padding: 40px 0; }
+
+/* ───────────────────────────────────────────────────────────────
+   V2 增强（ui-ux-pro-max 体检后补强；全部限定在 .v2 作用域，
+   不影响共享的 worldcup.css / 经典版 worldcup.html）
+   ─────────────────────────────────────────────────────────────── */
+
+/* 1. 等宽数字字体变量：赔率/比分/时间用 Fira Code，中文文案仍走 PingFang。
+   只声明在 V2 引入了 Fira Code 的页面，回退到原 tabular-nums 行为。 */
+.v2 {
+  --font-num: 'Fira Code', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+/* 把页面里所有「纯数字」元素统一为等宽数字字体，根治不同位数赔率跳动。
+   这些 class 来自 render.js（赔率/让球/比分/时间/编号），V2 复用它们。 */
+.v2 .odd-v,
+.v2 .hhad-v,
+.v2 .hhad-label,
+.v2 .card-score-v,
+.v2 .card-time,
+.v2 .v2-tab-md,
+.v2 .v2-page-cnt {
+  font-family: var(--font-num);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+  letter-spacing: -0.01em;     /* Fira Code 偏宽，数据列收一点更紧凑 */
+}
+
+/* 2. 卡片按压反馈：移动端点按时轻微下沉，松手回弹（press-feedback）。
+   只用 transform/opacity，不触发 layout，不引起 CLS。 */
+.v2 .card {
+  transition: transform 0.12s ease, border-color 0.18s ease, background 0.18s ease;
+}
+.v2 .card:active {
+  transform: scale(0.985);
+  border-color: var(--border-hi);
+}
+/* Tab 同样给按压反馈 */
+.v2-tab:active { transform: scale(0.95); }
+
+/* 3. ViewPager 翻页连续感：切到某页时，该页卡片做一次极轻的位移+淡入，
+   让横滑切天不再是生硬的「啪」一下，而有方向延续（continuity）。
+   由 v2.js 在切页时打 .is-current 触发（所有页常驻 DOM，纯 CSS 无法在
+   切页时重播动画，故用 class 重挂）。 */
+.v2-page.is-current > .card,
+.v2-page.is-current > .v2-page-head {
+  animation: v2PageEnter 0.34s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes v2PageEnter {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* 4. 尊重系统「减少动态效果」：关掉背景呼吸光带、奖杯发光、翻页动画，
+   保留必要的状态过渡。无障碍刚需（reduced-motion）。 */
+@media (prefers-reduced-motion: reduce) {
+  .v2 .bg-shine,
+  .v2 .logo-icon {
+    animation: none !important;
+  }
+  .v2-page.is-current > .card,
+  .v2-page.is-current > .v2-page-head {
+    animation: none;
+  }
+  .v2-tabs,
+  .v2 * {
+    scroll-behavior: auto !important;
+  }
+}

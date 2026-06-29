@@ -102,7 +102,7 @@
     setTimeout(() => { state.isSyncing = false; }, smooth ? 400 : 50);
   }
 
-  /** 设置当前页：更新 Tab 高亮 + 把该 Tab 滚到可视居中。 */
+  /** 设置当前页：更新 Tab 高亮 + 把该 Tab 滚到可视居中 + 触发当前页入场动画。 */
   function setCurrent(idx) {
     if (idx === state.current) return;
     state.current = idx;
@@ -113,6 +113,22 @@
       const left = tab.offsetLeft - (els.tabs.clientWidth - tab.clientWidth) / 2;
       els.tabs.scrollTo({ left, behavior: 'smooth' });
     }
+    markCurrentPage(idx);
+  }
+
+  /** 给当前页打 .is-current 触发卡片入场动画；移除其余页的标记。
+   *  重挂 class 前强制 reflow，确保横滑回看同一页也能重播动画。 */
+  function markCurrentPage(idx) {
+    const pages = els.pager.querySelectorAll('.v2-page');
+    pages.forEach((p, i) => {
+      if (i === idx) {
+        p.classList.remove('is-current');
+        void p.offsetWidth;            // 强制 reflow，重启 animation
+        p.classList.add('is-current');
+      } else {
+        p.classList.remove('is-current');
+      }
+    });
   }
 
   /** 用户横滑 ViewPager → 算当前页 → 联动 Tab（非代码滚动时）。 */

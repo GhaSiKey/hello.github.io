@@ -83,3 +83,25 @@ assets/worldcup/js/v2.js      # V2 入口（分组分天、tab 渲染、滑动�
 - 本地起服务，手机尺寸（DevTools 设备模拟）测：滑动切天、Tab 联动、点 Tab 跳页、
   卡片点击详情、已结束比分显示、默认定位今天。
 - node 静态校验 v2.js 语法。
+
+## UX 增强（ui-ux-pro-max 体检后补强）
+
+借 `ui-ux-pro-max` 插件的 UX 规则库对 V2 做了一轮移动端体检，落地 6 项改进。
+**全部限定在 V2 范围**（worldcup-v2.html / v2.css 的 `.v2` 作用域 / v2.js），
+共享的 worldcup.css、render.js、data.js 与经典版 worldcup.html **零改动**。
+
+| 改进 | 落点 | 规则依据 |
+|------|------|----------|
+| 恢复双指缩放 + 适配刘海屏 | html viewport 去掉 `user-scalable=no`，加 `viewport-fit=cover` | viewport-meta（禁缩放是无障碍硬伤） |
+| 赔率/比分/时间等宽数字 | 引入 Fira Code，`.v2` 下数字类用 `--font-num`；中文仍 PingFang | number-tabular |
+| Tab 触控目标 ≥44px | `.v2-tab` 加 `min-height:48px` + `touch-action:manipulation` | touch-target-size |
+| 卡片/Tab 按压反馈 | `:active` 轻微 scale（纯 transform，不触发 CLS） | press-feedback / scale-feedback |
+| 横滑切天卡片入场动画 | v2.js 切页时给当前页打 `.is-current` 重播 CSS 动画 | continuity |
+| 尊重「减少动态效果」 | `@media (prefers-reduced-motion)` 关背景/发光/翻页动画 | reduced-motion |
+
+**判断取舍**（插件是顾问不是自动改图）：
+- 插件推荐整体换 Fira 字体族——**未采纳**。页面主体是中文，换拉丁字体族对满屏中文
+  无效且会砸掉与其他 4 页的一致性；只取「数字等宽」这个真收益。
+- 插件 `no-emoji-icons` 建议 emoji 换 SVG——**未采纳**。🏆🔥💎 是本项目活泼调性的
+  一部分，个人站无需照搬企业 App 规范。
+- 插件的 React/Tailwind/Apple HIG stack 指南与本项目「纯静态无构建」技术栈不符，全部过滤。
