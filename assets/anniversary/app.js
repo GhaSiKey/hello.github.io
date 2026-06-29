@@ -71,19 +71,19 @@
 
     function computeMax() {
       const w = els.wall.clientWidth, h = els.wall.clientHeight;
-      // 按面积估算同屏张数：分母越小越密。夹在 5~12 之间。
-      // 移动端约 5~6 张，桌面约 10~12 张。
+      // 按面积估算同屏张数：分母越小越密。夹在 8~12 之间，
+      // 让手机也能到 10+ 张，与桌面一致。
       const area = w * h;
-      return Math.max(5, Math.min(12, Math.round(area / 55000)));
+      return Math.max(8, Math.min(12, Math.round(area / 22000)));
     }
 
     // 照片宽度区间(占墙宽%)：窄屏(手机)放大，宽屏(桌面)缩小。
-    // 否则手机上按桌面的小百分比算会显得很小气。
+    // 手机张数已与桌面看齐(10~12)，尺寸相应收一点避免糊成一团。
     function sizeRange() {
       const w = els.wall.clientWidth;
-      if (w < 520) return [40, 50];   // 手机竖屏：照片大一点才有存在感
-      if (w < 900) return [30, 38];   // 平板
-      return [20, 28];                // 桌面宽屏：小尺寸避免拥挤
+      if (w < 520) return [30, 40];   // 手机竖屏
+      if (w < 900) return [26, 34];   // 平板
+      return [20, 28];                // 桌面宽屏
     }
 
     // 随机撒点铺满整墙：网格抖动选位，允许适度重叠(要的就是散落叠压感)，
