@@ -130,7 +130,7 @@
           `--x:${pos.x}%;--y:${pos.y}%;--tilt:${tilt}deg;--w:${w}%;--float:${floatDur}s`;
         fig.style.zIndex = String(z);
         fig.dataset.x = pos.x; fig.dataset.y = pos.y;
-        fig.innerHTML = `<div class="pw-card"><div class="pw-img"><img src="${src}" alt="我们的瞬间 ${idx}"></div></div>`;
+        fig.innerHTML = `<div class="pw-card"><div class="pw-img"><img src="${src}" alt="我们的瞬间 ${idx}" draggable="false"></div></div>`;
         els.wall.appendChild(fig);
         const slot = { el: fig, x: pos.x, y: pos.y };
         liveSlots.push(slot);
@@ -143,7 +143,77 @@
       pre.src = src;
     }
 
+    // 让一张拍立得可拖动；移动距离很小则视为「点击」触发放大。
+    // 拖动中提到最高层、暂停浮动动画(否则与 translateY 浮动打架)；
+    // 松手后带惯性继续滑行并摩擦衰减，碰墙边夹停。照片仍照常参与轮转。
+    function makeDraggable(fig, slot, onTap) {
+      const TAP = 6;            // 像素阈值：移动小于此视作点击
+      const FRICTION = 0.85;    // 每帧速度衰减(越小越快停)
+      const MIN_V = 0.05;       // 速度低于此(%/帧)即停止惯性
+      let startX, startY, baseX, baseY, wRect, moved, dragging;
+      let lastX, lastY, lastT, vx = 0, vy = 0, raf = 0;
+
+      const clampX = v => Math.max(6, Math.min(94, v));
+      const clampY = v => Math.max(6, Math.min(94, v));
+
+      fig.addEventListener('pointerdown', e => {
+        e.preventDefault();                          // 阻止原生图片拖拽(web 上会抢事件)
+        if (raf) { cancelAnimationFrame(raf); raf = 0; }  // 打断上一次惯性
+        dragging = true; moved = false; vx = vy = 0;
+        startX = e.clientX; startY = e.clientY;
+        baseX = slot.x; baseY = slot.y;
+        lastX = slot.x; lastY = slot.y; lastT = performance.now();
+        wRect = els.wall.getBoundingClientRect();
+        fig.style.zIndex = String(++zTop);
+        fig.classList.add('pw--dragging');
+        fig.setPointerCapture(e.pointerId);
+      });
+
+      fig.addEventListener('pointermove', e => {
+        if (!dragging) return;
+        const dx = e.clientX - startX, dy = e.clientY - startY;
+        if (Math.abs(dx) > TAP || Math.abs(dy) > TAP) moved = true;
+        const nx = clampX(baseX + dx / wRect.width * 100);
+        const ny = clampY(baseY + dy / wRect.height * 100);
+        // 记录瞬时速度(%/帧，按 16ms 归一)，供松手后惯性使用
+        const now = performance.now(), dt = Math.max(1, now - lastT);
+        vx = (nx - lastX) / dt * 16;
+        vy = (ny - lastY) / dt * 16;
+        lastX = nx; lastY = ny; lastT = now;
+        fig.style.setProperty('--x', nx + '%');
+        fig.style.setProperty('--y', ny + '%');
+        slot.x = nx; slot.y = ny;
+      });
+
+      // 惯性滑行：按松手速度继续移动并摩擦衰减，碰边夹停该轴
+      function glide() {
+        if (!fig.isConnected) { raf = 0; return; }   // 已被轮转移除则停止
+        vx *= FRICTION; vy *= FRICTION;
+        let nx = slot.x + vx, ny = slot.y + vy;
+        if (nx < 6 || nx > 94) { nx = clampX(nx); vx = 0; }
+        if (ny < 6 || ny > 94) { ny = clampY(ny); vy = 0; }
+        slot.x = nx; slot.y = ny;
+        fig.style.setProperty('--x', nx + '%');
+        fig.style.setProperty('--y', ny + '%');
+        if (Math.abs(vx) > MIN_V || Math.abs(vy) > MIN_V) {
+          raf = requestAnimationFrame(glide);
+        } else { raf = 0; }
+      }
+
+      const end = e => {
+        if (!dragging) return;
+        dragging = false;
+        fig.classList.remove('pw--dragging');
+        try { fig.releasePointerCapture(e.pointerId); } catch (_) {}
+        if (!moved) { onTap(); return; }             // 几乎没动 → 点击放大
+        if (Math.abs(vx) > MIN_V || Math.abs(vy) > MIN_V) raf = requestAnimationFrame(glide);
+      };
+      fig.addEventListener('pointerup', end);
+      fig.addEventListener('pointercancel', end);
+    }
+
     function removeEl(slot) {
+      slot.el.classList.add('out');
       slot.el.addEventListener('animationend', () => slot.el.remove(), { once: true });
       setTimeout(() => slot.el.remove(), 1400);  // 兜底
     }
