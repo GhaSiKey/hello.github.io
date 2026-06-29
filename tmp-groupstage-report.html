@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小组赛战绩 · Q2财报</title>
+<style>
+:root{
+  --bg:#0a0e1a; --surface:rgba(255,255,255,0.04); --surface-2:rgba(255,255,255,0.06);
+  --border:rgba(255,255,255,0.08); --text:#e8ecf4; --dim:#9aa3b5; --faint:#6b7488;
+  --red:#ff6b5b; --green:#38d39f; --gold:#ffd98a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+  background:var(--bg);color:var(--text);min-height:100vh;padding:24px 16px 60px}
+.wrap{max-width:760px;margin:0 auto}
+.title{font-size:20px;font-weight:800;margin-bottom:4px}
+.subtitle{font-size:12px;color:var(--faint);margin-bottom:20px}
+/* 汇总卡 2x2 */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;
+  padding:22px 24px;position:relative;overflow:hidden}
+.card::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.03),transparent);pointer-events:none}
+.c-label{font-size:13px;color:var(--dim);margin-bottom:10px}
+.c-value{font-size:30px;font-weight:800;letter-spacing:-0.5px}
+.c-value.neg{color:var(--red)} .c-value.pos{color:var(--green)}
+.c-sub{font-size:12px;color:var(--faint);margin-top:8px}
+/* 图表区 */
+.chart-box{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px 18px}
+.chart-title{font-size:14px;font-weight:700;margin-bottom:2px}
+.chart-sub{font-size:11px;color:var(--faint);margin-bottom:16px}
+canvas{width:100%;height:auto;display:block}
+.legend{display:flex;gap:16px;margin-top:12px;font-size:11px;color:var(--dim);flex-wrap:wrap}
+.legend span{display:flex;align-items:center;gap:5px}
+.dot{width:8px;height:8px;border-radius:50%}
+@media(max-width:560px){.c-value{font-size:24px}.grid{gap:10px}.card{padding:16px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="title">🎰 AI 模拟买盘 · 小组赛战绩</div>
+  <div class="subtitle">2026 World Cup · Q2 小组赛财报 · 72场全结算（娱乐复盘，非投注建议）</div>
+
+  <div class="grid">
+    <div class="card"><div class="c-label">总支出</div><div class="c-value">¥1440</div><div class="c-sub">预算 72 场</div></div>
+    <div class="card"><div class="c-label">已结算收入</div><div class="c-value">¥1229.3</div><div class="c-sub">投入 ¥1440</div></div>
+    <div class="card"><div class="c-label">已结算盈亏</div><div class="c-value neg">-¥210.7 ▼</div><div class="c-sub">ROI -14.6%</div></div>
+    <div class="card"><div class="c-label">命中率</div><div class="c-value">54/215</div><div class="c-sub">已结算 72/72 场</div></div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">📉 累计收益曲线</div>
+    <div class="chart-sub">按结算顺序 · 峰值 +51.4(第8场) → 谷值 -224.1(第57场) → 收官 -210.7</div>
+    <canvas id="chart"></canvas>
+    <div class="legend">
+      <span><i class="dot" style="background:var(--gold)"></i>累计盈亏</span>
+      <span><i class="dot" style="background:var(--faint)"></i>盈亏平衡线</span>
+      <span>每点=1场</span>
+    </div>
+  </div>
+</div>
+<script id="curve" type="application/json">[{"i": 1, "d": "06-12", "c": 21.68}, {"i": 2, "d": "06-12", "c": 1.68}, {"i": 3, "d": "06-13", "c": 31.08}, {"i": 4, "d": "06-13", "c": 33.52}, {"i": 5, "d": "06-14", "c": 13.52}, {"i": 6, "d": "06-14", "c": 41.17}, {"i": 7, "d": "06-14", "c": 48.17}, {"i": 8, "d": "06-14", "c": 51.38}, {"i": 9, "d": "06-15", "c": 31.38}, {"i": 10, "d": "06-15", "c": 33.7}, {"i": 11, "d": "06-15", "c": 13.7}, {"i": 12, "d": "06-15", "c": -6.3}, {"i": 13, "d": "06-16", "c": -26.3}, {"i": 14, "d": "06-16", "c": 3.1}, {"i": 15, "d": "06-16", "c": -16.9}, {"i": 16, "d": "06-16", "c": -9.99}, {"i": 17, "d": "06-17", "c": -29.99}, {"i": 18, "d": "06-17", "c": -18.31}, {"i": 19, "d": "06-17", "c": 4.53}, {"i": 20, "d": "06-17", "c": 8.71}, {"i": 21, "d": "06-18", "c": -11.29}, {"i": 22, "d": "06-18", "c": -31.29}, {"i": 23, "d": "06-18", "c": -30.06}, {"i": 24, "d": "06-18", "c": -25.82}, {"i": 25, "d": "06-19", "c": 11.64}, {"i": 26, "d": "06-19", "c": 16.17}, {"i": 27, "d": "06-19", "c": 18.61}, {"i": 28, "d": "06-19", "c": 19.07}, {"i": 29, "d": "06-20", "c": -0.93}, {"i": 30, "d": "06-20", "c": 6.57}, {"i": 31, "d": "06-20", "c": 43.42}, {"i": 32, "d": "06-20", "c": 23.42}, {"i": 33, "d": "06-21", "c": 3.42}, {"i": 34, "d": "06-21", "c": 0.92}, {"i": 35, "d": "06-21", "c": -19.08}, {"i": 36, "d": "06-21", "c": -39.08}, {"i": 37, "d": "06-22", "c": -37.12}, {"i": 38, "d": "06-22", "c": -57.12}, {"i": 39, "d": "06-22", "c": -77.12}, {"i": 40, "d": "06-22", "c": -97.12}, {"i": 41, "d": "06-23", "c": -117.12}, {"i": 42, "d": "06-23", "c": -78.17}, {"i": 43, "d": "06-23", "c": -77.87}, {"i": 44, "d": "06-23", "c": -97.87}, {"i": 45, "d": "06-24", "c": -105.92}, {"i": 46, "d": "06-24", "c": -125.92}, {"i": 47, "d": "06-24", "c": -113.42}, {"i": 48, "d": "06-24", "c": -133.42}, {"i": 49, "d": "06-25", "c": -153.42}, {"i": 50, "d": "06-25", "c": -147.38}, {"i": 51, "d": "06-25", "c": -167.38}, {"i": 52, "d": "06-25", "c": -187.38}, {"i": 53, "d": "06-25", "c": -183.5}, {"i": 54, "d": "06-25", "c": -203.5}, {"i": 55, "d": "06-26", "c": -201.54}, {"i": 56, "d": "06-26", "c": -204.14}, {"i": 57, "d": "06-26", "c": -224.14}, {"i": 58, "d": "06-26", "c": -191.48}, {"i": 59, "d": "06-26", "c": -171.33}, {"i": 60, "d": "06-26", "c": -171.29}, {"i": 61, "d": "06-27", "c": -191.29}, {"i": 62, "d": "06-27", "c": -198.29}, {"i": 63, "d": "06-27", "c": -199.99}, {"i": 64, "d": "06-27", "c": -188.74}, {"i": 65, "d": "06-27", "c": -164.04}, {"i": 66, "d": "06-27", "c": -155.72}, {"i": 67, "d": "06-28", "c": -175.72}, {"i": 68, "d": "06-28", "c": -179.97}, {"i": 69, "d": "06-28", "c": -178.13}, {"i": 70, "d": "06-28", "c": -198.13}, {"i": 71, "d": "06-28", "c": -190.7}, {"i": 72, "d": "06-28", "c": -210.7}]</script>
+<script>
+const data = JSON.parse(document.getElementById('curve').textContent);
+const cv = document.getElementById('chart');
+const ctx = cv.getContext('2d');
+
+function draw(){
+  const dpr = window.devicePixelRatio || 1;
+  const W = cv.clientWidth, H = 240;
+  cv.width = W*dpr; cv.height = H*dpr; cv.style.height = H+'px';
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.clearRect(0,0,W,H);
+
+  const padL=44, padR=12, padT=16, padB=24;
+  const plotW=W-padL-padR, plotH=H-padT-padB;
+  const vals=data.map(d=>d.c);
+  let mn=Math.min(...vals,0), mx=Math.max(...vals,0);
+  const pad=(mx-mn)*0.1||10; mn-=pad; mx+=pad;
+  const x=i=>padL+plotW*i/(data.length-1);
+  const y=v=>padT+plotH*(mx-v)/(mx-mn);
+
+  // 网格+Y轴标签
+  ctx.font='10px sans-serif'; ctx.fillStyle='#6b7488'; ctx.textAlign='right';
+  const steps=5;
+  for(let s=0;s<=steps;s++){
+    const v=mn+(mx-mn)*s/steps, yy=y(v);
+    ctx.strokeStyle='rgba(255,255,255,0.05)'; ctx.beginPath();
+    ctx.moveTo(padL,yy); ctx.lineTo(W-padR,yy); ctx.stroke();
+    ctx.fillText(Math.round(v),padL-6,yy+3);
+  }
+  // 零线(盈亏平衡)
+  const zy=y(0);
+  ctx.strokeStyle='rgba(154,163,181,0.5)'; ctx.setLineDash([4,4]); ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(padL,zy); ctx.lineTo(W-padR,zy); ctx.stroke(); ctx.setLineDash([]);
+
+  // 面积填充(分正负色)
+  const grad=ctx.createLinearGradient(0,padT,0,padT+plotH);
+  grad.addColorStop(0,'rgba(255,217,138,0.18)'); grad.addColorStop(1,'rgba(255,107,91,0.04)');
+  ctx.beginPath(); ctx.moveTo(x(0),y(data[0].c));
+  data.forEach((d,i)=>ctx.lineTo(x(i),y(d.c)));
+  ctx.lineTo(x(data.length-1),zy); ctx.lineTo(x(0),zy); ctx.closePath();
+  ctx.fillStyle=grad; ctx.fill();
+
+  // 主曲线
+  ctx.beginPath(); ctx.moveTo(x(0),y(data[0].c));
+  data.forEach((d,i)=>ctx.lineTo(x(i),y(d.c)));
+  ctx.strokeStyle='#ffd98a'; ctx.lineWidth=2; ctx.lineJoin='round'; ctx.stroke();
+
+  // 标注峰值/谷值/终点
+  const peak=data.reduce((a,b)=>b.c>a.c?b:a), trough=data.reduce((a,b)=>b.c<a.c?b:a), end=data[data.length-1];
+  function mark(d,color,txt,above){
+    const i=data.indexOf(d), px=x(i), py=y(d.c);
+    ctx.beginPath(); ctx.arc(px,py,3.5,0,7); ctx.fillStyle=color; ctx.fill();
+    ctx.fillStyle=color; ctx.font='bold 10px sans-serif';
+    ctx.textAlign = px>W-60?'right':'left';
+    ctx.fillText(txt, px+(px>W-60?-6:6), py+(above?-7:14));
+  }
+  mark(peak,'#38d39f','峰 +'+peak.c.toFixed(0),true);
+  mark(trough,'#ff6b5b','谷 '+trough.c.toFixed(0),false);
+  mark(end,'#ffd98a','收官 '+end.c.toFixed(1),true);
+
+  // X轴起止日期
+  ctx.fillStyle='#6b7488'; ctx.font='10px sans-serif';
+  ctx.textAlign='left'; ctx.fillText(data[0].d,padL,H-8);
+  ctx.textAlign='right'; ctx.fillText(data[data.length-1].d,W-padR,H-8);
+}
+draw();
+window.addEventListener('resize',draw);
+</script>
+</body>
+</html>

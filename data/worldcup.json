@@ -10,17 +10,17 @@
     ],
     "disclaimer": "数据仅供参考，不构成投注建议；竞彩为负和游戏，长期期望为负",
     "betSummary": {
-      "totalBudget": 1440,
-      "totalMatches": 72,
-      "totalBets": 215,
-      "settledStake": 1440,
-      "settledPayout": 1229.3,
-      "profitSettled": -210.7,
-      "roiSettled": -0.1463,
-      "finishedMatches": 72,
-      "hitBets": 54,
-      "settleableBets": 215,
-      "profitBudget": -210.7
+      "totalBudget": 1560,
+      "totalMatches": 78,
+      "totalBets": 233,
+      "settledStake": 1460,
+      "settledPayout": 1256.3,
+      "profitSettled": -203.7,
+      "roiSettled": -0.1395,
+      "finishedMatches": 73,
+      "hitBets": 55,
+      "settleableBets": 218,
+      "profitBudget": -303.7
     }
   },
   "matches": [
@@ -18758,7 +18758,9 @@
               "pick": {
                 "goalLine": 1,
                 "side": "h"
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分0:1",
@@ -18769,7 +18771,9 @@
               "pick": {
                 "h": 0,
                 "a": 1
-              }
+              },
+              "hit": true,
+              "payout": 27.0
             },
             {
               "market": "比分1:1",
@@ -18780,11 +18784,26 @@
               "pick": {
                 "h": 1,
                 "a": 1
-              }
+              },
+              "hit": false,
+              "payout": 0
             }
           ],
           "note": "南非死守受让不败为主,0:1/1:1博加小胜或平。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 0,
+          "a": 1
+        },
+        "half": {
+          "h": 0,
+          "a": 0
+        },
+        "source": "manual",
+        "filledAt": "2026-06-29T10:12:55+08:00"
       }
     },
     {
