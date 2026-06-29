@@ -246,9 +246,11 @@
   })();
 
   /* ── 放大查看 ── */
+  let viewerOpenedAt = 0;
   function openViewer(src, alt) {
     els.viewerImg.src = src; els.viewerImg.alt = alt || '';
     els.viewer.hidden = false;
+    viewerOpenedAt = performance.now();   // 记录打开时刻，挡掉紧随的合成 click
     requestAnimationFrame(() => els.viewer.classList.add('show'));
   }
   function closeViewer() {
@@ -322,7 +324,12 @@
     // 先绑定按钮事件（最关键，确保按钮一定有反应），其余装饰失败不影响
     els.gateForm.addEventListener('submit', onSubmit);
     els.viewerClose.addEventListener('click', closeViewer);
-    els.viewer.addEventListener('click', e => { if (e.target === els.viewer) closeViewer(); });
+    els.viewer.addEventListener('click', e => {
+      // 打开后 350ms 内的背景点击是 pointerup 补发的合成 click，忽略，
+      // 否则"轻点照片放大"会被同一次交互立刻关闭。
+      if (performance.now() - viewerOpenedAt < 350) return;
+      if (e.target === els.viewer) closeViewer();
+    });
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && !els.viewer.hidden) closeViewer(); });
     try { fillPickers(); buildPetals(); } catch (err) { console.error(err); }
   }
