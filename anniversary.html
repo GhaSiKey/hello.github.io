@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>一周年快乐</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Cormorant Garamond：标题衬线；Ma Shan Zheng：中文手写体（结尾的话） -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/anniversary/style.css">
+</head>
+<body>
+  <!-- 柔光氛围背景 -->
+  <div class="bg" aria-hidden="true">
+    <span class="bg-orb bg-orb-1"></span>
+    <span class="bg-orb bg-orb-2"></span>
+    <span class="bg-orb bg-orb-3"></span>
+  </div>
+  <!-- 飘落花瓣/光点（JS 注入） -->
+  <div class="petals" id="petals" aria-hidden="true"></div>
+
+  <!-- ① 口令门帘 -->
+  <section class="gate" id="gate">
+    <div class="gate-inner">
+      <p class="gate-q">我们开始的那天，是几月几号？</p>
+      <form class="gate-form" id="gateForm" autocomplete="off">
+        <div class="gate-picker">
+          <div class="gate-field">
+            <select class="gate-select" id="gateMonth" aria-label="月份"></select>
+            <span class="gate-unit">月</span>
+          </div>
+          <div class="gate-field">
+            <select class="gate-select" id="gateDay" aria-label="日期"></select>
+            <span class="gate-unit">日</span>
+          </div>
+        </div>
+        <button class="gate-btn" type="submit">开始</button>
+      </form>
+      <p class="gate-hint" id="gateHint"></p>
+    </div>
+  </section>
+
+  <!-- 主体：单屏，不滚动 -->
+  <main class="stage" id="stage" hidden>
+    <!-- ② 顶部标题（精简，常驻顶部）-->
+    <header class="hero" id="hero">
+      <p class="hero-kicker">FOR 婷 · 高世奇</p>
+      <h1 class="hero-title">一周年快乐</h1>
+      <p class="hero-days">
+        <span class="hero-range">2025.06.30 → 2026.06.30</span>
+        <span class="hero-dot">·</span>
+        在一起第 <b id="dayCount">—</b> 天
+      </p>
+    </header>
+
+    <!-- ③ 漂浮照片墙：拍立得由 JS 注入，一屏内自动轮转 -->
+    <section class="wall" id="wall" aria-label="这一年的照片"></section>
+
+    <!-- ④ 结尾的话（底部常驻）-->
+    <footer class="letter">
+      <p class="letter-text" id="letterText"></p>
+    </footer>
+  </main>
+
+  <!-- 放大查看层 -->
+  <div class="viewer" id="viewer" hidden>
+    <img class="viewer-img" id="viewerImg" alt="">
+    <span class="viewer-close" id="viewerClose" aria-label="关闭">✕</span>
+  </div>
+
+  <script src="assets/anniversary/app.js"></script>
+</body>
+</html>

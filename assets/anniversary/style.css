@@ -1,0 +1,213 @@
+/* anniversary.html — 一周年纪念贺卡
+ * 主题：暖粉桃色 + 漂浮拍立得照片墙。单屏不滚动，照片自动轮转。
+ * 移动优先，纯静态零依赖，尊重 prefers-reduced-motion。 */
+
+:root {
+  --bg-1: #ffe3ec;          /* 樱花粉 */
+  --bg-2: #ffd1dc;          /* 桃粉 */
+  --bg-3: #fff0e6;          /* 奶油 */
+  --cream: #fffaf5;         /* 拍立得相纸白(暖) */
+  --ink: #7a5a52;           /* 相纸上的字 */
+  --rose: #ff7eb3;          /* 主玫瑰粉 */
+  --rose-deep: #ff5e9a;
+  --coral: #ff9a76;         /* 珊瑚橘 */
+  --gold: #f3b94d;          /* 暖金点缀 */
+  --text: #6d4c54;          /* 暖棕文字 */
+  --text-dim: #a98a90;
+  --text-faint: #c9aeb3;
+  --radius: 6px;
+  font-synthesis: none;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Cormorant Garamond', 'PingFang SC', 'Microsoft YaHei', serif;
+  background: linear-gradient(160deg, var(--bg-1) 0%, var(--bg-2) 45%, var(--bg-3) 100%);
+  background-attachment: fixed;
+  color: var(--text);
+  height: 100vh; height: 100dvh;
+  overflow: hidden;                 /* 单屏，不滚动 */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 柔光氛围球 */
+.bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.bg-orb { position: absolute; border-radius: 50%; filter: blur(48px); opacity: 0.5; }
+.bg-orb-1 { width: 50vw; height: 50vw; background: var(--rose);  top: -12vw; left: -10vw; }
+.bg-orb-2 { width: 45vw; height: 45vw; background: var(--coral); bottom: -14vw; right: -10vw; }
+.bg-orb-3 { width: 38vw; height: 38vw; background: var(--gold);  top: 40%; left: 55%; opacity: 0.35; }
+
+/* 飘落花瓣/光点 */
+.petals { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
+.petal {
+  position: absolute; top: -5vh; font-size: 1.2rem;
+  animation: petalFall linear infinite; opacity: 0.7;
+}
+@keyframes petalFall {
+  0%   { transform: translateY(-5vh) rotate(0deg);   opacity: 0; }
+  10%  { opacity: 0.7; }
+  100% { transform: translateY(108vh) rotate(360deg); opacity: 0; }
+}
+
+/* ── ① 口令门帘 ── */
+.gate {
+  position: fixed; inset: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: center; padding: 24px;
+  background: linear-gradient(160deg, var(--bg-1), var(--bg-2));
+  transition: opacity 0.9s ease, visibility 0.9s ease;
+}
+.gate.open { opacity: 0; visibility: hidden; pointer-events: none; }
+.gate-inner { text-align: center; max-width: 420px; width: 100%; }
+.gate-q { font-size: clamp(20px, 5.5vw, 28px); color: var(--text); margin-bottom: 28px; }
+.gate-form { display: flex; flex-direction: column; gap: 18px; align-items: center; }
+/* 月日选择器 */
+.gate-picker { display: flex; gap: 14px; justify-content: center; }
+.gate-field { display: flex; align-items: center; gap: 6px; }
+.gate-select {
+  appearance: none; -webkit-appearance: none;
+  padding: 12px 18px; font-family: inherit; font-size: 20px;
+  color: var(--text); text-align: center; cursor: pointer;
+  background: rgba(255,255,255,0.6); border: 1.5px solid var(--rose);
+  border-radius: 16px; outline: none; min-height: 48px; min-width: 84px;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.gate-select:focus { border-color: var(--rose-deep); box-shadow: 0 0 0 4px rgba(255,126,179,0.18); }
+.gate-unit { font-size: 17px; color: var(--text-dim); }
+.gate-btn {
+  padding: 12px 40px; font-family: inherit; font-size: 18px; color: #fff;
+  background: linear-gradient(135deg, var(--rose), var(--rose-deep));
+  border: none; border-radius: 999px; cursor: pointer; min-height: 48px;
+  box-shadow: 0 6px 18px rgba(255,94,154,0.35); transition: transform 0.18s, box-shadow 0.25s;
+}
+.gate-btn:hover { box-shadow: 0 8px 24px rgba(255,94,154,0.5); transform: translateY(-1px); }
+.gate-btn:active { transform: scale(0.96); }
+.gate-hint { margin-top: 16px; font-size: 15px; color: var(--rose-deep); min-height: 22px; }
+.gate.shake .gate-inner { animation: shake 0.4s; }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%,60%{transform:translateX(-9px)} 40%,80%{transform:translateX(9px)} }
+
+/* ── 主体舞台：单屏三段，顶标题 / 中照片墙 / 底话 ── */
+.stage[hidden] { display: none; }      /* 同理：hidden 时不占位 */
+.stage {
+  position: relative; z-index: 2;
+  height: 100vh; height: 100dvh;
+  display: flex; flex-direction: column;
+  padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+}
+.stage > * { opacity: 0; }
+.stage.reveal > * { animation: fadeUp 1s ease forwards; }
+.stage.reveal .hero { animation-delay: 0.1s; }
+.stage.reveal .wall { animation-delay: 0.4s; }
+.stage.reveal .letter { animation-delay: 0.7s; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── ② 顶部标题（精简常驻）── */
+.hero { flex: 0 0 auto; text-align: center; padding: 22px 24px 8px; }
+.hero-kicker {
+  font-size: 12px; letter-spacing: 0.4em; text-indent: 0.4em;
+  color: var(--rose-deep); text-transform: uppercase; margin-bottom: 4px;
+}
+.hero-title {
+  font-size: clamp(34px, 9vw, 60px); font-weight: 600; line-height: 1.05;
+  background: linear-gradient(120deg, var(--rose-deep), var(--coral), var(--gold));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 2px 12px rgba(255,126,179,0.3));
+}
+.hero-days { margin-top: 8px; font-size: clamp(13px, 3.6vw, 16px); color: var(--text-dim); }
+.hero-range { font-variant-numeric: tabular-nums; letter-spacing: 0.04em; }
+.hero-dot { margin: 0 8px; color: var(--rose); }
+.hero-days b { font-size: 1.3em; color: var(--rose-deep); font-weight: 600; font-variant-numeric: tabular-nums; padding: 0 3px; }
+
+/* ── ③ 漂浮照片墙（高潮段）── */
+.wall {
+  flex: 1 1 auto; position: relative; overflow: hidden;
+  margin: 0 8px;
+}
+
+/* 单张漂浮拍立得：外层 .pw 只负责定位+整体淡入淡出，
+   内层 .pw-card 负责倾斜+浮动。两层分离，避免 transform 互相覆盖，
+   且浮动用 translateY(GPU 合成) 而非 margin(每帧 layout，会卡死)。 */
+.pw {
+  position: absolute;
+  left: var(--x); top: var(--y);
+  width: var(--w, 30%);
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 0; cursor: pointer;
+  animation: pwIn 1s ease forwards;
+  will-change: transform, opacity;
+}
+.pw.out { animation: pwOut 1s ease forwards; }
+@keyframes pwIn  { from { opacity: 0; transform: translate(-50%,-50%) scale(0.8); }
+                   to   { opacity: 1; transform: translate(-50%,-50%) scale(1); } }
+@keyframes pwOut { from { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+                   to   { opacity: 0; transform: translate(-50%,-50%) scale(0.85); } }
+
+.pw-card {
+  background: var(--cream);
+  padding: 7px 7px 24px;
+  border-radius: var(--radius);
+  /* 白描边 + 多层投影：让叠压时上层始终是清晰的实体相片，不糊成透叠 */
+  border: 1px solid rgba(255,255,255,0.9);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.6),
+    0 14px 32px rgba(150,60,90,0.35),
+    0 4px 10px rgba(150,60,90,0.25);
+  transform: rotate(var(--tilt, 0deg));
+  animation: pwFloat var(--float, 7s) ease-in-out infinite;
+}
+@keyframes pwFloat {
+  0%,100% { transform: rotate(var(--tilt,0deg)) translateY(0); }
+  50%     { transform: rotate(var(--tilt,0deg)) translateY(-9px); }
+}
+
+.pw-img { display: block; width: 100%; overflow: hidden; border-radius: 3px; background: #f3d9e0; }
+.pw--landscape .pw-img { aspect-ratio: 4/3; }
+.pw--portrait  .pw-img { aspect-ratio: 3/4; }
+.pw-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ── 放大查看层 ── */
+.viewer[hidden] { display: none; }     /* hidden 时彻底移除，否则透明层会盖住全屏拦截点击 */
+.viewer {
+  position: fixed; inset: 0; z-index: 2000;
+  display: flex; align-items: center; justify-content: center; padding: 24px;
+  background: rgba(109,76,84,0.55); backdrop-filter: blur(8px);
+  opacity: 0; transition: opacity 0.3s ease;
+}
+.viewer.show { opacity: 1; }
+.viewer-img {
+  max-width: 92vw; max-height: 80vh;
+  background: var(--cream); padding: 10px 10px 36px; border-radius: var(--radius);
+  box-shadow: 0 24px 60px rgba(120,50,70,0.5);
+  transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.22,1,0.36,1);
+}
+.viewer.show .viewer-img { transform: scale(1); }
+.viewer-close {
+  position: absolute; top: 18px; right: 22px; width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; color: #fff; background: rgba(255,255,255,0.2);
+  border-radius: 50%; cursor: pointer;
+}
+
+/* ── ④ 结尾的话（底部常驻）── */
+.letter { flex: 0 0 auto; text-align: center; padding: 10px 28px 22px; }
+.letter-text {
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: clamp(16px, 4.6vw, 24px); line-height: 1.7;
+  color: var(--text); max-width: 22em; margin: 0 auto;
+  letter-spacing: 0.03em;
+}
+.letter-text .letter-line { display: block; }    /* 每句独占一行 */
+.letter-text .ch { display: inline-block; opacity: 0; filter: blur(6px); transform: translateY(6px);
+  transition: opacity 0.5s ease, filter 0.5s ease, transform 0.5s ease; }
+.letter-text.show .ch { opacity: 1; filter: blur(0); transform: translateY(0); }
+
+/* ── 无障碍：尊重「减少动态效果」── */
+@media (prefers-reduced-motion: reduce) {
+  .petal { display: none; }
+  .stage.reveal > * { animation: none; opacity: 1; transform: none; }
+  .pw { animation: pwIn 0.8s ease forwards; }      /* 去浮动，仅淡入 */
+  .pw.out { animation: pwOut 0.8s ease forwards; }
+  .pw-card { animation: none; }                    /* 关掉内层浮动 */
+  .letter-text .ch { transition: opacity 0.4s ease; filter: none; transform: none; }
+  .viewer, .viewer-img { transition: opacity 0.2s ease; }
+}

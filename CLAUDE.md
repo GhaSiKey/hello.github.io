@@ -23,12 +23,17 @@ hello.github.io/
 ├── otakumap.html       # OtakuMap 番剧每日更新查看
 ├── worldcup.html       # 世界杯赔率页（读 data/worldcup.json 静态渲染）
 ├── simbet.html         # AI 模拟买盘战绩页（与 worldcup 同子项目）
+├── anniversary.html    # 恋爱一周年纪念页（月日口令门帘 + 漂浮拍立得照片墙）
 ├── assets/             # 页面资源，按子项目收纳
 │   ├── invite/
 │   │   └── 1.jpg              # 邀请页表情包
 │   ├── otakumap/
 │   │   ├── style.css          # OtakuMap 样式
 │   │   └── app.js             # OtakuMap 逻辑
+│   ├── anniversary/           # 一周年纪念页子项目
+│   │   ├── style.css          # 配色/门帘/照片墙/放大层样式
+│   │   ├── app.js             # 门帘校验+照片墙轮转+逐字显影
+│   │   └── 01.jpg ~ 20.jpg    # 20 张照片
 │   └── worldcup/             # 世界杯子项目（赔率+战绩共用）
 │       ├── css/  worldcup.css, simbet.css
 │       └── js/   data.js, render.js, calendar.js, app.js  # 赔率页
@@ -37,6 +42,7 @@ hello.github.io/
 │   └── worldcup.json   # 世界杯赔率+赛程+战绩（脚本生成，页面唯一数据源）
 ├── docs/               # 项目文档
 │   ├── arch.md / index-page.md / anr-report.md / otakumap.md
+│   ├── anniversary.md   # 一周年纪念页设计与维护
 │   ├── api.md          # Bangumi API 接口文档
 │   ├── worldcup.md / worldcup-web.md / sim-bet.md
 │   └── round1-review.md # 第一轮娱乐方案复盘
