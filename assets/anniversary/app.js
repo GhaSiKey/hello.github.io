@@ -131,9 +131,11 @@
         fig.style.zIndex = String(z);
         fig.dataset.x = pos.x; fig.dataset.y = pos.y;
         fig.innerHTML = `<div class="pw-card"><div class="pw-img"><img src="${src}" alt="我们的瞬间 ${idx}"></div></div>`;
-        fig.addEventListener('click', () => openViewer(src, '我们的瞬间 ' + idx));
         els.wall.appendChild(fig);
-        liveSlots.push({ el: fig, x: pos.x, y: pos.y });
+        const slot = { el: fig, x: pos.x, y: pos.y };
+        liveSlots.push(slot);
+        // 拖动移动 + 轻点放大(靠移动距离区分)
+        makeDraggable(fig, slot, () => openViewer(src, '我们的瞬间 ' + idx));
       };
       pre.addEventListener('load', () =>
         mount(pre.naturalWidth >= pre.naturalHeight ? 'pw--landscape' : 'pw--portrait'));
@@ -142,7 +144,6 @@
     }
 
     function removeEl(slot) {
-      slot.el.classList.add('out');
       slot.el.addEventListener('animationend', () => slot.el.remove(), { once: true });
       setTimeout(() => slot.el.remove(), 1400);  // 兜底
     }

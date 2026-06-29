@@ -12,6 +12,14 @@ const TAG_ICON = {
   '小球倾向': '🧊',
 };
 
+/** 剥离 matchNum 开头的"周X"星期标注，只留场次编号。
+ *  体彩 matchNum 的星期按比赛地当地算（如淘汰赛美洲"周日073"），
+ *  与 datetime 换算的北京星期差一天会自相矛盾——故展示时去掉星期，
+ *  星期统一由 parseMatchTime(datetime) 给出（北京时间，准确）。 */
+function matchNo(matchNum) {
+  return String(matchNum == null ? '' : matchNum).replace(/^周[一二三四五六日]/, '');
+}
+
 /** HTML 转义，防止队名/点评里的特殊字符破坏结构。 */
 function esc(s) {
   return String(s == null ? '' : s)
@@ -97,7 +105,7 @@ function renderCard(m) {
   return `
   <article class="card${finished ? ' card--finished' : ''}" data-mid="${m.mid}" tabindex="0" role="button">
     <div class="card-head">
-      <span class="card-num">${esc(m.matchNum)}</span>
+      <span class="card-num">${esc(matchNo(m.matchNum))}</span>
       <span class="card-group">${esc(m.group)}</span>
       ${headRight}
     </div>
@@ -320,7 +328,7 @@ function renderDetail(m) {
   return `
     <button class="detail-close" id="detailClose" aria-label="关闭">✕</button>
     <div class="detail-head">
-      <span class="detail-meta">${esc(m.matchNum)} · ${esc(m.group)} · ${esc(t.date)} ${esc(t.weekday)} ${esc(t.time)}</span>
+      <span class="detail-meta">${[matchNo(m.matchNum), m.group, `${t.date} ${t.weekday} ${t.time}`].filter(s => s && String(s).trim()).map(esc).join(' · ')}</span>
       <div class="detail-teams">
         <div class="dteam">${logoImg(m.home)}<span>${esc(m.home.name)}</span></div>
         <span class="dvs">VS</span>
