@@ -61,6 +61,13 @@ anniversary.html 是一个恋爱一周年纪念贺卡网页，暖粉桃色调，
 - 文案在 `CONFIG.letter`，按句末标点（。！？）切成多行，每句独占一行
 - 行内逐字显影（blur + 位移渐入），延迟逐字递增
 
+### ⑤ 背景音乐（BGM）
+
+- 音频文件 `assets/anniversary/bgm.mp3`，循环播放，默认音量 60%
+- **自动播放**：借"点击开始"这次用户手势在 `unlock()` 内起播（`Music.enable()`），符合浏览器自动播放策略；个别浏览器仍拦截时按钮停在暂停态，点一下即可播
+- **右上角按钮**：固定视口右上角的玻璃拟态圆按钮，4 根声波柱在播放时跳动、暂停时静止；点击切换播放/暂停
+- 元素缺失（如缓存旧 HTML）时安全跳过，不抛错
+
 ## 文件依赖
 
 | 文件 | 说明 |
@@ -69,6 +76,7 @@ anniversary.html 是一个恋爱一周年纪念贺卡网页，暖粉桃色调，
 | assets/anniversary/style.css | 样式（配色变量、门帘、照片墙、放大层、结尾、reduced-motion 降级） |
 | assets/anniversary/app.js | 交互逻辑（门帘校验、照片墙轮转、放大、逐字显影） |
 | assets/anniversary/01.jpg ~ 20.jpg | 20 张照片 |
+| assets/anniversary/bgm.mp3 | 背景音乐 |
 
 外部依赖：Google Fonts（Cormorant Garamond 标题衬线 + Ma Shan Zheng 中文手写体）。
 
@@ -82,3 +90,4 @@ anniversary.html 是一个恋爱一周年纪念贺卡网页，暖粉桃色调，
 - **调照片尺寸**：改 `sizeRange()` 各档百分比
 - **调轮转速度**：改 `CONFIG.rotateMs`（毫秒）
 - **调拖动惯性**：改 `makeDraggable()` 内 `FRICTION`（越小越快停，0.85 较跟手）；`TAP` 是拖/点的距离阈值（像素）
+- **换 BGM**：替换 `assets/anniversary/bgm.mp3`，保持文件名；改音量改 `Music.enable()` 内 `els.bgm.volume`（0~1，当前 0.6）

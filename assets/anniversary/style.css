@@ -214,6 +214,33 @@ body {
   transition: opacity 0.5s ease, filter 0.5s ease, transform 0.5s ease; }
 .letter-text.show .ch { opacity: 1; filter: blur(0); transform: translateY(0); }
 
+/* ── 右上角 BGM 播放按钮 ── */
+.music-toggle {
+  position: fixed; top: 16px; right: 16px; z-index: 2500;
+  width: 44px; height: 44px; padding: 0;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(255,255,255,0.7); border-radius: 50%;
+  background: rgba(255,255,255,0.45); backdrop-filter: blur(8px);
+  box-shadow: 0 4px 14px rgba(150,60,90,0.25);
+  cursor: pointer; transition: transform 0.18s, box-shadow 0.25s, background 0.25s;
+}
+.music-toggle:hover { transform: scale(1.06); box-shadow: 0 6px 18px rgba(150,60,90,0.35); }
+.music-toggle:active { transform: scale(0.94); }
+.music-toggle[hidden] { display: none; }
+/* 声波柱：4 根竖条，播放时跳动 */
+.music-bars { display: flex; align-items: flex-end; gap: 3px; height: 18px; }
+.music-bars span {
+  width: 3px; height: 100%; border-radius: 2px;
+  background: linear-gradient(var(--rose-deep), var(--rose));
+  transform-origin: bottom; transform: scaleY(0.35);
+}
+.music-toggle.playing .music-bars span { animation: bar 0.9s ease-in-out infinite; }
+.music-bars span:nth-child(1) { animation-delay: -0.2s; }
+.music-bars span:nth-child(2) { animation-delay: -0.5s; }
+.music-bars span:nth-child(3) { animation-delay: -0.1s; }
+.music-bars span:nth-child(4) { animation-delay: -0.7s; }
+@keyframes bar { 0%,100% { transform: scaleY(0.35); } 50% { transform: scaleY(1); } }
+
 /* ── 无障碍：尊重「减少动态效果」── */
 @media (prefers-reduced-motion: reduce) {
   .petal { display: none; }

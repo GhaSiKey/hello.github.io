@@ -69,6 +69,15 @@
     <span class="viewer-close" id="viewerClose" aria-label="关闭">✕</span>
   </div>
 
+  <!-- BGM：进入舞台后自动播放，右上角按钮切换 -->
+  <audio id="bgm" src="assets/anniversary/bgm.mp3" loop preload="auto"></audio>
+  <button class="music-toggle" id="musicToggle" type="button"
+          aria-label="播放/暂停背景音乐" hidden>
+    <span class="music-bars" aria-hidden="true">
+      <span></span><span></span><span></span><span></span>
+    </span>
+  </button>
+
   <script src="assets/anniversary/app.js"></script>
 </body>
 </html>

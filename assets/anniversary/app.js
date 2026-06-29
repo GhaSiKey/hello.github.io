@@ -24,6 +24,7 @@
     stage: $('#stage'), dayCount: $('#dayCount'),
     wall: $('#wall'), letterText: $('#letterText'), petals: $('#petals'),
     viewer: $('#viewer'), viewerImg: $('#viewerImg'), viewerClose: $('#viewerClose'),
+    bgm: $('#bgm'), musicToggle: $('#musicToggle'),
   };
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -245,6 +246,39 @@
     return { start };
   })();
 
+  /* ── BGM 播放控制 ──
+   * 进入舞台时借「点击开始」这次用户交互自动起播(浏览器允许)；
+   * 右上角按钮切换播放/暂停，声波柱动画随播放态联动。
+   * 若自动播放仍被拦截(部分浏览器)，按钮停在暂停态，点一下即可播。 */
+  const Music = (() => {
+    let ready = false;  // 是否已挂载(stage 显示后才出现按钮)
+    function reflect() {
+      if (!els.bgm || !els.musicToggle) return;
+      const playing = !els.bgm.paused && !els.bgm.ended;
+      els.musicToggle.classList.toggle('playing', playing);
+      els.musicToggle.setAttribute('aria-label', playing ? '暂停背景音乐' : '播放背景音乐');
+    }
+    function toggle() {
+      if (els.bgm.paused) els.bgm.play().catch(() => {});
+      else els.bgm.pause();
+      reflect();
+    }
+    function enable() {
+      if (ready) return;
+      if (!els.bgm || !els.musicToggle) return;   // 元素缺失(如缓存旧HTML)则安全跳过
+      ready = true;
+      els.bgm.volume = 0.6;            // 默认 60% 音量，不盖过氛围
+      els.musicToggle.hidden = false;
+      els.musicToggle.addEventListener('click', toggle);
+      els.bgm.addEventListener('play', reflect);
+      els.bgm.addEventListener('pause', reflect);
+      // 借当前用户交互(点开始)起播；被拦则保持暂停态等手动点
+      els.bgm.play().catch(() => {});
+      reflect();
+    }
+    return { enable };
+  })();
+
   /* ── 放大查看 ── */
   let viewerOpenedAt = 0;
   function openViewer(src, alt) {
@@ -278,6 +312,7 @@
   }
 
   function unlock() {
+    Music.enable();   // 借「点击开始」这次手势起播 BGM(必须在手势同步栈内)
     els.gate.classList.add('open');
     els.stage.hidden = false;
     els.dayCount.textContent = daysTogether();
