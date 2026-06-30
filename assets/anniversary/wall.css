@@ -4,8 +4,18 @@
  * 不动 anniversary.html 的任何样式。 */
 
 .wall-page {
-  /* 画廊暖深色：突出照片、夜间不刺眼、OLED 省电。想换回暖粉改这里即可 */
-  background: radial-gradient(120% 120% at 50% 0%, #3a2730 0%, #251820 60%, #1c1218 100%) fixed;
+  /* 软木塞板(cork board)：米黄底 + 多层颗粒斑点模拟软木质感，纯 CSS 零加载。
+     颗粒调大更斑驳，更接近真实软木。 */
+  background-color: #c89c63;
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(90,55,20,0.20) 1.4px, transparent 2.6px),
+    radial-gradient(circle at 50% 50%, rgba(120,80,35,0.16) 1.1px, transparent 2.2px),
+    radial-gradient(circle at 50% 50%, rgba(255,235,200,0.22) 1px, transparent 2px),
+    radial-gradient(circle at 50% 50%, rgba(70,42,15,0.12) 2px, transparent 3.6px),
+    radial-gradient(140% 120% at 50% 0%, #d8b27e 0%, #c89c63 45%, #b07f48 100%);
+  background-size: 15px 15px, 23px 23px, 19px 19px, 34px 34px, 100% 100%;
+  background-position: 0 0, 7px 11px, 11px 4px, 17px 19px, 0 0;
+  background-attachment: fixed;
   height: 100vh; height: 100dvh;
   overflow: hidden;
   cursor: default;
@@ -13,14 +23,14 @@
 /* 空闲时隐藏鼠标(相框上不该有光标) */
 .wall-page.idle { cursor: none; }
 
-/* 照片墙铺满整个视口，不再是舞台中间一段 */
+/* 照片墙铺满整个视口 */
 .wall-page .wall {
   position: fixed; inset: 0; margin: 0;
   flex: none; overflow: hidden;
 }
 
-/* 花瓣在深底上调暗一些，不喧宾夺主 */
-.wall-page .petals { opacity: 0.5; }
+/* 花瓣在软木底上调淡，不喧宾夺主 */
+.wall-page .petals { opacity: 0.35; }
 
 /* 控制条：自动模式下默认隐藏，有交互时浮现、空闲淡出 */
 .controls--auto {
@@ -29,10 +39,10 @@
 }
 .controls--auto.show { opacity: 1; pointer-events: auto; }
 
-/* 深色背景下控制按钮描边/图标提亮 */
+/* 软木底色下控制按钮提亮 */
 .wall-page .ctrl-btn {
-  background: rgba(255,255,255,0.16);
-  border-color: rgba(255,255,255,0.35);
+  background: rgba(255,250,240,0.55);
+  border-color: rgba(120,80,35,0.4);
 }
-.wall-page .ctrl-photo { color: #ffd9e6; }
-.wall-page #slideToggle.paused .ctrl-photo { color: #b9a3ab; }
+.wall-page .ctrl-photo { color: #8a5a28; }
+.wall-page #slideToggle.paused .ctrl-photo { color: #b0a08c; }
