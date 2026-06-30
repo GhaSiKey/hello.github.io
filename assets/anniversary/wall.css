@@ -1,0 +1,38 @@
+/* wall.html — 全屏漂浮拍立得墙（相框版）
+ * 复用 style.css 的拍立得样式(.pw/.pw-card/浮动)，这里只做：
+ * ① 铺满整个视口 ② 画廊深色背景(护眼省电) ③ 隐藏鼠标 ④ 控制条自动淡出。
+ * 不动 anniversary.html 的任何样式。 */
+
+.wall-page {
+  /* 画廊暖深色：突出照片、夜间不刺眼、OLED 省电。想换回暖粉改这里即可 */
+  background: radial-gradient(120% 120% at 50% 0%, #3a2730 0%, #251820 60%, #1c1218 100%) fixed;
+  height: 100vh; height: 100dvh;
+  overflow: hidden;
+  cursor: default;
+}
+/* 空闲时隐藏鼠标(相框上不该有光标) */
+.wall-page.idle { cursor: none; }
+
+/* 照片墙铺满整个视口，不再是舞台中间一段 */
+.wall-page .wall {
+  position: fixed; inset: 0; margin: 0;
+  flex: none; overflow: hidden;
+}
+
+/* 花瓣在深底上调暗一些，不喧宾夺主 */
+.wall-page .petals { opacity: 0.5; }
+
+/* 控制条：自动模式下默认隐藏，有交互时浮现、空闲淡出 */
+.controls--auto {
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+.controls--auto.show { opacity: 1; pointer-events: auto; }
+
+/* 深色背景下控制按钮描边/图标提亮 */
+.wall-page .ctrl-btn {
+  background: rgba(255,255,255,0.16);
+  border-color: rgba(255,255,255,0.35);
+}
+.wall-page .ctrl-photo { color: #ffd9e6; }
+.wall-page #slideToggle.paused .ctrl-photo { color: #b9a3ab; }

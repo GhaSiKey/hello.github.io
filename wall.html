@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#2a1c22">
+  <title>我们的照片墙</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/anniversary/style.css">
+  <link rel="stylesheet" href="assets/anniversary/wall.css">
+</head>
+<body class="wall-page">
+  <!-- 飘落花瓣背景 -->
+  <div class="petals" id="petals"></div>
+
+  <!-- 全屏照片墙：拍立得由 JS 注入，自动轮转 -->
+  <section class="wall" id="wall" aria-label="我们的照片墙"></section>
+
+  <!-- 放大查看层 -->
+  <div class="viewer" id="viewer" hidden>
+    <img class="viewer-img" id="viewerImg" alt="">
+    <span class="viewer-close" id="viewerClose" aria-label="关闭">✕</span>
+  </div>
+
+  <!-- 隐藏控制条：有交互时浮现，空闲淡出。相框模式默认看不见 -->
+  <div class="controls controls--auto" id="controls">
+    <button class="ctrl-btn" id="slideToggle" type="button" aria-label="暂停/继续照片轮播">
+      <svg class="ctrl-photo" viewBox="0 0 24 24" width="21" height="21" aria-hidden="true">
+        <rect x="7" y="8.5" width="10" height="8" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <circle cx="10" cy="11.3" r="1" fill="currentColor"/>
+        <path d="M8 15l2.3-2.3 1.5 1.5L14 12l2 2.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <g class="ctrl-refresh">
+          <path d="M5 8.5a8 8 0 0 1 13-2.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+          <path d="M18.3 3.2l.4 3.4-3.4.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M19 16.5a8 8 0 0 1-13 2.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+          <path d="M5.7 21.8l-.4-3.4 3.4-.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+      </svg>
+    </button>
+  </div>
+
+  <script src="assets/anniversary/wall.js"></script>
+</body>
+</html>
