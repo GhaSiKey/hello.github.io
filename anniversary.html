@@ -69,14 +69,38 @@
     <span class="viewer-close" id="viewerClose" aria-label="关闭">✕</span>
   </div>
 
-  <!-- BGM：进入舞台后自动播放，右上角按钮切换 -->
+  <!-- BGM：进入舞台后自动播放 -->
   <audio id="bgm" src="assets/anniversary/bgm.mp3" loop preload="auto"></audio>
-  <button class="music-toggle" id="musicToggle" type="button"
-          aria-label="播放/暂停背景音乐" hidden>
-    <span class="music-bars" aria-hidden="true">
-      <span></span><span></span><span></span><span></span>
-    </span>
-  </button>
+
+  <!-- 右上角控制条：轮播开关 + BGM 开关 -->
+  <div class="controls" id="controls" hidden>
+    <button class="ctrl-btn" id="slideToggle" type="button" aria-label="暂停/继续照片轮播">
+      <svg class="ctrl-photo" viewBox="0 0 24 24" width="21" height="21" aria-hidden="true">
+        <!-- 中间：照片(相框+山峰+太阳)，静止 -->
+        <rect x="7" y="8.5" width="10" height="8" rx="1.6" fill="none"
+              stroke="currentColor" stroke-width="1.7"/>
+        <circle cx="10" cy="11.3" r="1" fill="currentColor"/>
+        <path d="M8 15l2.3-2.3 1.5 1.5L14 12l2 2.2" fill="none"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- 外圈：循环刷新双箭头，运行时绕中心旋转 -->
+        <g class="ctrl-refresh">
+          <path d="M5 8.5a8 8 0 0 1 13-2.2" fill="none"
+                stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+          <path d="M18.3 3.2l.4 3.4-3.4.2" fill="none"
+                stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M19 16.5a8 8 0 0 1-13 2.2" fill="none"
+                stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+          <path d="M5.7 21.8l-.4-3.4 3.4-.2" fill="none"
+                stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+      </svg>
+    </button>
+    <button class="ctrl-btn" id="musicToggle" type="button" aria-label="播放/暂停背景音乐">
+      <span class="music-bars" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+      </span>
+    </button>
+  </div>
 
   <script src="assets/anniversary/app.js"></script>
 </body>

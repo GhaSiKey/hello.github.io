@@ -25,6 +25,7 @@
     wall: $('#wall'), letterText: $('#letterText'), petals: $('#petals'),
     viewer: $('#viewer'), viewerImg: $('#viewerImg'), viewerClose: $('#viewerClose'),
     bgm: $('#bgm'), musicToggle: $('#musicToggle'),
+    controls: $('#controls'), slideToggle: $('#slideToggle'),
   };
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -243,7 +244,11 @@
       clearTimeout(rzTimer);
       rzTimer = setTimeout(() => { maxOnScreen = computeMax(); }, 250);
     }
-    return { start };
+    // 轮播开关：暂停只停定时器(照片仍可拖/浮动)，继续则恢复
+    function pause() { if (timer) { clearInterval(timer); timer = null; } }
+    function resume() { if (!timer) timer = setInterval(tick, CONFIG.rotateMs); }
+    function isPlaying() { return !!timer; }
+    return { start, pause, resume, isPlaying };
   })();
 
   /* ── BGM 播放控制 ──
@@ -268,12 +273,31 @@
       if (!els.bgm || !els.musicToggle) return;   // 元素缺失(如缓存旧HTML)则安全跳过
       ready = true;
       els.bgm.volume = 0.6;            // 默认 60% 音量，不盖过氛围
-      els.musicToggle.hidden = false;
       els.musicToggle.addEventListener('click', toggle);
       els.bgm.addEventListener('play', reflect);
       els.bgm.addEventListener('pause', reflect);
       // 借当前用户交互(点开始)起播；被拦则保持暂停态等手动点
       els.bgm.play().catch(() => {});
+      reflect();
+    }
+    return { enable };
+  })();
+
+  /* ── 轮播开关控制：联动 Wall.pause/resume 与按钮图标 ── */
+  const Slideshow = (() => {
+    function reflect() {
+      if (!els.slideToggle) return;
+      const playing = Wall.isPlaying();
+      els.slideToggle.classList.toggle('paused', !playing);
+      els.slideToggle.setAttribute('aria-label', playing ? '暂停照片轮播' : '继续照片轮播');
+    }
+    function toggle() {
+      if (Wall.isPlaying()) Wall.pause(); else Wall.resume();
+      reflect();
+    }
+    function enable() {
+      if (!els.slideToggle) return;
+      els.slideToggle.addEventListener('click', toggle);
       reflect();
     }
     return { enable };
@@ -320,6 +344,8 @@
     setTimeout(() => {
       els.stage.classList.add('reveal');
       Wall.start();
+      Slideshow.enable();                       // Wall 起来后再绑轮播开关(图标依赖播放态)
+      if (els.controls) els.controls.hidden = false;
       // 话在照片墙起来后再显影
       setTimeout(() => els.letterText.classList.add('show'), 900);
       els.gate.style.display = 'none';

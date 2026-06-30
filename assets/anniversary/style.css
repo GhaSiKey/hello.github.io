@@ -214,9 +214,13 @@ body {
   transition: opacity 0.5s ease, filter 0.5s ease, transform 0.5s ease; }
 .letter-text.show .ch { opacity: 1; filter: blur(0); transform: translateY(0); }
 
-/* ── 右上角 BGM 播放按钮 ── */
-.music-toggle {
+/* ── 右上角控制条：轮播开关 + BGM 开关 ── */
+.controls {
   position: fixed; top: 16px; right: 16px; z-index: 2500;
+  display: flex; gap: 10px;
+}
+.controls[hidden] { display: none; }
+.ctrl-btn {
   width: 44px; height: 44px; padding: 0;
   display: flex; align-items: center; justify-content: center;
   border: 1px solid rgba(255,255,255,0.7); border-radius: 50%;
@@ -224,22 +228,30 @@ body {
   box-shadow: 0 4px 14px rgba(150,60,90,0.25);
   cursor: pointer; transition: transform 0.18s, box-shadow 0.25s, background 0.25s;
 }
-.music-toggle:hover { transform: scale(1.06); box-shadow: 0 6px 18px rgba(150,60,90,0.35); }
-.music-toggle:active { transform: scale(0.94); }
-.music-toggle[hidden] { display: none; }
-/* 声波柱：4 根竖条，播放时跳动 */
+.ctrl-btn:hover { transform: scale(1.06); box-shadow: 0 6px 18px rgba(150,60,90,0.35); }
+.ctrl-btn:active { transform: scale(0.94); }
+
+/* BGM 声波柱：4 根竖条，播放时跳动 */
 .music-bars { display: flex; align-items: flex-end; gap: 3px; height: 18px; }
 .music-bars span {
   width: 3px; height: 100%; border-radius: 2px;
   background: linear-gradient(var(--rose-deep), var(--rose));
   transform-origin: bottom; transform: scaleY(0.35);
 }
-.music-toggle.playing .music-bars span { animation: bar 0.9s ease-in-out infinite; }
+.ctrl-btn.playing .music-bars span { animation: bar 0.9s ease-in-out infinite; }
 .music-bars span:nth-child(1) { animation-delay: -0.2s; }
 .music-bars span:nth-child(2) { animation-delay: -0.5s; }
 .music-bars span:nth-child(3) { animation-delay: -0.1s; }
 .music-bars span:nth-child(4) { animation-delay: -0.7s; }
 @keyframes bar { 0%,100% { transform: scaleY(0.35); } 50% { transform: scaleY(1); } }
+
+/* 轮播图标：照片框 + 外圈循环箭头(刷新语义)，与声波柱区分。
+   运行时外圈箭头绕中心持续旋转示意「照片在循环」，暂停时静止变灰。 */
+.ctrl-photo { display: block; color: var(--rose-deep); }
+.ctrl-refresh { transform-origin: 12px 12px; }
+#slideToggle:not(.paused) .ctrl-refresh { animation: refreshSpin 3.2s linear infinite; }
+#slideToggle.paused .ctrl-photo { color: #b9a3ab; opacity: 0.7; }
+@keyframes refreshSpin { to { transform: rotate(360deg); } }
 
 /* ── 无障碍：尊重「减少动态效果」── */
 @media (prefers-reduced-motion: reduce) {
@@ -250,4 +262,5 @@ body {
   .pw-card { animation: none; }                    /* 关掉内层浮动 */
   .letter-text .ch { transition: opacity 0.4s ease; filter: none; transform: none; }
   .viewer, .viewer-img { transition: opacity 0.2s ease; }
+  .music-bars span, .ctrl-refresh { animation: none !important; }   /* 控制条图标不跳动 */
 }
