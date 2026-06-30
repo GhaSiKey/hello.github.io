@@ -80,7 +80,7 @@
       const idx = order[cursor % order.length];
       cursor++;
       const n = String(idx).padStart(2, '0');
-      const src = `${CONFIG.photoDir}${n}.jpg`;
+      const src = `${CONFIG.photoDir}${n}.webp`;
       const pos = pickPos();
       const tilt = (Math.random() * 10 - 5).toFixed(1);
       const [wMin, wMax] = sizeRange();
