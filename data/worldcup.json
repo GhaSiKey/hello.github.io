@@ -10,17 +10,17 @@
     ],
     "disclaimer": "数据仅供参考，不构成投注建议；竞彩为负和游戏，长期期望为负",
     "betSummary": {
-      "totalBudget": 1640,
-      "totalMatches": 82,
-      "totalBets": 245,
-      "settledStake": 1520,
-      "settledPayout": 1305.45,
-      "profitSettled": -214.55,
-      "roiSettled": -0.1412,
-      "finishedMatches": 76,
-      "hitBets": 57,
-      "settleableBets": 227,
-      "profitBudget": -334.55
+      "totalBudget": 1700,
+      "totalMatches": 85,
+      "totalBets": 254,
+      "settledStake": 1580,
+      "settledPayout": 1355.27,
+      "profitSettled": -224.73,
+      "roiSettled": -0.1422,
+      "finishedMatches": 79,
+      "hitBets": 60,
+      "settleableBets": 236,
+      "profitBudget": -344.73
     }
   },
   "matches": [
@@ -20041,7 +20041,9 @@
               "pick": {
                 "goalLine": 1,
                 "side": "h"
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分1:1",
@@ -20052,7 +20054,9 @@
               "pick": {
                 "h": 1,
                 "a": 1
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分0:1",
@@ -20063,11 +20067,26 @@
               "pick": {
                 "h": 0,
                 "a": 1
-              }
+              },
+              "hit": false,
+              "payout": 0
             }
           ],
           "note": "科特迪瓦主场受让不败为主,1:1/0:1博平或挪小胜。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 1,
+          "a": 2
+        },
+        "half": {
+          "h": 0,
+          "a": 1
+        },
+        "source": "manual",
+        "filledAt": "2026-07-01T12:36:13+08:00"
       }
     },
     {
@@ -20286,7 +20305,9 @@
               "pick": {
                 "goalLine": -1,
                 "side": "h"
-              }
+              },
+              "hit": true,
+              "payout": 22.32
             },
             {
               "market": "总进球3球",
@@ -20294,7 +20315,9 @@
               "stake": 5,
               "potential": 17.5,
               "type": "ttg",
-              "pick": 3
+              "pick": 3,
+              "hit": true,
+              "payout": 17.5
             },
             {
               "market": "比分2:0",
@@ -20305,11 +20328,26 @@
               "pick": {
                 "h": 2,
                 "a": 0
-              }
+              },
+              "hit": false,
+              "payout": 0
             }
           ],
           "note": "法国让胜为主,3球大球对冲(攻击强),2:0博碾压。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 3,
+          "a": 0
+        },
+        "half": {
+          "h": 1,
+          "a": 0
+        },
+        "source": "manual",
+        "filledAt": "2026-07-01T12:36:13+08:00"
       }
     },
     {
@@ -20567,7 +20605,9 @@
               "stake": 11,
               "potential": 29.7,
               "type": "had",
-              "pick": "d"
+              "pick": "d",
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "墨西哥胜",
@@ -20575,7 +20615,9 @@
               "stake": 5,
               "potential": 10.0,
               "type": "had",
-              "pick": "h"
+              "pick": "h",
+              "hit": true,
+              "payout": 10.0
             },
             {
               "market": "比分1:1",
@@ -20586,11 +20628,26 @@
               "pick": {
                 "h": 1,
                 "a": 1
-              }
+              },
+              "hit": false,
+              "payout": 0
             }
           ],
           "note": "两队稳健易胶着,押平为主,墨胜/1:1兜底。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 2,
+          "a": 0
+        },
+        "half": {
+          "h": 2,
+          "a": 0
+        },
+        "source": "manual",
+        "filledAt": "2026-07-01T12:36:13+08:00"
       }
     },
     {
