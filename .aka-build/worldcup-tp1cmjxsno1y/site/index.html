@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>世界杯赔率 · 2026 FIFA World Cup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/worldcup/css/worldcup.css">
+  <link rel="stylesheet" href="assets/worldcup/css/backtotop.css">
+</head>
+<body>
+  <!-- 动态背景：深色 + 金色冠军氛围 -->
+  <div class="bg-gradient"></div>
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+  <div class="bg-shine"></div>
+
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <span class="logo-icon">🏆</span>
+        <div class="logo-text">
+          <h1 class="logo-title">世界杯赔率</h1>
+          <span class="logo-sub">2026 · FIFA WORLD CUP</span>
+        </div>
+      </div>
+      <div class="header-right">
+        <nav class="page-nav">
+          <a href="worldcup.html" class="nav-link active">赔率</a>
+          <a href="simbet.html" class="nav-link">战绩</a>
+        </nav>
+        <div class="header-meta" id="headerMeta"></div>
+      </div>
+    </header>
+
+    <!-- 标题装饰金线 -->
+    <div class="title-rule"></div>
+
+    <!-- 赛程总览日历（读 schedule，点击某天滚动到列表）-->
+    <section class="calendar" id="calendar"></section>
+
+    <!-- 主内容：按日期分组 + 卡片 -->
+    <main class="match-list" id="matchList">
+      <!-- 骨架屏 -->
+      <div class="skeleton-wrap" id="skeleton"></div>
+      <!-- 卡片由 JS 渲染 -->
+      <div class="groups" id="groups"></div>
+      <!-- 错误态 -->
+      <div class="error-state" id="errorState" hidden>
+        <span class="error-icon">😵</span>
+        <p class="error-text">数据加载失败</p>
+        <p class="error-hint" id="errorHint"></p>
+      </div>
+    </main>
+
+    <!-- 全局免责声明 -->
+    <footer class="disclaimer" id="disclaimer"></footer>
+  </div>
+
+  <!-- 详情：Web 滑出面板 / H5 全屏页（同一 DOM，CSS 切换形态）-->
+  <div class="detail-overlay" id="detailOverlay" hidden></div>
+  <aside class="detail-panel" id="detailPanel" hidden aria-hidden="true">
+    <div class="detail-inner" id="detailInner"></div>
+  </aside>
+
+  <script src="assets/worldcup/js/data.js"></script>
+  <script src="assets/worldcup/js/render.js"></script>
+  <script src="assets/worldcup/js/calendar.js"></script>
+  <script src="assets/worldcup/js/app.js"></script>
+  <script src="assets/worldcup/js/backtotop.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 模拟买盘战绩 · 2026 World Cup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/worldcup/css/worldcup.css">
+  <link rel="stylesheet" href="assets/worldcup/css/simbet.css">
+  <link rel="stylesheet" href="assets/worldcup/css/backtotop.css">
+</head>
+<body>
+  <div class="bg-gradient"></div>
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+  <div class="bg-shine"></div>
+
+  <div class="container">
+    <header class="header">
+      <div class="logo">
+        <span class="logo-icon">🎰</span>
+        <div class="logo-text">
+          <h1 class="logo-title">AI 模拟买盘战绩</h1>
+          <span class="logo-sub">2026 · AI BETTING REPLAY</span>
+        </div>
+      </div>
+      <nav class="page-nav">
+        <a href="worldcup.html" class="nav-link">赔率</a>
+        <a href="simbet.html" class="nav-link active">战绩</a>
+      </nav>
+    </header>
+    <div class="title-rule"></div>
+
+    <!-- 汇总卡 -->
+    <section class="summary" id="summary"></section>
+
+    <!-- 战绩时间线 -->
+    <main class="timeline" id="timeline">
+      <div class="error-state" id="errorState" hidden>
+        <span class="error-icon">😵</span>
+        <p class="error-text">数据加载失败</p>
+        <p class="error-hint" id="errorHint"></p>
+      </div>
+    </main>
+
+    <footer class="disclaimer" id="disclaimer"></footer>
+  </div>
+
+  <script src="assets/worldcup/js/data.js"></script>
+  <script src="assets/worldcup/js/simbet/judge.js"></script>
+  <script src="assets/worldcup/js/simbet/render.js"></script>
+  <script src="assets/worldcup/js/simbet/app.js"></script>
+  <script src="assets/worldcup/js/backtotop.js"></script>
+</body>
+</html>

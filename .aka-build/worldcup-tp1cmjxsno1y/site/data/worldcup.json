@@ -10,17 +10,17 @@
     ],
     "disclaimer": "数据仅供参考，不构成投注建议；竞彩为负和游戏，长期期望为负",
     "betSummary": {
-      "totalBudget": 1760,
-      "totalMatches": 88,
-      "totalBets": 263,
-      "settledStake": 1640,
-      "settledPayout": 1409.09,
-      "profitSettled": -230.91,
-      "roiSettled": -0.1408,
-      "finishedMatches": 82,
-      "hitBets": 63,
-      "settleableBets": 245,
-      "profitBudget": -350.91
+      "totalBudget": 1700,
+      "totalMatches": 85,
+      "totalBets": 254,
+      "settledStake": 1580,
+      "settledPayout": 1355.27,
+      "profitSettled": -224.73,
+      "roiSettled": -0.1422,
+      "finishedMatches": 79,
+      "hitBets": 60,
+      "settleableBets": 236,
+      "profitBudget": -344.73
     }
   },
   "matches": [
@@ -19543,9 +19543,7 @@
               "pick": {
                 "goalLine": -1,
                 "side": "h"
-              },
-              "hit": true,
-              "payout": 23.64
+              }
             },
             {
               "market": "总进球3球",
@@ -19553,9 +19551,7 @@
               "stake": 5,
               "potential": 17.5,
               "type": "ttg",
-              "pick": 3,
-              "hit": false,
-              "payout": 0
+              "pick": 3
             },
             {
               "market": "比分2:1",
@@ -19566,26 +19562,11 @@
               "pick": {
                 "h": 2,
                 "a": 1
-              },
-              "hit": false,
-              "payout": 0
+              }
             }
           ],
           "note": "美国让胜为主,3球大球对冲(攻强守弱易多球),2:1博对攻。"
         }
-      },
-      "result": {
-        "status": "finished",
-        "full": {
-          "h": 2,
-          "a": 0
-        },
-        "half": {
-          "h": 1,
-          "a": 0
-        },
-        "source": "manual",
-        "filledAt": "2026-07-02T10:16:24+08:00"
       }
     },
     {
@@ -21313,9 +21294,7 @@
               "pick": {
                 "goalLine": -1,
                 "side": "h"
-              },
-              "hit": false,
-              "payout": 0
+              }
             },
             {
               "market": "比分2:0",
@@ -21326,9 +21305,7 @@
               "pick": {
                 "h": 2,
                 "a": 0
-              },
-              "hit": false,
-              "payout": 0
+              }
             },
             {
               "market": "总进球3球",
@@ -21336,26 +21313,11 @@
               "stake": 3,
               "potential": 10.5,
               "type": "ttg",
-              "pick": 3,
-              "hit": true,
-              "payout": 10.5
+              "pick": 3
             }
           ],
           "note": "英格兰让胜为主,2:0博碾压,3球大球对冲。"
         }
-      },
-      "result": {
-        "status": "finished",
-        "full": {
-          "h": 2,
-          "a": 1
-        },
-        "half": {
-          "h": 0,
-          "a": 1
-        },
-        "source": "manual",
-        "filledAt": "2026-07-02T10:16:25+08:00"
       }
     },
     {
@@ -21572,9 +21534,7 @@
               "pick": {
                 "goalLine": -1,
                 "side": "a"
-              },
-              "hit": true,
-              "payout": 19.68
+              }
             },
             {
               "market": "比分1:1",
@@ -21585,9 +21545,7 @@
               "pick": {
                 "h": 1,
                 "a": 1
-              },
-              "hit": false,
-              "payout": 0
+              }
             },
             {
               "market": "比分1:0",
@@ -21598,23 +21556,11 @@
               "pick": {
                 "h": 1,
                 "a": 0
-              },
-              "hit": false,
-              "payout": 0
+              }
             }
           ],
           "note": "塞硬朗,比利时赢不透为主,1:1/1:0博小比分。"
         }
-      },
-      "result": {
-        "status": "finished",
-        "full": {
-          "h": 2,
-          "a": 2
-        },
-        "half": null,
-        "source": "manual",
-        "filledAt": "2026-07-02T10:16:25+08:00"
       }
     },
     {

@@ -1,0 +1,16 @@
+{
+  "app_id": "tp1cmjxsno1y",
+  "app_name": "世界杯赔率与战绩",
+  "project_name": "worldcup-tp1cmjxsno1y",
+  "dev": {
+    "folder": "site"
+  },
+  "publish": {
+    "git": "optional",
+    "dir": "site",
+    "tags": [
+      "数据看板",
+      "内容展示"
+    ]
+  }
+}
