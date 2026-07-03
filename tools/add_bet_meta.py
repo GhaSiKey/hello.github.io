@@ -32,8 +32,15 @@ def market_to_pick(market, home, away):
         sd = {"胜": "h", "平": "d", "负": "a"}
         return "hafu", {"half": sd[mo.group(1)], "full": sd[mo.group(2)]}
 
-    # 让球：让球-1 让胜 / 让球+1 让胜(沙特) / 让球-1 让负
-    mo = re.match(r"让球([+-]?\d+)\s*让(胜|平|负)", m)
+    # 总进球：总进球3球（7=7+，判定端对 min(总进球,7) 封顶）
+    mo = re.match(r"总进球\s*(\d+)\s*球", m)
+    if mo:
+        return "ttg", int(mo.group(1))
+
+    # 让球：让球-1 让胜 / 让球+1 让胜(沙特) / 让球-1 让负 /
+    #       让球+1 乌拉圭让负（队名夹中间仅作展示消歧，不参与 side——
+    #       side 一律由"胜/平/负"字面决定，与队名主客无关）
+    mo = re.match(r"让球([+-]?\d+)\s*\S*?让(胜|平|负)", m)
     if mo:
         gl = int(mo.group(1))
         side = {"胜": "h", "平": "d", "负": "a"}[mo.group(2)]
@@ -55,9 +62,15 @@ def main():
     with open(PATH, encoding="utf-8") as f:
         data = json.load(f)
     total, failed = 0, []
+    skipped = 0
     for mt in data["matches"]:
+        # 未开盘/未写点评的场 commentary 为空 {}，无 plan——跳过，别崩。
+        plan = (mt.get("commentary") or {}).get("plan")
+        if not plan:
+            skipped += 1
+            continue
         home, away = mt["home"]["name"], mt["away"]["name"]
-        for b in mt["commentary"]["plan"]["bets"]:
+        for b in plan["bets"]:
             res = market_to_pick(b["market"], home, away)
             if res is None:
                 failed.append((mt["mid"], b["market"]))
@@ -72,7 +85,8 @@ def main():
         return
     with open(PATH, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
-    print(f"✓ 已为 {total} 注补充 type/pick，全部识别成功")
+    print(f"✓ 已为 {total} 注补充 type/pick，全部识别成功"
+          + (f"（跳过 {skipped} 场未开盘/无点评）" if skipped else ""))
 
 
 if __name__ == "__main__":
