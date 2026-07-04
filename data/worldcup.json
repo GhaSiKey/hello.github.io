@@ -1,26 +1,26 @@
 {
   "meta": {
     "title": "2026 FIFA World Cup",
-    "crawledAt": "2026-07-03T18:30:16+08:00",
-    "analyzedAt": "2026-07-03T18:56:50+08:00",
+    "crawledAt": "2026-07-04T20:44:16+08:00",
+    "analyzedAt": "2026-07-04T20:49:04+08:00",
     "source": "中国体育彩票 webapi.sporttery.cn",
     "midRange": [
       2040162,
-      2040416
+      2040428
     ],
     "disclaimer": "数据仅供参考，不构成投注建议；竞彩为负和游戏，长期期望为负",
     "betSummary": {
-      "totalBudget": 1800,
-      "totalMatches": 90,
-      "totalBets": 269,
-      "settledStake": 1700,
-      "settledPayout": 1442.99,
-      "profitSettled": -257.01,
-      "roiSettled": -0.1512,
-      "finishedMatches": 85,
-      "hitBets": 65,
-      "settleableBets": 254,
-      "profitBudget": -357.01
+      "totalBudget": 1840,
+      "totalMatches": 92,
+      "totalBets": 275,
+      "settledStake": 1760,
+      "settledPayout": 1495.34,
+      "profitSettled": -264.66,
+      "roiSettled": -0.1504,
+      "finishedMatches": 88,
+      "hitBets": 67,
+      "settleableBets": 263,
+      "profitBudget": -344.66
     }
   },
   "matches": [
@@ -20583,7 +20583,9 @@
               "stake": 11,
               "potential": 28.6,
               "type": "had",
-              "pick": "d"
+              "pick": "d",
+              "hit": true,
+              "payout": 28.6
             },
             {
               "market": "比分1:1",
@@ -20594,7 +20596,9 @@
               "pick": {
                 "h": 1,
                 "a": 1
-              }
+              },
+              "hit": true,
+              "payout": 23.75
             },
             {
               "market": "比分0:0",
@@ -20605,11 +20609,26 @@
               "pick": {
                 "h": 0,
                 "a": 0
-              }
+              },
+              "hit": false,
+              "payout": 0
             }
           ],
           "note": "两队防守型易闷平,押平为主,1:1/0:0博低比分。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 1,
+          "a": 1
+        },
+        "half": {
+          "h": 0,
+          "a": 1
+        },
+        "source": "manual",
+        "filledAt": "2026-07-04T20:33:10+08:00"
       }
     },
     {
@@ -20810,7 +20829,9 @@
               "stake": 11,
               "potential": 37.95,
               "type": "ttg",
-              "pick": 3
+              "pick": 3,
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "让球-2 让胜",
@@ -20821,7 +20842,9 @@
               "pick": {
                 "goalLine": -2,
                 "side": "h"
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分2:0",
@@ -20832,11 +20855,26 @@
               "pick": {
                 "h": 2,
                 "a": 0
-              }
+              },
+              "hit": false,
+              "payout": 0
             }
           ],
           "note": "佛得角善守+让2球深,大球为主,让胜/2:0小注博。比分返还低纯娱乐。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 1,
+          "a": 1
+        },
+        "half": {
+          "h": 1,
+          "a": 0
+        },
+        "source": "manual",
+        "filledAt": "2026-07-04T20:33:10+08:00"
       }
     },
     {
@@ -22618,7 +22656,9 @@
               "pick": {
                 "goalLine": -1,
                 "side": "h"
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分2:0",
@@ -22629,7 +22669,9 @@
               "pick": {
                 "h": 2,
                 "a": 0
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "总进球3球",
@@ -22637,11 +22679,26 @@
               "stake": 3,
               "potential": 10.5,
               "type": "ttg",
-              "pick": 3
+              "pick": 3,
+              "hit": false,
+              "payout": 0
             }
           ],
           "note": "哥伦比亚让胜为主,2:0博碾压,3球大球对冲。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 1,
+          "a": 0
+        },
+        "half": {
+          "h": 1,
+          "a": 0
+        },
+        "source": "manual",
+        "filledAt": "2026-07-04T20:33:10+08:00"
       }
     },
     {
@@ -23606,7 +23663,7 @@
       "group": "",
       "phase": "1/8决赛",
       "tournament": "世界杯",
-      "status": "not_open",
+      "status": "open",
       "home": {
         "name": "美国",
         "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/523.png"
@@ -23615,10 +23672,231 @@
         "name": "比利时",
         "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/363.png"
       },
-      "odds": {},
-      "metrics": {},
-      "tags": [],
-      "commentary": {}
+      "odds": {
+        "had": {
+          "h": "2.56",
+          "d": "3.22",
+          "a": "2.34"
+        },
+        "hhad": [
+          {
+            "goalLine": "+1",
+            "h": "1.44",
+            "d": "4.30",
+            "a": "4.95"
+          }
+        ],
+        "ttg": {
+          "0": "14.00",
+          "1": "5.75",
+          "2": "3.65",
+          "3": "3.45",
+          "4": "4.80",
+          "5": "8.50",
+          "6": "14.00",
+          "7": "21.00"
+        },
+        "hafu": {
+          "hh": "4.20",
+          "hd": "13.00",
+          "ha": "22.00",
+          "dh": "6.00",
+          "dd": "5.80",
+          "da": "5.60",
+          "ah": "23.00",
+          "ad": "13.00",
+          "aa": "3.90"
+        },
+        "crs": [
+          {
+            "name": "1:1",
+            "odds": 6.1
+          },
+          {
+            "name": "1:2",
+            "odds": 7.5
+          },
+          {
+            "name": "2:1",
+            "odds": 8.0
+          },
+          {
+            "name": "2:2",
+            "odds": 10.0
+          },
+          {
+            "name": "0:1",
+            "odds": 10.5
+          },
+          {
+            "name": "1:0",
+            "odds": 11.0
+          },
+          {
+            "name": "0:2",
+            "odds": 12.5
+          },
+          {
+            "name": "2:0",
+            "odds": 13.0
+          },
+          {
+            "name": "0:0",
+            "odds": 14.0
+          },
+          {
+            "name": "1:3",
+            "odds": 16.0
+          },
+          {
+            "name": "3:1",
+            "odds": 19.0
+          },
+          {
+            "name": "2:3",
+            "odds": 21.0
+          },
+          {
+            "name": "3:2",
+            "odds": 24.0
+          },
+          {
+            "name": "0:3",
+            "odds": 24.0
+          },
+          {
+            "name": "3:0",
+            "odds": 30.0
+          },
+          {
+            "name": "3:3",
+            "odds": 40.0
+          },
+          {
+            "name": "1:4",
+            "odds": 45.0
+          },
+          {
+            "name": "4:1",
+            "odds": 50.0
+          },
+          {
+            "name": "负其它",
+            "odds": 60.0
+          },
+          {
+            "name": "2:4",
+            "odds": 60.0
+          },
+          {
+            "name": "0:4",
+            "odds": 65.0
+          },
+          {
+            "name": "胜其它",
+            "odds": 75.0
+          },
+          {
+            "name": "4:2",
+            "odds": 75.0
+          },
+          {
+            "name": "4:0",
+            "odds": 80.0
+          },
+          {
+            "name": "2:5",
+            "odds": 150.0
+          },
+          {
+            "name": "1:5",
+            "odds": 150.0
+          },
+          {
+            "name": "5:1",
+            "odds": 175.0
+          },
+          {
+            "name": "平其它",
+            "odds": 200.0
+          },
+          {
+            "name": "5:2",
+            "odds": 200.0
+          },
+          {
+            "name": "0:5",
+            "odds": 200.0
+          },
+          {
+            "name": "5:0",
+            "odds": 300.0
+          }
+        ]
+      },
+      "metrics": {
+        "had": {
+          "return": 0.8861,
+          "prob": {
+            "h": 0.3461,
+            "d": 0.2752,
+            "a": 0.3787
+          }
+        },
+        "ttg": {
+          "return": 0.7973,
+          "mode": 3
+        },
+        "hafu": {
+          "return": 0.7969
+        },
+        "crs": {
+          "return": 0.7099
+        }
+      },
+      "tags": [
+        "均势盘"
+      ],
+      "commentary": {
+        "summary": "三项去水极差仅13%的标准均势盘，比利时名义占优但两队半斤八两，总进球偏大球，是场谁都可能赢的对攻淘汰赛。",
+        "value": "比利时胜2.34盈亏平衡需42.7%、官方仅37.9%，美国胜2.56需39.1%、官方34.6%——两个方向直接买都偏贵。均势盘里平局3.22平衡需31.1%对去水27.5%差距最小；更扎实的是美国+1让胜1.44(美国不败即中)，均势格局下受让方全身而退概率不低。",
+        "plan": {
+          "budget": 20,
+          "bets": [
+            {
+              "market": "让球+1 让胜",
+              "odds": 1.44,
+              "stake": 12,
+              "potential": 17.28,
+              "type": "hhad",
+              "pick": {
+                "goalLine": 1,
+                "side": "h"
+              }
+            },
+            {
+              "market": "平局",
+              "odds": 3.22,
+              "stake": 5,
+              "potential": 16.1,
+              "type": "had",
+              "pick": "d"
+            },
+            {
+              "market": "比分1:1",
+              "odds": 6.1,
+              "stake": 3,
+              "potential": 18.3,
+              "type": "crs",
+              "pick": {
+                "h": 1,
+                "a": 1
+              }
+            }
+          ],
+          "note": "美国+1让胜打底(赌美国不败)，平局吃均势价值，1:1博对攻互交白卷后的小比分。"
+        }
+      }
     },
     {
       "mid": 2040416,
@@ -23627,7 +23905,7 @@
       "group": "",
       "phase": "1/8决赛",
       "tournament": "世界杯",
-      "status": "not_open",
+      "status": "open",
       "home": {
         "name": "葡萄牙",
         "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/1044.png"
@@ -23635,6 +23913,270 @@
       "away": {
         "name": "西班牙",
         "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/23.png"
+      },
+      "odds": {
+        "had": {
+          "h": "3.48",
+          "d": "3.22",
+          "a": "1.88"
+        },
+        "hhad": [
+          {
+            "goalLine": "+1",
+            "h": "1.72",
+            "d": "3.70",
+            "a": "3.60"
+          }
+        ],
+        "ttg": {
+          "0": "12.00",
+          "1": "5.00",
+          "2": "3.35",
+          "3": "3.50",
+          "4": "5.25",
+          "5": "10.00",
+          "6": "17.00",
+          "7": "27.00"
+        },
+        "hafu": {
+          "hh": "5.85",
+          "hd": "14.00",
+          "ha": "22.00",
+          "dh": "7.50",
+          "dd": "5.50",
+          "da": "4.75",
+          "ah": "28.00",
+          "ad": "14.00",
+          "aa": "3.00"
+        },
+        "crs": [
+          {
+            "name": "1:1",
+            "odds": 6.0
+          },
+          {
+            "name": "1:2",
+            "odds": 6.7
+          },
+          {
+            "name": "0:1",
+            "odds": 7.5
+          },
+          {
+            "name": "0:2",
+            "odds": 9.0
+          },
+          {
+            "name": "2:1",
+            "odds": 10.0
+          },
+          {
+            "name": "1:0",
+            "odds": 11.0
+          },
+          {
+            "name": "2:2",
+            "odds": 12.0
+          },
+          {
+            "name": "0:0",
+            "odds": 12.0
+          },
+          {
+            "name": "1:3",
+            "odds": 13.5
+          },
+          {
+            "name": "0:3",
+            "odds": 16.0
+          },
+          {
+            "name": "2:0",
+            "odds": 20.0
+          },
+          {
+            "name": "2:3",
+            "odds": 23.0
+          },
+          {
+            "name": "3:1",
+            "odds": 28.0
+          },
+          {
+            "name": "3:2",
+            "odds": 32.0
+          },
+          {
+            "name": "1:4",
+            "odds": 35.0
+          },
+          {
+            "name": "0:4",
+            "odds": 40.0
+          },
+          {
+            "name": "3:3",
+            "odds": 50.0
+          },
+          {
+            "name": "3:0",
+            "odds": 50.0
+          },
+          {
+            "name": "负其它",
+            "odds": 60.0
+          },
+          {
+            "name": "2:4",
+            "odds": 60.0
+          },
+          {
+            "name": "0:5",
+            "odds": 100.0
+          },
+          {
+            "name": "4:2",
+            "odds": 100.0
+          },
+          {
+            "name": "4:1",
+            "odds": 100.0
+          },
+          {
+            "name": "1:5",
+            "odds": 100.0
+          },
+          {
+            "name": "胜其它",
+            "odds": 150.0
+          },
+          {
+            "name": "4:0",
+            "odds": 150.0
+          },
+          {
+            "name": "2:5",
+            "odds": 200.0
+          },
+          {
+            "name": "5:1",
+            "odds": 350.0
+          },
+          {
+            "name": "平其它",
+            "odds": 400.0
+          },
+          {
+            "name": "5:0",
+            "odds": 500.0
+          },
+          {
+            "name": "5:2",
+            "odds": 500.0
+          }
+        ]
+      },
+      "metrics": {
+        "had": {
+          "return": 0.8851,
+          "prob": {
+            "h": 0.2543,
+            "d": 0.2749,
+            "a": 0.4708
+          }
+        },
+        "ttg": {
+          "return": 0.7975,
+          "mode": 2
+        },
+        "hafu": {
+          "return": 0.7975
+        },
+        "crs": {
+          "return": 0.7094
+        }
+      },
+      "tags": [],
+      "commentary": {
+        "summary": "伊比利亚德比，西班牙去水47%为明显热门但未成碾压，总进球倾向小球，更像一场西班牙占优却难速胜的低比分内战。",
+        "value": "西班牙胜1.88盈亏平衡需53.2%、官方仅47.1%，直接追客胜偏贵、负期望明显。相对有价值的是葡萄牙+1让胜1.72——含义是葡萄牙输球不超1个(含平/胜即中)。德比往往胶着+小球倾向，受让方全身而退结构概率不低。",
+        "plan": {
+          "budget": 20,
+          "bets": [
+            {
+              "market": "让球+1 让胜",
+              "odds": 1.72,
+              "stake": 12,
+              "potential": 20.64,
+              "type": "hhad",
+              "pick": {
+                "goalLine": 1,
+                "side": "h"
+              }
+            },
+            {
+              "market": "比分1:1",
+              "odds": 6.0,
+              "stake": 5,
+              "potential": 30.0,
+              "type": "crs",
+              "pick": {
+                "h": 1,
+                "a": 1
+              }
+            },
+            {
+              "market": "比分1:2",
+              "odds": 6.7,
+              "stake": 3,
+              "potential": 20.1,
+              "type": "crs",
+              "pick": {
+                "h": 1,
+                "a": 2
+              }
+            }
+          ],
+          "note": "葡萄牙+1让胜打底(赌西班牙赢不透)，1:1博德比闷平，1:2押西班牙小胜的最热比分。"
+        }
+      }
+    },
+    {
+      "mid": 2040427,
+      "matchNum": "周二095",
+      "datetime": "2026-07-08 00:00",
+      "group": "",
+      "phase": "1/8决赛",
+      "tournament": "世界杯",
+      "status": "not_open",
+      "home": {
+        "name": "阿根廷",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/413.png"
+      },
+      "away": {
+        "name": "埃及",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/543.png"
+      },
+      "odds": {},
+      "metrics": {},
+      "tags": [],
+      "commentary": {}
+    },
+    {
+      "mid": 2040428,
+      "matchNum": "周二096",
+      "datetime": "2026-07-08 04:00",
+      "group": "",
+      "phase": "1/8决赛",
+      "tournament": "世界杯",
+      "status": "not_open",
+      "home": {
+        "name": "瑞士",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/403.png"
+      },
+      "away": {
+        "name": "哥伦比亚",
+        "logo": "https://static.sporttery.cn/res_1_0/jcw/upload/mnjc/zq/410.png"
       },
       "odds": {},
       "metrics": {},
@@ -23644,7 +24186,7 @@
   ],
   "schedule": {
     "source": "ESPN site.api（赛程总览，非赔率）",
-    "fetchedAt": "2026-07-03T18:19:15+08:00",
+    "fetchedAt": "2026-07-04T20:35:05+08:00",
     "totalMatches": 104,
     "days": [
       {
