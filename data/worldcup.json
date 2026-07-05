@@ -10,17 +10,17 @@
     ],
     "disclaimer": "数据仅供参考，不构成投注建议；竞彩为负和游戏，长期期望为负",
     "betSummary": {
-      "totalBudget": 1840,
-      "totalMatches": 92,
-      "totalBets": 275,
-      "settledStake": 1760,
+      "totalBudget": 1880,
+      "totalMatches": 94,
+      "totalBets": 281,
+      "settledStake": 1800,
       "settledPayout": 1495.34,
-      "profitSettled": -264.66,
-      "roiSettled": -0.1504,
-      "finishedMatches": 88,
+      "profitSettled": -304.66,
+      "roiSettled": -0.1693,
+      "finishedMatches": 90,
       "hitBets": 67,
-      "settleableBets": 263,
-      "profitBudget": -344.66
+      "settleableBets": 269,
+      "profitBudget": -384.66
     }
   },
   "matches": [
@@ -22915,7 +22915,9 @@
               "pick": {
                 "goalLine": 1,
                 "side": "h"
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分1:1",
@@ -22926,7 +22928,9 @@
               "pick": {
                 "h": 1,
                 "a": 1
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分0:1",
@@ -22937,11 +22941,26 @@
               "pick": {
                 "h": 0,
                 "a": 1
-              }
+              },
+              "hit": false,
+              "payout": 0
             }
           ],
           "note": "摩洛哥善磨,加拿大受让不败为主,1:1/0:1博平或摩小胜。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 0,
+          "a": 3
+        },
+        "half": {
+          "h": 0,
+          "a": 0
+        },
+        "source": "manual",
+        "filledAt": "2026-07-05T16:39:59+08:00"
       }
     },
     {
@@ -23142,7 +23161,9 @@
               "stake": 10,
               "potential": 34.5,
               "type": "ttg",
-              "pick": 3
+              "pick": 3,
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "让球-2 让胜",
@@ -23153,7 +23174,9 @@
               "pick": {
                 "goalLine": -2,
                 "side": "h"
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分0:2",
@@ -23164,11 +23187,26 @@
               "pick": {
                 "h": 0,
                 "a": 2
-              }
+              },
+              "hit": false,
+              "payout": 0
             }
           ],
           "note": "巴拉圭超级摆大巴,法国赢透存疑,大球为主,让胜/0:2小注博。比分返还低纯娱乐。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 0,
+          "a": 1
+        },
+        "half": {
+          "h": 0,
+          "a": 0
+        },
+        "source": "manual",
+        "filledAt": "2026-07-05T16:40:00+08:00"
       }
     },
     {
