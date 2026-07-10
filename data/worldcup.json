@@ -10,17 +10,17 @@
     ],
     "disclaimer": "数据仅供参考，不构成投注建议；竞彩为负和游戏，长期期望为负",
     "betSummary": {
-      "totalBudget": 1940,
-      "totalMatches": 97,
-      "totalBets": 290,
-      "settledStake": 1920,
-      "settledPayout": 1543.89,
-      "profitSettled": -376.11,
-      "roiSettled": -0.1959,
-      "finishedMatches": 96,
-      "hitBets": 69,
-      "settleableBets": 287,
-      "profitBudget": -396.11
+      "totalBudget": 2000,
+      "totalMatches": 100,
+      "totalBets": 299,
+      "settledStake": 1940,
+      "settledPayout": 1578.89,
+      "profitSettled": -361.11,
+      "roiSettled": -0.1861,
+      "finishedMatches": 97,
+      "hitBets": 71,
+      "settleableBets": 290,
+      "profitBudget": -421.11
     }
   },
   "matches": [
@@ -24982,7 +24982,9 @@
               "pick": {
                 "h": 1,
                 "a": 0
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "总进球2球",
@@ -24990,7 +24992,9 @@
               "stake": 7,
               "potential": 22.75,
               "type": "ttg",
-              "pick": 2
+              "pick": 2,
+              "hit": true,
+              "payout": 22.75
             },
             {
               "market": "让球-1 让胜",
@@ -25001,11 +25005,26 @@
               "pick": {
                 "goalLine": -1,
                 "side": "h"
-              }
+              },
+              "hit": true,
+              "payout": 12.25
             }
           ],
           "note": "大热但摩洛哥黑马,让球方向两头陷阱,让胜仅5元试水;主押法国1:0小胜比分,总进球2呼应小球。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 2,
+          "a": 0
+        },
+        "half": {
+          "h": 0,
+          "a": 0
+        },
+        "source": "manual",
+        "filledAt": "2026-07-10T10:06:44+08:00"
       }
     },
     {
