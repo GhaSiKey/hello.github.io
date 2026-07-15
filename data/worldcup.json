@@ -10,17 +10,17 @@
     ],
     "disclaimer": "数据仅供参考，不构成投注建议；竞彩为负和游戏，长期期望为负",
     "betSummary": {
-      "totalBudget": 2000,
-      "totalMatches": 100,
-      "totalBets": 299,
-      "settledStake": 2000,
-      "settledPayout": 1684.29,
-      "profitSettled": -315.71,
-      "roiSettled": -0.1579,
-      "finishedMatches": 100,
-      "hitBets": 75,
-      "settleableBets": 299,
-      "profitBudget": -315.71
+      "totalBudget": 2040,
+      "totalMatches": 102,
+      "totalBets": 305,
+      "settledStake": 2020,
+      "settledPayout": 1691.74,
+      "profitSettled": -328.26,
+      "roiSettled": -0.1625,
+      "finishedMatches": 101,
+      "hitBets": 76,
+      "settleableBets": 302,
+      "profitBudget": -348.26
     }
   },
   "matches": [
@@ -26017,7 +26017,9 @@
               "stake": 9,
               "potential": 27.9,
               "type": "had",
-              "pick": "d"
+              "pick": "d",
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "比分1:1",
@@ -26028,7 +26030,9 @@
               "pick": {
                 "h": 1,
                 "a": 1
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "让球-1 让负",
@@ -26039,11 +26043,26 @@
               "pick": {
                 "goalLine": -1,
                 "side": "a"
-              }
+              },
+              "hit": true,
+              "payout": 7.45
             }
           ],
           "note": "均势小球,主押平局+1:1;让球试水押法国-1让负(赌法国赢不透,市场也看衰),不押大头。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 0,
+          "a": 2
+        },
+        "half": {
+          "h": 0,
+          "a": 1
+        },
+        "source": "manual",
+        "filledAt": "2026-07-15T11:46:40+08:00"
       }
     },
     {
