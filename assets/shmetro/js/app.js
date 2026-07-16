@@ -328,12 +328,31 @@
     const map = MetroRender.createMap('map');
     state.map = map;
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
-    map.on('load', () => {
+
+    // 矢量线路层只依赖本地数据，不该被底图瓦片网络状况拖累。
+    // 'load' 需等底图首次渲染完成，底图 CDN(CARTO) 在部分网络下超时会导致 'load'
+    // 迟迟不触发、线路一条都画不出。改用 style.load（只等内联 style 解析，与瓦片无关），
+    // 并加轮询兜底，确保底图挂掉时地铁图仍能显示。
+    let layersAdded = false;
+    const addLayers = () => {
+      if (layersAdded) return;
+      layersAdded = true;
       MetroRender.addStaticLayers(map, state.lines, state.indexById);
       MetroRender.addTrainLayer(map, state.lines);
       state.ready = true;
       bindInteractions(map);
-    });
+    };
+    if (map.isStyleLoaded()) addLayers();
+    else {
+      map.on('style.load', addLayers);
+      map.on('load', addLayers);
+      // 双保险：极端情况下事件都没来，轮询到 style 就绪即补画
+      let tries = 0;
+      const poll = setInterval(() => {
+        if (layersAdded || map.isStyleLoaded()) { addLayers(); clearInterval(poll); }
+        else if (++tries > 40) clearInterval(poll); // 最多等 ~8s
+      }, 200);
+    }
 
     tick(); // 时钟先转起来，地图 ready 后自动开始画车
   }
