@@ -11,26 +11,37 @@
 (function (global) {
   'use strict';
 
-  // CARTO Positron 浅灰底图 raster 样式（无需 key）
+  // 浅灰底图 raster 样式（无需 key）。
+  // 底图源必须是 WGS-84（与线路投影一致），且国内直连可达——CARTO/OSM/Wikimedia
+  // 在部分网络超时，实测 ESRI ArcGIS 可达；高德/腾讯是 GCJ-02 偏移，换上会与线路错位。
+  // ESRI Light Gray：Base（浅灰底）+ Reference（街道/地名标注）两层叠加，接近 Positron。
+  // 注意 ESRI 瓦片路径是 /tile/{z}/{y}/{x}（y 在前）。
+  const ESRI = 'https://server.arcgisonline.com/ArcGIS/rest/services';
   const BASE_STYLE = {
     version: 8,
     sources: {
-      carto: {
+      esriBase: {
         type: 'raster',
-        tiles: [
-          'https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png',
-          'https://b.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png',
-          'https://c.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png',
-        ],
+        tiles: [`${ESRI}/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}`],
         tileSize: 256,
+        maxzoom: 16,
         attribution:
-          '© <a href="https://carto.com/attributions">CARTO</a> · ' +
+          '© <a href="https://www.esri.com/">Esri</a> · ' +
           '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       },
+      esriRef: {
+        type: 'raster',
+        tiles: [`${ESRI}/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}`],
+        tileSize: 256,
+        maxzoom: 16,
+      },
     },
-    // glyphs：拉丁字母的字形来源。中文站名靠 localIdeographFontFamily 用本地字体渲染。
+    // glyphs：拉丁字符字形来源（本工程站名用 DOM 弹窗，不走 symbol 层，实际几乎不请求）。
     glyphs: 'https://fonts.openmaptiles.org/{fontstack}/{range}.pbf',
-    layers: [{ id: 'carto', type: 'raster', source: 'carto' }],
+    layers: [
+      { id: 'esri-base', type: 'raster', source: 'esriBase' },
+      { id: 'esri-ref', type: 'raster', source: 'esriRef', paint: { 'raster-opacity': 0.9 } },
+    ],
   };
 
   // 上海全域边界（含崇明/长兴、市域机场线、金山方向），限制平移不跑出上海。

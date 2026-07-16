@@ -187,7 +187,12 @@ style + 首次瓦片渲染完成——底图瓦片超时时 `load` 迟迟不触�
 即便空白，地铁图本身照常渲染。
 
 注意底图坐标系：线路投影到 OSM 轨道（WGS-84），底图必须同为 WGS-84。高德/腾讯
-瓦片是 GCJ-02 偏移，直接换会与线路错开数百米，故不能简单替换 CARTO。
+瓦片是 GCJ-02 偏移，直接换会与线路错开数百米，故不能用。
+
+**底图选型（国内可达 + WGS-84）**：实测 CARTO / OSM / Wikimedia 在国内直连全超时，
+ESRI ArcGIS 可达且为 WGS-84。改用 ESRI Light Gray：`World_Light_Gray_Base`（浅灰底）
++ `World_Light_Gray_Reference`（街道/地名标注）两层 raster 叠加，风格接近原 Positron。
+坑：ESRI 瓦片路径是 `/tile/{z}/{y}/{x}`（y 在 x 前，与 XYZ 相反）。
 
 ## 前端结构
 
