@@ -1,0 +1,570 @@
+/* shmetro.css — 上海地铁运行图（模拟）
+ * 全屏地图 + 悬浮玻璃拟态 HUD。浅色清爽基调，让彩色线路与列车成为主角。
+ */
+:root {
+  --panel-bg: rgba(255, 255, 255, 0.82);
+  --panel-border: rgba(255, 255, 255, 0.6);
+  --panel-shadow: 0 6px 28px rgba(30, 40, 60, 0.14);
+  --ink: #1c2330;
+  --ink-sub: #6a7484;
+  --accent: #2b6fff;
+  --radius: 14px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body { width: 100%; height: 100%; overflow: hidden; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'Microsoft YaHei', sans-serif;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+#map { position: absolute; inset: 0; background: #eaeef3; }
+
+/* ============ 左上角 HUD：玻璃拟态时钟卡 ============ */
+.hud {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 10;
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  padding: 14px 18px;
+  border-radius: var(--radius);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  box-shadow: var(--panel-shadow);
+  user-select: none;
+  min-width: 168px;
+}
+.hud-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-sub);
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+.hud-clock {
+  font-size: 32px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.hud-date { font-size: 13px; color: var(--ink-sub); margin-top: 3px; }
+.hud-running {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 600;
+  margin-top: 8px;
+  font-variant-numeric: tabular-nums;
+  border: 1px solid rgba(43, 111, 255, 0.25);
+  background: rgba(43, 111, 255, 0.08);
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+.hud-running:hover { background: rgba(43, 111, 255, 0.15); }
+.hud-caret { font-size: 9px; margin-left: auto; transition: transform 0.2s; }
+.hud-running.is-open .hud-caret { transform: rotate(180deg); }
+.hud-running.is-open { background: rgba(43, 111, 255, 0.15); }
+
+/* ============ 数据面板（HUD 展开） ============ */
+.hud-panel {
+  margin-top: 8px;
+  width: 264px;
+  max-width: calc(100vw - 48px);
+  max-height: 60vh;
+  overflow-y: auto;
+}
+.hud-panel[hidden] { display: none; }
+.sp-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.sp-stat {
+  background: rgba(43, 111, 255, 0.08);
+  border-radius: 8px;
+  padding: 7px 9px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.sp-stat-v { font-size: 15px; font-weight: 700; color: var(--ink); }
+.sp-stat-l { font-size: 10px; color: var(--ink-sub); }
+.sp-sub {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-sub);
+  margin: 10px 0 5px;
+  letter-spacing: 0.5px;
+}
+.sp-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  max-height: 210px;      /* 20 条线独立滚动，避免挤掉下方换乘枢纽榜 */
+  overflow-y: auto;
+  margin: 0 -3px;
+  padding: 0 3px;
+}
+.sp-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  padding: 2px 3px;
+  border-radius: 5px;
+}
+.sp-bar-row:hover { background: rgba(43, 111, 255, 0.08); }
+.sp-bar-name {
+  font-size: 11px; color: var(--ink);
+  width: 58px; flex: none;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.sp-bar-track {
+  flex: 1 1 auto;
+  height: 7px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.sp-bar-fill { display: block; height: 100%; border-radius: 4px; min-width: 3px; }
+.sp-bar-n {
+  font-size: 11px;
+  color: var(--ink-sub);
+  width: 18px;
+  text-align: right;
+  flex: none;
+  font-variant-numeric: tabular-nums;
+}
+.sp-empty { font-size: 12px; color: var(--ink-sub); padding: 6px 2px; }
+.sp-hubs { display: flex; flex-direction: column; gap: 2px; }
+.sp-hub {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  padding: 4px 3px;
+  border-radius: 5px;
+}
+.sp-hub:hover { background: rgba(43, 111, 255, 0.08); }
+.sp-hub-name { font-size: 12px; color: var(--ink); flex: 1 1 auto; }
+.sp-hub-dots { display: flex; gap: 2px; flex: none; }
+.sp-hub-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+.sp-hub-n {
+  font-size: 10px; color: var(--ink-sub); flex: none;
+  width: 30px; text-align: right;
+}
+.hud-badge {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 7px;
+  background: rgba(255, 170, 0, 0.16);
+  color: #b8790a;
+  border: 1px solid rgba(255, 170, 0, 0.3);
+}
+
+/* ============ 站点搜索（图标展开式） ============ */
+.search {
+  position: absolute;
+  top: 16px;
+  right: 57px;   /* 让开右上角缩放控件（16 右边距 + 29 控件宽 + 12 间距） */
+  z-index: 11;
+}
+.search-toggle {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid var(--panel-border);
+  background: var(--panel-bg);
+  color: var(--ink);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  box-shadow: var(--panel-shadow);
+  transition: background 0.15s;
+}
+.search-toggle:hover { background: #fff; }
+.search-toggle-text { white-space: nowrap; }
+.search-toggle svg { flex: none; }
+.search.is-open .search-toggle { display: none; }
+.search-box {
+  width: 300px;
+  max-width: calc(100vw - 76px);
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  box-shadow: var(--panel-shadow);
+  overflow: hidden;
+}
+.search-input {
+  width: 100%;
+  padding: 11px 40px 11px 14px;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  color: var(--ink);
+  outline: none;
+  font-family: inherit;
+}
+.search-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 26px;
+  height: 26px;
+  border: none;
+  background: transparent;
+  color: var(--ink-sub);
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.search-close:hover { background: rgba(0, 0, 0, 0.06); }
+.search-results {
+  list-style: none;
+  max-height: 320px;
+  overflow-y: auto;
+  border-top: 1px solid rgba(0, 0, 0, 0.07);
+}
+.search-results:empty { display: none; }
+.search-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  cursor: pointer;
+  font-size: 13px;
+}
+.search-item:hover,
+.search-item.is-active { background: rgba(43, 111, 255, 0.1); }
+.search-item .si-dots { display: flex; gap: 3px; flex: none; }
+.search-item .si-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+.search-item .si-name { flex: 1 1 auto; color: var(--ink); }
+.search-item .si-lines { color: var(--ink-sub); font-size: 11px; flex: none; }
+.search-empty { padding: 12px 14px; color: var(--ink-sub); font-size: 13px; }
+
+/* ============ 图例：可点击聚焦 ============ */
+.legend {
+  position: absolute;
+  bottom: 28px;
+  right: 12px;
+  z-index: 13;   /* 高于吸底条，避免被遮挡 */
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  padding: 12px 8px 12px 12px;
+  max-height: 46vh;
+  overflow-y: auto;
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  box-shadow: var(--panel-shadow);
+  font-size: 13px;
+  transition: bottom 0.25s ease;
+}
+/* 吸底条展开时，图例上移让位（--line-bar-h 由 JS 按条高设置） */
+body.has-line-bar .legend { bottom: calc(var(--line-bar-h, 80px) + 12px); }
+.legend-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-sub);
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  padding-left: 2px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.legend-item:hover { background: rgba(43, 111, 255, 0.08); }
+.legend-item.is-focus { background: rgba(43, 111, 255, 0.14); font-weight: 600; }
+.legend-dot { width: 16px; height: 5px; border-radius: 3px; flex: none; }
+.legend-name { white-space: nowrap; color: var(--ink); }
+
+/* ============ 列车/站点信息气泡 ============ */
+.train-popup {
+  position: absolute;
+  z-index: 11;
+  transform: translate(-50%, -100%);
+  background: rgba(28, 35, 48, 0.94);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 12px;
+  pointer-events: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  white-space: nowrap;
+}
+/* 关键：hidden 属性靠 UA 的 display:none 生效，会被上面的 display:flex 覆盖。
+ * 显式声明，确保 popup.hidden=true 真能隐藏。 */
+.train-popup[hidden] { display: none; }
+.train-popup::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: rgba(28, 35, 48, 0.94);
+  border-bottom: 0;
+}
+.tp-line { font-weight: 700; font-size: 13px; }
+.tp-toward { color: #c9d2e0; }
+.tp-list {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.tp-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35);
+}
+/* 换乘站：每条线一个分组，带色点小标题 */
+.tp-section { display: flex; flex-direction: column; gap: 3px; }
+.tp-section + .tp-section { margin-top: 5px; }
+.tp-linehead {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #dfe6f0;
+}
+/* 方向行：左「开往X」，右「下一班 + 末班」 */
+.tp-dir {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+  padding-left: 2px;
+}
+.tp-toward-name { color: #e8edf5; flex: 0 1 auto; }
+.tp-dir-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex: 0 0 auto;
+  font-variant-numeric: tabular-nums;
+}
+.tp-next { color: #7fd0a0; }
+.tp-lastinfo { color: #a9b3c4; font-size: 11px; }
+.tp-muted { color: #8a94a6; }
+
+/* ============ 线路详情吸底条 ============ */
+.line-bar {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  z-index: 12;
+  display: flex;
+  align-items: stretch;
+  gap: 14px;
+  padding: 10px 46px 10px 16px;
+  background: var(--panel-bg);
+  border-top: 1px solid var(--panel-border);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  box-shadow: 0 -6px 28px rgba(30, 40, 60, 0.14);
+}
+.line-bar[hidden] { display: none; }
+
+/* 左侧信息区 */
+.lb-info {
+  flex: none;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  padding-right: 14px;
+}
+.lb-head { display: flex; align-items: center; gap: 7px; }
+.lb-dot { width: 12px; height: 12px; border-radius: 50%; flex: none; }
+.lb-name { font-size: 15px; font-weight: 700; color: var(--ink); white-space: nowrap; }
+.lb-stats {
+  display: flex; flex-wrap: wrap; gap: 3px 10px;
+  font-size: 11px; color: var(--ink-sub);
+}
+.lb-stats b { color: var(--ink); font-size: 13px; font-variant-numeric: tabular-nums; }
+.lb-service {
+  font-size: 11px; color: var(--ink-sub);
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+
+/* 右侧横向站点条 */
+.lb-track {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.lb-row { display: flex; align-items: center; gap: 10px; }
+/* 分支行：整体缩进、弱化，视觉上从主干“分叉”出来 */
+.lb-row.is-branch { margin-left: 18px; opacity: 0.9; }
+.lb-row.is-branch .lb-row-label { color: var(--accent); font-weight: 600; }
+.lb-row-label {
+  flex: none; font-size: 10px; color: var(--ink-sub);
+  white-space: nowrap; min-width: 96px;
+}
+/* 分叉锚点站：主干上已展示过，这里只作连接提示，弱化并虚线描边 */
+.lb-stn.is-fork { opacity: 0.5; }
+.lb-stn.is-fork::before {
+  background: transparent;
+  box-shadow: 0 0 0 1.5px var(--c);
+}
+.lb-stn.is-fork::after {
+  height: 0; background: transparent;
+  border-top: 2px dashed var(--c); opacity: 0.6;
+}
+.lb-stns { display: flex; align-items: center; gap: 0; }
+/* 站点：小圆点 + 名称，用连线视觉串起来 */
+.lb-stn {
+  position: relative;
+  flex: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 11px;
+  color: var(--ink);
+  padding: 4px 9px 4px 14px;
+  white-space: nowrap;
+  border-radius: 6px;
+}
+/* 站点小圆点 */
+.lb-stn::before {
+  content: '';
+  position: absolute;
+  left: 3px; top: 50%;
+  width: 7px; height: 7px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 2px var(--c);
+}
+/* 站间连线 */
+.lb-stn::after {
+  content: '';
+  position: absolute;
+  left: -6px; top: 50%;
+  width: 12px; height: 2px;
+  transform: translateY(-50%);
+  background: var(--c);
+  opacity: 0.5;
+  z-index: -1;
+}
+.lb-stn:first-child::after { display: none; }
+.lb-stn:hover { background: rgba(43, 111, 255, 0.12); }
+.lb-stn.is-transfer { font-weight: 700; }
+.lb-stn.is-transfer::before {
+  width: 9px; height: 9px; left: 2px;
+  background: #fff;
+  box-shadow: 0 0 0 2px #2b2f3a;
+}
+.lb-close {
+  position: absolute;
+  top: 8px; right: 12px;
+  border: none; background: transparent; color: var(--ink-sub);
+  font-size: 14px; cursor: pointer;
+  width: 26px; height: 26px; border-radius: 6px;
+}
+.lb-close:hover { background: rgba(0, 0, 0, 0.06); }
+
+/* ============ 错误态 ============ */
+.error-state {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  text-align: center;
+  background: #fff;
+  padding: 32px 40px;
+  border-radius: 18px;
+  box-shadow: 0 10px 44px rgba(0, 0, 0, 0.2);
+}
+.error-icon { font-size: 48px; }
+.error-text { font-size: 18px; font-weight: 600; margin: 12px 0 6px; }
+.error-hint { font-size: 13px; color: var(--ink-sub); }
+
+/* ============ MapLibre 控件微调 ============ */
+.maplibregl-ctrl-attrib { font-size: 10px; opacity: 0.7; }
+/* 右上角缩放控件与搜索框顶部对齐（搜索框 top:16px right:16px） */
+.maplibregl-ctrl-top-right { top: 16px; right: 16px; }
+.maplibregl-ctrl-top-right .maplibregl-ctrl { margin: 0; }
+/* 吸底条展开时抬高右下角版权，保持可见（合规） */
+body.has-line-bar .maplibregl-ctrl-bottom-right {
+  bottom: calc(var(--line-bar-h, 80px));
+  transition: bottom 0.25s ease;
+}
+
+/* ============ 移动端 ============ */
+@media (max-width: 768px) {
+  .hud { top: 10px; left: 10px; padding: 10px 14px; min-width: 140px; }
+  .hud-clock { font-size: 24px; }
+  .hud-title { font-size: 11px; }
+  .legend {
+    bottom: 12px; right: 8px;
+    max-height: 32vh; font-size: 12px;
+    padding: 10px 6px 10px 10px;
+  }
+  .legend-dot { width: 14px; }
+
+  /* 数据面板：整体限高，排行区更矮，保证换乘枢纽榜可见 */
+  .hud-panel { max-height: 68vh; width: 248px; }
+  .sp-bars { max-height: 30vh; }
+
+  /* 吸底条：信息区收窄，搜索/图例照常上移 */
+  .line-bar { gap: 10px; padding: 8px 40px 8px 12px; }
+  .lb-info { width: 118px; padding-right: 10px; }
+  .lb-name { font-size: 13px; }
+  .lb-row-label { min-width: 72px; }
+}

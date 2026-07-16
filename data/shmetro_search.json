@@ -1,0 +1,5662 @@
+{
+  "stations": [
+    {
+      "name": "一大会址·新天地",
+      "py": "yidahuizhi·xintiandi",
+      "abbr": "ydhz·xtd",
+      "lineIds": [
+        "10",
+        "13"
+      ],
+      "colors": [
+        "#C6AFD4",
+        "#EB81B9"
+      ],
+      "lon": 121.470665,
+      "lat": 31.21832
+    },
+    {
+      "name": "一大会址·黄陂南路",
+      "py": "yidahuizhi·huangpinanlu",
+      "abbr": "ydhz·hpnl",
+      "lineIds": [
+        "1",
+        "14"
+      ],
+      "colors": [
+        "#E3002A",
+        "#818530"
+      ],
+      "lon": 121.468379,
+      "lat": 31.225841
+    },
+    {
+      "name": "七宝",
+      "py": "qibao",
+      "abbr": "qb",
+      "lineIds": [
+        "9"
+      ],
+      "colors": [
+        "#69C7F4"
+      ],
+      "lon": 121.344638,
+      "lat": 31.157212
+    },
+    {
+      "name": "七莘路",
+      "py": "qishenlu",
+      "abbr": "qsl",
+      "lineIds": [
+        "12"
+      ],
+      "colors": [
+        "#007A61"
+      ],
+      "lon": 121.357855,
+      "lat": 31.13355
+    },
+    {
+      "name": "三林",
+      "py": "sanlin",
+      "abbr": "sl",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.507415,
+      "lat": 31.145322
+    },
+    {
+      "name": "三林东",
+      "py": "sanlindong",
+      "abbr": "sld",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.518656,
+      "lat": 31.148587
+    },
+    {
+      "name": "三林南",
+      "py": "sanlinnan",
+      "abbr": "sln",
+      "lineIds": [
+        "airport"
+      ],
+      "colors": [
+        "#99ADAC"
+      ],
+      "lon": 121.482385,
+      "lat": 31.128071
+    },
+    {
+      "name": "三门路",
+      "py": "sanmenlu",
+      "abbr": "sml",
+      "lineIds": [
+        "10"
+      ],
+      "colors": [
+        "#C6AFD4"
+      ],
+      "lon": 121.503932,
+      "lat": 31.315223
+    },
+    {
+      "name": "三鲁公路",
+      "py": "sanlugonglu",
+      "abbr": "slgl",
+      "lineIds": [
+        "pujiang"
+      ],
+      "colors": [
+        "#B5B5B6"
+      ],
+      "lon": 121.523068,
+      "lat": 31.058298
+    },
+    {
+      "name": "上南路",
+      "py": "shangnanlu",
+      "abbr": "snl",
+      "lineIds": [
+        "6"
+      ],
+      "colors": [
+        "#F0087D"
+      ],
+      "lon": 121.502046,
+      "lat": 31.150899
+    },
+    {
+      "name": "上大路",
+      "py": "shangdalu",
+      "abbr": "sdl",
+      "lineIds": [
+        "7"
+      ],
+      "colors": [
+        "#EE782E"
+      ],
+      "lon": 121.404028,
+      "lat": 31.316769
+    },
+    {
+      "name": "上海体育场",
+      "py": "shanghaitiyuchang",
+      "abbr": "shtyc",
+      "lineIds": [
+        "4"
+      ],
+      "colors": [
+        "#5A2B8D"
+      ],
+      "lon": 121.438927,
+      "lat": 31.187499
+    },
+    {
+      "name": "上海体育馆",
+      "py": "shanghaitiyuguan",
+      "abbr": "shtyg",
+      "lineIds": [
+        "1",
+        "4"
+      ],
+      "colors": [
+        "#E3002A",
+        "#5A2B8D"
+      ],
+      "lon": 121.432809,
+      "lat": 31.184699
+    },
+    {
+      "name": "上海儿童医学中心",
+      "py": "shanghaiertongyixuezhongxin",
+      "abbr": "shetyxzx",
+      "lineIds": [
+        "6"
+      ],
+      "colors": [
+        "#F0087D"
+      ],
+      "lon": 121.519136,
+      "lat": 31.205378
+    },
+    {
+      "name": "上海动物园",
+      "py": "shanghaidongwuyuan",
+      "abbr": "shdwy",
+      "lineIds": [
+        "10"
+      ],
+      "colors": [
+        "#C6AFD4"
+      ],
+      "lon": 121.363517,
+      "lat": 31.192124
+    },
+    {
+      "name": "上海南站",
+      "py": "shanghainanzhan",
+      "abbr": "shnz",
+      "lineIds": [
+        "1",
+        "3",
+        "15"
+      ],
+      "colors": [
+        "#E3002A",
+        "#FCD600",
+        "#DAC17D"
+      ],
+      "lon": 121.425417,
+      "lat": 31.156469
+    },
+    {
+      "name": "上海国际旅游度假区",
+      "py": "shanghaiguojilvyoudujiaqu",
+      "abbr": "shgjlydjq",
+      "lineIds": [
+        "airport"
+      ],
+      "colors": [
+        "#99ADAC"
+      ],
+      "lon": 121.675431,
+      "lat": 31.158314
+    },
+    {
+      "name": "上海图书馆",
+      "py": "shanghaitushuguan",
+      "abbr": "shtsg",
+      "lineIds": [
+        "10"
+      ],
+      "colors": [
+        "#C6AFD4"
+      ],
+      "lon": 121.439761,
+      "lat": 31.209845
+    },
+    {
+      "name": "上海大学",
+      "py": "shanghaidaxue",
+      "abbr": "shdx",
+      "lineIds": [
+        "7"
+      ],
+      "colors": [
+        "#EE782E"
+      ],
+      "lon": 121.384229,
+      "lat": 31.322387
+    },
+    {
+      "name": "上海松江站",
+      "py": "shanghaisongjiangzhan",
+      "abbr": "shsjz",
+      "lineIds": [
+        "9"
+      ],
+      "colors": [
+        "#69C7F4"
+      ],
+      "lon": 121.226473,
+      "lat": 30.986967
+    },
+    {
+      "name": "上海汽车城",
+      "py": "shanghaiqichecheng",
+      "abbr": "shqcc",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.176231,
+      "lat": 31.287325
+    },
+    {
+      "name": "上海游泳馆",
+      "py": "shanghaiyouyongguan",
+      "abbr": "shyyg",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.436818,
+      "lat": 31.181017
+    },
+    {
+      "name": "上海火车站",
+      "py": "shanghaihuochezhan",
+      "abbr": "shhcz",
+      "lineIds": [
+        "1",
+        "3",
+        "4"
+      ],
+      "colors": [
+        "#E3002A",
+        "#FCD600",
+        "#5A2B8D"
+      ],
+      "lon": 121.453367,
+      "lat": 31.251526
+    },
+    {
+      "name": "上海科技馆",
+      "py": "shanghaikejiguan",
+      "abbr": "shkjg",
+      "lineIds": [
+        "2"
+      ],
+      "colors": [
+        "#86B81C"
+      ],
+      "lon": 121.540157,
+      "lat": 31.220966
+    },
+    {
+      "name": "上海西站",
+      "py": "shanghaixizhan",
+      "abbr": "shxz",
+      "lineIds": [
+        "11",
+        "15"
+      ],
+      "colors": [
+        "#871C2A",
+        "#DAC17D"
+      ],
+      "lon": 121.396272,
+      "lat": 31.264514
+    },
+    {
+      "name": "上海财经大学",
+      "py": "shanghaicaijingdaxue",
+      "abbr": "shcjdx",
+      "lineIds": [
+        "18"
+      ],
+      "colors": [
+        "#D0970A"
+      ],
+      "lon": 121.491881,
+      "lat": 31.309647
+    },
+    {
+      "name": "上海赛车场",
+      "py": "shanghaisaichechang",
+      "abbr": "shscc",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.221654,
+      "lat": 31.333869
+    },
+    {
+      "name": "上海马戏城",
+      "py": "shanghaimaxicheng",
+      "abbr": "shmxc",
+      "lineIds": [
+        "1"
+      ],
+      "colors": [
+        "#E3002A"
+      ],
+      "lon": 121.447432,
+      "lat": 31.281763
+    },
+    {
+      "name": "下南路",
+      "py": "xiananlu",
+      "abbr": "xnl",
+      "lineIds": [
+        "13"
+      ],
+      "colors": [
+        "#EB81B9"
+      ],
+      "lon": 121.535898,
+      "lat": 31.181451
+    },
+    {
+      "name": "下沙",
+      "py": "xiasha",
+      "abbr": "xs",
+      "lineIds": [
+        "18"
+      ],
+      "colors": [
+        "#D0970A"
+      ],
+      "lon": 121.584797,
+      "lat": 31.05669
+    },
+    {
+      "name": "世博会博物馆",
+      "py": "shibohuibowuguan",
+      "abbr": "sbhbwg",
+      "lineIds": [
+        "13"
+      ],
+      "colors": [
+        "#EB81B9"
+      ],
+      "lon": 121.477098,
+      "lat": 31.199552
+    },
+    {
+      "name": "世博大道",
+      "py": "shibodadao",
+      "abbr": "sbdd",
+      "lineIds": [
+        "13"
+      ],
+      "colors": [
+        "#EB81B9"
+      ],
+      "lon": 121.47983,
+      "lat": 31.184784
+    },
+    {
+      "name": "世纪公园",
+      "py": "shijigongyuan",
+      "abbr": "sjgy",
+      "lineIds": [
+        "2"
+      ],
+      "colors": [
+        "#86B81C"
+      ],
+      "lon": 121.546644,
+      "lat": 31.211585
+    },
+    {
+      "name": "世纪大道",
+      "py": "shijidadao",
+      "abbr": "sjdd",
+      "lineIds": [
+        "2",
+        "4",
+        "6",
+        "9"
+      ],
+      "colors": [
+        "#86B81C",
+        "#5A2B8D",
+        "#F0087D",
+        "#69C7F4"
+      ],
+      "lon": 121.522877,
+      "lat": 31.230781
+    },
+    {
+      "name": "东兰路",
+      "py": "donglanlu",
+      "abbr": "dll",
+      "lineIds": [
+        "12"
+      ],
+      "colors": [
+        "#007A61"
+      ],
+      "lon": 121.387277,
+      "lat": 31.1577
+    },
+    {
+      "name": "东城一路",
+      "py": "dongchengyilu",
+      "abbr": "dcyl",
+      "lineIds": [
+        "pujiang"
+      ],
+      "colors": [
+        "#B5B5B6"
+      ],
+      "lon": 121.52779,
+      "lat": 31.032608
+    },
+    {
+      "name": "东安路",
+      "py": "donganlu",
+      "abbr": "dal",
+      "lineIds": [
+        "4",
+        "7"
+      ],
+      "colors": [
+        "#5A2B8D",
+        "#EE782E"
+      ],
+      "lon": 121.450322,
+      "lat": 31.192734
+    },
+    {
+      "name": "东宝兴路",
+      "py": "dongbaoxinglu",
+      "abbr": "dbxl",
+      "lineIds": [
+        "3"
+      ],
+      "colors": [
+        "#FCD600"
+      ],
+      "lon": 121.475698,
+      "lat": 31.261833
+    },
+    {
+      "name": "东川路",
+      "py": "dongchuanlu",
+      "abbr": "dcl",
+      "lineIds": [
+        "5"
+      ],
+      "colors": [
+        "#96499A"
+      ],
+      "lon": 121.415276,
+      "lat": 31.020153
+    },
+    {
+      "name": "东方体育中心",
+      "py": "dongfangtiyuzhongxin",
+      "abbr": "dftyzx",
+      "lineIds": [
+        "6",
+        "8",
+        "11"
+      ],
+      "colors": [
+        "#F0087D",
+        "#01A2E2",
+        "#871C2A"
+      ],
+      "lon": 121.47581,
+      "lat": 31.155365
+    },
+    {
+      "name": "东方绿舟",
+      "py": "dongfanglvzhou",
+      "abbr": "dflz",
+      "lineIds": [
+        "17"
+      ],
+      "colors": [
+        "#B85A4E"
+      ],
+      "lon": 121.015091,
+      "lat": 31.10058
+    },
+    {
+      "name": "东明路",
+      "py": "dongminglu",
+      "abbr": "dml",
+      "lineIds": [
+        "6",
+        "13"
+      ],
+      "colors": [
+        "#F0087D",
+        "#EB81B9"
+      ],
+      "lon": 121.506481,
+      "lat": 31.174725
+    },
+    {
+      "name": "东陆路",
+      "py": "donglulu",
+      "abbr": "dll",
+      "lineIds": [
+        "12"
+      ],
+      "colors": [
+        "#007A61"
+      ],
+      "lon": 121.574906,
+      "lat": 31.284705
+    },
+    {
+      "name": "东靖路",
+      "py": "dongjinglu",
+      "abbr": "djl",
+      "lineIds": [
+        "6"
+      ],
+      "colors": [
+        "#F0087D"
+      ],
+      "lon": 121.584526,
+      "lat": 31.292859
+    },
+    {
+      "name": "中兴路",
+      "py": "zhongxinglu",
+      "abbr": "zxl",
+      "lineIds": [
+        "8"
+      ],
+      "colors": [
+        "#01A2E2"
+      ],
+      "lon": 121.464486,
+      "lat": 31.255147
+    },
+    {
+      "name": "中华艺术宫",
+      "py": "zhonghuayishugong",
+      "abbr": "zhysg",
+      "lineIds": [
+        "8"
+      ],
+      "colors": [
+        "#01A2E2"
+      ],
+      "lon": 121.489176,
+      "lat": 31.187263
+    },
+    {
+      "name": "中宁路",
+      "py": "zhongninglu",
+      "abbr": "znl",
+      "lineIds": [
+        "14"
+      ],
+      "colors": [
+        "#818530"
+      ],
+      "lon": 121.409892,
+      "lat": 31.246891
+    },
+    {
+      "name": "中山公园",
+      "py": "zhongshangongyuan",
+      "abbr": "zsgy",
+      "lineIds": [
+        "2",
+        "3",
+        "4"
+      ],
+      "colors": [
+        "#86B81C",
+        "#FCD600",
+        "#5A2B8D"
+      ],
+      "lon": 121.411128,
+      "lat": 31.219793
+    },
+    {
+      "name": "中山北路",
+      "py": "zhongshanbeilu",
+      "abbr": "zsbl",
+      "lineIds": [
+        "1"
+      ],
+      "colors": [
+        "#E3002A"
+      ],
+      "lon": 121.454634,
+      "lat": 31.260784
+    },
+    {
+      "name": "中春路",
+      "py": "zhongchunlu",
+      "abbr": "zcl",
+      "lineIds": [
+        "9",
+        "airport"
+      ],
+      "colors": [
+        "#69C7F4",
+        "#99ADAC"
+      ],
+      "lon": 121.330045,
+      "lat": 31.151721
+    },
+    {
+      "name": "中潭路",
+      "py": "zhongtanlu",
+      "abbr": "ztl",
+      "lineIds": [
+        "3",
+        "4"
+      ],
+      "colors": [
+        "#FCD600",
+        "#5A2B8D"
+      ],
+      "lon": 121.436387,
+      "lat": 31.256425
+    },
+    {
+      "name": "中科路",
+      "py": "zhongkelu",
+      "abbr": "zkl",
+      "lineIds": [
+        "13"
+      ],
+      "colors": [
+        "#EB81B9"
+      ],
+      "lon": 121.598268,
+      "lat": 31.181089
+    },
+    {
+      "name": "丰庄",
+      "py": "fengzhuang",
+      "abbr": "fz",
+      "lineIds": [
+        "13"
+      ],
+      "colors": [
+        "#EB81B9"
+      ],
+      "lon": 121.350539,
+      "lat": 31.244425
+    },
+    {
+      "name": "丰翔路",
+      "py": "fengxianglu",
+      "abbr": "fxl",
+      "lineIds": [
+        "15"
+      ],
+      "colors": [
+        "#DAC17D"
+      ],
+      "lon": 121.376225,
+      "lat": 31.31003
+    },
+    {
+      "name": "临平路",
+      "py": "linpinglu",
+      "abbr": "lpl",
+      "lineIds": [
+        "4"
+      ],
+      "colors": [
+        "#5A2B8D"
+      ],
+      "lon": 121.496265,
+      "lat": 31.262881
+    },
+    {
+      "name": "临沂新村",
+      "py": "linyixincun",
+      "abbr": "lyxc",
+      "lineIds": [
+        "6"
+      ],
+      "colors": [
+        "#F0087D"
+      ],
+      "lon": 121.512327,
+      "lat": 31.195288
+    },
+    {
+      "name": "临洮路",
+      "py": "lintaolu",
+      "abbr": "ltl",
+      "lineIds": [
+        "14"
+      ],
+      "colors": [
+        "#818530"
+      ],
+      "lon": 121.326308,
+      "lat": 31.264966
+    },
+    {
+      "name": "临港大道",
+      "py": "lingangdadao",
+      "abbr": "lgdd",
+      "lineIds": [
+        "16"
+      ],
+      "colors": [
+        "#98D1C0"
+      ],
+      "lon": 121.90677,
+      "lat": 30.925885
+    },
+    {
+      "name": "丹阳路",
+      "py": "danyanglu",
+      "abbr": "dyl",
+      "lineIds": [
+        "18"
+      ],
+      "colors": [
+        "#D0970A"
+      ],
+      "lon": 121.526835,
+      "lat": 31.255913
+    },
+    {
+      "name": "乐秀路",
+      "py": "lexiulu",
+      "abbr": "lxl",
+      "lineIds": [
+        "14"
+      ],
+      "colors": [
+        "#818530"
+      ],
+      "lon": 121.309589,
+      "lat": 31.267301
+    },
+    {
+      "name": "九亭",
+      "py": "jiuting",
+      "abbr": "jt",
+      "lineIds": [
+        "9"
+      ],
+      "colors": [
+        "#69C7F4"
+      ],
+      "lon": 121.314908,
+      "lat": 31.139242
+    },
+    {
+      "name": "书院",
+      "py": "shuyuan",
+      "abbr": "sy",
+      "lineIds": [
+        "16"
+      ],
+      "colors": [
+        "#98D1C0"
+      ],
+      "lon": 121.846358,
+      "lat": 30.961562
+    },
+    {
+      "name": "云台路",
+      "py": "yuntailu",
+      "abbr": "ytl",
+      "lineIds": [
+        "7"
+      ],
+      "colors": [
+        "#EE782E"
+      ],
+      "lon": 121.496013,
+      "lat": 31.184255
+    },
+    {
+      "name": "云山路",
+      "py": "yunshanlu",
+      "abbr": "ysl",
+      "lineIds": [
+        "6",
+        "14"
+      ],
+      "colors": [
+        "#F0087D",
+        "#818530"
+      ],
+      "lon": 121.566926,
+      "lat": 31.253147
+    },
+    {
+      "name": "云锦路",
+      "py": "yunjinlu",
+      "abbr": "yjl",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.453955,
+      "lat": 31.168423
+    },
+    {
+      "name": "云顺路",
+      "py": "yunshunlu",
+      "abbr": "ysl",
+      "lineIds": [
+        "14"
+      ],
+      "colors": [
+        "#818530"
+      ],
+      "lon": 121.596135,
+      "lat": 31.239263
+    },
+    {
+      "name": "五洲大道",
+      "py": "wuzhoudadao",
+      "abbr": "wzdd",
+      "lineIds": [
+        "6"
+      ],
+      "colors": [
+        "#F0087D"
+      ],
+      "lon": 121.585001,
+      "lat": 31.304739
+    },
+    {
+      "name": "五莲路",
+      "py": "wulianlu",
+      "abbr": "wll",
+      "lineIds": [
+        "6"
+      ],
+      "colors": [
+        "#F0087D"
+      ],
+      "lon": 121.583657,
+      "lat": 31.274207
+    },
+    {
+      "name": "五角场",
+      "py": "wujiaochang",
+      "abbr": "wjc",
+      "lineIds": [
+        "10"
+      ],
+      "colors": [
+        "#C6AFD4"
+      ],
+      "lon": 121.510248,
+      "lat": 31.300076
+    },
+    {
+      "name": "交通大学",
+      "py": "jiaotongdaxue",
+      "abbr": "jtdx",
+      "lineIds": [
+        "10",
+        "11"
+      ],
+      "colors": [
+        "#C6AFD4",
+        "#871C2A"
+      ],
+      "lon": 121.430633,
+      "lat": 31.204086
+    },
+    {
+      "name": "人民广场",
+      "py": "renminguangchang",
+      "abbr": "rmgc",
+      "lineIds": [
+        "1",
+        "2",
+        "8"
+      ],
+      "colors": [
+        "#E3002A",
+        "#86B81C",
+        "#01A2E2"
+      ],
+      "lon": 121.470589,
+      "lat": 31.234632
+    },
+    {
+      "name": "伊犁路",
+      "py": "yililu",
+      "abbr": "yll",
+      "lineIds": [
+        "10"
+      ],
+      "colors": [
+        "#C6AFD4"
+      ],
+      "lon": 121.39925,
+      "lat": 31.20073
+    },
+    {
+      "name": "佘山",
+      "py": "sheshan",
+      "abbr": "ss",
+      "lineIds": [
+        "9"
+      ],
+      "colors": [
+        "#69C7F4"
+      ],
+      "lon": 121.225265,
+      "lat": 31.106177
+    },
+    {
+      "name": "元江路",
+      "py": "yuanjianglu",
+      "abbr": "yjl",
+      "lineIds": [
+        "15"
+      ],
+      "colors": [
+        "#DAC17D"
+      ],
+      "lon": 121.427288,
+      "lat": 31.064758
+    },
+    {
+      "name": "兆丰路",
+      "py": "zhaofenglu",
+      "abbr": "zfl",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.145744,
+      "lat": 31.290913
+    },
+    {
+      "name": "光明路",
+      "py": "guangminglu",
+      "abbr": "gml",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.112569,
+      "lat": 31.298029
+    },
+    {
+      "name": "共富新村",
+      "py": "gongfuxincun",
+      "abbr": "gfxc",
+      "lineIds": [
+        "1"
+      ],
+      "colors": [
+        "#E3002A"
+      ],
+      "lon": 121.429428,
+      "lat": 31.35689
+    },
+    {
+      "name": "共康路",
+      "py": "gongkanglu",
+      "abbr": "gkl",
+      "lineIds": [
+        "1"
+      ],
+      "colors": [
+        "#E3002A"
+      ],
+      "lon": 121.442457,
+      "lat": 31.320778
+    },
+    {
+      "name": "凌兆新村",
+      "py": "lingzhaoxincun",
+      "abbr": "lzxc",
+      "lineIds": [
+        "8"
+      ],
+      "colors": [
+        "#01A2E2"
+      ],
+      "lon": 121.485202,
+      "lat": 31.143333
+    },
+    {
+      "name": "凌空路",
+      "py": "lingkonglu",
+      "abbr": "lkl",
+      "lineIds": [
+        "2"
+      ],
+      "colors": [
+        "#86B81C"
+      ],
+      "lon": 121.719728,
+      "lat": 31.194907
+    },
+    {
+      "name": "刘行",
+      "py": "liuxing",
+      "abbr": "lx",
+      "lineIds": [
+        "7"
+      ],
+      "colors": [
+        "#EE782E"
+      ],
+      "lon": 121.35775,
+      "lat": 31.359402
+    },
+    {
+      "name": "创新中路",
+      "py": "chuangxinzhonglu",
+      "abbr": "cxzl",
+      "lineIds": [
+        "2"
+      ],
+      "colors": [
+        "#86B81C"
+      ],
+      "lon": 121.669421,
+      "lat": 31.215986
+    },
+    {
+      "name": "剑川路",
+      "py": "jianchuanlu",
+      "abbr": "jcl",
+      "lineIds": [
+        "5"
+      ],
+      "colors": [
+        "#96499A"
+      ],
+      "lon": 121.411954,
+      "lat": 31.028432
+    },
+    {
+      "name": "北中路",
+      "py": "beizhonglu",
+      "abbr": "bzl",
+      "lineIds": [
+        "18"
+      ],
+      "colors": [
+        "#D0970A"
+      ],
+      "lon": 121.557116,
+      "lat": 31.184958
+    },
+    {
+      "name": "北新泾",
+      "py": "beixinjing",
+      "abbr": "bxj",
+      "lineIds": [
+        "2"
+      ],
+      "colors": [
+        "#86B81C"
+      ],
+      "lon": 121.369367,
+      "lat": 31.218253
+    },
+    {
+      "name": "北桥",
+      "py": "beiqiao",
+      "abbr": "bq",
+      "lineIds": [
+        "5"
+      ],
+      "colors": [
+        "#96499A"
+      ],
+      "lon": 121.40542,
+      "lat": 31.047047
+    },
+    {
+      "name": "北洋泾路",
+      "py": "beiyangjinglu",
+      "abbr": "byjl",
+      "lineIds": [
+        "6"
+      ],
+      "colors": [
+        "#F0087D"
+      ],
+      "lon": 121.54805,
+      "lat": 31.241298
+    },
+    {
+      "name": "北蔡",
+      "py": "beicai",
+      "abbr": "bc",
+      "lineIds": [
+        "13"
+      ],
+      "colors": [
+        "#EB81B9"
+      ],
+      "lon": 121.547758,
+      "lat": 31.182312
+    },
+    {
+      "name": "华东理工大学",
+      "py": "huadongligongdaxue",
+      "abbr": "hdlgdx",
+      "lineIds": [
+        "15"
+      ],
+      "colors": [
+        "#DAC17D"
+      ],
+      "lon": 121.424365,
+      "lat": 31.146151
+    },
+    {
+      "name": "华夏东路",
+      "py": "huaxiadonglu",
+      "abbr": "hxdl",
+      "lineIds": [
+        "2"
+      ],
+      "colors": [
+        "#86B81C"
+      ],
+      "lon": 121.676667,
+      "lat": 31.198684
+    },
+    {
+      "name": "华夏中路",
+      "py": "huaxiazhonglu",
+      "abbr": "hxzl",
+      "lineIds": [
+        "13",
+        "16"
+      ],
+      "colors": [
+        "#EB81B9",
+        "#98D1C0"
+      ],
+      "lon": 121.578904,
+      "lat": 31.177983
+    },
+    {
+      "name": "华夏西路",
+      "py": "huaxiaxilu",
+      "abbr": "hxxl",
+      "lineIds": [
+        "6"
+      ],
+      "colors": [
+        "#F0087D"
+      ],
+      "lon": 121.510167,
+      "lat": 31.15198
+    },
+    {
+      "name": "华宁路",
+      "py": "huaninglu",
+      "abbr": "hnl",
+      "lineIds": [
+        "5"
+      ],
+      "colors": [
+        "#96499A"
+      ],
+      "lon": 121.390624,
+      "lat": 31.009423
+    },
+    {
+      "name": "华鹏路",
+      "py": "huapenglu",
+      "abbr": "hpl",
+      "lineIds": [
+        "13"
+      ],
+      "colors": [
+        "#EB81B9"
+      ],
+      "lon": 121.522234,
+      "lat": 31.178398
+    },
+    {
+      "name": "南京东路",
+      "py": "nanjingdonglu",
+      "abbr": "njdl",
+      "lineIds": [
+        "2",
+        "10"
+      ],
+      "colors": [
+        "#86B81C",
+        "#C6AFD4"
+      ],
+      "lon": 121.480141,
+      "lat": 31.240071
+    },
+    {
+      "name": "南京西路",
+      "py": "nanjingxilu",
+      "abbr": "njxl",
+      "lineIds": [
+        "2",
+        "12",
+        "13"
+      ],
+      "colors": [
+        "#86B81C",
+        "#007A61",
+        "#EB81B9"
+      ],
+      "lon": 121.455406,
+      "lat": 31.23176
+    },
+    {
+      "name": "南大路",
+      "py": "nandalu",
+      "abbr": "ndl",
+      "lineIds": [
+        "15"
+      ],
+      "colors": [
+        "#DAC17D"
+      ],
+      "lon": 121.3757,
+      "lat": 31.301079
+    },
+    {
+      "name": "南浦大桥",
+      "py": "nanpudaqiao",
+      "abbr": "npdq",
+      "lineIds": [
+        "4"
+      ],
+      "colors": [
+        "#5A2B8D"
+      ],
+      "lon": 121.495295,
+      "lat": 31.210532
+    },
+    {
+      "name": "南翔",
+      "py": "nanxiang",
+      "abbr": "nx",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.318604,
+      "lat": 31.29886
+    },
+    {
+      "name": "南陈路",
+      "py": "nanchenlu",
+      "abbr": "ncl",
+      "lineIds": [
+        "7"
+      ],
+      "colors": [
+        "#EE782E"
+      ],
+      "lon": 121.39376,
+      "lat": 31.323537
+    },
+    {
+      "name": "博兴路",
+      "py": "boxinglu",
+      "abbr": "bxl",
+      "lineIds": [
+        "6"
+      ],
+      "colors": [
+        "#F0087D"
+      ],
+      "lon": 121.58248,
+      "lat": 31.265705
+    },
+    {
+      "name": "友谊西路",
+      "py": "youyixilu",
+      "abbr": "yyxl",
+      "lineIds": [
+        "1"
+      ],
+      "colors": [
+        "#E3002A"
+      ],
+      "lon": 121.423306,
+      "lat": 31.383088
+    },
+    {
+      "name": "友谊路",
+      "py": "youyilu",
+      "abbr": "yyl",
+      "lineIds": [
+        "3"
+      ],
+      "colors": [
+        "#FCD600"
+      ],
+      "lon": 121.471393,
+      "lat": 31.4059
+    },
+    {
+      "name": "双柏路",
+      "py": "shuangbailu",
+      "abbr": "sbl",
+      "lineIds": [
+        "15"
+      ],
+      "colors": [
+        "#DAC17D"
+      ],
+      "lon": 121.417122,
+      "lat": 31.085134
+    },
+    {
+      "name": "双江路",
+      "py": "shuangjianglu",
+      "abbr": "sjl",
+      "lineIds": [
+        "10"
+      ],
+      "colors": [
+        "#C6AFD4"
+      ],
+      "lon": 121.535117,
+      "lat": 31.355681
+    },
+    {
+      "name": "古浪路",
+      "py": "gulanglu",
+      "abbr": "gll",
+      "lineIds": [
+        "15"
+      ],
+      "colors": [
+        "#DAC17D"
+      ],
+      "lon": 121.387563,
+      "lat": 31.286323
+    },
+    {
+      "name": "台儿庄路",
+      "py": "taierzhuanglu",
+      "abbr": "tezl",
+      "lineIds": [
+        "9"
+      ],
+      "colors": [
+        "#69C7F4"
+      ],
+      "lon": 121.593255,
+      "lat": 31.255017
+    },
+    {
+      "name": "合川路",
+      "py": "hechuanlu",
+      "abbr": "hcl",
+      "lineIds": [
+        "9"
+      ],
+      "colors": [
+        "#69C7F4"
+      ],
+      "lon": 121.380134,
+      "lat": 31.168415
+    },
+    {
+      "name": "同济大学",
+      "py": "tongjidaxue",
+      "abbr": "tjdx",
+      "lineIds": [
+        "10"
+      ],
+      "colors": [
+        "#C6AFD4"
+      ],
+      "lon": 121.501944,
+      "lat": 31.284101
+    },
+    {
+      "name": "后滩",
+      "py": "houtan",
+      "abbr": "ht",
+      "lineIds": [
+        "7"
+      ],
+      "colors": [
+        "#EE782E"
+      ],
+      "lon": 121.469238,
+      "lat": 31.173889
+    },
+    {
+      "name": "向城路",
+      "py": "xiangchenglu",
+      "abbr": "xcl",
+      "lineIds": [
+        "4"
+      ],
+      "colors": [
+        "#5A2B8D"
+      ],
+      "lon": 121.527761,
+      "lat": 31.2244
+    },
+    {
+      "name": "吴中路",
+      "py": "wuzhonglu",
+      "abbr": "wzl",
+      "lineIds": [
+        "15"
+      ],
+      "colors": [
+        "#DAC17D"
+      ],
+      "lon": 121.409261,
+      "lat": 31.186205
+    },
+    {
+      "name": "周浦",
+      "py": "zhoupu",
+      "abbr": "zp",
+      "lineIds": [
+        "18"
+      ],
+      "colors": [
+        "#D0970A"
+      ],
+      "lon": 121.563392,
+      "lat": 31.116371
+    },
+    {
+      "name": "周浦东",
+      "py": "zhoupudong",
+      "abbr": "zpd",
+      "lineIds": [
+        "16"
+      ],
+      "colors": [
+        "#98D1C0"
+      ],
+      "lon": 121.602703,
+      "lat": 31.1123
+    },
+    {
+      "name": "呼兰路",
+      "py": "hulanlu",
+      "abbr": "hll",
+      "lineIds": [
+        "1",
+        "18"
+      ],
+      "colors": [
+        "#E3002A",
+        "#D0970A"
+      ],
+      "lon": 121.433084,
+      "lat": 31.341521
+    },
+    {
+      "name": "唐镇",
+      "py": "tangzhen",
+      "abbr": "tz",
+      "lineIds": [
+        "2"
+      ],
+      "colors": [
+        "#86B81C"
+      ],
+      "lon": 121.65201,
+      "lat": 31.216255
+    },
+    {
+      "name": "商城路",
+      "py": "shangchenglu",
+      "abbr": "scl",
+      "lineIds": [
+        "9"
+      ],
+      "colors": [
+        "#69C7F4"
+      ],
+      "lon": 121.511902,
+      "lat": 31.232325
+    },
+    {
+      "name": "嘉善路",
+      "py": "jiashanlu",
+      "abbr": "jsl",
+      "lineIds": [
+        "9",
+        "12"
+      ],
+      "colors": [
+        "#69C7F4",
+        "#007A61"
+      ],
+      "lon": 121.456143,
+      "lat": 31.204742
+    },
+    {
+      "name": "嘉定北",
+      "py": "jiadingbei",
+      "abbr": "jdb",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.232909,
+      "lat": 31.393508
+    },
+    {
+      "name": "嘉定新城",
+      "py": "jiadingxincheng",
+      "abbr": "jdxc",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.249859,
+      "lat": 31.332043
+    },
+    {
+      "name": "嘉定西",
+      "py": "jiadingxi",
+      "abbr": "jdx",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.223409,
+      "lat": 31.379064
+    },
+    {
+      "name": "嘉怡路",
+      "py": "jiayilu",
+      "abbr": "jyl",
+      "lineIds": [
+        "14"
+      ],
+      "colors": [
+        "#818530"
+      ],
+      "lon": 121.341112,
+      "lat": 31.261076
+    },
+    {
+      "name": "嘉松中路",
+      "py": "jiasongzhonglu",
+      "abbr": "jszl",
+      "lineIds": [
+        "17"
+      ],
+      "colors": [
+        "#B85A4E"
+      ],
+      "lon": 121.219485,
+      "lat": 31.166142
+    },
+    {
+      "name": "四川北路",
+      "py": "sichuanbeilu",
+      "abbr": "scbl",
+      "lineIds": [
+        "10"
+      ],
+      "colors": [
+        "#C6AFD4"
+      ],
+      "lon": 121.479719,
+      "lat": 31.253997
+    },
+    {
+      "name": "四平路",
+      "py": "sipinglu",
+      "abbr": "spl",
+      "lineIds": [
+        "8",
+        "10"
+      ],
+      "colors": [
+        "#01A2E2",
+        "#C6AFD4"
+      ],
+      "lon": 121.497058,
+      "lat": 31.276884
+    },
+    {
+      "name": "国家会展中心(17号线)",
+      "py": "guojiahuizhanzhongxin(17haoxian)",
+      "abbr": "gjhzzx(17hx)",
+      "lineIds": [
+        "17"
+      ],
+      "colors": [
+        "#B85A4E"
+      ],
+      "lon": 121.288574,
+      "lat": 31.193685
+    },
+    {
+      "name": "国家会展中心(2号线)",
+      "py": "guojiahuizhanzhongxin(2haoxian)",
+      "abbr": "gjhzzx(2hx)",
+      "lineIds": [
+        "2"
+      ],
+      "colors": [
+        "#86B81C"
+      ],
+      "lon": 121.294727,
+      "lat": 31.190367
+    },
+    {
+      "name": "国帆路",
+      "py": "guofanlu",
+      "abbr": "gfl",
+      "lineIds": [
+        "10"
+      ],
+      "colors": [
+        "#C6AFD4"
+      ],
+      "lon": 121.508775,
+      "lat": 31.341562
+    },
+    {
+      "name": "国权路",
+      "py": "guoquanlu",
+      "abbr": "gql",
+      "lineIds": [
+        "10",
+        "18"
+      ],
+      "colors": [
+        "#C6AFD4",
+        "#D0970A"
+      ],
+      "lon": 121.505624,
+      "lat": 31.291299
+    },
+    {
+      "name": "国际客运中心",
+      "py": "guojikeyunzhongxin",
+      "abbr": "gjkyzx",
+      "lineIds": [
+        "12"
+      ],
+      "colors": [
+        "#007A61"
+      ],
+      "lon": 121.493718,
+      "lat": 31.252164
+    },
+    {
+      "name": "场中路",
+      "py": "changzhonglu",
+      "abbr": "czl",
+      "lineIds": [
+        "7"
+      ],
+      "colors": [
+        "#EE782E"
+      ],
+      "lon": 121.408804,
+      "lat": 31.305489
+    },
+    {
+      "name": "基隆路",
+      "py": "jilonglu",
+      "abbr": "jll",
+      "lineIds": [
+        "10"
+      ],
+      "colors": [
+        "#C6AFD4"
+      ],
+      "lon": 121.586197,
+      "lat": 31.353464
+    },
+    {
+      "name": "塘桥",
+      "py": "tangqiao",
+      "abbr": "tq",
+      "lineIds": [
+        "4"
+      ],
+      "colors": [
+        "#5A2B8D"
+      ],
+      "lon": 121.514327,
+      "lat": 31.211846
+    },
+    {
+      "name": "复兴岛",
+      "py": "fuxingdao",
+      "abbr": "fxd",
+      "lineIds": [
+        "12"
+      ],
+      "colors": [
+        "#007A61"
+      ],
+      "lon": 121.557068,
+      "lat": 31.28293
+    },
+    {
+      "name": "复旦大学",
+      "py": "fudandaxue",
+      "abbr": "fddx",
+      "lineIds": [
+        "18"
+      ],
+      "colors": [
+        "#D0970A"
+      ],
+      "lon": 121.49509,
+      "lat": 31.298338
+    },
+    {
+      "name": "外环路",
+      "py": "waihuanlu",
+      "abbr": "whl",
+      "lineIds": [
+        "1"
+      ],
+      "colors": [
+        "#E3002A"
+      ],
+      "lon": 121.38838,
+      "lat": 31.122791
+    },
+    {
+      "name": "外高桥保税区北",
+      "py": "waigaoqiaobaoshuiqubei",
+      "abbr": "wgqbsqb",
+      "lineIds": [
+        "6"
+      ],
+      "colors": [
+        "#F0087D"
+      ],
+      "lon": 121.58271,
+      "lat": 31.349955
+    },
+    {
+      "name": "外高桥保税区南",
+      "py": "waigaoqiaobaoshuiqunan",
+      "abbr": "wgqbsqn",
+      "lineIds": [
+        "6"
+      ],
+      "colors": [
+        "#F0087D"
+      ],
+      "lon": 121.597755,
+      "lat": 31.323742
+    },
+    {
+      "name": "大世界",
+      "py": "dashijie",
+      "abbr": "dsj",
+      "lineIds": [
+        "8",
+        "14"
+      ],
+      "colors": [
+        "#01A2E2",
+        "#818530"
+      ],
+      "lon": 121.474677,
+      "lat": 31.229351
+    },
+    {
+      "name": "大华三路",
+      "py": "dahuasanlu",
+      "abbr": "dhsl",
+      "lineIds": [
+        "7"
+      ],
+      "colors": [
+        "#EE782E"
+      ],
+      "lon": 121.418305,
+      "lat": 31.275872
+    },
+    {
+      "name": "大场镇",
+      "py": "dachangzhen",
+      "abbr": "dcz",
+      "lineIds": [
+        "7"
+      ],
+      "colors": [
+        "#EE782E"
+      ],
+      "lon": 121.411505,
+      "lat": 31.295071
+    },
+    {
+      "name": "大木桥路",
+      "py": "damuqiaolu",
+      "abbr": "dmql",
+      "lineIds": [
+        "4",
+        "12"
+      ],
+      "colors": [
+        "#5A2B8D",
+        "#007A61"
+      ],
+      "lon": 121.458726,
+      "lat": 31.19599
+    },
+    {
+      "name": "大柏树",
+      "py": "dabaishu",
+      "abbr": "dbs",
+      "lineIds": [
+        "3"
+      ],
+      "colors": [
+        "#FCD600"
+      ],
+      "lon": 121.47872,
+      "lat": 31.291376
+    },
+    {
+      "name": "大渡河路",
+      "py": "daduhelu",
+      "abbr": "ddhl",
+      "lineIds": [
+        "13",
+        "15"
+      ],
+      "colors": [
+        "#EB81B9",
+        "#DAC17D"
+      ],
+      "lon": 121.389781,
+      "lat": 31.233588
+    },
+    {
+      "name": "大连路",
+      "py": "dalianlu",
+      "abbr": "dll",
+      "lineIds": [
+        "4",
+        "12"
+      ],
+      "colors": [
+        "#5A2B8D",
+        "#007A61"
+      ],
+      "lon": 121.508701,
+      "lat": 31.259984
+    },
+    {
+      "name": "天潼路",
+      "py": "tiantonglu",
+      "abbr": "ttl",
+      "lineIds": [
+        "10",
+        "12"
+      ],
+      "colors": [
+        "#C6AFD4",
+        "#007A61"
+      ],
+      "lon": 121.477826,
+      "lat": 31.245775
+    },
+    {
+      "name": "奉浦大道",
+      "py": "fengpudadao",
+      "abbr": "fpdd",
+      "lineIds": [
+        "5"
+      ],
+      "colors": [
+        "#96499A"
+      ],
+      "lon": 121.444415,
+      "lat": 30.944097
+    },
+    {
+      "name": "奉贤新城",
+      "py": "fengxianxincheng",
+      "abbr": "fxxc",
+      "lineIds": [
+        "5"
+      ],
+      "colors": [
+        "#96499A"
+      ],
+      "lon": 121.491872,
+      "lat": 30.916099
+    },
+    {
+      "name": "姚虹路",
+      "py": "yaohonglu",
+      "abbr": "yhl",
+      "lineIds": [
+        "15"
+      ],
+      "colors": [
+        "#DAC17D"
+      ],
+      "lon": 121.401757,
+      "lat": 31.193404
+    },
+    {
+      "name": "威宁路",
+      "py": "weininglu",
+      "abbr": "wnl",
+      "lineIds": [
+        "2"
+      ],
+      "colors": [
+        "#86B81C"
+      ],
+      "lon": 121.38264,
+      "lat": 31.216717
+    },
+    {
+      "name": "娄山关路",
+      "py": "loushanguanlu",
+      "abbr": "lsgl",
+      "lineIds": [
+        "2",
+        "15"
+      ],
+      "colors": [
+        "#86B81C",
+        "#DAC17D"
+      ],
+      "lon": 121.399408,
+      "lat": 31.213002
+    },
+    {
+      "name": "嫩江路",
+      "py": "nenjianglu",
+      "abbr": "njl",
+      "lineIds": [
+        "8"
+      ],
+      "colors": [
+        "#01A2E2"
+      ],
+      "lon": 121.527627,
+      "lat": 31.316879
+    },
+    {
+      "name": "学林路",
+      "py": "xuelinlu",
+      "abbr": "xll",
+      "lineIds": [
+        "13"
+      ],
+      "colors": [
+        "#EB81B9"
+      ],
+      "lon": 121.610162,
+      "lat": 31.185695
+    },
+    {
+      "name": "宁国路",
+      "py": "ningguolu",
+      "abbr": "ngl",
+      "lineIds": [
+        "12"
+      ],
+      "colors": [
+        "#007A61"
+      ],
+      "lon": 121.52803,
+      "lat": 31.270669
+    },
+    {
+      "name": "安亭",
+      "py": "anting",
+      "abbr": "at",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.157436,
+      "lat": 31.290376
+    },
+    {
+      "name": "宋园路",
+      "py": "songyuanlu",
+      "abbr": "syl",
+      "lineIds": [
+        "10"
+      ],
+      "colors": [
+        "#C6AFD4"
+      ],
+      "lon": 121.407434,
+      "lat": 31.198393
+    },
+    {
+      "name": "定边路",
+      "py": "dingbianlu",
+      "abbr": "dbl",
+      "lineIds": [
+        "14"
+      ],
+      "colors": [
+        "#818530"
+      ],
+      "lon": 121.357779,
+      "lat": 31.258247
+    },
+    {
+      "name": "宜山路",
+      "py": "yishanlu",
+      "abbr": "ysl",
+      "lineIds": [
+        "3",
+        "4",
+        "9"
+      ],
+      "colors": [
+        "#FCD600",
+        "#5A2B8D",
+        "#69C7F4"
+      ],
+      "lon": 121.422563,
+      "lat": 31.188587
+    },
+    {
+      "name": "宝安公路",
+      "py": "baoangonglu",
+      "abbr": "bagl",
+      "lineIds": [
+        "1"
+      ],
+      "colors": [
+        "#E3002A"
+      ],
+      "lon": 121.426272,
+      "lat": 31.371354
+    },
+    {
+      "name": "宝山路",
+      "py": "baoshanlu",
+      "abbr": "bsl",
+      "lineIds": [
+        "3",
+        "4"
+      ],
+      "colors": [
+        "#FCD600",
+        "#5A2B8D"
+      ],
+      "lon": 121.471782,
+      "lat": 31.253463
+    },
+    {
+      "name": "宝杨路",
+      "py": "baoyanglu",
+      "abbr": "byl",
+      "lineIds": [
+        "3"
+      ],
+      "colors": [
+        "#FCD600"
+      ],
+      "lon": 121.475056,
+      "lat": 31.397211
+    },
+    {
+      "name": "富锦路",
+      "py": "fujinlu",
+      "abbr": "fjl",
+      "lineIds": [
+        "1"
+      ],
+      "colors": [
+        "#E3002A"
+      ],
+      "lon": 121.420009,
+      "lat": 31.394045
+    },
+    {
+      "name": "封浜",
+      "py": "fengbang",
+      "abbr": "fb",
+      "lineIds": [
+        "14"
+      ],
+      "colors": [
+        "#818530"
+      ],
+      "lon": 121.292527,
+      "lat": 31.269454
+    },
+    {
+      "name": "小南门",
+      "py": "xiaonanmen",
+      "abbr": "xnm",
+      "lineIds": [
+        "9"
+      ],
+      "colors": [
+        "#69C7F4"
+      ],
+      "lon": 121.493962,
+      "lat": 31.218886
+    },
+    {
+      "name": "岚皋路",
+      "py": "langaolu",
+      "abbr": "lgl",
+      "lineIds": [
+        "7"
+      ],
+      "colors": [
+        "#EE782E"
+      ],
+      "lon": 121.417296,
+      "lat": 31.25803
+    },
+    {
+      "name": "川沙",
+      "py": "chuansha",
+      "abbr": "cs",
+      "lineIds": [
+        "2"
+      ],
+      "colors": [
+        "#86B81C"
+      ],
+      "lon": 121.693875,
+      "lat": 31.188825
+    },
+    {
+      "name": "巨峰路",
+      "py": "jufenglu",
+      "abbr": "jfl",
+      "lineIds": [
+        "6",
+        "12"
+      ],
+      "colors": [
+        "#F0087D",
+        "#007A61"
+      ],
+      "lon": 121.584155,
+      "lat": 31.282863
+    },
+    {
+      "name": "市光路",
+      "py": "shiguanglu",
+      "abbr": "sgl",
+      "lineIds": [
+        "8"
+      ],
+      "colors": [
+        "#01A2E2"
+      ],
+      "lon": 121.527605,
+      "lat": 31.324796
+    },
+    {
+      "name": "常熟路",
+      "py": "changshulu",
+      "abbr": "csl",
+      "lineIds": [
+        "1",
+        "7"
+      ],
+      "colors": [
+        "#E3002A",
+        "#EE782E"
+      ],
+      "lon": 121.444549,
+      "lat": 31.215415
+    },
+    {
+      "name": "平凉路",
+      "py": "pinglianglu",
+      "abbr": "pll",
+      "lineIds": [
+        "18"
+      ],
+      "colors": [
+        "#D0970A"
+      ],
+      "lon": 121.522361,
+      "lat": 31.261122
+    },
+    {
+      "name": "广兰路",
+      "py": "guanglanlu",
+      "abbr": "gll",
+      "lineIds": [
+        "2"
+      ],
+      "colors": [
+        "#86B81C"
+      ],
+      "lon": 121.616864,
+      "lat": 31.21325
+    },
+    {
+      "name": "康恒路",
+      "py": "kanghenglu",
+      "abbr": "khl",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.549446,
+      "lat": 31.156426
+    },
+    {
+      "name": "康文路",
+      "py": "kangwenlu",
+      "abbr": "kwl",
+      "lineIds": [
+        "18"
+      ],
+      "colors": [
+        "#D0970A"
+      ],
+      "lon": 121.414675,
+      "lat": 31.337118
+    },
+    {
+      "name": "康新公路",
+      "py": "kangxingonglu",
+      "abbr": "kxgl",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.613001,
+      "lat": 31.132684
+    },
+    {
+      "name": "康桥",
+      "py": "kangqiao",
+      "abbr": "kq",
+      "lineIds": [
+        "18"
+      ],
+      "colors": [
+        "#D0970A"
+      ],
+      "lon": 121.563083,
+      "lat": 31.136469
+    },
+    {
+      "name": "康桥东",
+      "py": "kangqiaodong",
+      "abbr": "kqd",
+      "lineIds": [
+        "airport"
+      ],
+      "colors": [
+        "#99ADAC"
+      ],
+      "lon": 121.610696,
+      "lat": 31.149046
+    },
+    {
+      "name": "延吉中路",
+      "py": "yanjizhonglu",
+      "abbr": "yjzl",
+      "lineIds": [
+        "8"
+      ],
+      "colors": [
+        "#01A2E2"
+      ],
+      "lon": 121.530625,
+      "lat": 31.290636
+    },
+    {
+      "name": "延安西路",
+      "py": "yananxilu",
+      "abbr": "yaxl",
+      "lineIds": [
+        "3",
+        "4"
+      ],
+      "colors": [
+        "#FCD600",
+        "#5A2B8D"
+      ],
+      "lon": 121.412418,
+      "lat": 31.211466
+    },
+    {
+      "name": "延长路",
+      "py": "yanchanglu",
+      "abbr": "ycl",
+      "lineIds": [
+        "1"
+      ],
+      "colors": [
+        "#E3002A"
+      ],
+      "lon": 121.450748,
+      "lat": 31.273553
+    },
+    {
+      "name": "张华浜",
+      "py": "zhanghuabang",
+      "abbr": "zhb",
+      "lineIds": [
+        "3"
+      ],
+      "colors": [
+        "#FCD600"
+      ],
+      "lon": 121.494224,
+      "lat": 31.35998
+    },
+    {
+      "name": "张江路",
+      "py": "zhangjianglu",
+      "abbr": "zjl",
+      "lineIds": [
+        "13"
+      ],
+      "colors": [
+        "#EB81B9"
+      ],
+      "lon": 121.624968,
+      "lat": 31.191332
+    },
+    {
+      "name": "张江高科",
+      "py": "zhangjianggaoke",
+      "abbr": "zjgk",
+      "lineIds": [
+        "2"
+      ],
+      "colors": [
+        "#86B81C"
+      ],
+      "lon": 121.583286,
+      "lat": 31.204086
+    },
+    {
+      "name": "彭浦新村",
+      "py": "pengpuxincun",
+      "abbr": "ppxc",
+      "lineIds": [
+        "1"
+      ],
+      "colors": [
+        "#E3002A"
+      ],
+      "lon": 121.444041,
+      "lat": 31.308454
+    },
+    {
+      "name": "徐家汇",
+      "py": "xujiahui",
+      "abbr": "xjh",
+      "lineIds": [
+        "1",
+        "9",
+        "11"
+      ],
+      "colors": [
+        "#E3002A",
+        "#69C7F4",
+        "#871C2A"
+      ],
+      "lon": 121.431986,
+      "lat": 31.197392
+    },
+    {
+      "name": "徐泾北城",
+      "py": "xujingbeicheng",
+      "abbr": "xjbc",
+      "lineIds": [
+        "17"
+      ],
+      "colors": [
+        "#B85A4E"
+      ],
+      "lon": 121.237246,
+      "lat": 31.177566
+    },
+    {
+      "name": "徐盈路",
+      "py": "xuyinglu",
+      "abbr": "xyl",
+      "lineIds": [
+        "17"
+      ],
+      "colors": [
+        "#B85A4E"
+      ],
+      "lon": 121.249554,
+      "lat": 31.180149
+    },
+    {
+      "name": "御桥",
+      "py": "yuqiao",
+      "abbr": "yq",
+      "lineIds": [
+        "11",
+        "18"
+      ],
+      "colors": [
+        "#871C2A",
+        "#D0970A"
+      ],
+      "lon": 121.566695,
+      "lat": 31.160353
+    },
+    {
+      "name": "德平路",
+      "py": "depinglu",
+      "abbr": "dpl",
+      "lineIds": [
+        "6"
+      ],
+      "colors": [
+        "#F0087D"
+      ],
+      "lon": 121.559999,
+      "lat": 31.247571
+    },
+    {
+      "name": "惠南",
+      "py": "huinan",
+      "abbr": "hn",
+      "lineIds": [
+        "16"
+      ],
+      "colors": [
+        "#98D1C0"
+      ],
+      "lon": 121.757322,
+      "lat": 31.055939
+    },
+    {
+      "name": "惠南东",
+      "py": "huinandong",
+      "abbr": "hnd",
+      "lineIds": [
+        "16"
+      ],
+      "colors": [
+        "#98D1C0"
+      ],
+      "lon": 121.789495,
+      "lat": 31.028606
+    },
+    {
+      "name": "成山路",
+      "py": "chengshanlu",
+      "abbr": "csl",
+      "lineIds": [
+        "8",
+        "13"
+      ],
+      "colors": [
+        "#01A2E2",
+        "#EB81B9"
+      ],
+      "lon": 121.49178,
+      "lat": 31.172772
+    },
+    {
+      "name": "打浦桥",
+      "py": "dapuqiao",
+      "abbr": "dpq",
+      "lineIds": [
+        "9"
+      ],
+      "colors": [
+        "#69C7F4"
+      ],
+      "lon": 121.464144,
+      "lat": 31.208249
+    },
+    {
+      "name": "抚顺路",
+      "py": "fushunlu",
+      "abbr": "fsl",
+      "lineIds": [
+        "18"
+      ],
+      "colors": [
+        "#D0970A"
+      ],
+      "lon": 121.511414,
+      "lat": 31.285707
+    },
+    {
+      "name": "提篮桥",
+      "py": "tilanqiao",
+      "abbr": "tlq",
+      "lineIds": [
+        "12"
+      ],
+      "colors": [
+        "#007A61"
+      ],
+      "lon": 121.502392,
+      "lat": 31.255547
+    },
+    {
+      "name": "文井路",
+      "py": "wenjinglu",
+      "abbr": "wjl",
+      "lineIds": [
+        "5"
+      ],
+      "colors": [
+        "#96499A"
+      ],
+      "lon": 121.376154,
+      "lat": 31.005564
+    },
+    {
+      "name": "新场",
+      "py": "xinchang",
+      "abbr": "xc",
+      "lineIds": [
+        "16"
+      ],
+      "colors": [
+        "#98D1C0"
+      ],
+      "lon": 121.644748,
+      "lat": 31.047812
+    },
+    {
+      "name": "新村路",
+      "py": "xincunlu",
+      "abbr": "xcl",
+      "lineIds": [
+        "7"
+      ],
+      "colors": [
+        "#EE782E"
+      ],
+      "lon": 121.418025,
+      "lat": 31.265684
+    },
+    {
+      "name": "新江湾城",
+      "py": "xinjiangwancheng",
+      "abbr": "xjwc",
+      "lineIds": [
+        "10"
+      ],
+      "colors": [
+        "#C6AFD4"
+      ],
+      "lon": 121.502537,
+      "lat": 31.330495
+    },
+    {
+      "name": "新闸路",
+      "py": "xinzhalu",
+      "abbr": "xzl",
+      "lineIds": [
+        "1"
+      ],
+      "colors": [
+        "#E3002A"
+      ],
+      "lon": 121.46361,
+      "lat": 31.240297
+    },
+    {
+      "name": "昌吉东路",
+      "py": "changjidonglu",
+      "abbr": "cjdl",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.19591,
+      "lat": 31.295573
+    },
+    {
+      "name": "昌平路",
+      "py": "changpinglu",
+      "abbr": "cpl",
+      "lineIds": [
+        "7"
+      ],
+      "colors": [
+        "#EE782E"
+      ],
+      "lon": 121.438009,
+      "lat": 31.235619
+    },
+    {
+      "name": "昌邑路",
+      "py": "changyilu",
+      "abbr": "cyl",
+      "lineIds": [
+        "14",
+        "18"
+      ],
+      "colors": [
+        "#818530",
+        "#D0970A"
+      ],
+      "lon": 121.535807,
+      "lat": 31.246065
+    },
+    {
+      "name": "星中路",
+      "py": "xingzhonglu",
+      "abbr": "xzl",
+      "lineIds": [
+        "9"
+      ],
+      "colors": [
+        "#69C7F4"
+      ],
+      "lon": 121.364284,
+      "lat": 31.160002
+    },
+    {
+      "name": "春申路",
+      "py": "chunshenlu",
+      "abbr": "csl",
+      "lineIds": [
+        "5"
+      ],
+      "colors": [
+        "#96499A"
+      ],
+      "lon": 121.381185,
+      "lat": 31.100159
+    },
+    {
+      "name": "景洪路",
+      "py": "jinghonglu",
+      "abbr": "jhl",
+      "lineIds": [
+        "15",
+        "airport"
+      ],
+      "colors": [
+        "#DAC17D",
+        "#99ADAC"
+      ],
+      "lon": 121.439716,
+      "lat": 31.111753
+    },
+    {
+      "name": "景西路",
+      "py": "jingxilu",
+      "abbr": "jxl",
+      "lineIds": [
+        "15"
+      ],
+      "colors": [
+        "#DAC17D"
+      ],
+      "lon": 121.414127,
+      "lat": 31.101635
+    },
+    {
+      "name": "曙建路",
+      "py": "shujianlu",
+      "abbr": "sjl",
+      "lineIds": [
+        "15"
+      ],
+      "colors": [
+        "#DAC17D"
+      ],
+      "lon": 121.413264,
+      "lat": 31.092538
+    },
+    {
+      "name": "曲阜路",
+      "py": "qufulu",
+      "abbr": "qfl",
+      "lineIds": [
+        "8",
+        "12"
+      ],
+      "colors": [
+        "#01A2E2",
+        "#007A61"
+      ],
+      "lon": 121.467012,
+      "lat": 31.244238
+    },
+    {
+      "name": "曲阳路",
+      "py": "quyanglu",
+      "abbr": "qyl",
+      "lineIds": [
+        "8"
+      ],
+      "colors": [
+        "#01A2E2"
+      ],
+      "lon": 121.486671,
+      "lat": 31.278496
+    },
+    {
+      "name": "曹杨路",
+      "py": "caoyanglu",
+      "abbr": "cyl",
+      "lineIds": [
+        "3",
+        "4",
+        "11",
+        "14"
+      ],
+      "colors": [
+        "#FCD600",
+        "#5A2B8D",
+        "#871C2A",
+        "#818530"
+      ],
+      "lon": 121.413055,
+      "lat": 31.241138
+    },
+    {
+      "name": "曹路",
+      "py": "caolu",
+      "abbr": "cl",
+      "lineIds": [
+        "9"
+      ],
+      "colors": [
+        "#69C7F4"
+      ],
+      "lon": 121.678838,
+      "lat": 31.273368
+    },
+    {
+      "name": "望园路",
+      "py": "wangyuanlu",
+      "abbr": "wyl",
+      "lineIds": [
+        "5"
+      ],
+      "colors": [
+        "#96499A"
+      ],
+      "lon": 121.479116,
+      "lat": 30.934075
+    },
+    {
+      "name": "朱家角",
+      "py": "zhujiajiao",
+      "abbr": "zjj",
+      "lineIds": [
+        "17"
+      ],
+      "colors": [
+        "#B85A4E"
+      ],
+      "lon": 121.044454,
+      "lat": 31.102554
+    },
+    {
+      "name": "朱梅路",
+      "py": "zhumeilu",
+      "abbr": "zml",
+      "lineIds": [
+        "15"
+      ],
+      "colors": [
+        "#DAC17D"
+      ],
+      "lon": 121.433196,
+      "lat": 31.126281
+    },
+    {
+      "name": "李子园",
+      "py": "liziyuan",
+      "abbr": "lzy",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.385318,
+      "lat": 31.270841
+    },
+    {
+      "name": "杨思",
+      "py": "yangsi",
+      "abbr": "ys",
+      "lineIds": [
+        "8"
+      ],
+      "colors": [
+        "#01A2E2"
+      ],
+      "lon": 121.488994,
+      "lat": 31.163087
+    },
+    {
+      "name": "杨树浦路",
+      "py": "yangshupulu",
+      "abbr": "yspl",
+      "lineIds": [
+        "4"
+      ],
+      "colors": [
+        "#5A2B8D"
+      ],
+      "lon": 121.512838,
+      "lat": 31.253995
+    },
+    {
+      "name": "杨高中路",
+      "py": "yanggaozhonglu",
+      "abbr": "ygzl",
+      "lineIds": [
+        "9",
+        "18"
+      ],
+      "colors": [
+        "#69C7F4",
+        "#D0970A"
+      ],
+      "lon": 121.544392,
+      "lat": 31.229661
+    },
+    {
+      "name": "杨高北路",
+      "py": "yanggaobeilu",
+      "abbr": "ygbl",
+      "lineIds": [
+        "12"
+      ],
+      "colors": [
+        "#007A61"
+      ],
+      "lon": 121.598755,
+      "lat": 31.282272
+    },
+    {
+      "name": "杨高南路",
+      "py": "yanggaonanlu",
+      "abbr": "ygnl",
+      "lineIds": [
+        "7"
+      ],
+      "colors": [
+        "#EE782E"
+      ],
+      "lon": 121.520198,
+      "lat": 31.189724
+    },
+    {
+      "name": "松江体育中心",
+      "py": "songjiangtiyuzhongxin",
+      "abbr": "sjtyzx",
+      "lineIds": [
+        "9"
+      ],
+      "colors": [
+        "#69C7F4"
+      ],
+      "lon": 121.226133,
+      "lat": 31.018137
+    },
+    {
+      "name": "松江大学城",
+      "py": "songjiangdaxuecheng",
+      "abbr": "sjdxc",
+      "lineIds": [
+        "9"
+      ],
+      "colors": [
+        "#69C7F4"
+      ],
+      "lon": 121.228162,
+      "lat": 31.056094
+    },
+    {
+      "name": "松江新城",
+      "py": "songjiangxincheng",
+      "abbr": "sjxc",
+      "lineIds": [
+        "9"
+      ],
+      "colors": [
+        "#69C7F4"
+      ],
+      "lon": 121.226325,
+      "lat": 31.032418
+    },
+    {
+      "name": "枫桥路",
+      "py": "fengqiaolu",
+      "abbr": "fql",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.406752,
+      "lat": 31.243682
+    },
+    {
+      "name": "桂林公园",
+      "py": "guilingongyuan",
+      "abbr": "glgy",
+      "lineIds": [
+        "12",
+        "15"
+      ],
+      "colors": [
+        "#007A61",
+        "#DAC17D"
+      ],
+      "lon": 121.415009,
+      "lat": 31.168858
+    },
+    {
+      "name": "桂林路",
+      "py": "guilinlu",
+      "abbr": "gll",
+      "lineIds": [
+        "9",
+        "15"
+      ],
+      "colors": [
+        "#69C7F4",
+        "#DAC17D"
+      ],
+      "lon": 121.413424,
+      "lat": 31.176659
+    },
+    {
+      "name": "桂桥路",
+      "py": "guiqiaolu",
+      "abbr": "gql",
+      "lineIds": [
+        "14"
+      ],
+      "colors": [
+        "#818530"
+      ],
+      "lon": 121.63086,
+      "lat": 31.251585
+    },
+    {
+      "name": "桃浦新村",
+      "py": "taopuxincun",
+      "abbr": "tpxc",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.345028,
+      "lat": 31.283468
+    },
+    {
+      "name": "梅岭北路",
+      "py": "meilingbeilu",
+      "abbr": "mlbl",
+      "lineIds": [
+        "15"
+      ],
+      "colors": [
+        "#DAC17D"
+      ],
+      "lon": 121.392345,
+      "lat": 31.245131
+    },
+    {
+      "name": "歇浦路",
+      "py": "xiepulu",
+      "abbr": "xpl",
+      "lineIds": [
+        "14"
+      ],
+      "colors": [
+        "#818530"
+      ],
+      "lon": 121.547239,
+      "lat": 31.252874
+    },
+    {
+      "name": "武威东路",
+      "py": "wuweidonglu",
+      "abbr": "wwdl",
+      "lineIds": [
+        "15"
+      ],
+      "colors": [
+        "#DAC17D"
+      ],
+      "lon": 121.387441,
+      "lat": 31.277465
+    },
+    {
+      "name": "武威路",
+      "py": "wuweilu",
+      "abbr": "wwl",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.360056,
+      "lat": 31.278489
+    },
+    {
+      "name": "武宁路",
+      "py": "wuninglu",
+      "abbr": "wnl",
+      "lineIds": [
+        "13",
+        "14"
+      ],
+      "colors": [
+        "#EB81B9",
+        "#818530"
+      ],
+      "lon": 121.425874,
+      "lat": 31.236197
+    },
+    {
+      "name": "武定路",
+      "py": "wudinglu",
+      "abbr": "wdl",
+      "lineIds": [
+        "14"
+      ],
+      "colors": [
+        "#818530"
+      ],
+      "lon": 121.431537,
+      "lat": 31.229165
+    },
+    {
+      "name": "殷高东路",
+      "py": "yingaodonglu",
+      "abbr": "ygdl",
+      "lineIds": [
+        "10"
+      ],
+      "colors": [
+        "#C6AFD4"
+      ],
+      "lon": 121.502383,
+      "lat": 31.323769
+    },
+    {
+      "name": "殷高西路",
+      "py": "yingaoxilu",
+      "abbr": "ygxl",
+      "lineIds": [
+        "3"
+      ],
+      "colors": [
+        "#FCD600"
+      ],
+      "lon": 121.480363,
+      "lat": 31.321941
+    },
+    {
+      "name": "殷高路",
+      "py": "yingaolu",
+      "abbr": "ygl",
+      "lineIds": [
+        "18"
+      ],
+      "colors": [
+        "#D0970A"
+      ],
+      "lon": 121.491105,
+      "lat": 31.323672
+    },
+    {
+      "name": "民生路",
+      "py": "minshenglu",
+      "abbr": "msl",
+      "lineIds": [
+        "6",
+        "18"
+      ],
+      "colors": [
+        "#F0087D",
+        "#D0970A"
+      ],
+      "lon": 121.539241,
+      "lat": 31.237987
+    },
+    {
+      "name": "民雷路",
+      "py": "minleilu",
+      "abbr": "mll",
+      "lineIds": [
+        "9"
+      ],
+      "colors": [
+        "#69C7F4"
+      ],
+      "lon": 121.663839,
+      "lat": 31.270436
+    },
+    {
+      "name": "水产路",
+      "py": "shuichanlu",
+      "abbr": "scl",
+      "lineIds": [
+        "3"
+      ],
+      "colors": [
+        "#FCD600"
+      ],
+      "lon": 121.483761,
+      "lat": 31.383228
+    },
+    {
+      "name": "水城路",
+      "py": "shuichenglu",
+      "abbr": "scl",
+      "lineIds": [
+        "10"
+      ],
+      "colors": [
+        "#C6AFD4"
+      ],
+      "lon": 121.387613,
+      "lat": 31.201334
+    },
+    {
+      "name": "永德路",
+      "py": "yongdelu",
+      "abbr": "ydl",
+      "lineIds": [
+        "15"
+      ],
+      "colors": [
+        "#DAC17D"
+      ],
+      "lon": 121.438613,
+      "lat": 31.041121
+    },
+    {
+      "name": "汇臻路",
+      "py": "huizhenlu",
+      "abbr": "hzl",
+      "lineIds": [
+        "pujiang"
+      ],
+      "colors": [
+        "#B5B5B6"
+      ],
+      "lon": 121.520231,
+      "lat": 31.027445
+    },
+    {
+      "name": "汇金路",
+      "py": "huijinlu",
+      "abbr": "hjl",
+      "lineIds": [
+        "17"
+      ],
+      "colors": [
+        "#B85A4E"
+      ],
+      "lon": 121.147107,
+      "lat": 31.163147
+    },
+    {
+      "name": "汉中路",
+      "py": "hanzhonglu",
+      "abbr": "hzl",
+      "lineIds": [
+        "1",
+        "12",
+        "13"
+      ],
+      "colors": [
+        "#E3002A",
+        "#007A61",
+        "#EB81B9"
+      ],
+      "lon": 121.454129,
+      "lat": 31.243782
+    },
+    {
+      "name": "江宁路",
+      "py": "jiangninglu",
+      "abbr": "jnl",
+      "lineIds": [
+        "13"
+      ],
+      "colors": [
+        "#EB81B9"
+      ],
+      "lon": 121.440225,
+      "lat": 31.246151
+    },
+    {
+      "name": "江川路",
+      "py": "jiangchuanlu",
+      "abbr": "jcl",
+      "lineIds": [
+        "5"
+      ],
+      "colors": [
+        "#96499A"
+      ],
+      "lon": 121.418854,
+      "lat": 31.007394
+    },
+    {
+      "name": "江月路",
+      "py": "jiangyuelu",
+      "abbr": "jyl",
+      "lineIds": [
+        "8"
+      ],
+      "colors": [
+        "#01A2E2"
+      ],
+      "lon": 121.504215,
+      "lat": 31.086373
+    },
+    {
+      "name": "江杨北路",
+      "py": "jiangyangbeilu",
+      "abbr": "jybl",
+      "lineIds": [
+        "3"
+      ],
+      "colors": [
+        "#FCD600"
+      ],
+      "lon": 121.43519,
+      "lat": 31.409659
+    },
+    {
+      "name": "江浦公园",
+      "py": "jiangpugongyuan",
+      "abbr": "jpgy",
+      "lineIds": [
+        "12",
+        "18"
+      ],
+      "colors": [
+        "#007A61",
+        "#D0970A"
+      ],
+      "lon": 121.519347,
+      "lat": 31.266643
+    },
+    {
+      "name": "江浦路",
+      "py": "jiangpulu",
+      "abbr": "jpl",
+      "lineIds": [
+        "8",
+        "18"
+      ],
+      "colors": [
+        "#01A2E2",
+        "#D0970A"
+      ],
+      "lon": 121.51401,
+      "lat": 31.277
+    },
+    {
+      "name": "江湾体育场",
+      "py": "jiangwantiyuchang",
+      "abbr": "jwtyc",
+      "lineIds": [
+        "10"
+      ],
+      "colors": [
+        "#C6AFD4"
+      ],
+      "lon": 121.508924,
+      "lat": 31.30632
+    },
+    {
+      "name": "江湾镇",
+      "py": "jiangwanzhen",
+      "abbr": "jwz",
+      "lineIds": [
+        "3"
+      ],
+      "colors": [
+        "#FCD600"
+      ],
+      "lon": 121.480573,
+      "lat": 31.307508
+    },
+    {
+      "name": "江苏路",
+      "py": "jiangsulu",
+      "abbr": "jsl",
+      "lineIds": [
+        "2",
+        "11"
+      ],
+      "colors": [
+        "#86B81C",
+        "#871C2A"
+      ],
+      "lon": 121.426013,
+      "lat": 31.222269
+    },
+    {
+      "name": "汶水路",
+      "py": "wenshuilu",
+      "abbr": "wsl",
+      "lineIds": [
+        "1"
+      ],
+      "colors": [
+        "#E3002A"
+      ],
+      "lon": 121.445655,
+      "lat": 31.294415
+    },
+    {
+      "name": "沈杜公路",
+      "py": "shendugonglu",
+      "abbr": "sdgl",
+      "lineIds": [
+        "8",
+        "pujiang"
+      ],
+      "colors": [
+        "#01A2E2",
+        "#B5B5B6"
+      ],
+      "lon": 121.507899,
+      "lat": 31.063571
+    },
+    {
+      "name": "沈梅路",
+      "py": "shenmeilu",
+      "abbr": "sml",
+      "lineIds": [
+        "18"
+      ],
+      "colors": [
+        "#D0970A"
+      ],
+      "lon": 121.576388,
+      "lat": 31.093383
+    },
+    {
+      "name": "泗泾",
+      "py": "sijing",
+      "abbr": "sj",
+      "lineIds": [
+        "9"
+      ],
+      "colors": [
+        "#69C7F4"
+      ],
+      "lon": 121.255827,
+      "lat": 31.120349
+    },
+    {
+      "name": "洞泾",
+      "py": "dongjing",
+      "abbr": "dj",
+      "lineIds": [
+        "9"
+      ],
+      "colors": [
+        "#69C7F4"
+      ],
+      "lon": 121.226054,
+      "lat": 31.086583
+    },
+    {
+      "name": "洲海路",
+      "py": "zhouhailu",
+      "abbr": "zhl",
+      "lineIds": [
+        "6"
+      ],
+      "colors": [
+        "#F0087D"
+      ],
+      "lon": 121.585184,
+      "lat": 31.314395
+    },
+    {
+      "name": "浦三路",
+      "py": "pusanlu",
+      "abbr": "psl",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.534713,
+      "lat": 31.153029
+    },
+    {
+      "name": "浦东1号2号航站楼",
+      "py": "pudong1hao2haohangzhanlou",
+      "abbr": "pd1h2hhzl",
+      "lineIds": [
+        "2",
+        "airport"
+      ],
+      "colors": [
+        "#86B81C",
+        "#99ADAC"
+      ],
+      "lon": 121.801301,
+      "lat": 31.153065
+    },
+    {
+      "name": "浦东南路",
+      "py": "pudongnanlu",
+      "abbr": "pdnl",
+      "lineIds": [
+        "14"
+      ],
+      "colors": [
+        "#818530"
+      ],
+      "lon": 121.508025,
+      "lat": 31.240584
+    },
+    {
+      "name": "浦东南路(原东昌路)",
+      "py": "pudongnanlu(yuandongchanglu)",
+      "abbr": "pdnl(ydcl)",
+      "lineIds": [
+        "2"
+      ],
+      "colors": [
+        "#86B81C"
+      ],
+      "lon": 121.51118,
+      "lat": 31.235334
+    },
+    {
+      "name": "浦东大道",
+      "py": "pudongdadao",
+      "abbr": "pddd",
+      "lineIds": [
+        "4",
+        "14"
+      ],
+      "colors": [
+        "#5A2B8D",
+        "#818530"
+      ],
+      "lon": 121.514939,
+      "lat": 31.242379
+    },
+    {
+      "name": "浦东足球场",
+      "py": "pudongzuqiuchang",
+      "abbr": "pdzqc",
+      "lineIds": [
+        "14"
+      ],
+      "colors": [
+        "#818530"
+      ],
+      "lon": 121.611224,
+      "lat": 31.243836
+    },
+    {
+      "name": "浦江镇",
+      "py": "pujiangzhen",
+      "abbr": "pjz",
+      "lineIds": [
+        "8"
+      ],
+      "colors": [
+        "#01A2E2"
+      ],
+      "lon": 121.501875,
+      "lat": 31.098697
+    },
+    {
+      "name": "浦电路",
+      "py": "pudianlu",
+      "abbr": "pdl",
+      "lineIds": [
+        "6"
+      ],
+      "colors": [
+        "#F0087D"
+      ],
+      "lon": 121.525023,
+      "lat": 31.222262
+    },
+    {
+      "name": "浦航路",
+      "py": "puhanglu",
+      "abbr": "phl",
+      "lineIds": [
+        "pujiang"
+      ],
+      "colors": [
+        "#B5B5B6"
+      ],
+      "lon": 121.526282,
+      "lat": 31.0432
+    },
+    {
+      "name": "海伦路",
+      "py": "hailunlu",
+      "abbr": "hll",
+      "lineIds": [
+        "4",
+        "10"
+      ],
+      "colors": [
+        "#5A2B8D",
+        "#C6AFD4"
+      ],
+      "lon": 121.484223,
+      "lat": 31.261275
+    },
+    {
+      "name": "海天三路",
+      "py": "haitiansanlu",
+      "abbr": "htsl",
+      "lineIds": [
+        "2"
+      ],
+      "colors": [
+        "#86B81C"
+      ],
+      "lon": 121.792567,
+      "lat": 31.170543
+    },
+    {
+      "name": "淀山湖大道",
+      "py": "dianshanhudadao",
+      "abbr": "dshdd",
+      "lineIds": [
+        "17"
+      ],
+      "colors": [
+        "#B85A4E"
+      ],
+      "lon": 121.077535,
+      "lat": 31.136354
+    },
+    {
+      "name": "淞发路",
+      "py": "songfalu",
+      "abbr": "sfl",
+      "lineIds": [
+        "3"
+      ],
+      "colors": [
+        "#FCD600"
+      ],
+      "lon": 121.49595,
+      "lat": 31.347109
+    },
+    {
+      "name": "淞滨路",
+      "py": "songbinlu",
+      "abbr": "sbl",
+      "lineIds": [
+        "3"
+      ],
+      "colors": [
+        "#FCD600"
+      ],
+      "lon": 121.488349,
+      "lat": 31.37287
+    },
+    {
+      "name": "淞虹路",
+      "py": "songhonglu",
+      "abbr": "shl",
+      "lineIds": [
+        "2"
+      ],
+      "colors": [
+        "#86B81C"
+      ],
+      "lon": 121.354928,
+      "lat": 31.220102
+    },
+    {
+      "name": "淮海中路",
+      "py": "huaihaizhonglu",
+      "abbr": "hhzl",
+      "lineIds": [
+        "13"
+      ],
+      "colors": [
+        "#EB81B9"
+      ],
+      "lon": 121.459812,
+      "lat": 31.221979
+    },
+    {
+      "name": "港城路",
+      "py": "gangchenglu",
+      "abbr": "gcl",
+      "lineIds": [
+        "6",
+        "10"
+      ],
+      "colors": [
+        "#F0087D",
+        "#C6AFD4"
+      ],
+      "lon": 121.570788,
+      "lat": 31.355365
+    },
+    {
+      "name": "源深体育中心",
+      "py": "yuanshentiyuzhongxin",
+      "abbr": "ystyzx",
+      "lineIds": [
+        "6"
+      ],
+      "colors": [
+        "#F0087D"
+      ],
+      "lon": 121.53033,
+      "lat": 31.23512
+    },
+    {
+      "name": "源深路",
+      "py": "yuanshenlu",
+      "abbr": "ysl",
+      "lineIds": [
+        "14"
+      ],
+      "colors": [
+        "#818530"
+      ],
+      "lon": 121.526692,
+      "lat": 31.243421
+    },
+    {
+      "name": "滴水湖",
+      "py": "dishuihu",
+      "abbr": "dsh",
+      "lineIds": [
+        "16"
+      ],
+      "colors": [
+        "#98D1C0"
+      ],
+      "lon": 121.925493,
+      "lat": 30.909605
+    },
+    {
+      "name": "漕宝路",
+      "py": "caobaolu",
+      "abbr": "cbl",
+      "lineIds": [
+        "1",
+        "12"
+      ],
+      "colors": [
+        "#E3002A",
+        "#007A61"
+      ],
+      "lon": 121.428523,
+      "lat": 31.170231
+    },
+    {
+      "name": "漕河泾开发区",
+      "py": "caohejingkaifaqu",
+      "abbr": "chjkfq",
+      "lineIds": [
+        "9"
+      ],
+      "colors": [
+        "#69C7F4"
+      ],
+      "lon": 121.393123,
+      "lat": 31.172509
+    },
+    {
+      "name": "漕溪路",
+      "py": "caoxilu",
+      "abbr": "cxl",
+      "lineIds": [
+        "3"
+      ],
+      "colors": [
+        "#FCD600"
+      ],
+      "lon": 121.433798,
+      "lat": 31.178636
+    },
+    {
+      "name": "漕盈路",
+      "py": "caoyinglu",
+      "abbr": "cyl",
+      "lineIds": [
+        "17"
+      ],
+      "colors": [
+        "#B85A4E"
+      ],
+      "lon": 121.092279,
+      "lat": 31.162341
+    },
+    {
+      "name": "潘广路",
+      "py": "panguanglu",
+      "abbr": "pgl",
+      "lineIds": [
+        "7"
+      ],
+      "colors": [
+        "#EE782E"
+      ],
+      "lon": 121.351231,
+      "lat": 31.366006
+    },
+    {
+      "name": "灵岩南路",
+      "py": "lingyannanlu",
+      "abbr": "lynl",
+      "lineIds": [
+        "6"
+      ],
+      "colors": [
+        "#F0087D"
+      ],
+      "lon": 121.490854,
+      "lat": 31.15071
+    },
+    {
+      "name": "爱国路",
+      "py": "aiguolu",
+      "abbr": "agl",
+      "lineIds": [
+        "12"
+      ],
+      "colors": [
+        "#007A61"
+      ],
+      "lon": 121.548389,
+      "lat": 31.281924
+    },
+    {
+      "name": "爱辉路",
+      "py": "aihuilu",
+      "abbr": "ahl",
+      "lineIds": [
+        "18"
+      ],
+      "colors": [
+        "#D0970A"
+      ],
+      "lon": 121.444728,
+      "lat": 31.34599
+    },
+    {
+      "name": "环城东路",
+      "py": "huanchengdonglu",
+      "abbr": "hcdl",
+      "lineIds": [
+        "5"
+      ],
+      "colors": [
+        "#96499A"
+      ],
+      "lon": 121.458674,
+      "lat": 30.933248
+    },
+    {
+      "name": "申江路",
+      "py": "shenjianglu",
+      "abbr": "sjl",
+      "lineIds": [
+        "12"
+      ],
+      "colors": [
+        "#007A61"
+      ],
+      "lon": 121.622644,
+      "lat": 31.282394
+    },
+    {
+      "name": "白银路",
+      "py": "baiyinlu",
+      "abbr": "byl",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.240915,
+      "lat": 31.347335
+    },
+    {
+      "name": "真光路",
+      "py": "zhenguanglu",
+      "abbr": "zgl",
+      "lineIds": [
+        "14"
+      ],
+      "colors": [
+        "#818530"
+      ],
+      "lon": 121.379517,
+      "lat": 31.25511
+    },
+    {
+      "name": "真北路",
+      "py": "zhenbeilu",
+      "abbr": "zbl",
+      "lineIds": [
+        "13"
+      ],
+      "colors": [
+        "#EB81B9"
+      ],
+      "lon": 121.377306,
+      "lat": 31.234078
+    },
+    {
+      "name": "真如",
+      "py": "zhenru",
+      "abbr": "zr",
+      "lineIds": [
+        "11",
+        "14"
+      ],
+      "colors": [
+        "#871C2A",
+        "#818530"
+      ],
+      "lon": 121.402566,
+      "lat": 31.252593
+    },
+    {
+      "name": "真新新村",
+      "py": "zhenxinxincun",
+      "abbr": "zxxc",
+      "lineIds": [
+        "14"
+      ],
+      "colors": [
+        "#818530"
+      ],
+      "lon": 121.367317,
+      "lat": 31.257409
+    },
+    {
+      "name": "石龙路",
+      "py": "shilonglu",
+      "abbr": "sll",
+      "lineIds": [
+        "3"
+      ],
+      "colors": [
+        "#FCD600"
+      ],
+      "lon": 121.438604,
+      "lat": 31.159857
+    },
+    {
+      "name": "祁华路",
+      "py": "qihualu",
+      "abbr": "qhl",
+      "lineIds": [
+        "7"
+      ],
+      "colors": [
+        "#EE782E"
+      ],
+      "lon": 121.368889,
+      "lat": 31.324202
+    },
+    {
+      "name": "祁安路",
+      "py": "qianlu",
+      "abbr": "qal",
+      "lineIds": [
+        "15"
+      ],
+      "colors": [
+        "#DAC17D"
+      ],
+      "lon": 121.380164,
+      "lat": 31.293373
+    },
+    {
+      "name": "祁连山南路",
+      "py": "qilianshannanlu",
+      "abbr": "qlsnl",
+      "lineIds": [
+        "13"
+      ],
+      "colors": [
+        "#EB81B9"
+      ],
+      "lon": 121.362652,
+      "lat": 31.239482
+    },
+    {
+      "name": "祁连山路",
+      "py": "qilianshanlu",
+      "abbr": "qlsl",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.371397,
+      "lat": 31.273481
+    },
+    {
+      "name": "秀沿路",
+      "py": "xiuyanlu",
+      "abbr": "xyl",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.594196,
+      "lat": 31.140377
+    },
+    {
+      "name": "紫竹高新区",
+      "py": "zizhugaoxinqu",
+      "abbr": "zzgxq",
+      "lineIds": [
+        "15"
+      ],
+      "colors": [
+        "#DAC17D"
+      ],
+      "lon": 121.446651,
+      "lat": 31.025189
+    },
+    {
+      "name": "紫藤路",
+      "py": "zitenglu",
+      "abbr": "ztl",
+      "lineIds": [
+        "10"
+      ],
+      "colors": [
+        "#C6AFD4"
+      ],
+      "lon": 121.360218,
+      "lat": 31.171567
+    },
+    {
+      "name": "繁荣路",
+      "py": "fanronglu",
+      "abbr": "frl",
+      "lineIds": [
+        "18"
+      ],
+      "colors": [
+        "#D0970A"
+      ],
+      "lon": 121.566332,
+      "lat": 31.104806
+    },
+    {
+      "name": "红宝石路",
+      "py": "hongbaoshilu",
+      "abbr": "hbsl",
+      "lineIds": [
+        "15"
+      ],
+      "colors": [
+        "#DAC17D"
+      ],
+      "lon": 121.393724,
+      "lat": 31.200714
+    },
+    {
+      "name": "罗南新村",
+      "py": "luonanxincun",
+      "abbr": "lnxc",
+      "lineIds": [
+        "7"
+      ],
+      "colors": [
+        "#EE782E"
+      ],
+      "lon": 121.35285,
+      "lat": 31.390645
+    },
+    {
+      "name": "罗山路",
+      "py": "luoshanlu",
+      "abbr": "lsl",
+      "lineIds": [
+        "11",
+        "16"
+      ],
+      "colors": [
+        "#871C2A",
+        "#98D1C0"
+      ],
+      "lon": 121.588956,
+      "lat": 31.155499
+    },
+    {
+      "name": "罗秀路",
+      "py": "luoxiulu",
+      "abbr": "lxl",
+      "lineIds": [
+        "15"
+      ],
+      "colors": [
+        "#DAC17D"
+      ],
+      "lon": 121.431193,
+      "lat": 31.133462
+    },
+    {
+      "name": "美兰湖",
+      "py": "meilanhu",
+      "abbr": "mlh",
+      "lineIds": [
+        "7"
+      ],
+      "colors": [
+        "#EE782E"
+      ],
+      "lon": 121.345288,
+      "lat": 31.403712
+    },
+    {
+      "name": "翔殷路",
+      "py": "xiangyinlu",
+      "abbr": "xyl",
+      "lineIds": [
+        "8"
+      ],
+      "colors": [
+        "#01A2E2"
+      ],
+      "lon": 121.527647,
+      "lat": 31.307081
+    },
+    {
+      "name": "耀华路",
+      "py": "yaohualu",
+      "abbr": "yhl",
+      "lineIds": [
+        "7",
+        "8"
+      ],
+      "colors": [
+        "#EE782E",
+        "#01A2E2"
+      ],
+      "lon": 121.490159,
+      "lat": 31.180541
+    },
+    {
+      "name": "老西门",
+      "py": "laoximen",
+      "abbr": "lxm",
+      "lineIds": [
+        "8",
+        "10"
+      ],
+      "colors": [
+        "#01A2E2",
+        "#C6AFD4"
+      ],
+      "lon": 121.479305,
+      "lat": 31.22099
+    },
+    {
+      "name": "联航路",
+      "py": "lianhanglu",
+      "abbr": "lhl",
+      "lineIds": [
+        "8"
+      ],
+      "colors": [
+        "#01A2E2"
+      ],
+      "lon": 121.506214,
+      "lat": 31.075699
+    },
+    {
+      "name": "肇嘉浜路",
+      "py": "zhaojiabanglu",
+      "abbr": "zjbl",
+      "lineIds": [
+        "7",
+        "9"
+      ],
+      "colors": [
+        "#EE782E",
+        "#69C7F4"
+      ],
+      "lon": 121.445624,
+      "lat": 31.201336
+    },
+    {
+      "name": "自然博物馆",
+      "py": "ziranbowuguan",
+      "abbr": "zrbwg",
+      "lineIds": [
+        "13"
+      ],
+      "colors": [
+        "#EB81B9"
+      ],
+      "lon": 121.457807,
+      "lat": 31.238361
+    },
+    {
+      "name": "航中路",
+      "py": "hangzhonglu",
+      "abbr": "hzl",
+      "lineIds": [
+        "10"
+      ],
+      "colors": [
+        "#C6AFD4"
+      ],
+      "lon": 121.35074,
+      "lat": 31.167327
+    },
+    {
+      "name": "航头",
+      "py": "hangtou",
+      "abbr": "ht",
+      "lineIds": [
+        "18"
+      ],
+      "colors": [
+        "#D0970A"
+      ],
+      "lon": 121.591897,
+      "lat": 31.03961
+    },
+    {
+      "name": "航头东",
+      "py": "hangtoudong",
+      "abbr": "htd",
+      "lineIds": [
+        "16"
+      ],
+      "colors": [
+        "#98D1C0"
+      ],
+      "lon": 121.613302,
+      "lat": 31.057206
+    },
+    {
+      "name": "航津路",
+      "py": "hangjinlu",
+      "abbr": "hjl",
+      "lineIds": [
+        "6"
+      ],
+      "colors": [
+        "#F0087D"
+      ],
+      "lon": 121.589763,
+      "lat": 31.33753
+    },
+    {
+      "name": "芦恒路",
+      "py": "luhenglu",
+      "abbr": "lhl",
+      "lineIds": [
+        "8"
+      ],
+      "colors": [
+        "#01A2E2"
+      ],
+      "lon": 121.493832,
+      "lat": 31.12114
+    },
+    {
+      "name": "花木路",
+      "py": "huamulu",
+      "abbr": "hml",
+      "lineIds": [
+        "7"
+      ],
+      "colors": [
+        "#EE782E"
+      ],
+      "lon": 121.558516,
+      "lat": 31.213396
+    },
+    {
+      "name": "花桥",
+      "py": "huaqiao",
+      "abbr": "hq",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.099784,
+      "lat": 31.300601
+    },
+    {
+      "name": "芳华路",
+      "py": "fanghualu",
+      "abbr": "fhl",
+      "lineIds": [
+        "7"
+      ],
+      "colors": [
+        "#EE782E"
+      ],
+      "lon": 121.54585,
+      "lat": 31.195281
+    },
+    {
+      "name": "芳甸路",
+      "py": "fangdianlu",
+      "abbr": "fdl",
+      "lineIds": [
+        "9"
+      ],
+      "colors": [
+        "#69C7F4"
+      ],
+      "lon": 121.554182,
+      "lat": 31.234013
+    },
+    {
+      "name": "芳芯路",
+      "py": "fangxinlu",
+      "abbr": "fxl",
+      "lineIds": [
+        "18"
+      ],
+      "colors": [
+        "#D0970A"
+      ],
+      "lon": 121.554982,
+      "lat": 31.193347
+    },
+    {
+      "name": "莘庄",
+      "py": "xinzhuang",
+      "abbr": "xz",
+      "lineIds": [
+        "1",
+        "5"
+      ],
+      "colors": [
+        "#E3002A",
+        "#96499A"
+      ],
+      "lon": 121.380739,
+      "lat": 31.113054
+    },
+    {
+      "name": "莲溪路",
+      "py": "lianxilu",
+      "abbr": "lxl",
+      "lineIds": [
+        "13",
+        "18"
+      ],
+      "colors": [
+        "#EB81B9",
+        "#D0970A"
+      ],
+      "lon": 121.562186,
+      "lat": 31.171321
+    },
+    {
+      "name": "莲花路",
+      "py": "lianhualu",
+      "abbr": "lhl",
+      "lineIds": [
+        "1"
+      ],
+      "colors": [
+        "#E3002A"
+      ],
+      "lon": 121.398267,
+      "lat": 31.132785
+    },
+    {
+      "name": "萧塘",
+      "py": "xiaotang",
+      "abbr": "xt",
+      "lineIds": [
+        "5"
+      ],
+      "colors": [
+        "#96499A"
+      ],
+      "lon": 121.43727,
+      "lat": 30.967903
+    },
+    {
+      "name": "蓝天路",
+      "py": "lantianlu",
+      "abbr": "ltl",
+      "lineIds": [
+        "9",
+        "14"
+      ],
+      "colors": [
+        "#69C7F4",
+        "#818530"
+      ],
+      "lon": 121.573779,
+      "lat": 31.243217
+    },
+    {
+      "name": "蓝村路",
+      "py": "lancunlu",
+      "abbr": "lcl",
+      "lineIds": [
+        "4",
+        "6"
+      ],
+      "colors": [
+        "#5A2B8D",
+        "#F0087D"
+      ],
+      "lon": 121.523294,
+      "lat": 31.21378
+    },
+    {
+      "name": "虹口足球场",
+      "py": "hongkouzuqiuchang",
+      "abbr": "hkzqc",
+      "lineIds": [
+        "3",
+        "8"
+      ],
+      "colors": [
+        "#FCD600",
+        "#01A2E2"
+      ],
+      "lon": 121.474646,
+      "lat": 31.273331
+    },
+    {
+      "name": "虹桥1号航站楼",
+      "py": "hongqiao1haohangzhanlou",
+      "abbr": "hq1hhzl",
+      "lineIds": [
+        "10"
+      ],
+      "colors": [
+        "#C6AFD4"
+      ],
+      "lon": 121.342789,
+      "lat": 31.193273
+    },
+    {
+      "name": "虹桥2号航站楼",
+      "py": "hongqiao2haohangzhanlou",
+      "abbr": "hq2hhzl",
+      "lineIds": [
+        "2",
+        "10",
+        "airport"
+      ],
+      "colors": [
+        "#86B81C",
+        "#C6AFD4",
+        "#99ADAC"
+      ],
+      "lon": 121.319911,
+      "lat": 31.196007
+    },
+    {
+      "name": "虹桥火车站",
+      "py": "hongqiaohuochezhan",
+      "abbr": "hqhcz",
+      "lineIds": [
+        "2",
+        "10",
+        "17"
+      ],
+      "colors": [
+        "#86B81C",
+        "#C6AFD4",
+        "#B85A4E"
+      ],
+      "lon": 121.314431,
+      "lat": 31.195984
+    },
+    {
+      "name": "虹桥路",
+      "py": "hongqiaolu",
+      "abbr": "hql",
+      "lineIds": [
+        "3",
+        "4",
+        "10"
+      ],
+      "colors": [
+        "#FCD600",
+        "#5A2B8D",
+        "#C6AFD4"
+      ],
+      "lon": 121.416175,
+      "lat": 31.199382
+    },
+    {
+      "name": "虹梅南路",
+      "py": "hongmeinanlu",
+      "abbr": "hmnl",
+      "lineIds": [
+        "15"
+      ],
+      "colors": [
+        "#DAC17D"
+      ],
+      "lon": 121.428444,
+      "lat": 31.10576
+    },
+    {
+      "name": "虹梅路",
+      "py": "hongmeilu",
+      "abbr": "hml",
+      "lineIds": [
+        "12"
+      ],
+      "colors": [
+        "#007A61"
+      ],
+      "lon": 121.392605,
+      "lat": 31.16222
+    },
+    {
+      "name": "虹漕路",
+      "py": "hongcaolu",
+      "abbr": "hcl",
+      "lineIds": [
+        "12"
+      ],
+      "colors": [
+        "#007A61"
+      ],
+      "lon": 121.405909,
+      "lat": 31.165902
+    },
+    {
+      "name": "虹莘路",
+      "py": "hongshenlu",
+      "abbr": "hsl",
+      "lineIds": [
+        "12"
+      ],
+      "colors": [
+        "#007A61"
+      ],
+      "lon": 121.375717,
+      "lat": 31.139344
+    },
+    {
+      "name": "蟠祥路·国家会计学院",
+      "py": "panxianglu·guojiakuaijixueyuan",
+      "abbr": "pxl·gjkjxy",
+      "lineIds": [
+        "2"
+      ],
+      "colors": [
+        "#86B81C"
+      ],
+      "lon": 121.28169,
+      "lat": 31.18341
+    },
+    {
+      "name": "蟠龙路",
+      "py": "panlonglu",
+      "abbr": "pll",
+      "lineIds": [
+        "17"
+      ],
+      "colors": [
+        "#B85A4E"
+      ],
+      "lon": 121.274202,
+      "lat": 31.188356
+    },
+    {
+      "name": "行知路",
+      "py": "xingzhilu",
+      "abbr": "xzl",
+      "lineIds": [
+        "7"
+      ],
+      "colors": [
+        "#EE782E"
+      ],
+      "lon": 121.417124,
+      "lat": 31.286316
+    },
+    {
+      "name": "衡山路",
+      "py": "hengshanlu",
+      "abbr": "hsl",
+      "lineIds": [
+        "1"
+      ],
+      "colors": [
+        "#E3002A"
+      ],
+      "lon": 121.441826,
+      "lat": 31.206418
+    },
+    {
+      "name": "西岑",
+      "py": "xicen",
+      "abbr": "xc",
+      "lineIds": [
+        "17"
+      ],
+      "colors": [
+        "#B85A4E"
+      ],
+      "lon": 120.959917,
+      "lat": 31.072738
+    },
+    {
+      "name": "西渡",
+      "py": "xidu",
+      "abbr": "xd",
+      "lineIds": [
+        "5"
+      ],
+      "colors": [
+        "#96499A"
+      ],
+      "lon": 121.427835,
+      "lat": 30.991336
+    },
+    {
+      "name": "西藏北路",
+      "py": "xizangbeilu",
+      "abbr": "xzbl",
+      "lineIds": [
+        "8"
+      ],
+      "colors": [
+        "#01A2E2"
+      ],
+      "lon": 121.464277,
+      "lat": 31.265367
+    },
+    {
+      "name": "西藏南路",
+      "py": "xizangnanlu",
+      "abbr": "xznl",
+      "lineIds": [
+        "4",
+        "8"
+      ],
+      "colors": [
+        "#5A2B8D",
+        "#01A2E2"
+      ],
+      "lon": 121.485089,
+      "lat": 31.203968
+    },
+    {
+      "name": "豫园",
+      "py": "yuyuan",
+      "abbr": "yy",
+      "lineIds": [
+        "10",
+        "14"
+      ],
+      "colors": [
+        "#C6AFD4",
+        "#818530"
+      ],
+      "lon": 121.48295,
+      "lat": 31.229987
+    },
+    {
+      "name": "赤峰路",
+      "py": "chifenglu",
+      "abbr": "cfl",
+      "lineIds": [
+        "3"
+      ],
+      "colors": [
+        "#FCD600"
+      ],
+      "lon": 121.477931,
+      "lat": 31.283191
+    },
+    {
+      "name": "赵巷",
+      "py": "zhaoxiang",
+      "abbr": "zx",
+      "lineIds": [
+        "17"
+      ],
+      "colors": [
+        "#B85A4E"
+      ],
+      "lon": 121.187801,
+      "lat": 31.163248
+    },
+    {
+      "name": "迎春路",
+      "py": "yingchunlu",
+      "abbr": "ycl",
+      "lineIds": [
+        "18"
+      ],
+      "colors": [
+        "#D0970A"
+      ],
+      "lon": 121.546733,
+      "lat": 31.223161
+    },
+    {
+      "name": "远东大道",
+      "py": "yuandongdadao",
+      "abbr": "yddd",
+      "lineIds": [
+        "2"
+      ],
+      "colors": [
+        "#86B81C"
+      ],
+      "lon": 121.750929,
+      "lat": 31.201415
+    },
+    {
+      "name": "迪士尼",
+      "py": "dishini",
+      "abbr": "dsn",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.663684,
+      "lat": 31.143426
+    },
+    {
+      "name": "通南路",
+      "py": "tongnanlu",
+      "abbr": "tnl",
+      "lineIds": [
+        "18"
+      ],
+      "colors": [
+        "#D0970A"
+      ],
+      "lon": 121.475124,
+      "lat": 31.339592
+    },
+    {
+      "name": "通河新村",
+      "py": "tonghexincun",
+      "abbr": "thxc",
+      "lineIds": [
+        "1"
+      ],
+      "colors": [
+        "#E3002A"
+      ],
+      "lon": 121.436927,
+      "lat": 31.332958
+    },
+    {
+      "name": "邮电新村",
+      "py": "youdianxincun",
+      "abbr": "ydxc",
+      "lineIds": [
+        "10"
+      ],
+      "colors": [
+        "#C6AFD4"
+      ],
+      "lon": 121.489792,
+      "lat": 31.270416
+    },
+    {
+      "name": "醉白池",
+      "py": "zuibaichi",
+      "abbr": "zbc",
+      "lineIds": [
+        "9"
+      ],
+      "colors": [
+        "#69C7F4"
+      ],
+      "lon": 121.224948,
+      "lat": 31.003264
+    },
+    {
+      "name": "野生动物园",
+      "py": "yeshengdongwuyuan",
+      "abbr": "ysdwy",
+      "lineIds": [
+        "16"
+      ],
+      "colors": [
+        "#98D1C0"
+      ],
+      "lon": 121.694893,
+      "lat": 31.052481
+    },
+    {
+      "name": "金京路",
+      "py": "jinjinglu",
+      "abbr": "jjl",
+      "lineIds": [
+        "12"
+      ],
+      "colors": [
+        "#007A61"
+      ],
+      "lon": 121.611268,
+      "lat": 31.281997
+    },
+    {
+      "name": "金吉路",
+      "py": "jinjilu",
+      "abbr": "jjl",
+      "lineIds": [
+        "9"
+      ],
+      "colors": [
+        "#69C7F4"
+      ],
+      "lon": 121.624521,
+      "lat": 31.266472
+    },
+    {
+      "name": "金平路",
+      "py": "jinpinglu",
+      "abbr": "jpl",
+      "lineIds": [
+        "5"
+      ],
+      "colors": [
+        "#96499A"
+      ],
+      "lon": 121.405555,
+      "lat": 31.013236
+    },
+    {
+      "name": "金桥",
+      "py": "jinqiao",
+      "abbr": "jq",
+      "lineIds": [
+        "9"
+      ],
+      "colors": [
+        "#69C7F4"
+      ],
+      "lon": 121.60713,
+      "lat": 31.263035
+    },
+    {
+      "name": "金桥路",
+      "py": "jinqiaolu",
+      "abbr": "jql",
+      "lineIds": [
+        "6"
+      ],
+      "colors": [
+        "#F0087D"
+      ],
+      "lon": 121.577604,
+      "lat": 31.259269
+    },
+    {
+      "name": "金沙江西路",
+      "py": "jinshajiangxilu",
+      "abbr": "jsjxl",
+      "lineIds": [
+        "13"
+      ],
+      "colors": [
+        "#EB81B9"
+      ],
+      "lon": 121.330596,
+      "lat": 31.243061
+    },
+    {
+      "name": "金沙江路",
+      "py": "jinshajianglu",
+      "abbr": "jsjl",
+      "lineIds": [
+        "3",
+        "4",
+        "13"
+      ],
+      "colors": [
+        "#FCD600",
+        "#5A2B8D",
+        "#EB81B9"
+      ],
+      "lon": 121.408553,
+      "lat": 31.233984
+    },
+    {
+      "name": "金海湖",
+      "py": "jinhaihu",
+      "abbr": "jhh",
+      "lineIds": [
+        "5"
+      ],
+      "colors": [
+        "#96499A"
+      ],
+      "lon": 121.488073,
+      "lat": 30.930968
+    },
+    {
+      "name": "金海路",
+      "py": "jinhailu",
+      "abbr": "jhl",
+      "lineIds": [
+        "9",
+        "12"
+      ],
+      "colors": [
+        "#69C7F4",
+        "#007A61"
+      ],
+      "lon": 121.634396,
+      "lat": 31.265296
+    },
+    {
+      "name": "金科路",
+      "py": "jinkelu",
+      "abbr": "jkl",
+      "lineIds": [
+        "2"
+      ],
+      "colors": [
+        "#86B81C"
+      ],
+      "lon": 121.59779,
+      "lat": 31.206428
+    },
+    {
+      "name": "金粤路",
+      "py": "jinyuelu",
+      "abbr": "jyl",
+      "lineIds": [
+        "14"
+      ],
+      "colors": [
+        "#818530"
+      ],
+      "lon": 121.624797,
+      "lat": 31.244269
+    },
+    {
+      "name": "金运路",
+      "py": "jinyunlu",
+      "abbr": "jyl",
+      "lineIds": [
+        "13"
+      ],
+      "colors": [
+        "#EB81B9"
+      ],
+      "lon": 121.314784,
+      "lat": 31.242925
+    },
+    {
+      "name": "铁力路",
+      "py": "tielilu",
+      "abbr": "tll",
+      "lineIds": [
+        "3"
+      ],
+      "colors": [
+        "#FCD600"
+      ],
+      "lon": 121.456562,
+      "lat": 31.409964
+    },
+    {
+      "name": "铜川路",
+      "py": "tongchuanlu",
+      "abbr": "tcl",
+      "lineIds": [
+        "14",
+        "15"
+      ],
+      "colors": [
+        "#818530",
+        "#DAC17D"
+      ],
+      "lon": 121.392383,
+      "lat": 31.25256
+    },
+    {
+      "name": "银都路",
+      "py": "yindoulu",
+      "abbr": "ydl",
+      "lineIds": [
+        "5"
+      ],
+      "colors": [
+        "#96499A"
+      ],
+      "lon": 121.385628,
+      "lat": 31.091256
+    },
+    {
+      "name": "锦江乐园",
+      "py": "jinjiangleyuan",
+      "abbr": "jjly",
+      "lineIds": [
+        "1"
+      ],
+      "colors": [
+        "#E3002A"
+      ],
+      "lon": 121.409467,
+      "lat": 31.144099
+    },
+    {
+      "name": "锦秋路",
+      "py": "jinqiulu",
+      "abbr": "jql",
+      "lineIds": [
+        "15"
+      ],
+      "colors": [
+        "#DAC17D"
+      ],
+      "lon": 121.377116,
+      "lat": 31.321991
+    },
+    {
+      "name": "锦绣路",
+      "py": "jinxiulu",
+      "abbr": "jxl",
+      "lineIds": [
+        "7"
+      ],
+      "colors": [
+        "#EE782E"
+      ],
+      "lon": 121.535749,
+      "lat": 31.189743
+    },
+    {
+      "name": "镇坪路",
+      "py": "zhenpinglu",
+      "abbr": "zpl",
+      "lineIds": [
+        "3",
+        "4",
+        "7"
+      ],
+      "colors": [
+        "#FCD600",
+        "#5A2B8D",
+        "#EE782E"
+      ],
+      "lon": 121.425147,
+      "lat": 31.248214
+    },
+    {
+      "name": "长寿路",
+      "py": "changshoulu",
+      "abbr": "csl",
+      "lineIds": [
+        "7",
+        "13"
+      ],
+      "colors": [
+        "#EE782E",
+        "#EB81B9"
+      ],
+      "lon": 121.433654,
+      "lat": 31.242719
+    },
+    {
+      "name": "长江南路",
+      "py": "changjiangnanlu",
+      "abbr": "cjnl",
+      "lineIds": [
+        "3",
+        "18"
+      ],
+      "colors": [
+        "#FCD600",
+        "#D0970A"
+      ],
+      "lon": 121.487011,
+      "lat": 31.334013
+    },
+    {
+      "name": "长江西路",
+      "py": "changjiangxilu",
+      "abbr": "cjxl",
+      "lineIds": [
+        "18"
+      ],
+      "colors": [
+        "#D0970A"
+      ],
+      "lon": 121.470735,
+      "lat": 31.347671
+    },
+    {
+      "name": "长清路",
+      "py": "zhangqinglu",
+      "abbr": "zql",
+      "lineIds": [
+        "7",
+        "13"
+      ],
+      "colors": [
+        "#EE782E",
+        "#EB81B9"
+      ],
+      "lon": 121.483305,
+      "lat": 31.176462
+    },
+    {
+      "name": "长风公园",
+      "py": "zhangfenggongyuan",
+      "abbr": "zfgy",
+      "lineIds": [
+        "15"
+      ],
+      "colors": [
+        "#DAC17D"
+      ],
+      "lon": 121.39167,
+      "lat": 31.227092
+    },
+    {
+      "name": "闵瑞路",
+      "py": "minruilu",
+      "abbr": "mrl",
+      "lineIds": [
+        "pujiang"
+      ],
+      "colors": [
+        "#B5B5B6"
+      ],
+      "lon": 121.526013,
+      "lat": 31.050159
+    },
+    {
+      "name": "闵行开发区",
+      "py": "minxingkaifaqu",
+      "abbr": "mxkfq",
+      "lineIds": [
+        "5"
+      ],
+      "colors": [
+        "#96499A"
+      ],
+      "lon": 121.365106,
+      "lat": 31.002608
+    },
+    {
+      "name": "陆家嘴",
+      "py": "lujiazui",
+      "abbr": "ljz",
+      "lineIds": [
+        "2",
+        "14"
+      ],
+      "colors": [
+        "#86B81C",
+        "#818530"
+      ],
+      "lon": 121.497705,
+      "lat": 31.240281
+    },
+    {
+      "name": "陆家浜路",
+      "py": "lujiabanglu",
+      "abbr": "ljbl",
+      "lineIds": [
+        "8",
+        "9"
+      ],
+      "colors": [
+        "#01A2E2",
+        "#69C7F4"
+      ],
+      "lon": 121.481636,
+      "lat": 31.213775
+    },
+    {
+      "name": "陈春路",
+      "py": "chenchunlu",
+      "abbr": "ccl",
+      "lineIds": [
+        "13"
+      ],
+      "colors": [
+        "#EB81B9"
+      ],
+      "lon": 121.553949,
+      "lat": 31.17729
+    },
+    {
+      "name": "陈翔公路",
+      "py": "chenxianggonglu",
+      "abbr": "cxgl",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.302285,
+      "lat": 31.308418
+    },
+    {
+      "name": "陕西南路",
+      "py": "shanxinanlu",
+      "abbr": "sxnl",
+      "lineIds": [
+        "1",
+        "10",
+        "12"
+      ],
+      "colors": [
+        "#E3002A",
+        "#C6AFD4",
+        "#007A61"
+      ],
+      "lon": 121.454174,
+      "lat": 31.217059
+    },
+    {
+      "name": "隆德路",
+      "py": "longdelu",
+      "abbr": "ldl",
+      "lineIds": [
+        "11",
+        "13"
+      ],
+      "colors": [
+        "#871C2A",
+        "#EB81B9"
+      ],
+      "lon": 121.418937,
+      "lat": 31.232354
+    },
+    {
+      "name": "隆昌路",
+      "py": "longchanglu",
+      "abbr": "lcl",
+      "lineIds": [
+        "12"
+      ],
+      "colors": [
+        "#007A61"
+      ],
+      "lon": 121.540406,
+      "lat": 31.277334
+    },
+    {
+      "name": "青浦新城",
+      "py": "qingpuxincheng",
+      "abbr": "qpxc",
+      "lineIds": [
+        "17"
+      ],
+      "colors": [
+        "#B85A4E"
+      ],
+      "lon": 121.121073,
+      "lat": 31.160815
+    },
+    {
+      "name": "静安寺",
+      "py": "jingansi",
+      "abbr": "jas",
+      "lineIds": [
+        "2",
+        "7",
+        "14"
+      ],
+      "colors": [
+        "#86B81C",
+        "#EE782E",
+        "#818530"
+      ],
+      "lon": 121.441934,
+      "lat": 31.225113
+    },
+    {
+      "name": "鞍山新村",
+      "py": "anshanxincun",
+      "abbr": "asxc",
+      "lineIds": [
+        "8"
+      ],
+      "colors": [
+        "#01A2E2"
+      ],
+      "lon": 121.505285,
+      "lat": 31.275271
+    },
+    {
+      "name": "顾唐路",
+      "py": "gutanglu",
+      "abbr": "gtl",
+      "lineIds": [
+        "9"
+      ],
+      "colors": [
+        "#69C7F4"
+      ],
+      "lon": 121.652202,
+      "lat": 31.268198
+    },
+    {
+      "name": "顾戴路",
+      "py": "gudailu",
+      "abbr": "gdl",
+      "lineIds": [
+        "12"
+      ],
+      "colors": [
+        "#007A61"
+      ],
+      "lon": 121.387209,
+      "lat": 31.14277
+    },
+    {
+      "name": "顾村公园",
+      "py": "gucungongyuan",
+      "abbr": "gcgy",
+      "lineIds": [
+        "7",
+        "15"
+      ],
+      "colors": [
+        "#EE782E",
+        "#DAC17D"
+      ],
+      "lon": 121.368368,
+      "lat": 31.346401
+    },
+    {
+      "name": "颛桥",
+      "py": "zhuanqiao",
+      "abbr": "zq",
+      "lineIds": [
+        "5"
+      ],
+      "colors": [
+        "#96499A"
+      ],
+      "lon": 121.397231,
+      "lat": 31.068934
+    },
+    {
+      "name": "马当路",
+      "py": "madanglu",
+      "abbr": "mdl",
+      "lineIds": [
+        "9",
+        "13"
+      ],
+      "colors": [
+        "#69C7F4",
+        "#EB81B9"
+      ],
+      "lon": 121.472746,
+      "lat": 31.211482
+    },
+    {
+      "name": "马陆",
+      "py": "malu",
+      "abbr": "ml",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.272454,
+      "lat": 31.321646
+    },
+    {
+      "name": "高桥",
+      "py": "gaoqiao",
+      "abbr": "gq",
+      "lineIds": [
+        "10"
+      ],
+      "colors": [
+        "#C6AFD4"
+      ],
+      "lon": 121.558722,
+      "lat": 31.354749
+    },
+    {
+      "name": "高桥西",
+      "py": "gaoqiaoxi",
+      "abbr": "gqx",
+      "lineIds": [
+        "10"
+      ],
+      "colors": [
+        "#C6AFD4"
+      ],
+      "lon": 121.544999,
+      "lat": 31.353591
+    },
+    {
+      "name": "高科西路",
+      "py": "gaokexilu",
+      "abbr": "gkxl",
+      "lineIds": [
+        "6",
+        "7"
+      ],
+      "colors": [
+        "#F0087D",
+        "#EE782E"
+      ],
+      "lon": 121.505453,
+      "lat": 31.187831
+    },
+    {
+      "name": "高青路",
+      "py": "gaoqinglu",
+      "abbr": "gql",
+      "lineIds": [
+        "6"
+      ],
+      "colors": [
+        "#F0087D"
+      ],
+      "lon": 121.511418,
+      "lat": 31.162007
+    },
+    {
+      "name": "鲁班路",
+      "py": "lubanlu",
+      "abbr": "lbl",
+      "lineIds": [
+        "4"
+      ],
+      "colors": [
+        "#5A2B8D"
+      ],
+      "lon": 121.470632,
+      "lat": 31.201182
+    },
+    {
+      "name": "鹤沙航城",
+      "py": "heshahangcheng",
+      "abbr": "hshc",
+      "lineIds": [
+        "16"
+      ],
+      "colors": [
+        "#98D1C0"
+      ],
+      "lon": 121.607049,
+      "lat": 31.080075
+    },
+    {
+      "name": "鹤涛路",
+      "py": "hetaolu",
+      "abbr": "htl",
+      "lineIds": [
+        "18"
+      ],
+      "colors": [
+        "#D0970A"
+      ],
+      "lon": 121.581766,
+      "lat": 31.074142
+    },
+    {
+      "name": "黄兴公园",
+      "py": "huangxinggongyuan",
+      "abbr": "hxgy",
+      "lineIds": [
+        "8"
+      ],
+      "colors": [
+        "#01A2E2"
+      ],
+      "lon": 121.529062,
+      "lat": 31.297475
+    },
+    {
+      "name": "黄兴路",
+      "py": "huangxinglu",
+      "abbr": "hxl",
+      "lineIds": [
+        "8"
+      ],
+      "colors": [
+        "#01A2E2"
+      ],
+      "lon": 121.524065,
+      "lat": 31.280894
+    },
+    {
+      "name": "黄杨路",
+      "py": "huangyanglu",
+      "abbr": "hyl",
+      "lineIds": [
+        "14"
+      ],
+      "colors": [
+        "#818530"
+      ],
+      "lon": 121.58681,
+      "lat": 31.236198
+    },
+    {
+      "name": "龙华",
+      "py": "longhua",
+      "abbr": "lh",
+      "lineIds": [
+        "11",
+        "12"
+      ],
+      "colors": [
+        "#871C2A",
+        "#007A61"
+      ],
+      "lon": 121.448379,
+      "lat": 31.174591
+    },
+    {
+      "name": "龙华中路",
+      "py": "longhuazhonglu",
+      "abbr": "lhzl",
+      "lineIds": [
+        "7",
+        "12"
+      ],
+      "colors": [
+        "#EE782E",
+        "#007A61"
+      ],
+      "lon": 121.452495,
+      "lat": 31.186302
+    },
+    {
+      "name": "龙柏新村",
+      "py": "longbaixincun",
+      "abbr": "lbxc",
+      "lineIds": [
+        "10"
+      ],
+      "colors": [
+        "#C6AFD4"
+      ],
+      "lon": 121.365857,
+      "lat": 31.178764
+    },
+    {
+      "name": "龙溪路",
+      "py": "longxilu",
+      "abbr": "lxl",
+      "lineIds": [
+        "10"
+      ],
+      "colors": [
+        "#C6AFD4"
+      ],
+      "lon": 121.375398,
+      "lat": 31.196263
+    },
+    {
+      "name": "龙漕路",
+      "py": "longcaolu",
+      "abbr": "lcl",
+      "lineIds": [
+        "3",
+        "12"
+      ],
+      "colors": [
+        "#FCD600",
+        "#007A61"
+      ],
+      "lon": 121.439784,
+      "lat": 31.171362
+    },
+    {
+      "name": "龙耀路",
+      "py": "longyaolu",
+      "abbr": "lyl",
+      "lineIds": [
+        "11"
+      ],
+      "colors": [
+        "#871C2A"
+      ],
+      "lon": 121.455142,
+      "lat": 31.161661
+    },
+    {
+      "name": "龙阳路",
+      "py": "longyanglu",
+      "abbr": "lyl",
+      "lineIds": [
+        "2",
+        "7",
+        "16",
+        "18"
+      ],
+      "colors": [
+        "#86B81C",
+        "#EE782E",
+        "#98D1C0",
+        "#D0970A"
+      ],
+      "lon": 121.553386,
+      "lat": 31.205755
+    }
+  ]
+}
