@@ -267,19 +267,32 @@
       type: 'geojson',
       data: { type: 'FeatureCollection', features: [] },
     });
-    // 柔光晕层：营造"发光运行中"质感
+    // 柔光晕层：低缩放时它是列车的主要表征（小圆点，无方向、不挤），
+    // 放大后作为箭头下的光晕。低缩放半径收小、透明度略降，避免开屏一片糊。
     map.addLayer({
       id: 'trains-glow',
       type: 'circle',
       source: 'trains',
       paint: {
-        'circle-radius': ['interpolate', ['linear'], ['zoom'], 9, 6, 14, 13],
+        'circle-radius': [
+          'interpolate', ['linear'], ['zoom'],
+          9, 2.6, 11, 3.6, 12.5, 6, 14, 11,
+        ],
         'circle-color': ['get', 'color'],
-        'circle-opacity': 0.25,
-        'circle-blur': 0.9,
+        'circle-opacity': [
+          'interpolate', ['linear'], ['zoom'],
+          9, 0.55, 11, 0.5, 13, 0.28,   // 低缩放当实心点用（不透明些），高缩放退为柔光
+        ],
+        'circle-blur': [
+          'interpolate', ['linear'], ['zoom'],
+          9, 0.25, 11, 0.4, 13, 0.9,    // 低缩放锐利像点，高缩放虚化成光晕
+        ],
       },
     });
-    // 主体：指向行进方向的箭头
+    // 主体箭头：随缩放渐进式展示——
+    // ① icon-opacity 在 zoom 11→12.5 从 0 淡入到 1，开屏(≤11)完全不显示箭头，只看点；
+    // ② 关闭 allow-overlap/ignore-placement 并留 padding，开启碰撞检测，
+    //    即便中等缩放箭头也会自动避让、不叠成一坨。
     map.addLayer({
       id: 'trains',
       type: 'symbol',
@@ -288,9 +301,16 @@
         'icon-image': ['concat', 'arrow-', ['get', 'lineId']],
         'icon-rotate': ['get', 'heading'],
         'icon-rotation-alignment': 'map',
-        'icon-allow-overlap': true,
-        'icon-ignore-placement': true,
-        'icon-size': ['interpolate', ['linear'], ['zoom'], 9, 0.42, 14, 0.82],
+        'icon-allow-overlap': false,
+        'icon-ignore-placement': false,
+        'icon-padding': 3,
+        'icon-size': ['interpolate', ['linear'], ['zoom'], 11, 0.5, 14, 0.82],
+      },
+      paint: {
+        'icon-opacity': [
+          'interpolate', ['linear'], ['zoom'],
+          11, 0, 12.5, 1,
+        ],
       },
     });
   }

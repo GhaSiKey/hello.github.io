@@ -109,6 +109,29 @@ body {
   color: var(--ink-sub);
   margin: 10px 0 5px;
   letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+/* 分段控件式排序切换：独占一行、三段等宽铺满，避免与标题挤在一行换行 */
+.sp-tabs {
+  display: flex; gap: 2px; letter-spacing: 0;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 2px; border-radius: 8px;
+  margin: 2px 0 6px;
+}
+.sp-tab {
+  flex: 1 1 0; min-width: 0;
+  border: none; cursor: pointer;
+  font-family: inherit; font-size: 11px; font-weight: 600;
+  color: var(--ink-sub);
+  background: transparent;
+  padding: 4px 4px; border-radius: 6px;
+  white-space: nowrap;
+  transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+}
+.sp-tab:hover { color: var(--ink); }
+.sp-tab.is-on {
+  background: #fff; color: var(--accent);
+  box-shadow: 0 1px 3px rgba(30, 40, 60, 0.12);
 }
 .sp-bars {
   display: flex;
@@ -150,17 +173,51 @@ body {
   font-variant-numeric: tabular-nums;
 }
 .sp-empty { font-size: 12px; color: var(--ink-sub); padding: 6px 2px; }
-.sp-hubs { display: flex; flex-direction: column; gap: 2px; }
+.sp-hubs { display: flex; flex-direction: column; gap: 3px; }
 .sp-hub {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
   cursor: pointer;
-  padding: 4px 3px;
-  border-radius: 5px;
+  padding: 5px 8px;
+  border-radius: 8px;
+  overflow: hidden;
+  isolation: isolate;   /* 让填充条限定在圆角内 */
+  transition: transform 0.15s ease, background 0.15s ease;
 }
-.sp-hub:hover { background: rgba(43, 111, 255, 0.08); }
-.sp-hub-name { font-size: 12px; color: var(--ink); flex: 1 1 auto; }
+/* 相对强度填充条：淡色渐变从左铺到 --fill，营造排行榜质感 */
+.sp-hub::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: var(--fill, 0%);
+  background: linear-gradient(90deg,
+    rgba(43, 111, 255, 0.14), rgba(43, 111, 255, 0.05));
+  border-radius: 8px;
+  z-index: -1;
+  transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.sp-hub:hover { background: rgba(43, 111, 255, 0.06); transform: translateX(2px); }
+.sp-hub.is-zero { opacity: 0.45; }
+.sp-hub.is-zero::before { display: none; }
+
+/* 排名徽标：前三金银铜，其余淡灰 */
+.sp-hub-rank {
+  flex: none;
+  width: 18px; height: 18px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700;
+  border-radius: 50%;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+.sp-hub-rank.r1 { background: linear-gradient(135deg, #f6c945, #e8a012); }
+.sp-hub-rank.r2 { background: linear-gradient(135deg, #c7ccd4, #a3abb7); }
+.sp-hub-rank.r3 { background: linear-gradient(135deg, #e0a878, #c07d45); }
+.sp-hub-rank.rx { background: rgba(0, 0, 0, 0.08); color: var(--ink-sub); }
+
+.sp-hub-name { font-size: 12px; color: var(--ink); flex: 1 1 auto; font-weight: 500; }
 .sp-hub-dots { display: flex; gap: 2px; flex: none; }
 .sp-hub-dot {
   width: 8px; height: 8px; border-radius: 50%;
@@ -168,7 +225,28 @@ body {
 }
 .sp-hub-n {
   font-size: 10px; color: var(--ink-sub); flex: none;
-  width: 30px; text-align: right;
+  min-width: 34px; text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.sp-hub-n b { font-size: 12px; font-weight: 700; color: var(--ink); margin-right: 1px; }
+
+/* 切换排序时的错落淡入（仅 .is-anim 时生效，每帧刷新不重放） */
+@keyframes spHubIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.sp-hubs.is-anim .sp-hub {
+  animation: spHubIn 0.32s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+.sp-hubs.is-anim .sp-hub:nth-child(1) { animation-delay: 0.00s; }
+.sp-hubs.is-anim .sp-hub:nth-child(2) { animation-delay: 0.04s; }
+.sp-hubs.is-anim .sp-hub:nth-child(3) { animation-delay: 0.08s; }
+.sp-hubs.is-anim .sp-hub:nth-child(4) { animation-delay: 0.12s; }
+.sp-hubs.is-anim .sp-hub:nth-child(5) { animation-delay: 0.16s; }
+.sp-hubs.is-anim .sp-hub:nth-child(6) { animation-delay: 0.20s; }
+@media (prefers-reduced-motion: reduce) {
+  .sp-hubs.is-anim .sp-hub { animation: none; }
+  .sp-hub, .sp-hub::before { transition: none; }
 }
 .hud-badge {
   display: inline-block;
@@ -181,11 +259,147 @@ body {
   border: 1px solid rgba(255, 170, 0, 0.3);
 }
 
-/* ============ 站点搜索（图标展开式） ============ */
-.search {
+/* ============ 右上角工具条（收藏 + 搜索） ============ */
+.toolbar {
   position: absolute;
   top: 16px;
   right: 57px;   /* 让开右上角缩放控件（16 右边距 + 29 控件宽 + 12 间距） */
+  z-index: 11;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+/* ============ 我的收藏 ============ */
+.fav { position: relative; }
+.fav-toggle {
+  position: relative;
+  height: 40px; min-width: 40px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 11px;
+  border-radius: 10px;
+  border: 1px solid var(--panel-border);
+  background: var(--panel-bg);
+  color: var(--ink);
+  cursor: pointer;
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  box-shadow: var(--panel-shadow);
+  transition: background 0.15s, color 0.15s;
+}
+.fav-toggle:hover { background: #fff; }
+.fav-toggle.has-fav { color: #f5a623; }
+.fav.is-open .fav-toggle { background: #fff; color: #f5a623; }
+.fav-count {
+  position: absolute;
+  top: -5px; right: -5px;
+  min-width: 16px; height: 16px;
+  padding: 0 4px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 10px; font-weight: 700; line-height: 16px;
+  text-align: center;
+  box-shadow: 0 0 0 2px var(--panel-bg);
+}
+.fav-panel {
+  position: absolute;
+  top: 48px; right: 0;   /* 贴工具条右边缘向左展开，避免宽面板冲出屏幕右侧 */
+  width: 300px;
+  max-width: calc(100vw - 76px);
+  max-height: 60vh;
+  overflow-y: auto;
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  box-shadow: var(--panel-shadow);
+  padding: 6px;
+  transform-origin: top right;
+  animation: favPanelIn 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.fav-panel[hidden] { display: none; }
+@keyframes favPanelIn {
+  from { opacity: 0; transform: translateY(-6px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.fav-head {
+  font-size: 12px; font-weight: 700; color: var(--ink);
+  padding: 8px 8px 10px;
+  display: flex; align-items: center; gap: 6px;
+  letter-spacing: 0.3px;
+}
+.fav-head-n {
+  font-size: 10px; font-weight: 700; color: #fff;
+  background: var(--accent); border-radius: 8px;
+  padding: 1px 7px; line-height: 15px;
+}
+.fav-empty {
+  font-size: 12px; color: var(--ink-sub);
+  padding: 14px 10px 18px; line-height: 1.7; text-align: center;
+}
+.fav-list { list-style: none; display: flex; flex-direction: column; gap: 1px; }
+.fav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 8px; border-radius: 9px;
+  cursor: pointer;
+  transition: background 0.15s ease, opacity 0.18s ease, transform 0.18s ease;
+}
+.fav-item:hover { background: rgba(43, 111, 255, 0.08); }
+.fav-item.is-removing { opacity: 0; transform: translateX(12px); }
+
+/* 左侧线路色点（横排，紧凑不换行） */
+.fav-dots {
+  flex: none; display: flex; align-items: center; gap: 3px;
+}
+.fav-dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.7);
+}
+/* 中间站名 + 线路名两行 */
+.fav-info {
+  flex: 1 1 auto; min-width: 0;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.fav-name {
+  font-size: 13px; font-weight: 600; color: var(--ink);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.fav-lines {
+  font-size: 11px; color: var(--ink-sub);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+/* 右侧删除星标（实心，点了变淡消失） */
+.fav-star {
+  flex: none;
+  border: none; background: transparent;
+  cursor: pointer; padding: 4px; border-radius: 8px;
+  color: #f5a623; line-height: 0;
+  transition: transform 0.12s ease, background 0.15s ease, color 0.15s ease;
+}
+.fav-star svg { fill: currentColor; display: block; }
+.fav-star:hover { background: rgba(245, 166, 35, 0.14); transform: scale(1.12); }
+.fav-star:active { transform: scale(0.9); }
+
+/* 搜索结果里的收藏星标（描边式，收藏后填充） */
+.si-fav {
+  flex: none;
+  border: none; background: transparent;
+  cursor: pointer; font-size: 16px; line-height: 1;
+  color: var(--ink-sub);
+  padding: 2px 4px; border-radius: 6px;
+  transition: color 0.15s, transform 0.1s;
+}
+.si-fav:hover { color: #f5a623; transform: scale(1.15); }
+.si-fav.is-fav { color: #f5a623; }
+
+/* 气泡标题里的只读收藏标记 */
+.tp-fav { color: #f5a623; margin-right: 3px; }
+
+/* ============ 站点搜索（图标展开式） ============ */
+.search {
+  position: relative;
   z-index: 11;
 }
 .search-toggle {
@@ -210,8 +424,11 @@ body {
 .search-toggle:hover { background: #fff; }
 .search-toggle-text { white-space: nowrap; }
 .search-toggle svg { flex: none; }
-.search.is-open .search-toggle { display: none; }
+.search.is-open .search-toggle { background: #fff; color: var(--accent); }
+/* 搜索框做成 pill 下方的下拉浮层，避免打开时挤动收藏按钮 */
 .search-box {
+  position: absolute;
+  top: 48px; right: 0;
   width: 300px;
   max-width: calc(100vw - 76px);
   background: var(--panel-bg);

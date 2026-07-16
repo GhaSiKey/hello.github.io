@@ -25,20 +25,35 @@
     <div class="hud-badge">模拟运行图 · 非实时数据</div>
   </div>
 
-  <!-- 站点搜索（图标展开式） -->
-  <div class="search" id="search">
-    <button class="search-toggle" id="searchToggle" aria-label="搜索站点" title="搜索站点">
-      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-        <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
-        <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-      <span class="search-toggle-text">搜索站点</span>
-    </button>
-    <div class="search-box" id="searchBox" hidden>
-      <input type="text" class="search-input" id="searchInput"
-             placeholder="搜索站点（支持拼音、首字母）" autocomplete="off" />
-      <button class="search-close" id="searchClose" aria-label="关闭">✕</button>
-      <ul class="search-results" id="searchResults"></ul>
+  <!-- 右上角工具条：收藏 + 站点搜索 -->
+  <div class="toolbar" id="toolbar">
+    <!-- 我的收藏 -->
+    <div class="fav" id="fav">
+      <button class="fav-toggle" id="favToggle" aria-label="我的收藏" title="我的收藏" aria-expanded="false">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <path d="M12 3.5l2.6 5.27 5.82.85-4.21 4.1.99 5.79L12 16.77l-5.2 2.73.99-5.79-4.21-4.1 5.82-.85z"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+        <span class="fav-count" id="favCount" hidden>0</span>
+      </button>
+      <div class="fav-panel" id="favPanel" hidden></div>
+    </div>
+
+    <!-- 站点搜索（图标展开式） -->
+    <div class="search" id="search">
+      <button class="search-toggle" id="searchToggle" aria-label="搜索站点" title="搜索站点">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+          <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="search-toggle-text">搜索站点</span>
+      </button>
+      <div class="search-box" id="searchBox" hidden>
+        <input type="text" class="search-input" id="searchInput"
+               placeholder="搜索站点（支持拼音、首字母）" autocomplete="off" />
+        <button class="search-close" id="searchClose" aria-label="关闭">✕</button>
+        <ul class="search-results" id="searchResults"></ul>
+      </div>
     </div>
   </div>
 

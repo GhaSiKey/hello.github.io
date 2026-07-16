@@ -20,6 +20,10 @@
     searchInput: $('#searchInput'),
     searchClose: $('#searchClose'),
     searchResults: $('#searchResults'),
+    fav: $('#fav'),
+    favToggle: $('#favToggle'),
+    favPanel: $('#favPanel'),
+    favCount: $('#favCount'),
   };
 
   const state = {
@@ -37,7 +41,40 @@
     panelOpen: false,   // 数据面板是否展开
     perLineCount: {},   // 线路 id → 本帧运行列车数
     totalRunning: 0,    // 本帧全网运行列车数
+    trainPts: [],       // 本帧所有运行列车坐标 [{lon,lat}]（供“此刻最忙”枢纽统计）
+    hubSort: 'busy',    // 换乘枢纽榜排序：'busy'此刻最忙 / 'lines'换乘线数 / 'gate'交通门户
+    favorites: new Set(), // 收藏站名集合（localStorage 持久化）
+    favOpen: false,     // 收藏面板是否展开
   };
+
+  // ============ 收藏系统（localStorage 持久化） ============
+  const FAV_KEY = 'shmetro:favorites';
+
+  /** 从 localStorage 载入收藏（解析失败降级空集，不阻塞主图）。 */
+  function loadFavorites() {
+    try {
+      const raw = localStorage.getItem(FAV_KEY);
+      const arr = raw ? JSON.parse(raw) : [];
+      if (Array.isArray(arr)) state.favorites = new Set(arr.filter(x => typeof x === 'string'));
+    } catch (e) { /* 隐私模式/损坏数据：降级为空收藏 */ }
+  }
+
+  /** 写回 localStorage（失败静默，例如隐私模式禁写）。 */
+  function saveFavorites() {
+    try { localStorage.setItem(FAV_KEY, JSON.stringify([...state.favorites])); }
+    catch (e) { /* ignore */ }
+  }
+
+  function isFav(name) { return state.favorites.has(name); }
+
+  /** 切换收藏状态并持久化，返回切换后的布尔。 */
+  function toggleFav(name) {
+    if (state.favorites.has(name)) state.favorites.delete(name);
+    else state.favorites.add(name);
+    saveFavorites();
+    updateFavBadge();
+    return state.favorites.has(name);
+  }
 
   const WEEKDAYS = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
 
@@ -250,6 +287,9 @@
       const byId = {};
       let running = 0;
       const perLine = {};  // 线路 id → 本帧运行列车数（用于数据面板；不受聚焦影响，全网统计）
+      // 面板“此刻最忙”需要全网列车坐标；仅在面板展开+该排序时才收集，省开销
+      const wantPts = state.panelOpen && state.hubSort === 'busy';
+      const pts = [];
       for (const l of state.lines) {
         const idx = state.indexById[l.id];
         if (!idx) continue;
@@ -259,10 +299,14 @@
           if (!route.service) continue;
           const trains = MetroScheduler.trainsOnLine(route, nowSec);
           lineCount += trains.length;
-          // 聚焦时只画该线的车（统计仍照常累计，面板反映全网）
-          if (!state.focusLine || l.id === state.focusLine) {
+          const drawThis = !state.focusLine || l.id === state.focusLine;
+          // 聚焦时只画该线的车（统计仍照常累计，面板反映全网）；
+          // 但“此刻最忙”需全网坐标，故 wantPts 时非聚焦线也定位取点。
+          if (drawThis || wantPts) {
             for (const tr of trains) {
               const pos = MetroGeo.locate(geoIndex, tr.mileage);
+              if (wantPts) pts.push([pos.lon, pos.lat]);
+              if (!drawThis) continue; // 非聚焦线：只取点，不进渲染/气泡集合
               // geo.bearing 是折线里程递增方向；下行列车逆里程行驶，朝向反 180°
               const heading = tr.dir === 'up' ? pos.bearing : (pos.bearing + 180) % 360;
               // 稳定身份：同一班车跨帧 key 不变（含 route.key 区分分支），供气泡跟随
@@ -283,6 +327,7 @@
       state.trainById = byId;
       state.perLineCount = perLine;
       state.totalRunning = running;
+      state.trainPts = pts;
       MetroRender.updateTrains(state.map, all);
       updateRunningCount(running);
       if (state.panelOpen) renderStatsPanel();
@@ -307,10 +352,13 @@
       return;
     }
     state.lines = data.lines || [];
+    loadFavorites();
+    setupFav();
     // 搜索索引并行加载（失败降级为空，不阻塞主图）
     loadSearchIndex().then(idx => {
       state.searchIndex = idx.stations || [];
       setupSearch();
+      renderFavPanel();  // 索引到位后补全收藏项的线路名/色点
     });
     // 预建索引：每条线 → 其各 route 的几何里程索引（分支线多个，非分支线一个）
     for (const l of state.lines) {
@@ -483,7 +531,9 @@
       sections += `<div class="tp-section">${head}${dirRows}</div>`;
     }
 
-    return `<span class="tp-line">${p.name}</span>${transfer}` +
+    // 已收藏站点标题前加只读 ★ 标记（气泡 pointer-events:none，不做交互）
+    const favMark = isFav(p.name) ? `<span class="tp-fav">★</span>` : '';
+    return `<span class="tp-line">${favMark}${p.name}</span>${transfer}` +
            (sections ? `<div class="tp-list">${sections}</div>` : '');
   }
 
@@ -508,8 +558,9 @@
       return;
     }
 
+    // 含 trains-glow：低缩放时箭头淡出/被碰撞剔除，光点仍可悬停命中列车
     const hits = map.queryRenderedFeatures([pt.x, pt.y], {
-      layers: ['trains', 'stations', 'stations-transfer'],
+      layers: ['trains', 'trains-glow', 'stations', 'stations-transfer'],
     });
     if (!hits.length) {
       if (state.pinned) showStationPopupByName(state.pinned);
@@ -517,8 +568,8 @@
       return;
     }
 
-    // 列车优先
-    const train = hits.find(f => f.layer.id === 'trains');
+    // 列车优先（箭头或其光点均可命中）
+    const train = hits.find(f => f.layer.id === 'trains' || f.layer.id === 'trains-glow');
     if (train) {
       const t = matchTrain(train.properties, train.geometry.coordinates);
       if (t) {
@@ -581,13 +632,70 @@
     return st.length ? st[st.length - 1].mileage_m / 1000 : 0;
   }
 
-  /** 换乘枢纽榜数据：按换乘线数排序的站点（来自搜索索引，含坐标）。 */
-  function topHubs(limit) {
-    return state.searchIndex
-      .filter(s => s.lineIds.length >= 2)
-      .sort((a, b) => b.lineIds.length - a.lineIds.length
-        || a.name.localeCompare(b.name))
-      .slice(0, limit || 6);
+  // 交通门户识别：火车站 / 机场航站楼类站点（对外交通枢纽）
+  const GATE_RE = /(火车站|机场|航站楼)/;
+
+  /** 即时计算全网列车坐标（供切到“此刻最忙”那一帧立即有数据，不必等下一 tick）。 */
+  function computeTrainPts() {
+    if (!state.ready) return [];
+    const nowSec = MetroScheduler.nowSecOfDay(new Date());
+    const pts = [];
+    for (const l of state.lines) {
+      const idx = state.indexById[l.id];
+      if (!idx) continue;
+      for (const { route, geoIndex } of idx.routes) {
+        if (!route.service) continue;
+        for (const tr of MetroScheduler.trainsOnLine(route, nowSec)) {
+          const pos = MetroGeo.locate(geoIndex, tr.mileage);
+          pts.push([pos.lon, pos.lat]);
+        }
+      }
+    }
+    return pts;
+  }
+
+  /** 经纬度近似平面距离(米)：上海纬度下每度经度≈95km、纬度≈111km，够用。 */
+  function approxDist(lon1, lat1, lon2, lat2) {
+    const dx = (lon1 - lon2) * 95000;
+    const dy = (lat1 - lat2) * 111000;
+    return Math.hypot(dx, dy);
+  }
+
+  /** 换乘枢纽榜数据。mode:
+   *  'busy' 此刻最忙——统计该站 800m 内正在运行的列车数（随时间变化）；
+   *  'lines' 换乘线数——经过线路条数；
+   *  'gate' 交通门户——火车站/机场类，按换乘线数排。
+   * 返回站点对象数组，附加 metric（榜单右侧展示的数值）与 unit。 */
+  function topHubs(limit, mode) {
+    const n = limit || 6;
+    const hubs = state.searchIndex.filter(s => s.lineIds.length >= 2);
+
+    if (mode === 'gate') {
+      return hubs
+        .filter(s => GATE_RE.test(s.name))
+        .sort((a, b) => b.lineIds.length - a.lineIds.length || a.name.localeCompare(b.name))
+        .slice(0, n)
+        .map(s => ({ ...s, metric: s.lineIds.length, unit: '线' }));
+    }
+
+    if (mode === 'busy') {
+      const pts = state.trainPts || [];
+      return hubs
+        .map(s => {
+          let c = 0;
+          for (const p of pts) if (approxDist(s.lon, s.lat, p[0], p[1]) <= 800) c++;
+          return { ...s, metric: c, unit: '车' };
+        })
+        .sort((a, b) => b.metric - a.metric
+          || b.lineIds.length - a.lineIds.length || a.name.localeCompare(b.name))
+        .slice(0, n);
+    }
+
+    // 'lines'
+    return hubs
+      .sort((a, b) => b.lineIds.length - a.lineIds.length || a.name.localeCompare(b.name))
+      .slice(0, n)
+      .map(s => ({ ...s, metric: s.lineIds.length, unit: '线' }));
   }
 
   /** 渲染数据面板内容（展开时每帧刷新）。 */
@@ -635,16 +743,36 @@
       </div>`;
     }).join('');
 
-    // 换乘枢纽榜
-    const hubs = topHubs(6).map(h => {
+    // 换乘枢纽榜：三种排序可切换
+    const HUB_TABS = [
+      { key: 'busy', label: '此刻最忙' },
+      { key: 'lines', label: '换乘线数' },
+      { key: 'gate', label: '交通门户' },
+    ];
+    const tabs = HUB_TABS.map(t =>
+      `<button class="sp-tab${state.hubSort === t.key ? ' is-on' : ''}" ` +
+      `data-sort="${t.key}">${t.label}</button>`).join('');
+
+    const hubList = topHubs(6, state.hubSort);
+    // 相对强度：用于每行背景填充条（排行榜质感），按当前榜最大值归一
+    const hubMax = hubList.reduce((m, h) => Math.max(m, h.metric || 0), 0) || 1;
+    const hubs = hubList.length ? hubList.map((h, i) => {
       const dots = h.colors.map(c =>
         `<span class="sp-hub-dot" style="background:${c}"></span>`).join('');
-      return `<div class="sp-hub" data-name="${h.name}">
+      const zero = h.unit === '车' && !h.metric;   // 此刻最忙且无车
+      const pct = Math.round(((h.metric || 0) / hubMax) * 100);
+      const rank = i + 1;
+      return `<div class="sp-hub${zero ? ' is-zero' : ''}" data-name="${h.name}" style="--fill:${pct}%">
+        <span class="sp-hub-rank r${rank <= 3 ? rank : 'x'}">${rank}</span>
         <span class="sp-hub-name">${h.name}</span>
         <span class="sp-hub-dots">${dots}</span>
-        <span class="sp-hub-n">${h.lineIds.length} 线</span>
+        <span class="sp-hub-n"><b>${h.metric}</b>${h.unit}</span>
       </div>`;
-    }).join('');
+    }).join('') : '<div class="sp-empty">暂无数据</div>';
+
+    // 仅在排序方式切换时触发一次入场动画（每帧重建不重放，避免抖动）
+    const animate = state._lastHubSort !== state.hubSort;
+    state._lastHubSort = state.hubSort;
 
     // 重建前记住排行区滚动位置，避免每帧刷新把用户滚动位置弹回顶部
     const prevBars = panel.querySelector('.sp-bars');
@@ -655,7 +783,8 @@
       `<div class="sp-sub">各线运行列车数</div>` +
       `<div class="sp-bars">${bars || '<div class="sp-empty">当前无运行列车</div>'}</div>` +
       `<div class="sp-sub">换乘枢纽 Top 6</div>` +
-      `<div class="sp-hubs">${hubs}</div>`;
+      `<div class="sp-tabs">${tabs}</div>` +
+      `<div class="sp-hubs${animate ? ' is-anim' : ''}">${hubs}</div>`;
 
     const newBars = panel.querySelector('.sp-bars');
     if (newBars && prevScroll) newBars.scrollTop = prevScroll;
@@ -668,7 +797,11 @@
     panel.hidden = !state.panelOpen;
     btn.setAttribute('aria-expanded', String(state.panelOpen));
     btn.classList.toggle('is-open', state.panelOpen);
-    if (state.panelOpen) renderStatsPanel();
+    if (state.panelOpen) {
+      // 默认排序“此刻最忙”，打开即补算全网坐标，首帧就有数据
+      if (state.hubSort === 'busy') state.trainPts = computeTrainPts();
+      renderStatsPanel();
+    }
   }
 
   /** 绑定数据面板交互。 */
@@ -677,8 +810,16 @@
     if (btn) btn.addEventListener('click', togglePanel);
     const panel = document.getElementById('hudPanel');
     if (panel) {
-      // 点击排行条 → 聚焦该线；点击枢纽 → 飞到该站
+      // 点击排序切换 → 换枢纽榜口径；点击排行条 → 聚焦该线；点击枢纽 → 飞到该站
       panel.addEventListener('click', (e) => {
+        const tab = e.target.closest('.sp-tab');
+        if (tab) {
+          state.hubSort = tab.dataset.sort;
+          // 切到“此刻最忙”立即补算全网坐标，避免首帧显示全 0
+          if (state.hubSort === 'busy') state.trainPts = computeTrainPts();
+          renderStatsPanel();
+          return;
+        }
         const bar = e.target.closest('.sp-bar-row');
         if (bar) { focusLineById(bar.dataset.line); return; }
         const hub = e.target.closest('.sp-hub');
@@ -735,10 +876,13 @@
         const l = state.indexById[id] && state.indexById[id].line;
         return l ? l.name : id + '号线';
       }).join(' · ');
+      const fav = isFav(s.name);
       return `<li class="search-item${i === 0 ? ' is-active' : ''}" data-name="${s.name}">
         <span class="si-dots">${dots}</span>
         <span class="si-name">${s.name}</span>
         <span class="si-lines">${lineNames}</span>
+        <button class="si-fav${fav ? ' is-fav' : ''}" data-fav="${s.name}"
+          aria-label="${fav ? '取消收藏' : '收藏'}" title="${fav ? '取消收藏' : '收藏'}">${fav ? '★' : '☆'}</button>
       </li>`;
     }).join('');
   }
@@ -767,7 +911,104 @@
     }
   }
 
+  // ============ 收藏面板 ============
+
+  /** 更新收藏按钮上的数量徽标与高亮态。 */
+  function updateFavBadge() {
+    if (!els.favCount) return;
+    const n = state.favorites.size;
+    els.favCount.textContent = n;
+    els.favCount.hidden = n === 0;
+    els.favToggle.classList.toggle('has-fav', n > 0);
+  }
+
+  /** 渲染收藏面板内容。 */
+  function renderFavPanel() {
+    const panel = els.favPanel;
+    if (!panel) return;
+    const names = [...state.favorites];
+    if (!names.length) {
+      panel.innerHTML =
+        `<div class="fav-head">我的收藏</div>` +
+        `<div class="fav-empty">还没有收藏的车站。<br>搜索站点后点 ☆ 收藏常用车站。</div>`;
+      return;
+    }
+    // 每站：左色点 + 中(站名/线路名两行) + 右删除星标
+    const rows = names.map(name => {
+      const s = state.searchIndex.find(x => x.name === name);
+      const dots = s ? s.colors.map(c =>
+        `<span class="fav-dot" style="background:${c}"></span>`).join('') : '';
+      const lineNames = s ? s.lineIds.map(id => {
+        const l = state.indexById[id] && state.indexById[id].line;
+        return l ? l.name : id + '号线';
+      }).join(' · ') : '';
+      return `<li class="fav-item" data-name="${name}">
+        <span class="fav-dots">${dots}</span>
+        <span class="fav-info">
+          <span class="fav-name">${name}</span>
+          <span class="fav-lines">${lineNames}</span>
+        </span>
+        <button class="fav-star" data-fav="${name}" aria-label="取消收藏" title="取消收藏">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+            <path d="M12 3.5l2.6 5.27 5.82.85-4.21 4.1.99 5.79L12 16.77l-5.2 2.73.99-5.79-4.21-4.1 5.82-.85z"/>
+          </svg>
+        </button>
+      </li>`;
+    }).join('');
+    panel.innerHTML =
+      `<div class="fav-head">我的收藏 <span class="fav-head-n">${names.length}</span></div>` +
+      `<ul class="fav-list">${rows}</ul>`;
+  }
+
+  function openFav() {
+    closeSearch();            // 与搜索互斥，避免两个下拉重叠
+    state.favOpen = true;
+    renderFavPanel();
+    els.favPanel.hidden = false;
+    els.fav.classList.add('is-open');
+    els.favToggle.setAttribute('aria-expanded', 'true');
+  }
+  function closeFav() {
+    state.favOpen = false;
+    els.favPanel.hidden = true;
+    els.fav.classList.remove('is-open');
+    els.favToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  /** 绑定收藏面板交互。 */
+  function setupFav() {
+    if (!els.favToggle) return;
+    updateFavBadge();
+    els.favToggle.addEventListener('click', () => {
+      state.favOpen ? closeFav() : openFav();
+    });
+    els.favPanel.addEventListener('click', (e) => {
+      const star = e.target.closest('.fav-star');
+      if (star) {
+        e.stopPropagation();
+        const li = star.closest('.fav-item');
+        // 先播放移除动画，再重渲染
+        if (li) {
+          li.classList.add('is-removing');
+          toggleFav(star.dataset.fav);
+          setTimeout(renderFavPanel, 180);
+        } else {
+          toggleFav(star.dataset.fav);
+          renderFavPanel();
+        }
+        return;
+      }
+      const li = e.target.closest('.fav-item');
+      if (li) { closeFav(); gotoStation(li.dataset.name); }
+    });
+    // 点面板外部关闭
+    document.addEventListener('click', (e) => {
+      if (state.favOpen && !els.fav.contains(e.target)) closeFav();
+    });
+  }
+
   function openSearch() {
+    if (state.favOpen) closeFav();   // 与收藏互斥，避免两个下拉重叠
     els.search.classList.add('is-open');
     els.searchBox.hidden = false;
     els.searchInput.focus();
@@ -814,8 +1055,18 @@
       items[idx].scrollIntoView({ block: 'nearest' });
     });
 
-    // 点击结果项
+    // 点击结果项：星标 → 收藏切换（不触发飞抵）；其余 → 飞到该站
     els.searchResults.addEventListener('click', (e) => {
+      const star = e.target.closest('.si-fav');
+      if (star) {
+        e.stopPropagation();
+        const on = toggleFav(star.dataset.fav);
+        star.classList.toggle('is-fav', on);
+        star.textContent = on ? '★' : '☆';
+        star.setAttribute('aria-label', on ? '取消收藏' : '收藏');
+        star.title = on ? '取消收藏' : '收藏';
+        return;
+      }
       const li = e.target.closest('.search-item');
       if (li) gotoStation(li.dataset.name);
     });
