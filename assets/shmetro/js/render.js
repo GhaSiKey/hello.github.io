@@ -289,6 +289,21 @@
         ],
       },
     });
+    // 停站脉动层：只画正在车站停靠(dwell==1)的列车，做一圈呼吸光环。
+    // 运行中的车不进此层，因此运行箭头保持平滑、绝不闪烁。半径/透明度由
+    // startDwellPulse 的 rAF 循环逐帧驱动（MapLibre 图层本身不支持 CSS 动画）。
+    map.addLayer({
+      id: 'trains-dwell',
+      type: 'circle',
+      source: 'trains',
+      filter: ['==', ['get', 'dwell'], 1],
+      paint: {
+        'circle-color': ['get', 'color'],
+        'circle-opacity': 0,   // 由动画驱动
+        'circle-radius': ['interpolate', ['linear'], ['zoom'], 9, 3, 14, 10],
+        'circle-blur': 0.35,
+      },
+    });
     // 主体箭头：随缩放渐进式展示——
     // ① icon-opacity 在 zoom 11→12.5 从 0 淡入到 1，开屏(≤11)完全不显示箭头，只看点；
     // ② 关闭 allow-overlap/ignore-placement 并留 padding，开启碰撞检测，
@@ -313,6 +328,30 @@
         ],
       },
     });
+
+    startDwellPulse(map);
+  }
+
+  /** 驱动停站脉动层的呼吸动画：光环半径随正弦扩张、透明度同步明暗。
+   * 只影响 trains-dwell 层（停站车），不碰运行箭头，故运行态无闪烁。
+   * scale 是每帧算出的普通数字，直接乘进 zoom 插值的锚点值（zoom interpolate
+   * 必须在最外层，不能被 '*' 包裹）。 */
+  function startDwellPulse(map) {
+    if (map._dwellPulseOn) return;   // 防重复启动
+    map._dwellPulseOn = true;
+    function frame(ts) {
+      if (!map.getLayer || !map.getLayer('trains-dwell')) { map._dwellPulseOn = false; return; }
+      const phase = (ts % 2400) / 2400;              // 2.4s 一个呼吸周期（更舒缓）
+      const s = Math.sin(phase * Math.PI * 2) * 0.5 + 0.5; // 0..1
+      const scale = 1 + 0.28 * s;                    // 1.0..1.28 扩张（幅度更小）
+      const opacity = 0.5 - 0.4 * s;                 // 0.5..0.1 越扩越淡（扩散消退感）
+      map.setPaintProperty('trains-dwell', 'circle-radius', [
+        'interpolate', ['linear'], ['zoom'], 9, 3 * scale, 14, 10 * scale,
+      ]);
+      map.setPaintProperty('trains-dwell', 'circle-opacity', opacity);
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
   }
 
   /** 用当前帧的列车数据更新 trains 源。
@@ -328,6 +367,7 @@
         properties: {
           color: t.color, line: t.line, lineId: t.lineId,
           dir: t.dir, toward: t.toward || '', heading: t.heading || 0,
+          dwell: t.dwelling ? 1 : 0,   // 停站中 → 视觉上略缩小+光晕加强
         },
         geometry: { type: 'Point', coordinates: [t.lon, t.lat] },
       })),

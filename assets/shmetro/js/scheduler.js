@@ -106,13 +106,25 @@
       let k = 0;
       while (k < offs.length - 1 && elapsed >= offs[k + 1]) k++;
       const segDur = (offs[k + 1] - offs[k]) || 1;
-      let t = (elapsed - offs[k]) / segDur;   // 0..1 区间内进度
-      t = Math.max(0, Math.min(1, t));
+      // 每段 = 先在第 k 站停靠 dwellDur 秒，再运行 runDur 秒到第 k+1 站。
+      // stationOffsets 里除首段外每段都含一份 DWELL_SEC，这里把它拆回来，
+      // 让列车真的在站点停住，而不是把停站时间摊进移动里匀速滑过。
+      const runDur = rtSeq[k] || segDur;                 // 纯区间运行耗时
+      const dwellDur = Math.max(0, segDur - runDur);     // 该段起点站停靠时长（首段 =0）
+      const timeInSeg = elapsed - offs[k];
+
+      let t, dwelling;
+      if (timeInSeg <= dwellDur) {
+        t = 0; dwelling = true;                          // 停站阶段：钉在第 k 站
+      } else {
+        t = Math.max(0, Math.min(1, (timeInSeg - dwellDur) / (runDur || 1)));
+        dwelling = false;                                // 运行阶段：两站间插值
+      }
 
       // mileageSeq 已按行进方向排好序，直接线性插值
       const mileage = mileageSeq[k] + (mileageSeq[k + 1] - mileageSeq[k]) * t;
 
-      out.push({ mileage, dir, dep, seg: k, t });
+      out.push({ mileage, dir, dep, seg: k, t, dwelling });
     }
     return out;
   }

@@ -564,6 +564,19 @@ body.has-line-bar .legend { bottom: calc(var(--line-bar-h, 80px) + 12px); }
   border-bottom: 0;
 }
 .tp-line { font-weight: 700; font-size: 13px; }
+/* 停靠中标记：柔和呼吸动画 */
+.tp-dwell {
+  font-size: 10px; font-weight: 600;
+  color: #7fe3a4; margin-left: 6px;
+  animation: tpDwellPulse 1.4s ease-in-out infinite;
+}
+@keyframes tpDwellPulse {
+  0%, 100% { opacity: 0.45; }
+  50%      { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tp-dwell { animation: none; opacity: 0.9; }
+}
 .tp-toward { color: #c9d2e0; }
 .tp-list {
   margin-top: 6px;

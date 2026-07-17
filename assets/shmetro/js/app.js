@@ -315,6 +315,7 @@
                 id, lon: pos.lon, lat: pos.lat, color: l.color, lineId: l.id,
                 line: l.name, dir: tr.dir, toward: towardOf(route, tr.dir), heading,
                 seg: tr.seg, dep: tr.dep, routeKey: route.key, // 供"后续到站"查询
+                dwelling: !!tr.dwelling,                        // 是否正在站点停靠
               };
               all.push(t);
               byId[id] = t;
@@ -448,7 +449,8 @@
         `<span class="tp-row"><span class="tp-stop">${s.name}</span>` +
         `<span class="tp-eta">${fmtEta(s.eta)}</span></span>`).join('');
     }
-    return `<span class="tp-line" style="color:${t.color}">${t.line}</span>` +
+    const status = t.dwelling ? `<span class="tp-dwell">● 停靠中</span>` : '';
+    return `<span class="tp-line" style="color:${t.color}">${t.line}${status}</span>` +
            `<span class="tp-toward">开往 ${t.toward}</span>` +
            (rows ? `<div class="tp-list">${rows}</div>` : '');
   }
