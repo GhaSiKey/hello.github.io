@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI 模拟买盘战绩 · 2026 World Cup</title>
+  <title>AI 模拟买盘 · 数据分析 · 2026 World Cup</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -20,24 +20,24 @@
   <div class="container">
     <header class="header">
       <div class="logo">
-        <span class="logo-icon">🎰</span>
+        <span class="logo-icon">📊</span>
         <div class="logo-text">
-          <h1 class="logo-title">AI 模拟买盘战绩</h1>
-          <span class="logo-sub">2026 · AI BETTING REPLAY</span>
+          <h1 class="logo-title">AI 模拟买盘 · 数据分析</h1>
+          <span class="logo-sub">2026 · FULL-TOURNAMENT ANALYTICS</span>
         </div>
       </div>
       <nav class="page-nav">
         <a href="worldcup.html" class="nav-link">赔率</a>
-        <a href="simbet.html" class="nav-link active">战绩</a>
+        <a href="simbet.html" class="nav-link active">数据分析</a>
       </nav>
     </header>
     <div class="title-rule"></div>
 
-    <!-- 汇总卡 -->
+    <!-- 核心指标卡 -->
     <section class="summary" id="summary"></section>
 
-    <!-- 战绩时间线 -->
-    <main class="timeline" id="timeline">
+    <!-- 图表网格 -->
+    <main class="an-grid" id="anGrid">
       <div class="error-state" id="errorState" hidden>
         <span class="error-icon">😵</span>
         <p class="error-text">数据加载失败</p>
@@ -45,12 +45,21 @@
       </div>
     </main>
 
+    <!-- 完整赛程战绩（原始逐场数据，104 场）-->
+    <section class="an-timeline-section">
+      <h2 class="an-section-title">完整赛程战绩 · 104 场逐场明细</h2>
+      <div class="timeline" id="timeline"></div>
+    </section>
+
     <footer class="disclaimer" id="disclaimer"></footer>
   </div>
 
+  <!-- Chart.js（CDN；断网降级由 charts.js 兜底提示）-->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script src="assets/worldcup/js/data.js"></script>
   <script src="assets/worldcup/js/simbet/judge.js"></script>
   <script src="assets/worldcup/js/simbet/render.js"></script>
+  <script src="assets/worldcup/js/simbet/charts.js"></script>
   <script src="assets/worldcup/js/simbet/app.js"></script>
   <script src="assets/worldcup/js/backtotop.js"></script>
 </body>

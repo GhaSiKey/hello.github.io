@@ -28,18 +28,56 @@
     errorHint: $('#errorHint'),
     headerMeta: $('#headerMeta'),
     disclaimer: $('#disclaimer'),
+    champBanner: $('#champBanner'),
     calendar: $('#calendar'),
     detailOverlay: $('#detailOverlay'),
     detailPanel: $('#detailPanel'),
     detailInner: $('#detailInner'),
   };
 
-  /** 渲染头部元信息（数据截止时间 —— 冻结快照必须显著标注）。 */
+  /** 渲染头部元信息。赛事已闭幕则显终态，否则显数据截止时间戳。 */
   function renderHeader(meta) {
-    els.headerMeta.innerHTML = `
-      <span class="meta-stamp">🕐 赔率截止 ${fmtStamp(meta.crawledAt)}</span>
-      ${meta.analyzedAt ? `<span class="meta-stamp">🧠 分析于 ${fmtStamp(meta.analyzedAt)}</span>` : ''}`;
+    const t = meta.tournament;
+    if (t && t.status === 'finished') {
+      els.headerMeta.innerHTML = `
+        <span class="meta-stamp">🏁 赛事已闭幕 · ${fmtStamp(t.concludedAt)}</span>
+        <span class="meta-stamp">🏆 冠军 ${escapeText(t.champion)}</span>`;
+    } else {
+      els.headerMeta.innerHTML = `
+        <span class="meta-stamp">🕐 赔率截止 ${fmtStamp(meta.crawledAt)}</span>
+        ${meta.analyzedAt ? `<span class="meta-stamp">🧠 分析于 ${fmtStamp(meta.analyzedAt)}</span>` : ''}`;
+    }
     els.disclaimer.textContent = '⚠ ' + (meta.disclaimer || '');
+  }
+
+  /** 转义（headerMeta/banner 用，避免队名注入）。 */
+  function escapeText(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  /** 冠军收官条：赛事闭幕才显示，读 meta.tournament。 */
+  function renderChampion(meta) {
+    const t = meta.tournament;
+    if (!els.champBanner) return;
+    if (!t || t.status !== 'finished') { els.champBanner.hidden = true; return; }
+    const e = escapeText;
+    els.champBanner.hidden = false;
+    els.champBanner.innerHTML = `
+      <div class="champ-top">
+        <span class="champ-trophy">🏆</span>
+        <div class="champ-lines">
+          <span class="champ-headline">${e(t.headline || '赛事已闭幕')}</span>
+          <span class="champ-name"><span class="champ-crown">👑</span> ${e(t.champion)}</span>
+        </div>
+      </div>
+      <div class="champ-podium">
+        <span class="champ-rank champ-rank--1"><span class="champ-medal">🥇</span>${e(t.champion)}</span>
+        <span class="champ-rank"><span class="champ-medal">🥈</span>${e(t.runnerUp)}</span>
+        <span class="champ-rank"><span class="champ-medal">🥉</span>${e(t.third)}</span>
+        <span class="champ-rank"><span class="champ-medal">4️⃣</span>${e(t.fourth)}</span>
+        <span class="champ-note">${e(t.finalNote)}${t.thirdNote ? ' · ' + e(t.thirdNote) : ''}</span>
+      </div>`;
   }
 
   /** 渲染列表（固定按日期分组，分组头带阶段/轮次标签）。 */
@@ -151,6 +189,7 @@
     try {
       state.data = await loadWorldCupData();
       renderHeader(state.data.meta);
+      renderChampion(state.data.meta);
       renderCal();
       renderList();
       els.skeleton.hidden = true;

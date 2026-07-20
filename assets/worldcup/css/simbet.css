@@ -81,10 +81,64 @@
 .sb-profit.pos { color: var(--green); }
 .sb-profit.neg { color: var(--red); }
 
+/* ── 数据分析页 ── */
+.an-lead {
+  margin: -8px 0 24px; padding: 14px 18px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-left: 3px solid var(--gold); border-radius: var(--radius-sm);
+  font-size: 14px; line-height: 1.7; color: var(--text-dim);
+}
+.an-lead b { color: var(--gold-bright); font-weight: 700; }
+
+/* 6 列基准网格：卡片按内容跨列，形成一行多个的灵活排布 */
+/* minmax(0,1fr)：防止 Chart.js canvas 撑爆 1fr(=minmax(auto,1fr)) 导致挤成单列 */
+.an-grid {
+  display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px;
+  align-items: start;
+}
+.an-card {
+  display: flex; flex-direction: column;
+  grid-column: span 3;                 /* 默认半宽：一行两个 */
+  min-width: 0;                        /* 允许卡片收窄，canvas 才能自适应 */
+  background: var(--surface);
+  border: 1px solid var(--border-hi);  /* 更明显的外轮廓 */
+  border-radius: var(--radius); padding: 16px 18px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+  transition: border-color 0.18s, transform 0.18s;
+}
+.an-card:hover { border-color: rgba(232,196,119,0.4); transform: translateY(-2px); }
+.an-card--wide { grid-column: span 6; }  /* 整行：累计曲线 */
+.an-card--third { grid-column: span 2; } /* 三分之一：一行三个 */
+.an-card-head { margin-bottom: 12px; }
+.an-card-title { font-size: 15px; font-weight: 700; color: var(--text); margin: 0; }
+.an-card-sub { font-size: 12px; color: var(--text-faint); }
+.an-canvas-wrap { position: relative; height: 250px; min-width: 0; }
+.an-canvas-wrap canvas { max-width: 100%; }
+.an-card--wide .an-canvas-wrap { height: 280px; }
+
+/* 底部完整战绩 */
+.an-timeline-section { margin-top: 40px; }
+.an-section-title {
+  font-size: 18px; font-weight: 800; color: var(--gold);
+  margin: 0 0 20px; padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.an-fallback {
+  grid-column: 1 / -1;
+  padding: 16px 18px; border-radius: var(--radius-sm);
+  background: rgba(255,107,91,0.08); border: 1px solid rgba(255,107,91,0.25);
+  color: var(--text-dim); font-size: 14px;
+}
+
 /* H5 */
 @media (max-width: 768px) {
   .summary { grid-template-columns: repeat(2, 1fr); }
   .sum-value { font-size: 22px; }
   .logo-title { font-size: 19px; }
   .sb-teams { font-size: 14px; }
+  .an-grid { grid-template-columns: 1fr; }
+  .an-card, .an-card--wide, .an-card--third { grid-column: 1 / -1; }
+  .an-canvas-wrap, .an-card--wide .an-canvas-wrap { height: 240px; }
+  .an-section-title { font-size: 16px; }
 }
