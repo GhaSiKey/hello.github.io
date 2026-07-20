@@ -10,17 +10,17 @@
     ],
     "disclaimer": "数据仅供参考，不构成投注建议；竞彩为负和游戏，长期期望为负",
     "betSummary": {
-      "totalBudget": 2040,
-      "totalMatches": 102,
-      "totalBets": 305,
-      "settledStake": 2040,
-      "settledPayout": 1697.46,
-      "profitSettled": -342.54,
-      "roiSettled": -0.1679,
-      "finishedMatches": 102,
-      "hitBets": 77,
-      "settleableBets": 305,
-      "profitBudget": -342.54
+      "totalBudget": 2080,
+      "totalMatches": 104,
+      "totalBets": 311,
+      "settledStake": 2080,
+      "settledPayout": 1724.76,
+      "profitSettled": -355.24,
+      "roiSettled": -0.1708,
+      "finishedMatches": 104,
+      "hitBets": 79,
+      "settleableBets": 311,
+      "profitBudget": -355.24
     }
   },
   "matches": [
@@ -26541,7 +26541,9 @@
               "pick": {
                 "h": 2,
                 "a": 1
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "总进球3球",
@@ -26549,7 +26551,9 @@
               "stake": 7,
               "potential": 24.15,
               "type": "ttg",
-              "pick": 3
+              "pick": 3,
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "让球-1 让胜",
@@ -26560,11 +26564,26 @@
               "pick": {
                 "goalLine": -1,
                 "side": "h"
-              }
+              },
+              "hit": false,
+              "payout": 0
             }
           ],
           "note": "季军赛对攻大球,主押法国2:1小胜+总进球3;让球试水押法国赢透,不押大头;吸取半决赛教训不押平局。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 4,
+          "a": 6
+        },
+        "half": {
+          "h": 0,
+          "a": 4
+        },
+        "source": "manual",
+        "filledAt": "2026-07-20T10:16:51+08:00"
       }
     },
     {
@@ -26783,7 +26802,9 @@
               "pick": {
                 "h": 1,
                 "a": 1
-              }
+              },
+              "hit": false,
+              "payout": 0
             },
             {
               "market": "平局",
@@ -26791,7 +26812,9 @@
               "stake": 7,
               "potential": 19.25,
               "type": "had",
-              "pick": "d"
+              "pick": "d",
+              "hit": true,
+              "payout": 19.25
             },
             {
               "market": "让球-1 让负",
@@ -26802,11 +26825,26 @@
               "pick": {
                 "goalLine": -1,
                 "side": "a"
-              }
+              },
+              "hit": true,
+              "payout": 8.05
             }
           ],
           "note": "决赛谨慎小球,主押1:1+平局(关注平局标签,但吸取半决赛教训不重押);让球试水押西班牙赢不透,不押大头。"
         }
+      },
+      "result": {
+        "status": "finished",
+        "full": {
+          "h": 0,
+          "a": 0
+        },
+        "half": {
+          "h": 0,
+          "a": 0
+        },
+        "source": "manual",
+        "filledAt": "2026-07-20T10:16:51+08:00"
       }
     }
   ],
